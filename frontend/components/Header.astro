@@ -1,0 +1,114 @@
+---
+import { Image } from "astro:assets";
+import nuopen from "../assets/nuopen.svg";
+import { Status } from "./additional/Status.tsx";
+
+const links = [
+  { href: "#about", label: "About" },
+  { href: "#schedule", label: "Agenda" },
+  { href: "#rules", label: "Rules" },
+];
+---
+
+<header class="fixed inset-x-0 top-0 z-10 py-4">
+  <div class="mx-auto max-w-259.5 px-4 sm:px-6 lg:px-8">
+    <nav
+      class="flex h-16 rounded-xl bg-[rgba(23,23,23,0.8)] px-4 backdrop-blur-md sm:px-8 md:px-16"
+    >
+      <div class="flex w-full gap-4 md:gap-8">
+        <div class="flex flex-1">
+          <a href="/" class="flex items-center">
+            <Image src={nuopen} alt="NU Open Logo" class="h-10 w-auto" />
+          </a>
+        </div>
+
+        <div class="hidden items-center gap-8 md:flex" id="nav-links">
+          {
+            links.map((link) => (
+              <a
+                href={link.href}
+                class="transition-opacity duration-200 ease-in-out hover:opacity-80"
+              >
+                {link.label}
+              </a>
+            ))
+          }
+          <!-- это просто пример, потом удалим отсюда -->
+          <Status client:load />
+        </div>
+
+        <button
+          id="mobile-menu-btn"
+          class="p-2 md:hidden"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path id="hamburger-icon" d="M4 6h16M4 12h16M4 18h16"></path>
+            <path id="close-icon" class="hidden" d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+
+        <div class="hidden flex-1 flex-col items-end justify-center md:flex">
+          <a
+            href="/registration"
+            class="rounded-full bg-red-800 px-6 py-2 text-center outline outline-red-800 transition-colors duration-200 ease-in-out hover:bg-red-900"
+          >
+            <span class="font-bold">Register</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div
+      id="mobile-menu"
+      class="mt-2 hidden rounded-xl bg-[rgba(23,23,23,0.8)] p-4 backdrop-blur-md md:hidden"
+    >
+      <nav class="flex flex-col gap-4" id="mobile-nav-links">
+        {
+          links.map((link) => (
+            <a
+              href={link.href}
+              class="transition-opacity duration-200 ease-in-out hover:opacity-80"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+
+        <a
+          href="/registration"
+          class="rounded-full bg-red-800 px-6 py-2 text-center outline outline-red-800 transition-colors duration-200 ease-in-out hover:bg-red-900"
+        >
+          <span class="font-bold">Register</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <script>
+    import { setupMobileMenu } from "../utils/mobileMenu.ts";
+    import { setupSmoothScroll } from "../utils/smoothScroll.ts";
+
+    setupSmoothScroll("#nav-links");
+    setupSmoothScroll("#mobile-nav-links");
+
+    setupMobileMenu({
+      btnId: "mobile-menu-btn",
+      menuId: "mobile-menu",
+      hamburgerId: "hamburger-icon",
+      closeId: "close-icon",
+      linksSelector: "#mobile-nav-links a",
+    });
+  </script>
+</header>

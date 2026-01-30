@@ -1,0 +1,81 @@
+---
+import { Image } from "astro:assets";
+import about from "../assets/about.svg";
+import calendar from "../assets/calendar.svg";
+import location from "../assets/location.svg";
+import welcome from "../assets/welcome.svg";
+import who from "../assets/who.svg";
+
+const eventDetails = [
+  {
+    icon: calendar,
+    alt: "Calendar",
+    title: "When?",
+    lines: ["November 8, 2025"],
+  },
+  {
+    icon: location,
+    alt: "Location",
+    title: "Where?",
+    lines: ["Nazarbayev University", "Astana, Kazakhstan"],
+  },
+  {
+    icon: who,
+    alt: "Who",
+    title: "Who?",
+    lines: ["Everyone older than 16"],
+  },
+];
+---
+
+<section id="about" class="px-6 py-16 sm:px-8 md:py-20 lg:px-12">
+  <div class="mb-12 flex flex-col gap-8 md:mb-12 md:flex-row md:gap-12">
+    <div class="flex flex-1 flex-col items-start justify-center">
+      <Image src={welcome} alt="NU Open" class="mb-6 h-8 w-auto" />
+      <p class="mb-8 text-left leading-relaxed md:text-lg lg:text-xl">
+        The main goal of NUOPEN is to promote competitive programming among
+        students. In this way, we contribute to the development of the youth IT
+        community in Kazakhstan.
+      </p>
+      <a
+        href="/registration"
+        class="rounded-full bg-red-800 px-6 py-2 text-center outline outline-red-800 transition-colors duration-200 ease-in-out hover:bg-red-900"
+      >
+        <span class="font-bold">Register</span>
+      </a>
+    </div>
+    <div class="flex flex-1 items-center justify-center">
+      <Image
+        src={about}
+        alt="About NU Open"
+        class="h-auto w-full max-w-lg md:max-w-xl lg:max-w-2xl"
+      />
+    </div>
+  </div>
+
+  <div class="rounded-2xl border-2 border-red-800 p-6 md:p-8">
+    <div
+      class="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-16"
+    >
+      {
+        eventDetails.map((detail) => (
+          <div class="flex flex-row items-center gap-6">
+            <Image
+              src={detail.icon}
+              alt={detail.alt}
+              class="icon-red shrink-0"
+            />
+            <div class="flex flex-col text-left">
+              <h3 class="mb-1 text-2xl font-bold md:text-3xl">
+                {detail.title}
+              </h3>
+              {detail.lines.map((line) => (
+                <p class="text-lg md:text-xl">{line}</p>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

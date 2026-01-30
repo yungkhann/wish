@@ -1,0 +1,77 @@
+---
+import { Image } from "astro:assets";
+import Earth from "../assets/schedule/earth.svg";
+import Jupiter from "../assets/schedule/jupiter.svg";
+import Mars from "../assets/schedule/mars.svg";
+import Mercury from "../assets/schedule/mercury.svg";
+import Saturn from "../assets/schedule/saturn.svg";
+import Venus from "../assets/schedule/venus.svg";
+
+const events = [
+  {
+    time: "09:00-10:00",
+    title: "Registration",
+    iconSrc: Mercury,
+  },
+  {
+    time: "10:00-10:40",
+    title: "Opening Ceremony",
+    iconSrc: Venus,
+  },
+  {
+    time: "11:00-16:00",
+    title: "Competition",
+    iconSrc: Earth,
+  },
+  {
+    time: "16:00-16:30",
+    title: "Coffee Break",
+    iconSrc: Mars,
+  },
+  {
+    time: "16:30-17:00",
+    title: "Photoshoot",
+    iconSrc: Jupiter,
+  },
+  {
+    time: "17:00-18:00",
+    title: "Closing Ceremony",
+    iconSrc: Saturn,
+  },
+];
+---
+
+<section id="schedule" class="flex flex-col items-center py-20 md:py-24">
+  <h2 class="mb-12 text-center text-5xl font-bold">Agenda</h2>
+
+  <!-- Unified View -->
+  <div
+    class="flex flex-col gap-12 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-x-16 md:gap-y-12"
+    style="transform: translateX(0)"
+  >
+    {
+      events.map((event) => (
+        <div class="grid grid-cols-[auto_1fr] gap-x-4 md:contents">
+          {/* Time */}
+          <h3 class="flex items-center justify-end text-[16px] font-bold md:col-start-1 md:row-auto md:h-25 md:text-[32px] md:whitespace-nowrap">
+            {event.time}
+          </h3>
+
+          {/* Icon */}
+          <div class="row-span-2 place-self-center md:col-start-2 md:row-auto">
+            <Image
+              class="size-15 shrink-0 md:h-25 md:w-auto"
+              src={event.iconSrc}
+              alt={event.title}
+            />
+          </div>
+
+          {/* Title */}
+          <h3 class="flex items-center justify-start text-[16px] font-bold md:col-start-3 md:row-auto md:h-25 md:text-[32px] md:whitespace-nowrap">
+            {event.title}
+          </h3>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import "tailwindcss";
+
+/* html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+} */
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: black;
+  color: white;
+}
+
+@font-face {
+  font-family: "dseg7";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/dseg7-modern-mini-latin-300-normal.woff2") format("woff2");
+}
+
+@layer components {
+  .clipped-card {
+    background-color: #8b1f23;
+    width: clamp(60px, 15vw, 120px);
+    height: clamp(75px, 18vw, 150px);
+    clip-path: polygon(
+      0 0,
+      calc(100% - 15px) 0,
+      100% 15px,
+      100% 100%,
+      15px 100%,
+      0 calc(100% - 15px)
+    );
+    &:hover {
+      filter: brightness(1.2);
+    }
+  }
+
+  .digital-display {
+    font-family: "dseg7", monospace;
+    font-size: clamp(2rem, 8vw, 3.75rem);
+    color: white;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+  }
+
+  .plane-fire {
+    position: absolute;
+    bottom: 8%;
+    left: 5%;
+    pointer-events: none;
+    width: calc(50vw * 4.5);
+    min-width: calc(300px * 4.5);
+    max-width: calc(400px * 4.5);
+    height: auto;
+    transform: translate(4%, -3%);
+  }
+
+  .plane-image {
+    position: absolute;
+    bottom: 0;
+    left: 7%;
+    width: 50vw;
+    min-width: 300px;
+    max-width: 400px;
+    height: auto;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+  }
+
+  .icon-red {
+    width: 80px;
+    height: 80px;
+    filter: brightness(0) saturate(100%) invert(9%) sepia(95%) saturate(6943%)
+      hue-rotate(356deg) brightness(88%) contrast(114%);
+  }
+
+  .icon-white {
+    width: 46px;
+    height: 28px;
+    filter: brightness(0) saturate(100%) invert(100%);
+  }
+}
+
+@keyframes planeEnter {
+  from {
+    transform: translate(150vw, -100vh);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+.plane-anim {
+  transform: translate(150vw, -100vh);
+  animation: planeEnter 0.8s ease-out 0.3s forwards;
+}

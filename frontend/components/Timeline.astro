@@ -1,0 +1,47 @@
+---
+const timelineEvents = [
+  {
+    date: "Oct, 24",
+    title: "Registration",
+    mt: "md:mt-61.75",
+  },
+  {
+    date: "Nov, 06",
+    title: "Confirmation",
+    mt: "md:mt-0",
+    reverse: true,
+  },
+  {
+    date: "Nov, 08",
+    title: "NU Open",
+    mt: "md:mt-58.25",
+  },
+];
+---
+
+<section
+  class="mx-auto max-w-303 px-6 py-12 sm:px-8 md:py-16 lg:px-12 lg:py-24"
+>
+  <div
+    class="relative flex flex-col gap-8 md:grid md:h-96 md:grid-cols-3 md:gap-0"
+  >
+    {
+      timelineEvents.map((event) => (
+        <div
+          class:list={[
+            "flex flex-col gap-2 text-center",
+            event.mt,
+            event.reverse && "md:mb-auto md:flex-col-reverse",
+          ]}
+        >
+          <div class="text-2xl leading-10 font-bold sm:text-3xl md:text-3xl lg:text-4xl">
+            {event.date}
+          </div>
+          <div class="text-2xl leading-tight font-black text-red-800 sm:text-3xl md:text-3xl lg:text-4xl">
+            {event.title}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

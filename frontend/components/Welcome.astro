@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import cosmoPlane from "../assets/cosmoPlane.svg";
+import planeFire from "../assets/planeFire.svg";
+import star from "../assets/star.svg";
+import welcome from "../assets/welcome.svg";
+import { Countdown } from "./additional/Countdown";
+
+const stars = [
+  "top-[15%] left-[10%] w-[8px] opacity-60",
+  "top-[25%] right-[15%] w-[10px] opacity-80",
+  "top-[40%] left-[20%] w-[7px] opacity-50",
+  "top-[60%] right-[25%] w-[9px] opacity-70",
+  "top-[70%] left-[15%] w-[8px] opacity-60",
+  "top-[20%] right-[30%] w-[7px] opacity-50",
+  "top-[50%] left-[8%] w-[8px] opacity-70",
+  "top-[80%] right-[10%] w-[9px] opacity-60",
+  "bottom-[15%] left-[50%] w-[8px] opacity-70",
+];
+---
+
+<section
+  class="relative flex min-h-screen flex-col items-center justify-center overflow-clip"
+>
+  <div
+    aria-hidden="true"
+    class="plane-anim pointer-events-none absolute inset-0"
+  >
+    <Image src={planeFire} alt="" class="plane-fire" />
+    <Image src={cosmoPlane} alt="" class="plane-image" />
+  </div>
+
+  <div class="pointer-events-none absolute inset-0">
+    {
+      stars.map((style) => (
+        <Image src={star} alt="" class={`absolute ${style}`} />
+      ))
+    }
+  </div>
+
+  <div
+    class="relative flex scale-90 flex-col items-center gap-6 px-2 py-16 sm:px-6 md:gap-8 md:px-8 lg:px-12"
+  >
+    <div class="flex flex-col gap-4">
+      <Image src={welcome} alt="NU Open" class="h-8 w-auto md:h-10" />
+      <div class="max-w-2xl px-4 text-center md:text-lg">
+        <p>The 6th annual ICPC-style programming competition</p>
+        <p>organized by ACM@NU SC.</p>
+      </div>
+    </div>
+
+    <Countdown client:only="react" />
+  </div>
+</section>
