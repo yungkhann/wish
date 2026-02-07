@@ -16,7 +16,7 @@ const router = app
     const auth = createAuth(
       c.env.wishDB,
       c.env.CLIENT_URL,
-      c.env.BETTER_AUTH_SECRET
+      c.env.BETTER_AUTH_SECRET,
     );
     return auth.handler(c.req.raw);
   });

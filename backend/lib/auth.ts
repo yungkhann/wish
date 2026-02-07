@@ -7,7 +7,7 @@ import * as schema from "../db/schema";
 export const createAuth = (
   d1: D1Database,
   clientUrl: string,
-  secret: string
+  secret: string,
 ) => {
   const db = getDb(d1);
   return betterAuth({

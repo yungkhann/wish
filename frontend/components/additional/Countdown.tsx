@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+
+const TARGET_DATE = new Date("2026-02-14T23:59:59").getTime();
 
 export function Countdown() {
-  const targetDate = new Date("2026-02-14T23:59:59").getTime();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -12,7 +13,7 @@ export function Countdown() {
   useEffect(() => {
     const updateCountdown = () => {
       const now = new Date().getTime();
-      const distance = targetDate - now;
+      const distance = TARGET_DATE - now;
 
       setTimeLeft({
         days: distance > 0 ? Math.floor(distance / (1000 * 60 * 60 * 24)) : 0,
@@ -31,7 +32,7 @@ export function Countdown() {
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
-  }, [targetDate]);
+  }, []);
 
   const units = [
     { value: timeLeft.days, label: "Days" },
@@ -43,8 +44,8 @@ export function Countdown() {
   return (
     <div className="flex items-center gap-6 p-4">
       {units.map((unit, i) => (
-        <>
-          <div key={unit.label} className="flex flex-col items-center gap-2">
+        <Fragment key={unit.label}>
+          <div className="flex flex-col items-center gap-2">
             <div className="clipped-card">
               <div className="digital-display flex h-full items-center justify-center font-bold">
                 {String(unit.value).padStart(2, "0")}
@@ -60,7 +61,7 @@ export function Countdown() {
               <div className="h-1.5 w-1.5 rounded-full bg-current sm:h-2 sm:w-2" />
             </div>
           )}
-        </>
+        </Fragment>
       ))}
     </div>
   );
