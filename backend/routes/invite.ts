@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import type { Bindings } from "../index";
 import { createAuth } from "../lib/auth";
-import { createInvitaion, getAllInvites } from "../services/invitaion.service";
+import { createInvitaion, getAllInvites, handleInviteStatus } from "../services/invitaion.service";
 
 export const userInvitationRouter = new Hono<{ Bindings: Bindings }>();
 
@@ -53,7 +53,7 @@ userInvitationRouter.post("/:uuid/status/:inviteStatus", async (c) => {
     const invitaionId = c.req.param("uuid");
     const invitaionStatus = c.req.param("inviteStatus");
 
+    await handleInviteStatus(c.env.wishDB, invitaionId, invitaionStatus);
 
-
-    return c.json(invites, 200);
+    return c.json(200);
 });
