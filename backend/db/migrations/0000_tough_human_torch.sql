@@ -15,7 +15,13 @@ CREATE TABLE `account` (
 	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
-CREATE INDEX `account_userId_idx` ON `account` (`user_id`);--> statement-breakpoint
+CREATE TABLE `invite` (
+	`id` text PRIMARY KEY NOT NULL,
+	`team_id` text NOT NULL,
+	`user_id` text NOT NULL,
+	`status` text NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE `session` (
 	`id` text PRIMARY KEY NOT NULL,
 	`expires_at` integer NOT NULL,
@@ -29,18 +35,28 @@ CREATE TABLE `session` (
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `session_token_unique` ON `session` (`token`);--> statement-breakpoint
-CREATE INDEX `session_userId_idx` ON `session` (`user_id`);--> statement-breakpoint
-CREATE TABLE `user` (
+CREATE TABLE `team` (
 	`id` text PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
-	`email` text NOT NULL,
-	`email_verified` integer DEFAULT false NOT NULL,
-	`image` text,
-	`created_at` integer DEFAULT (cast(unixepoch('subsecond') * 1000 as integer)) NOT NULL,
-	`updated_at` integer DEFAULT (cast(unixepoch('subsecond') * 1000 as integer)) NOT NULL
+	`invite_code` text NOT NULL,
+	`creator_id` text NOT NULL
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `user_email_unique` ON `user` (`email`);--> statement-breakpoint
+CREATE TABLE `user` (
+	`id` text PRIMARY KEY NOT NULL,
+	`name` text,
+	`surname` text,
+	`phoneNumber` text,
+	`parentPhoneNumber` text,
+	`educationLevel` text,
+	`iin` text,
+	`email` text NOT NULL,
+	`email_verified` integer DEFAULT false NOT NULL,
+	`created_at` integer DEFAULT (cast(unixepoch('subsecond') * 1000 as integer)) NOT NULL,
+	`updated_at` integer DEFAULT (cast(unixepoch('subsecond') * 1000 as integer)) NOT NULL,
+	`team_id` text
+);
+--> statement-breakpoint
 CREATE TABLE `verification` (
 	`id` text PRIMARY KEY NOT NULL,
 	`identifier` text NOT NULL,
@@ -49,5 +65,3 @@ CREATE TABLE `verification` (
 	`created_at` integer DEFAULT (cast(unixepoch('subsecond') * 1000 as integer)) NOT NULL,
 	`updated_at` integer DEFAULT (cast(unixepoch('subsecond') * 1000 as integer)) NOT NULL
 );
---> statement-breakpoint
-CREATE INDEX `verification_identifier_idx` ON `verification` (`identifier`);
