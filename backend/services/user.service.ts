@@ -68,6 +68,25 @@ export async function createUser(
   }
 }
 
+export async function getUserByUserId(binding: D1Database, userId: string) {
+  const db = getDb(binding);
+  
+  return await db
+  .select()
+  .from(user)
+  .where(eq(user.id, userId))
+  .get();
+}
+
+export async function getUsersByTeamId(binding: D1Database, teamId: string) {
+  const db = getDb(binding);
+  
+  return await db
+  .select()
+  .from(user)
+  .where(eq(user.teamId, teamId));
+}
+
 export async function updateUserTeam(binding: D1Database, userId: string, teamId: string) {
   const db = getDb(binding);
 

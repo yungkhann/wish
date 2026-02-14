@@ -20,14 +20,14 @@ export const user = sqliteTable("user", {
     .default(sql`(cast(unixepoch('subsecond') * 1000 as integer))`)
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
-  teamId: text("team_id"),
+  teamId: text("team_id").references(() => team.id),
 });
 
 export const team = sqliteTable("team", {
   id: text("id").primaryKey().notNull(),
   name: text("name").notNull(),
   inviteCode: text("invite_code").notNull(),
-  creatorId: text("creator_id").notNull(),
+  creatorId: text("creator_id").notNull()
 });
 
 export const invite = sqliteTable("invite", {
