@@ -1,22 +1,12 @@
 import { Hono } from "hono";
-import type { Bindings } from "../index";
-import { createAuth } from "../lib/auth";
+import type { AppEnv } from "../middleware/auth";
 import { createTeam, getInvitationCode, getTeamMembersByCreatorId } from "../services/team.service";
 
-export const teamRegistrationRouter = new Hono<{ Bindings: Bindings }>();
+export const teamRegistrationRouter = new Hono<AppEnv>();
 
 teamRegistrationRouter.post("/", async (c) => {
+    const session = c.var.session;
 
-    const auth = createAuth(c.env);
-    
-    const session = await auth.api.getSession({
-        headers: c.req.raw.headers,
-    });
-    
-    if (!session) {
-        return c.json({ error: 'Unauthorized' }, 401);
-    }
-    
     const teamName = c.req.query("teamName");
 
     if (!teamName) {
@@ -26,35 +16,18 @@ teamRegistrationRouter.post("/", async (c) => {
     await createTeam(c.env.wishDB, session.user.id, teamName);
 
     return c.json({}, 200);
-})
+});
 
 teamRegistrationRouter.get("/link", async (c) => {
+    const session = c.var.session;
 
-    const auth = createAuth(c.env);
-    
-    const session = await auth.api.getSession({
-        headers: c.req.raw.headers,
-    });
-    
-    if (!session) {
-        return c.json({ error: 'Unauthorized' }, 401);
-    }
+    const invitationCode = await getInvitationCode(c.env.wishDB, session.user.id);
 
-    const invitaionCode = await getInvitationCode(c.env.wishDB, session.user.id);
-
-    return c.json({link: c.env.CLIENT_URL + "/api/invite/" + invitaionCode}, 200);
-})
+    return c.json({link: c.env.CLIENT_URL + "/api/invite/" + invitationCode}, 200);
+});
 
 teamRegistrationRouter.get("/members", async (c) => {
-    const auth = createAuth(c.env);
-    
-    const session = await auth.api.getSession({
-        headers: c.req.raw.headers,
-    });
-    
-    if (!session) {
-        return c.json({ error: 'Unauthorized' }, 401);
-    }
+    const session = c.var.session;
 
     const teamMembers = await getTeamMembersByCreatorId(c.env.wishDB, session.user.id);
     const teamMembersDto = [];
@@ -69,9 +42,8 @@ teamRegistrationRouter.get("/members", async (c) => {
         teamMembersDto.push({
             email: teamMember.email,
             memberType: memberType,
-            
         });
     }
 
     return c.json(teamMembersDto, 200);
-})
+});

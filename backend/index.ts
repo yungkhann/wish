@@ -1,8 +1,8 @@
 import type { D1Database } from "@cloudflare/workers-types";
 import { Hono } from "hono";
 import { AppError } from "./exception/AppError";
-// import { authRouter } from "./routes/auth";
 import { createAuth } from "./lib/auth";
+import { authMiddleware } from "./middleware/auth";
 import { userInvitationRouter } from "./routes/invite";
 import { userRegistrationRouter } from "./routes/register";
 import { teamRegistrationRouter } from "./routes/team";
@@ -12,21 +12,30 @@ export type Bindings = {
   CLIENT_URL: string;
   BETTER_AUTH_SECRET: string;
   GAS_URL: string;
-  GAS_SECRET: string
+  GAS_SECRET: string;
 };
 
 const app = new Hono<{ Bindings: Bindings }>().basePath("/api");
 
-app.all("/auth/*", async (c) => {
+// Public routes
 
-  const auth = createAuth(c.env)
-  return auth.handler(c.req.raw)
-})
+app.get("/health", (c) => {
+  return c.json({ status: "ok" });
+});
+
+app.all("/auth/*", async (c) => {
+  const auth = createAuth(c.env);
+  return auth.handler(c.req.raw);
+});
+
+// Protected routes
+
+app.use("/user/*", authMiddleware);
+app.use("/team/*", authMiddleware);
+app.use("/invite/*", authMiddleware);
 
 app.route("/user", userRegistrationRouter);
-
 app.route("/team", teamRegistrationRouter);
-
 app.route("/invite", userInvitationRouter);
 
 app.onError((err, c) => {

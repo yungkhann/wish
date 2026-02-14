@@ -8,7 +8,7 @@ import { getUsersByTeamId } from "./user.service";
 export async function createTeam(
   binding: D1Database,
   creatorUserId: string,
-  teamName: string
+  teamName: string,
 ) {
   const db = getDb(binding);
 
@@ -22,7 +22,7 @@ export async function createTeam(
     id: crypto.randomUUID(),
     name: teamName,
     creatorId: creatorUserId,
-    inviteCode: crypto.randomUUID()
+    inviteCode: crypto.randomUUID(),
   });
 }
 
@@ -41,7 +41,10 @@ export async function createTeam(
 //   await db.delete(team).where(eq(team.creatorId, creatorUserId));
 // }
 
-export async function getInvitationCode(binding: D1Database, creatorUserId: string) {
+export async function getInvitationCode(
+  binding: D1Database,
+  creatorUserId: string,
+) {
   const db = getDb(binding);
 
   const t = await db
@@ -50,22 +53,28 @@ export async function getInvitationCode(binding: D1Database, creatorUserId: stri
     .where(eq(team.creatorId, creatorUserId))
     .get();
 
-    return t?.inviteCode;
+  return t?.inviteCode;
 }
 
-export async function getTeamByInvitaionCode(binding: D1Database, invitaionCode:string) {
+export async function getTeamByInvitationCode(
+  binding: D1Database,
+  invitationCode: string,
+) {
   const db = getDb(binding);
 
   const t = await db
     .select()
     .from(team)
-    .where(eq(team.inviteCode, invitaionCode))
+    .where(eq(team.inviteCode, invitationCode))
     .get();
 
   return t;
 }
 
-export async function getTeamByCreatorId(binding: D1Database, creatorId:string) {
+export async function getTeamByCreatorId(
+  binding: D1Database,
+  creatorId: string,
+) {
   const db = getDb(binding);
 
   const t = await db
@@ -77,7 +86,10 @@ export async function getTeamByCreatorId(binding: D1Database, creatorId:string) 
   return t;
 }
 
-export async function getTeamMembersByCreatorId(binding: D1Database, creatorId:string) {
+export async function getTeamMembersByCreatorId(
+  binding: D1Database,
+  creatorId: string,
+) {
   const db = getDb(binding);
 
   const t = await getTeamByCreatorId(binding, creatorId);
