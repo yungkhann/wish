@@ -25,7 +25,7 @@ userInvitationRouter.get("/:uuid", async (c) => {
   return c.json({ message: "Successfully registered invitation" }, 200);
 });
 
-userInvitationRouter.get("/all", async (c) => {
+userInvitationRouter.get("/all/invites", async (c) => {
   const session = c.var.session;
 
   const invites = await getAllInvitesWithUsers(c.env.wishDB, session.user.id);
