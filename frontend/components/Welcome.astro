@@ -2,44 +2,42 @@
 import { Image } from "astro:assets";
 import lWing from "../assets/L_Wing.svg";
 import rWing from "../assets/R_Wing.svg";
-import star from "../assets/star.svg";
 import { Countdown } from "./additional/Countdown";
 ---
 
 <section
   class="welcome-section relative flex min-h-screen flex-col items-center justify-center overflow-hidden"
 >
-  {/* Left Wing */}
   <Image
     src={lWing}
     alt=""
     class="wing wing-left pointer-events-none absolute select-none"
   />
 
-  {/* Right Wing */}
   <Image
     src={rWing}
     alt=""
     class="wing wing-right pointer-events-none absolute select-none"
   />
 
-  {/* Main Content */}
   <div
     class="relative z-10 flex flex-col items-center gap-6 px-4 pt-24 sm:gap-8 md:gap-10 md:pt-32 lg:gap-12"
   >
-    {/* "Make your biggest WISH come true" */}
     <h1
       class="welcome-title text-center font-['Cinzel_Decorative'] leading-[1.4] font-normal tracking-tight text-white"
     >
       Make your biggest
-      <span class="wish-word font-bold"> WISH </span>
+      <span
+        style="text-shadow: none;"
+        class="bg-gradient-to-b from-white via-[#794DFE] to-[#B743FF] bg-clip-text font-['Cinzel_Decorative'] text-2xl font-bold text-transparent drop-shadow-[0px_0px_6px_#7716D0] transition-all duration-300 sm:text-3xl md:text-4xl"
+      >
+        WISH
+      </span>
       come true
     </h1>
 
-    {/* Countdown Timer */}
     <Countdown client:only="react" />
 
-    {/* Register Button */}
     <a
       href="/registration"
       class="register-btn group relative overflow-hidden rounded-[7.5px_60px_7.5px_60px] p-[1.5px]"
@@ -51,10 +49,7 @@ import { Countdown } from "./additional/Countdown";
       <div
         class="register-btn-inner relative flex items-center justify-center rounded-[7.5px_60px_7.5px_60px] bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.5)_0%,#9A44E9_100%)] transition-transform duration-300 group-hover:scale-105"
       >
-        <span
-          class="register-btn-text font-['Cinzel'] text-white drop-shadow-[0_0_4.5px_rgba(255,255,255,1)]"
-          style="text-shadow: 0px 0px 4.5px rgba(255,255,255,1), 0px 0px 60px rgba(255,255,255,0.8), 0px 0px 75px rgba(255,255,255,0.4);"
-        >
+        <span class="register-btn-text font-['Cinzel'] text-white">
           Register
         </span>
       </div>
@@ -63,7 +58,6 @@ import { Countdown } from "./additional/Countdown";
 </section>
 
 <style>
-  /* Wing positioning — responsive, decorative overflow on sides */
   .wing {
     top: 50%;
     transform: translateY(-40%);
@@ -82,7 +76,6 @@ import { Countdown } from "./additional/Countdown";
     transform: translate(-15%, -40%);
   }
 
-  /* Title sizing */
   .welcome-title {
     font-size: clamp(1rem, 2.5vw, 3rem);
     letter-spacing: -0.02em;
@@ -92,37 +85,17 @@ import { Countdown } from "./additional/Countdown";
       0px 0px 75px rgba(255, 255, 255, 0.4);
   }
 
-  /* WISH word — gradient text with purple glow */
-  .wish-word {
-    background: linear-gradient(
-      181deg,
-      rgba(255, 255, 255, 1) 6%,
-      rgba(121, 77, 254, 1) 53%,
-      rgba(183, 67, 255, 1) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0px 0px 6px rgba(119, 22, 208, 1))
-      drop-shadow(0px 0px 15px rgba(119, 22, 208, 1));
-  }
-
-  /* Register button responsive sizing */
   .register-btn-inner {
     width: clamp(120px, 15vw, 300px);
     height: clamp(36px, 4vw, 80px);
-    box-shadow:
-      0px 0px 6px rgba(119, 22, 208, 1),
-      0px 0px 15px rgba(119, 22, 208, 1),
-      0px 0px 60px rgba(119, 22, 208, 0.6),
-      0px 0px 90px rgba(119, 22, 208, 1);
+    box-shadow: 0px 0px 20px 0px rgba(119, 22, 208, 0.4);
   }
 
   .register-btn-text {
     font-size: clamp(1rem, 2vw, 2.5rem);
+    filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.6));
   }
 
-  /* Mobile adjustments */
   @media (max-width: 640px) {
     .wing {
       opacity: 0.4;

@@ -7,17 +7,9 @@ import fairy from "../assets/fairy.svg";
   id="about"
   class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-6 py-20 text-white md:flex-row md:px-12 lg:px-24"
 >
-  {/* Background/Fairy Image Container */}
   <div
     class="pointer-events-none absolute inset-0 z-0 flex items-center justify-end"
   >
-    {
-      /* 
-      Using object-contain to ensure the full fairy is visible.
-      'translate-x-[-10%]' moves it slightly left as requested.
-      Also using 'w-[80%]' or similar to control size relative to viewport width.
-    */
-    }
     <Image
       src={fairy}
       alt="Fairy illustration"
@@ -25,7 +17,6 @@ import fairy from "../assets/fairy.svg";
     />
   </div>
 
-  {/* Text Content */}
   <div class="relative z-10 mx-auto w-full max-w-7xl">
     <div class="flex flex-col md:w-3/5 lg:w-1/2">
       <h2 class="sr-only">About WISH</h2>
@@ -46,28 +37,20 @@ import fairy from "../assets/fairy.svg";
 
 <style>
   .about-paragraph {
-    /* Adjusted font size to be more adaptable and "smaller" as requested, allowing more width occupancy */
     font-size: clamp(1rem, 2vw, 1.8rem);
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
-  /* Optional interaction: subtle float effect for the fairy text */
   @media (hover: hover) {
     .about-paragraph:hover {
-      text-shadow: 0px 4px 12px rgba(154, 68, 233, 0.5); /* Purple glow on hover */
+      text-shadow: 0px 4px 12px rgba(154, 68, 233, 0.5);
       transition: text-shadow 0.3s ease;
     }
   }
 
-  /* Mobile optimization */
   @media (max-width: 768px) {
     .about-paragraph {
-      background: rgba(
-        0,
-        0,
-        0,
-        0.6
-      ); /* Darken background behind text on mobile */
+      background: rgba(0, 0, 0, 0.6);
       padding: 1.5rem;
       border-radius: 1rem;
       backdrop-filter: blur(8px);

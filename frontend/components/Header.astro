@@ -13,7 +13,6 @@ const links = [
     <nav
       class="relative flex items-center justify-between rounded-[60px_7.5px_60px_7.5px] bg-black/80 px-6 py-3 shadow-[0px_0px_20px_0px_rgba(119,22,208,0.4)] backdrop-blur-md transition-all duration-300 sm:px-8 md:px-12"
     >
-      {/* Logo */}
       <div class="flex shrink-0">
         <a href="/" class="group relative">
           <span
@@ -24,7 +23,6 @@ const links = [
         </a>
       </div>
 
-      {/* Desktop Links */}
       <div class="hidden items-center gap-6 lg:flex xl:gap-12" id="nav-links">
         {
           links.map((link) => (
@@ -37,12 +35,10 @@ const links = [
           ))
         }
 
-        {/* Register Button */}
         <a
           href="/registration"
           class="group relative overflow-hidden rounded-[30px_3.75px_30px_3.75px] p-[1px]"
         >
-          {/* Gradient Border simulation */}
           <div
             class="absolute inset-0 bg-gradient-to-tr from-white/80 to-transparent opacity-50"
           >
@@ -60,7 +56,6 @@ const links = [
         </a>
       </div>
 
-      {/* Mobile Menu Button */}
       <button
         id="mobile-menu-btn"
         class="p-1 lg:hidden"
@@ -83,7 +78,6 @@ const links = [
       </button>
     </nav>
 
-    {/* Mobile Menu Overlay */}
     <div
       id="mobile-menu"
       class="mt-4 hidden rounded-[30px_3.75px_30px_3.75px] border border-purple-900/50 bg-black/95 p-6 backdrop-blur-xl lg:hidden"

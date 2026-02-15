@@ -46,9 +46,9 @@ export function Countdown() {
   ].join(", ");
 
   const TimeUnit = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center gap-[clamp(4px,0.5vw,10px)] px-[clamp(8px,1vw,20px)] py-[clamp(4px,1vw,20px)]">
+    <div className="flex flex-col items-center gap-[clamp(4px,0.5vw,10px)] px-[clamp(2px,0.5vw,8px)] py-[clamp(4px,1vw,20px)]">
       <span
-        className="font-['Marcellus'] leading-[1.2] text-white"
+        className="inline-block min-w-[2.2ch] text-center font-['Marcellus'] leading-[1.2] text-white tabular-nums"
         style={{
           fontSize: "clamp(2.5rem, 6vw, 7rem)",
           textShadow: purpleGlow,
@@ -69,7 +69,7 @@ export function Countdown() {
   );
 
   const Separator = () => (
-    <div className="mx-[clamp(4px,1vw,20px)] flex h-full items-start pt-[clamp(4px,1vw,20px)]">
+    <div className="mx-[clamp(0px,0.5vw,4px)] flex h-full items-start pt-[clamp(4px,1vw,20px)]">
       <span
         className="font-['Marcellus'] leading-[1.2] text-white"
         style={{
@@ -83,7 +83,7 @@ export function Countdown() {
   );
 
   return (
-    <div className="flex w-full max-w-[clamp(20rem,75vw,1200px)] items-start justify-between justify-center">
+    <div className="flex w-full max-w-[clamp(20rem,75vw,1200px)] items-start justify-center">
       <TimeUnit value={timeLeft.days} label="Days" />
       <Separator />
       <TimeUnit value={timeLeft.hours} label="Hours" />
