@@ -1,5 +1,5 @@
 import type { D1Database } from "@cloudflare/workers-types";
-import { and, eq } from "drizzle-orm";
+import { and, eq, or } from "drizzle-orm";
 import { getDb } from "../db/db";
 import { invite, team, user } from "../db/schema";
 import { AppError } from "../exception/AppError";
@@ -62,7 +62,12 @@ export async function deleteTeam(binding: D1Database, creatorUserId: string) {
     db
       .update(invite)
       .set({ status: "rejected" })
-      .where(and(eq(invite.teamId, t.id), eq(invite.status, "pending"))),
+      .where(
+        and(
+          eq(invite.teamId, t.id),
+          or(eq(invite.status, "pending"), eq(invite.status, "accepted")),
+        ),
+      ),
     db.delete(team).where(eq(team.id, t.id)),
   ]);
 }
