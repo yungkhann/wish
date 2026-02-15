@@ -1,85 +1,99 @@
 ---
-import { Image } from "astro:assets";
-import nuopen from "../assets/nuopen.svg";
-import { Status } from "./additional/Status.tsx";
-
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#schedule", label: "Agenda" },
-  { href: "#rules", label: "Rules" },
+  { href: "#about", label: "about" },
+  { href: "#benefits", label: "benefits" },
+  { href: "#schedule", label: "schedule" },
+  { href: "#sponsors", label: "sponsors" },
+  { href: "#faq", label: "faqs" },
 ];
 ---
 
-<header class="fixed inset-x-0 top-0 z-10 py-4">
-  <div class="mx-auto max-w-259.5 px-4 sm:px-6 lg:px-8">
+<header class="fixed inset-x-0 top-0 z-50 py-4">
+  <div class="mx-auto w-full max-w-[1780px] px-4 sm:px-6 lg:px-8">
     <nav
-      class="flex h-16 rounded-xl bg-[rgba(23,23,23,0.8)] px-4 backdrop-blur-md sm:px-8 md:px-16"
+      class="relative flex items-center justify-between rounded-[60px_7.5px_60px_7.5px] bg-black/80 px-6 py-3 shadow-[0px_0px_20px_0px_rgba(119,22,208,0.4)] backdrop-blur-md transition-all duration-300 sm:px-8 md:px-12"
     >
-      <div class="flex w-full gap-4 md:gap-8">
-        <div class="flex flex-1">
-          <a href="/" class="flex items-center">
-            <Image src={nuopen} alt="NU Open Logo" class="h-10 w-auto" />
-          </a>
-        </div>
-
-        <div class="hidden items-center gap-8 md:flex" id="nav-links">
-          {
-            links.map((link) => (
-              <a
-                href={link.href}
-                class="transition-opacity duration-200 ease-in-out hover:opacity-80"
-              >
-                {link.label}
-              </a>
-            ))
-          }
-          <!-- это просто пример, потом удалим отсюда -->
-          <Status client:load />
-        </div>
-
-        <button
-          id="mobile-menu-btn"
-          class="p-2 md:hidden"
-          aria-label="Toggle menu"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-        >
-          <svg
-            class="h-6 w-6"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+      {/* Logo */}
+      <div class="flex shrink-0">
+        <a href="/" class="group relative">
+          <span
+            class="bg-gradient-to-b from-white via-[#794DFE] to-[#B743FF] bg-clip-text font-['Cinzel_Decorative'] text-2xl font-bold text-transparent drop-shadow-[0px_0px_6px_#7716D0] transition-all duration-300 sm:text-3xl md:text-4xl"
           >
-            <path id="hamburger-icon" d="M4 6h16M4 12h16M4 18h16"></path>
-            <path id="close-icon" class="hidden" d="M6 18L18 6M6 6l12 12"
-            ></path>
-          </svg>
-        </button>
-
-        <div class="hidden flex-1 flex-col items-end justify-center md:flex">
-          <a
-            href="/registration"
-            class="rounded-full bg-red-800 px-6 py-2 text-center outline outline-red-800 transition-colors duration-200 ease-in-out hover:bg-red-900"
-          >
-            <span class="font-bold">Register</span>
-          </a>
-        </div>
+            WISH
+          </span>
+        </a>
       </div>
-    </nav>
 
-    <div
-      id="mobile-menu"
-      class="mt-2 hidden rounded-xl bg-[rgba(23,23,23,0.8)] p-4 backdrop-blur-md md:hidden"
-    >
-      <nav class="flex flex-col gap-4" id="mobile-nav-links">
+      {/* Desktop Links */}
+      <div class="hidden items-center gap-6 lg:flex xl:gap-12" id="nav-links">
         {
           links.map((link) => (
             <a
               href={link.href}
-              class="transition-opacity duration-200 ease-in-out hover:opacity-80"
+              class="font-['Marcellus'] text-base text-white/90 transition-colors duration-200 hover:text-[#B743FF] xl:text-lg"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+
+        {/* Register Button */}
+        <a
+          href="/registration"
+          class="group relative overflow-hidden rounded-[30px_3.75px_30px_3.75px] p-[1px]"
+        >
+          {/* Gradient Border simulation */}
+          <div
+            class="absolute inset-0 bg-gradient-to-tr from-white/80 to-transparent opacity-50"
+          >
+          </div>
+
+          <div
+            class="relative flex h-[42px] w-[140px] items-center justify-center rounded-[30px_3.75px_30px_3.75px] bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.5)_0%,#9A44E9_100%)] shadow-[0px_0px_20px_0px_rgba(119,22,208,0.4)] transition-transform duration-300 group-hover:scale-105"
+          >
+            <span
+              class="font-['Cinzel'] text-lg text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]"
+            >
+              Register
+            </span>
+          </div>
+        </a>
+      </div>
+
+      {/* Mobile Menu Button */}
+      <button
+        id="mobile-menu-btn"
+        class="p-1 lg:hidden"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg
+          class="h-8 w-8 text-white"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path id="hamburger-icon" d="M4 6h16M4 12h16M4 18h16"></path>
+          <path id="close-icon" class="hidden" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </nav>
+
+    {/* Mobile Menu Overlay */}
+    <div
+      id="mobile-menu"
+      class="mt-4 hidden rounded-[30px_3.75px_30px_3.75px] border border-purple-900/50 bg-black/95 p-6 backdrop-blur-xl lg:hidden"
+    >
+      <nav class="flex flex-col items-center gap-6" id="mobile-nav-links">
+        {
+          links.map((link) => (
+            <a
+              href={link.href}
+              class="font-['Marcellus'] text-2xl text-white hover:text-purple-300"
             >
               {link.label}
             </a>
@@ -88,9 +102,13 @@ const links = [
 
         <a
           href="/registration"
-          class="rounded-full bg-red-800 px-6 py-2 text-center outline outline-red-800 transition-colors duration-200 ease-in-out hover:bg-red-900"
+          class="relative mt-4 flex h-[54px] w-full max-w-[210px] items-center justify-center rounded-[30px_3.75px_30px_3.75px] bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.5)_0%,#9A44E9_100%)] shadow-[0px_0px_45px_0px_rgba(119,22,208,0.6)]"
         >
-          <span class="font-bold">Register</span>
+          <span
+            class="font-['Cinzel'] text-[24px] text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]"
+          >
+            Register
+          </span>
         </a>
       </nav>
     </div>

@@ -1,81 +1,78 @@
 ---
 import { Image } from "astro:assets";
-import about from "../assets/about.svg";
-import calendar from "../assets/calendar.svg";
-import location from "../assets/location.svg";
-import welcome from "../assets/welcome.svg";
-import who from "../assets/who.svg";
-
-const eventDetails = [
-  {
-    icon: calendar,
-    alt: "Calendar",
-    title: "When?",
-    lines: ["November 8, 2025"],
-  },
-  {
-    icon: location,
-    alt: "Location",
-    title: "Where?",
-    lines: ["Nazarbayev University", "Astana, Kazakhstan"],
-  },
-  {
-    icon: who,
-    alt: "Who",
-    title: "Who?",
-    lines: ["Everyone older than 16"],
-  },
-];
+import fairy from "../assets/fairy.svg";
 ---
 
-<section id="about" class="px-6 py-16 sm:px-8 md:py-20 lg:px-12">
-  <div class="mb-12 flex flex-col gap-8 md:mb-12 md:flex-row md:gap-12">
-    <div class="flex flex-1 flex-col items-start justify-center">
-      <Image src={welcome} alt="NU Open" class="mb-6 h-8 w-auto" />
-      <p class="mb-8 text-left leading-relaxed md:text-lg lg:text-xl">
-        The main goal of NUOPEN is to promote competitive programming among
-        students. In this way, we contribute to the development of the youth IT
-        community in Kazakhstan.
-      </p>
-      <a
-        href="/registration"
-        class="rounded-full bg-red-800 px-6 py-2 text-center outline outline-red-800 transition-colors duration-200 ease-in-out hover:bg-red-900"
-      >
-        <span class="font-bold">Register</span>
-      </a>
-    </div>
-    <div class="flex flex-1 items-center justify-center">
-      <Image
-        src={about}
-        alt="About NU Open"
-        class="h-auto w-full max-w-lg md:max-w-xl lg:max-w-2xl"
-      />
-    </div>
+<section
+  id="about"
+  class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-6 py-20 text-white md:flex-row md:px-12 lg:px-24"
+>
+  {/* Background/Fairy Image Container */}
+  <div
+    class="pointer-events-none absolute inset-0 z-0 flex items-center justify-end"
+  >
+    {
+      /* 
+      Using object-contain to ensure the full fairy is visible.
+      'translate-x-[-10%]' moves it slightly left as requested.
+      Also using 'w-[80%]' or similar to control size relative to viewport width.
+    */
+    }
+    <Image
+      src={fairy}
+      alt="Fairy illustration"
+      class="h-full w-auto max-w-[90%] translate-x-[-5%] object-right opacity-40 md:w-[60%] md:opacity-100 lg:w-[55%] lg:translate-x-[-10%]"
+    />
   </div>
 
-  <div class="rounded-2xl border-2 border-red-800 p-6 md:p-8">
-    <div
-      class="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-16"
-    >
-      {
-        eventDetails.map((detail) => (
-          <div class="flex flex-row items-center gap-6">
-            <Image
-              src={detail.icon}
-              alt={detail.alt}
-              class="icon-red shrink-0"
-            />
-            <div class="flex flex-col text-left">
-              <h3 class="mb-1 text-2xl font-bold md:text-3xl">
-                {detail.title}
-              </h3>
-              {detail.lines.map((line) => (
-                <p class="text-lg md:text-xl">{line}</p>
-              ))}
-            </div>
-          </div>
-        ))
-      }
+  {/* Text Content */}
+  <div class="relative z-10 mx-auto w-full max-w-7xl">
+    <div class="flex flex-col md:w-3/5 lg:w-1/2">
+      <h2 class="sr-only">About WISH</h2>
+      <p
+        class="about-paragraph text-justify font-['Marcellus'] leading-tight tracking-wide drop-shadow-md"
+      >
+        <span class="text-[#B743FF]">Women in STEM Hackathon</span> is a 24-hour hackathon
+        for girls and women, where participants form teams of <span
+          class="text-[#B743FF]">2–4 people</span
+        > and collaboratively work on real-world challenges provided by sponsors in
+        the fields of data analytics, machine learning, and artificial intelligence.
+        Participation is open to high school students, college students, and university
+        students <span class="text-[#B743FF]">aged 16 and above.</span>
+      </p>
     </div>
   </div>
 </section>
+
+<style>
+  .about-paragraph {
+    /* Adjusted font size to be more adaptable and "smaller" as requested, allowing more width occupancy */
+    font-size: clamp(1rem, 2vw, 1.8rem);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Optional interaction: subtle float effect for the fairy text */
+  @media (hover: hover) {
+    .about-paragraph:hover {
+      text-shadow: 0px 4px 12px rgba(154, 68, 233, 0.5); /* Purple glow on hover */
+      transition: text-shadow 0.3s ease;
+    }
+  }
+
+  /* Mobile optimization */
+  @media (max-width: 768px) {
+    .about-paragraph {
+      background: rgba(
+        0,
+        0,
+        0,
+        0.6
+      ); /* Darken background behind text on mobile */
+      padding: 1.5rem;
+      border-radius: 1rem;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+</style>

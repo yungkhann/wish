@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cinzel:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Marcellus&display=swap");
 @import "tailwindcss";
 
 /* html {
@@ -46,29 +46,6 @@ body {
     text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
   }
 
-  .plane-fire {
-    position: absolute;
-    bottom: 8%;
-    left: 5%;
-    pointer-events: none;
-    width: calc(50vw * 4.5);
-    min-width: calc(300px * 4.5);
-    max-width: calc(400px * 4.5);
-    height: auto;
-    transform: translate(4%, -3%);
-  }
-
-  .plane-image {
-    position: absolute;
-    bottom: 0;
-    left: 7%;
-    width: 50vw;
-    min-width: 300px;
-    max-width: 400px;
-    height: auto;
-    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
-  }
-
   .icon-red {
     width: 80px;
     height: 80px;
@@ -81,18 +58,4 @@ body {
     height: 28px;
     filter: brightness(0) saturate(100%) invert(100%);
   }
-}
-
-@keyframes planeEnter {
-  from {
-    transform: translate(150vw, -100vh);
-  }
-  to {
-    transform: translate(0, 0);
-  }
-}
-
-.plane-anim {
-  transform: translate(150vw, -100vh);
-  animation: planeEnter 0.8s ease-out 0.3s forwards;
 }

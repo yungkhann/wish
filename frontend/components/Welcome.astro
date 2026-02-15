@@ -1,54 +1,155 @@
 ---
 import { Image } from "astro:assets";
-import cosmoPlane from "../assets/cosmoPlane.svg";
-import planeFire from "../assets/planeFire.svg";
+import lWing from "../assets/L_Wing.svg";
+import rWing from "../assets/R_Wing.svg";
 import star from "../assets/star.svg";
-import welcome from "../assets/welcome.svg";
 import { Countdown } from "./additional/Countdown";
-
-const stars = [
-  "top-[15%] left-[10%] w-[8px] opacity-60",
-  "top-[25%] right-[15%] w-[10px] opacity-80",
-  "top-[40%] left-[20%] w-[7px] opacity-50",
-  "top-[60%] right-[25%] w-[9px] opacity-70",
-  "top-[70%] left-[15%] w-[8px] opacity-60",
-  "top-[20%] right-[30%] w-[7px] opacity-50",
-  "top-[50%] left-[8%] w-[8px] opacity-70",
-  "top-[80%] right-[10%] w-[9px] opacity-60",
-  "bottom-[15%] left-[50%] w-[8px] opacity-70",
-];
 ---
 
 <section
-  class="relative flex min-h-screen flex-col items-center justify-center overflow-clip"
+  class="welcome-section relative flex min-h-screen flex-col items-center justify-center overflow-hidden"
 >
+  {/* Left Wing */}
+  <Image
+    src={lWing}
+    alt=""
+    class="wing wing-left pointer-events-none absolute select-none"
+  />
+
+  {/* Right Wing */}
+  <Image
+    src={rWing}
+    alt=""
+    class="wing wing-right pointer-events-none absolute select-none"
+  />
+
+  {/* Main Content */}
   <div
-    aria-hidden="true"
-    class="plane-anim pointer-events-none absolute inset-0"
+    class="relative z-10 flex flex-col items-center gap-6 px-4 pt-24 sm:gap-8 md:gap-10 md:pt-32 lg:gap-12"
   >
-    <Image src={planeFire} alt="" class="plane-fire" />
-    <Image src={cosmoPlane} alt="" class="plane-image" />
-  </div>
+    {/* "Make your biggest WISH come true" */}
+    <h1
+      class="welcome-title text-center font-['Cinzel_Decorative'] leading-[1.4] font-normal tracking-tight text-white"
+    >
+      Make your biggest
+      <span class="wish-word font-bold"> WISH </span>
+      come true
+    </h1>
 
-  <div class="pointer-events-none absolute inset-0">
-    {
-      stars.map((style) => (
-        <Image src={star} alt="" class={`absolute ${style}`} />
-      ))
-    }
-  </div>
-
-  <div
-    class="relative flex scale-90 flex-col items-center gap-6 px-2 py-16 sm:px-6 md:gap-8 md:px-8 lg:px-12"
-  >
-    <div class="flex flex-col gap-4">
-      <Image src={welcome} alt="NU Open" class="h-8 w-auto md:h-10" />
-      <div class="max-w-2xl px-4 text-center md:text-lg">
-        <p>The 6th annual ICPC-style programming competition</p>
-        <p>organized by ACM@NU SC.</p>
-      </div>
-    </div>
-
+    {/* Countdown Timer */}
     <Countdown client:only="react" />
+
+    {/* Register Button */}
+    <a
+      href="/registration"
+      class="register-btn group relative overflow-hidden rounded-[7.5px_60px_7.5px_60px] p-[1.5px]"
+    >
+      <div
+        class="absolute inset-0 rounded-[7.5px_60px_7.5px_60px] bg-gradient-to-tr from-white/80 to-transparent opacity-50"
+      >
+      </div>
+      <div
+        class="register-btn-inner relative flex items-center justify-center rounded-[7.5px_60px_7.5px_60px] bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.5)_0%,#9A44E9_100%)] transition-transform duration-300 group-hover:scale-105"
+      >
+        <span
+          class="register-btn-text font-['Cinzel'] text-white drop-shadow-[0_0_4.5px_rgba(255,255,255,1)]"
+          style="text-shadow: 0px 0px 4.5px rgba(255,255,255,1), 0px 0px 60px rgba(255,255,255,0.8), 0px 0px 75px rgba(255,255,255,0.4);"
+        >
+          Register
+        </span>
+      </div>
+    </a>
   </div>
 </section>
+
+<style>
+  /* Wing positioning — responsive, decorative overflow on sides */
+  .wing {
+    top: 50%;
+    transform: translateY(-40%);
+    height: clamp(200px, 60vh, 700px);
+    width: auto;
+    opacity: 1;
+  }
+
+  .wing-left {
+    left: 0;
+    transform: translate(15%, -40%);
+  }
+
+  .wing-right {
+    right: 0;
+    transform: translate(-15%, -40%);
+  }
+
+  /* Title sizing */
+  .welcome-title {
+    font-size: clamp(1rem, 2.5vw, 3rem);
+    letter-spacing: -0.02em;
+    text-shadow:
+      0px 0px 4.5px rgba(255, 255, 255, 1),
+      0px 0px 60px rgba(255, 255, 255, 0.8),
+      0px 0px 75px rgba(255, 255, 255, 0.4);
+  }
+
+  /* WISH word — gradient text with purple glow */
+  .wish-word {
+    background: linear-gradient(
+      181deg,
+      rgba(255, 255, 255, 1) 6%,
+      rgba(121, 77, 254, 1) 53%,
+      rgba(183, 67, 255, 1) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 0px 6px rgba(119, 22, 208, 1))
+      drop-shadow(0px 0px 15px rgba(119, 22, 208, 1));
+  }
+
+  /* Register button responsive sizing */
+  .register-btn-inner {
+    width: clamp(120px, 15vw, 300px);
+    height: clamp(36px, 4vw, 80px);
+    box-shadow:
+      0px 0px 6px rgba(119, 22, 208, 1),
+      0px 0px 15px rgba(119, 22, 208, 1),
+      0px 0px 60px rgba(119, 22, 208, 0.6),
+      0px 0px 90px rgba(119, 22, 208, 1);
+  }
+
+  .register-btn-text {
+    font-size: clamp(1rem, 2vw, 2.5rem);
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 640px) {
+    .wing {
+      opacity: 0.4;
+      height: 45vh;
+    }
+
+    .wing-left {
+      transform: translate(-30%, -40%);
+    }
+
+    .wing-right {
+      transform: translate(30%, -40%);
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .wing {
+      opacity: 0.8;
+      height: 55vh;
+    }
+
+    .wing-left {
+      transform: translate(-20%, -40%);
+    }
+
+    .wing-right {
+      transform: translate(20%, -40%);
+    }
+  }
+</style>

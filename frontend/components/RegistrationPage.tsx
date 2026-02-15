@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import AuthForm from "./AuthForm";
 import RegistrationForm from "./RegistrationForm";
 
-type State = "loading" | "unauthenticated" | "needs-registration" | "registered";
+type State =
+  | "loading"
+  | "unauthenticated"
+  | "needs-registration"
+  | "registered";
 
 export default function RegistrationPage() {
   const [state, setState] = useState<State>("loading");
