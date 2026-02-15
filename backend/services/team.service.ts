@@ -241,29 +241,15 @@ export async function getTeamMembersAndRequests(
     .from(user)
     .where(eq(user.teamId, teamId));
 
-  const pendingInvites = await db
+  const pendingUsers = await db
     .select({
-      inviteId: invite.id,
       userId: invite.userId,
+      email: user.email,
+      inviteId: invite.id,
     })
     .from(invite)
+    .innerJoin(user, eq(invite.userId, user.id))
     .where(and(eq(invite.teamId, teamId), eq(invite.status, "pending")));
-
-  const pendingUsers: { id: string; email: string; inviteId: string }[] = [];
-  for (const inv of pendingInvites) {
-    const u = await db
-      .select({ email: user.email })
-      .from(user)
-      .where(eq(user.id, inv.userId))
-      .get();
-    if (u) {
-      pendingUsers.push({
-        id: inv.userId,
-        email: u.email,
-        inviteId: inv.inviteId,
-      });
-    }
-  }
 
   const result = [
     ...members.map((m) => ({
@@ -272,10 +258,8 @@ export async function getTeamMembersAndRequests(
       role: m.id === t.creatorId ? ("owner" as const) : ("member" as const),
     })),
     ...pendingUsers.map((p) => ({
-      userId: p.id,
-      email: p.email,
+      ...p,
       role: "request" as const,
-      inviteId: p.inviteId,
     })),
   ];
 
