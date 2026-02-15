@@ -15,6 +15,18 @@ export async function createInvitation(
   invitationCode: string,
   userId: string,
 ) {
+  const db = getDb(binding);
+
+  const currentUser = await db
+    .select({ teamId: user.teamId })
+    .from(user)
+    .where(eq(user.id, userId))
+    .get();
+
+  if (currentUser?.teamId) {
+    throw new AppError("You are already in a team");
+  }
+
   await checkInviteExistence(binding, userId);
 
   const t = await getTeamByInvitationCode(binding, invitationCode);
@@ -27,8 +39,6 @@ export async function createInvitation(
   if (memberCount >= MAX_TEAM_SIZE) {
     throw new AppError("This team is already full");
   }
-
-  const db = getDb(binding);
 
   await db.insert(invite).values({
     id: crypto.randomUUID(),
@@ -53,7 +63,10 @@ async function checkInviteExistence(binding: D1Database, userId: string) {
   }
 }
 
-export async function getAllInvites(binding: D1Database, userId: string) {
+export async function getAllInvitesWithUsers(
+  binding: D1Database,
+  userId: string,
+) {
   const db = getDb(binding);
 
   const userTeam = await getTeamByCreatorId(binding, userId);
@@ -62,11 +75,22 @@ export async function getAllInvites(binding: D1Database, userId: string) {
     throw new AppError("The user does not have a team");
   }
 
-  return await db.select().from(invite).where(eq(invite.teamId, userTeam.id));
+  const results = await db
+    .select({
+      inviteId: invite.id,
+      email: user.email,
+      status: invite.status,
+    })
+    .from(invite)
+    .innerJoin(user, eq(invite.userId, user.id))
+    .where(eq(invite.teamId, userTeam.id));
+
+  return results;
 }
 
 export async function handleInviteStatus(
   binding: D1Database,
+  requesterId: string,
   invitationId: string,
   invitationStatus: string,
 ) {
@@ -76,6 +100,14 @@ export async function handleInviteStatus(
 
   if (!invitation) {
     throw new AppError("Invitation does not exist");
+  }
+
+  const teamCreator = await getTeamByCreatorId(binding, requesterId);
+  if (!teamCreator || teamCreator.id !== invitation.teamId) {
+    throw new AppError(
+      "Only the team owner can accept or reject invitations",
+      403,
+    );
   }
 
   if (invitationStatus === "accepted") {
