@@ -3,8 +3,11 @@ import { z } from "zod";
 import type { AppEnv } from "../middleware/auth";
 import {
   createTeam,
+  deleteTeam,
   getInvitationCode,
-  getTeamMembersByCreatorId,
+  getTeamMembersAndRequests,
+  leaveTeam,
+  removeMember,
 } from "../services/team.service";
 
 const createTeamSchema = z.object({
@@ -45,24 +48,35 @@ teamRegistrationRouter.get("/link", async (c) => {
 teamRegistrationRouter.get("/members", async (c) => {
   const session = c.var.session;
 
-  const teamMembers = await getTeamMembersByCreatorId(
+  const members = await getTeamMembersAndRequests(
     c.env.wishDB,
     session.user.id,
   );
-  const teamMembersDto = [];
 
-  for (const teamMember of teamMembers) {
-    let memberType = "member";
+  return c.json(members, 200);
+});
 
-    if (teamMember.id === session.user.id) {
-      memberType = "owner";
-    }
+teamRegistrationRouter.delete("/members/:userId", async (c) => {
+  const session = c.var.session;
+  const targetUserId = c.req.param("userId");
 
-    teamMembersDto.push({
-      email: teamMember.email,
-      memberType: memberType,
-    });
-  }
+  await removeMember(c.env.wishDB, session.user.id, targetUserId);
 
-  return c.json(teamMembersDto, 200);
+  return c.json({ success: true }, 200);
+});
+
+teamRegistrationRouter.post("/leave", async (c) => {
+  const session = c.var.session;
+
+  await leaveTeam(c.env.wishDB, session.user.id);
+
+  return c.json({ success: true }, 200);
+});
+
+teamRegistrationRouter.delete("/", async (c) => {
+  const session = c.var.session;
+
+  await deleteTeam(c.env.wishDB, session.user.id);
+
+  return c.json({ success: true }, 200);
 });

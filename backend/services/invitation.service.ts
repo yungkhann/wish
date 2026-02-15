@@ -3,7 +3,12 @@ import { eq } from "drizzle-orm";
 import { getDb } from "../db/db";
 import { invite, user } from "../db/schema";
 import { AppError } from "../exception/AppError";
-import { getTeamByCreatorId, getTeamByInvitationCode } from "./team.service";
+import {
+  getTeamByCreatorId,
+  getTeamByInvitationCode,
+  getTeamMemberCount,
+  MAX_TEAM_SIZE,
+} from "./team.service";
 
 export async function createInvitation(
   binding: D1Database,
@@ -16,6 +21,11 @@ export async function createInvitation(
 
   if (!t) {
     throw new AppError("The provided invite code does not exist");
+  }
+
+  const memberCount = await getTeamMemberCount(binding, t.id);
+  if (memberCount >= MAX_TEAM_SIZE) {
+    throw new AppError("This team is already full");
   }
 
   const db = getDb(binding);
@@ -69,6 +79,11 @@ export async function handleInviteStatus(
   }
 
   if (invitationStatus === "accepted") {
+    const memberCount = await getTeamMemberCount(binding, invitation.teamId);
+    if (memberCount >= MAX_TEAM_SIZE) {
+      throw new AppError("This team is already full");
+    }
+
     await db.batch([
       db
         .update(user)
