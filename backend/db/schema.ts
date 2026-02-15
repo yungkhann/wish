@@ -1,5 +1,5 @@
 import { relations, sql } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const user = sqliteTable("user", {
   id: text("id").primaryKey(),
@@ -9,7 +9,8 @@ export const user = sqliteTable("user", {
   parentPhoneNumber: text("parentPhoneNumber"),
   educationLevel: text("educationLevel"),
   iin: text("iin"),
-  email: text("email").notNull(),
+  isMinor: integer("is_minor", { mode: "boolean" }).default(false).notNull(),
+  email: text("email").notNull().unique(),
   emailVerified: integer("email_verified", { mode: "boolean" })
     .default(false)
     .notNull(),
@@ -27,7 +28,7 @@ export const team = sqliteTable("team", {
   id: text("id").primaryKey().notNull(),
   name: text("name").notNull(),
   inviteCode: text("invite_code").notNull(),
-  creatorId: text("creator_id").notNull()
+  creatorId: text("creator_id").notNull(),
 });
 
 export const invite = sqliteTable("invite", {
@@ -54,7 +55,8 @@ export const session = sqliteTable(
     userId: text("user_id")
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),
-  }
+  },
+  (t) => [index("session_userId_idx").on(t.userId)],
 );
 
 export const account = sqliteTable(
@@ -83,7 +85,8 @@ export const account = sqliteTable(
     updatedAt: integer("updated_at", { mode: "timestamp_ms" })
       .$onUpdate(() => /* @__PURE__ */ new Date())
       .notNull(),
-  }
+  },
+  (t) => [index("account_userId_idx").on(t.userId)],
 );
 
 export const verification = sqliteTable(
@@ -100,7 +103,8 @@ export const verification = sqliteTable(
       .default(sql`(cast(unixepoch('subsecond') * 1000 as integer))`)
       .$onUpdate(() => /* @__PURE__ */ new Date())
       .notNull(),
-  }
+  },
+  (t) => [index("verification_identifier_idx").on(t.identifier)],
 );
 
 export const accountRelations = relations(account, ({ one }) => ({

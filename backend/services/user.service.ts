@@ -7,98 +7,65 @@ import { AppError } from "../exception/AppError";
 export async function createUser(
   binding: D1Database,
   userId: string,
-  name: string,
-  surname: string,
-  phoneNumber: string,
-  educationLevel: string,
-  iin: string,
-  parentPhoneNumber?: string | null,
-  teamName?: string | null
+  data: {
+    name: string;
+    surname: string;
+    phoneNumber: string;
+    educationLevel: string;
+    iin: string;
+    isMinor: boolean;
+    parentPhoneNumber?: string | null;
+  },
 ) {
-
-  const teamId = teamName?.trim() ? crypto.randomUUID() : null;
+  const db = getDb(binding);
 
   try {
-    const statements = [];
-
-    if (teamId) {
-      statements.push(
-        binding
-          .prepare(
-            `INSERT INTO team (id, name, invite_code, creator_id)
-             VALUES (?, ?, ?, ?)`
-          )
-          .bind(teamId, teamName, crypto.randomUUID(), userId)
-      );
-    }
-
-    if(!parentPhoneNumber) {
-      parentPhoneNumber = null;
-    }
-
-    statements.push(
-      binding
-        .prepare(
-          `UPDATE user
-            SET name = ?,
-              surname = ?,
-              phoneNumber = ?,
-              parentPhoneNumber = ?,
-              educationLevel = ?,
-              iin = ?,
-              team_id = ?
-            WHERE id = ?`
-        )
-        .bind(name, surname, phoneNumber, parentPhoneNumber, educationLevel, iin, teamId, userId)
-    );
-
-    await binding.batch(statements);
-
-    return { userId, teamId };
-
+    await db
+      .update(user)
+      .set({
+        name: data.name,
+        surname: data.surname,
+        phoneNumber: data.phoneNumber,
+        educationLevel: data.educationLevel,
+        iin: data.iin,
+        isMinor: data.isMinor,
+        parentPhoneNumber: data.parentPhoneNumber ?? null,
+      })
+      .where(eq(user.id, userId));
   } catch (error: any) {
-
     if (error.message?.includes("UNIQUE constraint failed")) {
-      throw new AppError("The already existing field has been passed");
+      throw new AppError("A user with this data already exists");
     }
 
-    console.log(error);
-
+    console.error(error);
     throw new AppError("Database error", 500);
   }
 }
 
 export async function getUserByUserId(binding: D1Database, userId: string) {
   const db = getDb(binding);
-  
-  return await db
-  .select()
-  .from(user)
-  .where(eq(user.id, userId))
-  .get();
+
+  return await db.select().from(user).where(eq(user.id, userId)).get();
 }
 
 export async function getUsersByTeamId(binding: D1Database, teamId: string) {
   const db = getDb(binding);
-  
-  return await db
-  .select()
-  .from(user)
-  .where(eq(user.teamId, teamId));
+
+  return await db.select().from(user).where(eq(user.teamId, teamId));
 }
 
-export async function updateUserTeam(binding: D1Database, userId: string, teamId: string) {
+export async function updateUserTeam(
+  binding: D1Database,
+  userId: string,
+  teamId: string,
+) {
   const db = getDb(binding);
 
-  return await db.update(user).set({teamId}).where(eq(user.id, userId));
+  return await db.update(user).set({ teamId }).where(eq(user.id, userId));
 }
 
 export async function getUserByEmail(binding: D1Database, email: string) {
   const db = getDb(binding);
 
-  return await db
-  .select()
-  .from(user)
-  .where(eq(user.email, email))
-  .get();
+  return await db.select().from(user).where(eq(user.email, email)).get();
 }

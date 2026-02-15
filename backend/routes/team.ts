@@ -1,77 +1,82 @@
 import { Hono } from "hono";
-import type { Bindings } from "../index";
-import { createAuth } from "../lib/auth";
-import { createTeam, getInvitationCode, getTeamMembersByCreatorId } from "../services/team.service";
+import { z } from "zod";
+import type { AppEnv } from "../middleware/auth";
+import {
+  createTeam,
+  deleteTeam,
+  getInvitationCode,
+  getTeamMembersAndRequests,
+  leaveTeam,
+  removeMember,
+} from "../services/team.service";
 
-export const teamRegistrationRouter = new Hono<{ Bindings: Bindings }>();
+const createTeamSchema = z.object({
+  teamName: z.string().min(1, "Team name is required").max(100),
+});
+
+export const teamRegistrationRouter = new Hono<AppEnv>();
 
 teamRegistrationRouter.post("/", async (c) => {
+  const session = c.var.session;
 
-    const auth = createAuth(c.env);
-    
-    const session = await auth.api.getSession({
-        headers: c.req.raw.headers,
-    });
-    
-    if (!session) {
-        return c.json({ error: 'Unauthorized' }, 401);
-    }
-    
-    const teamName = c.req.query("teamName");
+  const body = await c.req.json();
+  const result = createTeamSchema.safeParse(body);
 
-    if (!teamName) {
-        return c.json({message: "Missing a required field"}, 400);
-    } 
+  if (!result.success) {
+    return c.json(
+      { error: "Validation failed", details: result.error.issues },
+      400,
+    );
+  }
 
-    await createTeam(c.env.wishDB, session.user.id, teamName);
+  await createTeam(c.env.wishDB, session.user.id, result.data.teamName);
 
-    return c.json({}, 200);
-})
+  return c.json({ success: true }, 200);
+});
 
 teamRegistrationRouter.get("/link", async (c) => {
+  const session = c.var.session;
 
-    const auth = createAuth(c.env);
-    
-    const session = await auth.api.getSession({
-        headers: c.req.raw.headers,
-    });
-    
-    if (!session) {
-        return c.json({ error: 'Unauthorized' }, 401);
-    }
+  const invitationCode = await getInvitationCode(c.env.wishDB, session.user.id);
 
-    const invitaionCode = await getInvitationCode(c.env.wishDB, session.user.id);
-
-    return c.json({link: c.env.CLIENT_URL + "/api/invite/" + invitaionCode}, 200);
-})
+  return c.json(
+    { link: c.env.CLIENT_URL + "/api/invite/" + invitationCode },
+    200,
+  );
+});
 
 teamRegistrationRouter.get("/members", async (c) => {
-    const auth = createAuth(c.env);
-    
-    const session = await auth.api.getSession({
-        headers: c.req.raw.headers,
-    });
-    
-    if (!session) {
-        return c.json({ error: 'Unauthorized' }, 401);
-    }
+  const session = c.var.session;
 
-    const teamMembers = await getTeamMembersByCreatorId(c.env.wishDB, session.user.id);
-    const teamMembersDto = [];
+  const members = await getTeamMembersAndRequests(
+    c.env.wishDB,
+    session.user.id,
+  );
 
-    for (const teamMember of teamMembers) {
-        let memberType = "member";
+  return c.json(members, 200);
+});
 
-        if (teamMember.id === session.user.id) {
-            memberType = "owner";
-        }
+teamRegistrationRouter.delete("/members/:userId", async (c) => {
+  const session = c.var.session;
+  const targetUserId = c.req.param("userId");
 
-        teamMembersDto.push({
-            email: teamMember.email,
-            memberType: memberType,
-            
-        });
-    }
+  await removeMember(c.env.wishDB, session.user.id, targetUserId);
 
-    return c.json(teamMembersDto, 200);
-})
+  return c.json({ success: true }, 200);
+});
+
+teamRegistrationRouter.post("/leave", async (c) => {
+  const session = c.var.session;
+
+  await leaveTeam(c.env.wishDB, session.user.id);
+
+  return c.json({ success: true }, 200);
+});
+
+teamRegistrationRouter.delete("/", async (c) => {
+  const session = c.var.session;
+
+  await deleteTeam(c.env.wishDB, session.user.id);
+
+  return c.json({ success: true }, 200);
+});

@@ -1,71 +1,59 @@
 import { Hono } from "hono";
-import type { Bindings } from "../index";
-import { createAuth } from "../lib/auth";
-import { createInvitaion, getAllInvites, handleInviteStatus } from "../services/invitaion.service";
-import { getUserByUserId } from "../services/user.service";
+import { z } from "zod";
+import type { AppEnv } from "../middleware/auth";
+import {
+  createInvitation,
+  getAllInvitesWithUsers,
+  handleInviteStatus,
+} from "../services/invitation.service";
 
-export const userInvitationRouter = new Hono<{ Bindings: Bindings }>();
-
-userInvitationRouter.get("/:uuid", async (c) => {
-    const auth = createAuth(c.env);
-
-    const session = await auth.api.getSession({
-        headers: c.req.raw.headers,
-    });
-
-    if (!session) {
-        return c.json({ error: 'Unauthorized' }, 401);
-    }
-
-    const invitaionCode = c.req.param("uuid");
-    
-    await createInvitaion(c.env.wishDB, invitaionCode, session.user.id);
-
-    return c.json({message: "Successfully registered invitation"}, 200);
+const inviteStatusSchema = z.object({
+  inviteStatus: z.enum(["accepted", "rejected"], {
+    message: 'Status must be "accepted" or "rejected"',
+  }),
 });
 
-userInvitationRouter.post("/all", async (c) => {
-    const auth = createAuth(c.env);
+export const userInvitationRouter = new Hono<AppEnv>();
 
-    const session = await auth.api.getSession({
-        headers: c.req.raw.headers,
-    });
+userInvitationRouter.get("/:uuid", async (c) => {
+  const session = c.var.session;
 
-    if (!session) {
-        return c.json({ error: 'Unauthorized' }, 401);
-    }
+  const invitationCode = c.req.param("uuid");
 
-    const invites = await getAllInvites(c.env.wishDB, session.user.id);
+  await createInvitation(c.env.wishDB, invitationCode, session.user.id);
 
-    const invitesDto = [];
+  return c.json({ message: "Successfully registered invitation" }, 200);
+});
 
-    for (const inv of invites) {
-        const invitedUser = await getUserByUserId(c.env.wishDB, inv.userId);
-        invitesDto.push({
-            inviteId: inv.id,
-            email: invitedUser?.email,
-            status: inv.status
-        })
-    }
+userInvitationRouter.get("/all", async (c) => {
+  const session = c.var.session;
 
-    return c.json(invitesDto, 200);
+  const invites = await getAllInvitesWithUsers(c.env.wishDB, session.user.id);
+
+  return c.json(invites, 200);
 });
 
 userInvitationRouter.post("/:uuid/status/:inviteStatus", async (c) => {
-    const auth = createAuth(c.env);
+  const session = c.var.session;
 
-    const session = await auth.api.getSession({
-        headers: c.req.raw.headers,
-    });
+  const invitationId = c.req.param("uuid");
+  const inviteStatus = c.req.param("inviteStatus");
 
-    if (!session) {
-        return c.json({ error: 'Unauthorized' }, 401);
-    }
+  const result = inviteStatusSchema.safeParse({ inviteStatus });
 
-    const invitaionId = c.req.param("uuid");
-    const invitaionStatus = c.req.param("inviteStatus");
+  if (!result.success) {
+    return c.json(
+      { error: "Validation failed", details: result.error.issues },
+      400,
+    );
+  }
 
-    await handleInviteStatus(c.env.wishDB, invitaionId, invitaionStatus);
+  await handleInviteStatus(
+    c.env.wishDB,
+    session.user.id,
+    invitationId,
+    result.data.inviteStatus,
+  );
 
-    return c.json(200);
+  return c.json({ success: true }, 200);
 });

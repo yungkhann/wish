@@ -1,38 +1,76 @@
 import { Hono } from "hono";
-import type { Bindings } from "../index";
-import { createAuth } from "../lib/auth";
-import { createUser } from "../services/user.service";
+import { z } from "zod";
+import type { AppEnv } from "../middleware/auth";
+import { createUser, getUserByUserId } from "../services/user.service";
 
-export const userRegistrationRouter = new Hono<{ Bindings: Bindings }>();
+const registrationSchema = z
+  .object({
+    name: z.string().min(1, "Name is required").max(100),
+    surname: z.string().min(1, "Surname is required").max(100),
+    phoneNumber: z
+      .string()
+      .regex(/^\+?[0-9]{10,15}$/, "Invalid phone number format"),
+    educationLevel: z.string().min(1, "Education level is required"),
+    iin: z.string().regex(/^[0-9]{12}$/, "IIN must be exactly 12 digits"),
+    isMinor: z.boolean().default(false),
+    parentPhoneNumber: z
+      .string()
+      .regex(/^\+?[0-9]{10,15}$/, "Invalid parent phone number format")
+      .optional()
+      .nullable(),
+  })
+  .refine(
+    (data) =>
+      !data.isMinor ||
+      (data.parentPhoneNumber && data.parentPhoneNumber.length > 0),
+    {
+      message: "Parent phone number is required for minors",
+      path: ["parentPhoneNumber"],
+    },
+  );
+
+export const userRegistrationRouter = new Hono<AppEnv>();
+
+userRegistrationRouter.get("/me", async (c) => {
+  const session = c.var.session;
+
+  const profile = await getUserByUserId(c.env.wishDB, session.user.id);
+
+  if (!profile) {
+    return c.json({ error: "User not found" }, 404);
+  }
+
+  const isRegistered = !!(profile.name && profile.surname && profile.iin);
+
+  return c.json({
+    id: profile.id,
+    email: profile.email,
+    name: profile.name,
+    surname: profile.surname,
+    phoneNumber: profile.phoneNumber,
+    educationLevel: profile.educationLevel,
+    iin: profile.iin,
+    isMinor: profile.isMinor,
+    parentPhoneNumber: profile.parentPhoneNumber,
+    teamId: profile.teamId,
+    isRegistered,
+  });
+});
 
 userRegistrationRouter.post("/", async (c) => {
-    const auth = createAuth(c.env);
+  const session = c.var.session;
 
-    const session = await auth.api.getSession({
-        headers: c.req.raw.headers,
-    });
+  const body = await c.req.json();
+  const result = registrationSchema.safeParse(body);
 
-    if (!session) {
-        return c.json({ error: 'Unauthorized' }, 401);
-    }
+  if (!result.success) {
+    return c.json(
+      { error: "Validation failed", details: result.error.issues },
+      400,
+    );
+  }
 
-    // TODO: Change to retrieve values from request body
-    const name = c.req.query("name");
-    const surname = c.req.query("surname");
-    const phoneNumber = c.req.query("phoneNumber");
-    const parentPhoneNumber = c.req.query("parentPhoneNumber");
-    const educationLevel = c.req.query("educationLevel");
-    const iin = c.req.query("iin");
+  await createUser(c.env.wishDB, session.user.id, result.data);
 
-    const teamName = c.req.query("teamName");
-
-    //TODO: Retrive CV as file from requst and upload to GoogleDrive
-
-    if (!name || !surname || !phoneNumber || !educationLevel || !iin) {
-        return c.json({message: "Missing a required field"}, 400);
-    } 
-
-    await createUser(c.env.wishDB, session.user.id, name, surname, phoneNumber, educationLevel, iin, parentPhoneNumber, teamName);
-
-    return c.json({}, 200);
-})
+  return c.json({ success: true }, 200);
+});

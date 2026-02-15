@@ -1,47 +1,151 @@
 import type { D1Database } from "@cloudflare/workers-types";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { getDb } from "../db/db";
-import { team } from "../db/schema";
+import { invite, team, user } from "../db/schema";
 import { AppError } from "../exception/AppError";
-import { getUsersByTeamId } from "./user.service";
+
+const MAX_TEAM_SIZE = 4;
 
 export async function createTeam(
   binding: D1Database,
   creatorUserId: string,
-  teamName: string
+  teamName: string,
 ) {
   const db = getDb(binding);
 
   const creatorTeam = await getTeamByCreatorId(binding, creatorUserId);
-
   if (creatorTeam) {
-    throw new AppError("The user has already created a team");
+    throw new AppError("You have already created a team");
   }
 
-  await db.insert(team).values({
-    id: crypto.randomUUID(),
-    name: teamName,
-    creatorId: creatorUserId,
-    inviteCode: crypto.randomUUID()
-  });
+  const existingUser = await db
+    .select({ teamId: user.teamId })
+    .from(user)
+    .where(eq(user.id, creatorUserId))
+    .get();
+
+  if (existingUser?.teamId) {
+    throw new AppError("You are already in a team");
+  }
+
+  const newTeamId = crypto.randomUUID();
+
+  await db.batch([
+    db.insert(team).values({
+      id: newTeamId,
+      name: teamName,
+      creatorId: creatorUserId,
+      inviteCode: crypto.randomUUID(),
+    }),
+    db
+      .update(user)
+      .set({ teamId: newTeamId })
+      .where(eq(user.id, creatorUserId)),
+  ]);
 }
 
-// export async function deleteTeam(
-//   binding: D1Database,
-//   creatorUserId: string
-// ) {
-//   const db = getDb(binding);
+export async function deleteTeam(binding: D1Database, creatorUserId: string) {
+  const db = getDb(binding);
 
-//   const creatorTeam = await getTeamByCreatorId(binding, creatorUserId);
+  const t = await getTeamByCreatorId(binding, creatorUserId);
 
-//   if (!creatorTeam) {
-//     throw new AppError("The user does not have a team");
-//   }
+  if (!t) {
+    throw new AppError("You do not have a team");
+  }
 
-//   await db.delete(team).where(eq(team.creatorId, creatorUserId));
-// }
+  if (t.creatorId !== creatorUserId) {
+    throw new AppError("Only the team owner can dissolve the team", 403);
+  }
 
-export async function getInvitationCode(binding: D1Database, creatorUserId: string) {
+  await db.batch([
+    db.update(user).set({ teamId: null }).where(eq(user.teamId, t.id)),
+    db
+      .update(invite)
+      .set({ status: "rejected" })
+      .where(and(eq(invite.teamId, t.id), eq(invite.status, "pending"))),
+    db.delete(team).where(eq(team.id, t.id)),
+  ]);
+}
+
+export async function removeMember(
+  binding: D1Database,
+  creatorUserId: string,
+  targetUserId: string,
+) {
+  const db = getDb(binding);
+
+  const t = await getTeamByCreatorId(binding, creatorUserId);
+
+  if (!t) {
+    throw new AppError("You do not have a team");
+  }
+
+  if (targetUserId === creatorUserId) {
+    throw new AppError("Cannot remove yourself. Use dissolve team instead.");
+  }
+
+  const targetUser = await db
+    .select({ teamId: user.teamId })
+    .from(user)
+    .where(eq(user.id, targetUserId))
+    .get();
+
+  if (targetUser?.teamId !== t.id) {
+    throw new AppError("User is not a member of your team");
+  }
+
+  await db.batch([
+    db.update(user).set({ teamId: null }).where(eq(user.id, targetUserId)),
+    db
+      .update(invite)
+      .set({ status: "removed" })
+      .where(
+        and(
+          eq(invite.teamId, t.id),
+          eq(invite.userId, targetUserId),
+          eq(invite.status, "accepted"),
+        ),
+      ),
+  ]);
+}
+
+export async function leaveTeam(binding: D1Database, userId: string) {
+  const db = getDb(binding);
+
+  const currentUser = await db
+    .select({ teamId: user.teamId })
+    .from(user)
+    .where(eq(user.id, userId))
+    .get();
+
+  if (!currentUser?.teamId) {
+    throw new AppError("You are not in a team");
+  }
+
+  const t = await getTeamByCreatorId(binding, userId);
+  if (t && t.id === currentUser.teamId) {
+    throw new AppError("Team owners cannot leave. Dissolve the team instead.");
+  }
+
+  await db.batch([
+    db.update(user).set({ teamId: null }).where(eq(user.id, userId)),
+    db
+      .update(invite)
+      .set({ status: "left" })
+      .where(
+        and(
+          eq(invite.teamId, currentUser.teamId),
+          eq(invite.userId, userId),
+          eq(invite.status, "accepted"),
+        ),
+      ),
+  ]);
+}
+
+export async function getInvitationCode(
+  binding: D1Database,
+  creatorUserId: string,
+) {
   const db = getDb(binding);
 
   const t = await db
@@ -50,43 +154,114 @@ export async function getInvitationCode(binding: D1Database, creatorUserId: stri
     .where(eq(team.creatorId, creatorUserId))
     .get();
 
-    return t?.inviteCode;
+  return t?.inviteCode;
 }
 
-export async function getTeamByInvitaionCode(binding: D1Database, invitaionCode:string) {
+export async function getTeamByInvitationCode(
+  binding: D1Database,
+  invitationCode: string,
+) {
   const db = getDb(binding);
 
-  const t = await db
+  return await db
     .select()
     .from(team)
-    .where(eq(team.inviteCode, invitaionCode))
+    .where(eq(team.inviteCode, invitationCode))
     .get();
-
-  return t;
 }
 
-export async function getTeamByCreatorId(binding: D1Database, creatorId:string) {
+export async function getTeamByCreatorId(
+  binding: D1Database,
+  creatorId: string,
+) {
   const db = getDb(binding);
 
-  const t = await db
+  return await db
     .select()
     .from(team)
     .where(eq(team.creatorId, creatorId))
     .get();
-
-  return t;
 }
 
-export async function getTeamMembersByCreatorId(binding: D1Database, creatorId:string) {
+export async function getTeamById(binding: D1Database, teamId: string) {
   const db = getDb(binding);
 
-  const t = await getTeamByCreatorId(binding, creatorId);
+  return await db.select().from(team).where(eq(team.id, teamId)).get();
+}
 
-  if (!t) {
-    throw new AppError("The user does not have a team");
+/**
+ * Returns the number of users currently in a team.
+ */
+export async function getTeamMemberCount(
+  binding: D1Database,
+  teamId: string,
+): Promise<number> {
+  const db = getDb(binding);
+
+  const members = await db
+    .select({ id: user.id })
+    .from(user)
+    .where(eq(user.teamId, teamId));
+
+  return members.length;
+}
+
+export { MAX_TEAM_SIZE };
+
+/**
+ * Returns team members + pending invite requests for the team
+ * the given user belongs to. Any team member can call this.
+ */
+export async function getTeamMembersAndRequests(
+  binding: D1Database,
+  userId: string,
+) {
+  const db = getDb(binding);
+
+  const currentUser = await db
+    .select({ teamId: user.teamId })
+    .from(user)
+    .where(eq(user.id, userId))
+    .get();
+
+  if (!currentUser?.teamId) {
+    throw new AppError("You are not in a team");
   }
 
-  const teamMembers = await getUsersByTeamId(binding, t.id);
+  const teamId = currentUser.teamId;
 
-  return teamMembers;
+  const t = await getTeamById(binding, teamId);
+
+  if (!t) {
+    throw new AppError("Team not found");
+  }
+
+  const members = await db
+    .select({ id: user.id, email: user.email })
+    .from(user)
+    .where(eq(user.teamId, teamId));
+
+  const pendingUsers = await db
+    .select({
+      userId: invite.userId,
+      email: user.email,
+      inviteId: invite.id,
+    })
+    .from(invite)
+    .innerJoin(user, eq(invite.userId, user.id))
+    .where(and(eq(invite.teamId, teamId), eq(invite.status, "pending")));
+
+  const result = [
+    ...members.map((m) => ({
+      userId: m.id,
+      email: m.email,
+      role: m.id === t.creatorId ? ("owner" as const) : ("member" as const),
+    })),
+    ...pendingUsers.map((p) => ({
+      ...p,
+      role: "request" as const,
+    })),
+  ];
+
+  return result;
 }
