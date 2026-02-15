@@ -39,6 +39,8 @@ export function createAuth(env: Bindings) {
       schema,
     }),
 
+    trustedOrigins: [env.CLIENT_URL],
+
     session: {
       expiresIn: 60 * 60 * 24 * 7,
     },

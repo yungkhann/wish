@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { z } from "zod";
 import type { AppEnv } from "../middleware/auth";
-import { createUser } from "../services/user.service";
+import { createUser, getUserByUserId } from "../services/user.service";
 
 const registrationSchema = z
   .object({
@@ -30,6 +30,32 @@ const registrationSchema = z
   );
 
 export const userRegistrationRouter = new Hono<AppEnv>();
+
+userRegistrationRouter.get("/me", async (c) => {
+  const session = c.var.session;
+
+  const profile = await getUserByUserId(c.env.wishDB, session.user.id);
+
+  if (!profile) {
+    return c.json({ error: "User not found" }, 404);
+  }
+
+  const isRegistered = !!(profile.name && profile.surname && profile.iin);
+
+  return c.json({
+    id: profile.id,
+    email: profile.email,
+    name: profile.name,
+    surname: profile.surname,
+    phoneNumber: profile.phoneNumber,
+    educationLevel: profile.educationLevel,
+    iin: profile.iin,
+    isMinor: profile.isMinor,
+    parentPhoneNumber: profile.parentPhoneNumber,
+    teamId: profile.teamId,
+    isRegistered,
+  });
+});
 
 userRegistrationRouter.post("/", async (c) => {
   const session = c.var.session;

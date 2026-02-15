@@ -44,8 +44,14 @@ export default function AuthForm() {
       const { error: verifyError } = await authClient.signIn.emailOtp(
         { email, otp },
         {
-          onSuccess: () => {
-            window.location.href = "/";
+          onSuccess: async () => {
+            try {
+              const res = await fetch("/api/user/me");
+              const data = await res.json();
+              window.location.href = data.isRegistered ? "/" : "/registration";
+            } catch {
+              window.location.href = "/registration";
+            }
           },
         },
       );
