@@ -1,29 +1,50 @@
 import { Hono } from "hono";
+import { z } from "zod";
 import type { AppEnv } from "../middleware/auth";
 import { createUser } from "../services/user.service";
+
+const registrationSchema = z
+  .object({
+    name: z.string().min(1, "Name is required").max(100),
+    surname: z.string().min(1, "Surname is required").max(100),
+    phoneNumber: z
+      .string()
+      .regex(/^\+?[0-9]{10,15}$/, "Invalid phone number format"),
+    educationLevel: z.string().min(1, "Education level is required"),
+    iin: z.string().regex(/^[0-9]{12}$/, "IIN must be exactly 12 digits"),
+    isMinor: z.boolean().default(false),
+    parentPhoneNumber: z
+      .string()
+      .regex(/^\+?[0-9]{10,15}$/, "Invalid parent phone number format")
+      .optional()
+      .nullable(),
+  })
+  .refine(
+    (data) =>
+      !data.isMinor ||
+      (data.parentPhoneNumber && data.parentPhoneNumber.length > 0),
+    {
+      message: "Parent phone number is required for minors",
+      path: ["parentPhoneNumber"],
+    },
+  );
 
 export const userRegistrationRouter = new Hono<AppEnv>();
 
 userRegistrationRouter.post("/", async (c) => {
-    const session = c.var.session;
+  const session = c.var.session;
 
-    // TODO: Change to retrieve values from request body
-    const name = c.req.query("name");
-    const surname = c.req.query("surname");
-    const phoneNumber = c.req.query("phoneNumber");
-    const parentPhoneNumber = c.req.query("parentPhoneNumber");
-    const educationLevel = c.req.query("educationLevel");
-    const iin = c.req.query("iin");
+  const body = await c.req.json();
+  const result = registrationSchema.safeParse(body);
 
-    const teamName = c.req.query("teamName");
+  if (!result.success) {
+    return c.json(
+      { error: "Validation failed", details: result.error.issues },
+      400,
+    );
+  }
 
-    //TODO: Retrieve CV as file from request and upload to GoogleDrive
+  await createUser(c.env.wishDB, session.user.id, result.data);
 
-    if (!name || !surname || !phoneNumber || !educationLevel || !iin) {
-        return c.json({message: "Missing a required field"}, 400);
-    } 
-
-    await createUser(c.env.wishDB, session.user.id, name, surname, phoneNumber, educationLevel, iin, parentPhoneNumber, teamName);
-
-    return c.json({}, 200);
+  return c.json({ success: true }, 200);
 });

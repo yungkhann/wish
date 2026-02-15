@@ -1,7 +1,7 @@
 import type { D1Database } from "@cloudflare/workers-types";
 import { eq } from "drizzle-orm";
 import { getDb } from "../db/db";
-import { invite } from "../db/schema";
+import { invite, user } from "../db/schema";
 import { AppError } from "../exception/AppError";
 import { getTeamByCreatorId, getTeamByInvitationCode } from "./team.service";
 
@@ -69,31 +69,25 @@ export async function handleInviteStatus(
   }
 
   if (invitationStatus === "accepted") {
-    const statements = [];
+    await db.batch([
+      db
+        .update(user)
+        .set({ teamId: invitation.teamId })
+        .where(eq(user.id, invitation.userId)),
+      db
+        .update(invite)
+        .set({ status: invitationStatus })
+        .where(eq(invite.id, invitationId)),
+    ]);
+    return;
+  }
 
-    statements.push(
-      binding
-        .prepare(
-          `UPDATE user SET team_id = ? WHERE id = ?
-                VALUES (?, ?)`,
-        )
-        .bind(invitation?.teamId, invitation.userId),
-    );
-
-    statements.push(
-      binding
-        .prepare(
-          `UPDATE invitaion SET status = ?
-                VALUES (?)`,
-        )
-        .bind(invitationStatus),
-    );
-
-    return await binding.batch(statements);
-  } else if (invitationStatus === "rejected") {
-    return await db.update(invite).set({
-      status: invitationStatus,
-    });
+  if (invitationStatus === "rejected") {
+    await db
+      .update(invite)
+      .set({ status: invitationStatus })
+      .where(eq(invite.id, invitationId));
+    return;
   }
 
   throw new AppError("Incorrect invitation status is passed");
