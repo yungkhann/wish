@@ -28,7 +28,7 @@ export const team = sqliteTable("team", {
   id: text("id").primaryKey().notNull(),
   name: text("name").notNull(),
   inviteCode: text("invite_code").notNull(),
-  creatorId: text("creator_id").notNull()
+  creatorId: text("creator_id").notNull(),
 });
 
 export const invite = sqliteTable("invite", {
@@ -56,7 +56,7 @@ export const session = sqliteTable(
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),
   },
-  (t) => [index("session_userId_idx").on(t.userId)]
+  (t) => [index("session_userId_idx").on(t.userId)],
 );
 
 export const account = sqliteTable(
@@ -86,7 +86,7 @@ export const account = sqliteTable(
       .$onUpdate(() => /* @__PURE__ */ new Date())
       .notNull(),
   },
-  (t) => [index("account_userId_idx").on(t.userId)]
+  (t) => [index("account_userId_idx").on(t.userId)],
 );
 
 export const verification = sqliteTable(
@@ -104,7 +104,7 @@ export const verification = sqliteTable(
       .$onUpdate(() => /* @__PURE__ */ new Date())
       .notNull(),
   },
-  (t) => [index("verification_identifier_idx").on(t.identifier)]
+  (t) => [index("verification_identifier_idx").on(t.identifier)],
 );
 
 export const accountRelations = relations(account, ({ one }) => ({
