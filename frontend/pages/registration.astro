@@ -1,10 +1,10 @@
 ---
+import Header from "../components/Header.astro";
 import RegistrationPage from "../components/RegistrationPage";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Registration">
-  <div class="pt-20">
-    <RegistrationPage client:load />
-  </div>
+  <Header />
+  <RegistrationPage client:load />
 </Layout>
