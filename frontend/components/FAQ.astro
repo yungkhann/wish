@@ -1,43 +1,212 @@
 ---
+import { Image } from "astro:assets";
+import fade from "../assets/fade.png";
+
 const faqs = [
   {
+    question: "What is WISH?",
+    answer:
+      "WHD is an annual three-round team competition in mathematics, competitive programming, and product design. Each team should consist of 3 to 4 members.",
+  },
+  {
     question: "Who can participate?",
-    answer:
-      "Girls from age 13 to 18 can participate, not depending on their study status or background.",
-  },
-  // Add more placeholders if needed based on typical hackathon FAQs
-  {
-    question: "Do I need a team?",
-    answer:
-      "Yes, you can form a team of 2-4 people. If you don't have a team, we can help you find one during the team building session.",
+    answer: "Female high school and university students aged 16 to 20.",
   },
   {
-    question: "Is it free?",
+    question: "What if I don't have a team?",
+    answer: "You can find team members in our Women's Hack Day chat. *link*",
+  },
+  {
+    question: "Do I need to be a professional?",
+    answer: "No, it's a beginner-friendly competition.",
+  },
+  {
+    question: "Can I participate online?",
+    answer: "No, Women's Hack Day 2025 is fully offline.",
+  },
+  {
+    question: "How can I participate?",
     answer:
-      "Yes, participation is completely free. We also provide food and swag!",
+      "Assemble a team, register, and come to Nazarbayev University on the 25th of October 2025. Please note that the application for participation is filled out only by the captain of the team.",
+  },
+  {
+    question: "Will participants receive certificates or prizes?",
+    answer:
+      "Yes, every participant will receive a certificate of participation, winners will receive a cash prize and merch. Also, there is a welcome package for 100 people, and a coffee break.",
+  },
+  {
+    question: "I didn't find an answer to my question. What should I do?",
+    answer:
+      "Join our Telegram chat and ask your questions. Or you can contact us via email: acm_w@nu.edu.kz",
   },
 ];
 ---
 
-<section id="faq" class="px-6 py-12 sm:px-8 md:py-24 lg:px-12">
-  <h2
-    class="mb-16 text-center font-['Cinzel_Decorative'] text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl"
-  >
-    FAQ
-  </h2>
+<section id="faq">
+  <Image src={fade} alt="" aria-hidden="true" class="fade" />
 
-  <div class="mx-auto flex max-w-4xl flex-col gap-6">
+  <h2>FAQs</h2>
+
+  <div class="grid">
     {
-      faqs.map((faq) => (
-        <div class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-purple-500/50 hover:bg-white/10">
-          <h3 class="mb-2 font-['Cinzel'] text-xl font-bold text-white group-hover:text-purple-300 md:text-2xl">
-            {faq.question}
-          </h3>
-          <p class="font-['Marcellus'] text-lg text-gray-300 md:text-xl">
-            {faq.answer}
-          </p>
+      [
+        faqs.filter((_, i) => i % 2 === 0),
+        faqs.filter((_, i) => i % 2 !== 0),
+      ].map((col) => (
+        <div class="col">
+          {col.map((faq) => (
+            <details>
+              <summary>{faq.question}</summary>
+              <div class="answer">
+                <p>{faq.answer}</p>
+              </div>
+            </details>
+          ))}
         </div>
       ))
     }
   </div>
+
+  <footer>
+    <div class="links">
+      <a href="https://www.instagram.com/nuacmsc/">Instagram</a>
+      <a href="https://t.me/nuacmsc">Telegram</a>
+      <a href="https://www.youtube.com/@nuacmsc">Youtube</a>
+      <a href="mailto:acm_w@nu.edu.kz">Email</a>
+    </div>
+    <p class="copy">© 2026 NU ACM-W SC All rights reserved.</p>
+  </footer>
 </section>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Marcellus&display=swap");
+
+  section {
+    background: #000;
+    color: #fff;
+    min-height: 100vh;
+    position: relative;
+    padding: 4rem 1.5rem;
+  }
+
+  .fade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  h2 {
+    font-family: "Cinzel", serif;
+    font-weight: 650;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .grid {
+      flex-direction: row;
+      align-items: start;
+    }
+  }
+
+  .col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  summary {
+    background: #27272a;
+    border-radius: 1rem;
+    padding: 0.75rem 1.5rem;
+    min-height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    list-style: none;
+    font-family: "Marcellus", serif;
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::after {
+    content: "";
+    flex-shrink: 0;
+    width: 18px;
+    height: 10px;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 9L9 1L17 9' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+      no-repeat center;
+    transition: transform 0.3s ease;
+  }
+
+  details:not([open]) summary::after {
+    transform: rotate(180deg);
+  }
+
+  .answer {
+    background: #18181b;
+    border-radius: 1rem;
+    padding: 0.75rem 1.5rem;
+    font-family: "Marcellus", serif;
+    font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+    color: #e5e5e5;
+    line-height: 1.7;
+  }
+
+  footer {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 9rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .links a {
+    font-family: "Cinzel", serif;
+    font-size: 1.1rem;
+    color: #ad54ff;
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    text-decoration: underline;
+  }
+
+  .copy {
+    font-family: "Cinzel", serif;
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    color: #6c6c6c;
+  }
+</style>
