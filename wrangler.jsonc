@@ -6,8 +6,8 @@
   "compatibility_flags": ["nodejs_compat"],
   "account_id": "15da7213905a1f5b05432a12f9da2a13",
   "vars": {
-    "BETTER_AUTH_URL": "https://wish.ieraasyl.workers.dev/",
-    "CLIENT_URL": "https://wish.ieraasyl.workers.dev/",
+    "BETTER_AUTH_URL": "https://wish.nuacmw.kz/",
+    "CLIENT_URL": "https://wish.nuacmw.kz/",
   },
   "assets": {
     "directory": "./dist",
@@ -24,4 +24,11 @@
   "observability": {
     "enabled": true,
   },
+  "routes": [
+    {
+      "pattern": "wish.nuacmw.kz",
+      "zone_name": "nuacmw.kz",
+      "custom_domain": true,
+    },
+  ],
 }
