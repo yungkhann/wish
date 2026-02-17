@@ -1,0 +1,12 @@
+---
+import Header from "../components/Header.astro";
+import InvitePage from "../components/InvitePage";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Team Invite">
+  <Header />
+  <div class="pt-28">
+    <InvitePage client:load />
+  </div>
+</Layout>

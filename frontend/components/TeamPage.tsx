@@ -1,0 +1,554 @@
+import { useEffect, useState } from "react";
+import AuthForm from "./AuthForm";
+
+type State = "loading" | "unauthenticated" | "no-team" | "has-team";
+
+type Member = {
+  userId: string;
+  email: string;
+  role: "owner" | "member" | "request";
+  inviteId?: string;
+};
+
+type PendingInvite = {
+  inviteId: string;
+  teamName: string;
+  status: string;
+};
+
+type UserData = {
+  id: string;
+  email: string;
+  teamId: string | null;
+  isRegistered: boolean;
+};
+
+export default function TeamPage() {
+  const [state, setState] = useState<State>("loading");
+  const [user, setUser] = useState<UserData | null>(null);
+  const [teamName, setTeamName] = useState("");
+  const [newTeamName, setNewTeamName] = useState("");
+  const [members, setMembers] = useState<Member[]>([]);
+  const [pendingInvites, setPendingInvites] = useState<PendingInvite[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [actionLoading, setActionLoading] = useState(false);
+  const [copyText, setCopyText] = useState("COPY INVITE LINK");
+  const [editingName, setEditingName] = useState("");
+
+  const fetchUser = async () => {
+    const res = await fetch("/api/user/me");
+    if (res.status === 401) {
+      setState("unauthenticated");
+      return null;
+    }
+    if (!res.ok) {
+      setState("unauthenticated");
+      return null;
+    }
+    const data = await res.json();
+    if (!data.isRegistered) {
+      window.location.href = "/registration";
+      return null;
+    }
+    setUser(data);
+    return data as UserData;
+  };
+
+  const fetchPendingInvites = async () => {
+    try {
+      const res = await fetch("/api/invite/me/pending");
+      if (res.ok) {
+        const data = await res.json();
+        setPendingInvites(data);
+      }
+    } catch {
+      // ignore — not critical
+    }
+  };
+
+  const fetchTeamData = async () => {
+    try {
+      const res = await fetch("/api/team/members");
+      if (!res.ok) {
+        setState("no-team");
+        return;
+      }
+      const data = await res.json();
+      setMembers(data.members);
+      setTeamName(data.teamName);
+      setEditingName(data.teamName);
+      setState("has-team");
+    } catch {
+      setState("no-team");
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      const userData = await fetchUser();
+      if (!userData) return;
+      if (userData.teamId) {
+        await fetchTeamData();
+      } else {
+        await fetchPendingInvites();
+        setState("no-team");
+      }
+    })();
+  }, []);
+
+  const handleCreateTeam = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setActionLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/team", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ teamName: newTeamName }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error ?? "Failed to create team");
+        return;
+      }
+      setNewTeamName("");
+      window.location.reload();
+    } catch {
+      setError("An unexpected error occurred.");
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleCopyLink = async () => {
+    setError(null);
+    try {
+      // Safari requires the clipboard write to be initiated in the same
+      // tick as the user gesture. By passing a Promise-bearing ClipboardItem
+      // we claim clipboard access synchronously while the fetch resolves.
+      const textPromise = fetch("/api/team/link").then(async (res) => {
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error ?? "Failed to get invite link");
+        return data.link as string;
+      });
+
+      if (navigator.clipboard && typeof ClipboardItem !== "undefined") {
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            "text/plain": textPromise.then(
+              (text) => new Blob([text], { type: "text/plain" }),
+            ),
+          }),
+        ]);
+      } else {
+        // Fallback for browsers without ClipboardItem support
+        const text = await textPromise;
+        await navigator.clipboard.writeText(text);
+      }
+
+      setCopyText("COPIED!");
+      setTimeout(() => setCopyText("COPY INVITE LINK"), 2000);
+    } catch (e) {
+      const msg =
+        e instanceof Error ? e.message : "Failed to copy invite link.";
+      setError(msg);
+    }
+  };
+
+  const handleInviteAction = async (
+    inviteId: string,
+    action: "accepted" | "rejected",
+  ) => {
+    setError(null);
+    setActionLoading(true);
+    try {
+      const res = await fetch(`/api/invite/${inviteId}/status/${action}`, {
+        method: "POST",
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.error ?? "Action failed");
+        return;
+      }
+      await fetchTeamData();
+    } catch {
+      setError("An unexpected error occurred.");
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleRemoveMember = async (userId: string) => {
+    setError(null);
+    setActionLoading(true);
+    try {
+      const res = await fetch(`/api/team/members/${userId}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.error ?? "Failed to remove member");
+        return;
+      }
+      await fetchTeamData();
+    } catch {
+      setError("An unexpected error occurred.");
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleLeaveTeam = async () => {
+    setError(null);
+    setActionLoading(true);
+    try {
+      const res = await fetch("/api/team/leave", { method: "POST" });
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.error ?? "Failed to leave team");
+        return;
+      }
+      window.location.reload();
+    } catch {
+      setError("An unexpected error occurred.");
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleDissolveTeam = async () => {
+    setError(null);
+    setActionLoading(true);
+    try {
+      const res = await fetch("/api/team", { method: "DELETE" });
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.error ?? "Failed to dissolve team");
+        return;
+      }
+      window.location.reload();
+    } catch {
+      setError("An unexpected error occurred.");
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleRenameTeam = async () => {
+    if (!editingName.trim() || editingName === teamName) return;
+    setError(null);
+    setActionLoading(true);
+    try {
+      const res = await fetch("/api/team/name", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ teamName: editingName.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error ?? "Failed to rename team");
+        return;
+      }
+      setTeamName(editingName.trim());
+    } catch {
+      setError("An unexpected error occurred.");
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const isOwner =
+    user && members.some((m) => m.userId === user.id && m.role === "owner");
+
+  if (state === "loading") {
+    return (
+      <div className="flex min-h-[50vh] items-center justify-center text-zinc-500">
+        Loading...
+      </div>
+    );
+  }
+
+  if (state === "unauthenticated") {
+    return <AuthForm />;
+  }
+
+  if (state === "no-team") {
+    return (
+      <div className="mx-auto max-w-5xl px-4 py-8 text-white">
+        {error && (
+          <div className="mb-6 rounded border border-red-800 bg-red-900/30 p-3 text-sm text-red-200">
+            {error}
+          </div>
+        )}
+
+        <div className="grid gap-8 lg:grid-cols-2">
+          {/* Left — Create Team */}
+          <div className="space-y-6 rounded-[30px] border-2 border-[#8b4cd9] bg-[linear-gradient(135deg,rgba(80,30,120,0.3)_0%,rgba(0,0,0,0.5)_100%)] p-8 shadow-[0_0_30px_rgba(139,76,217,0.4)]">
+            <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
+              CREATE TEAM
+            </h2>
+            <p className="text-center text-sm text-zinc-400">
+              You are not part of any team yet. Create one or join via an invite
+              link.
+            </p>
+
+            <form onSubmit={handleCreateTeam} className="space-y-4">
+              <div>
+                <label className="mb-1 block text-sm font-medium text-zinc-400">
+                  Team Name
+                </label>
+                <input
+                  type="text"
+                  value={newTeamName}
+                  onChange={(e) => setNewTeamName(e.target.value)}
+                  required
+                  maxLength={100}
+                  placeholder="Enter team name"
+                  className="w-full rounded-[25px] border-2 border-[#8b4cd9] bg-black/60 px-6 py-3 text-white transition-all outline-none focus:border-[#a855f7] focus:shadow-[0_0_15px_rgba(168,85,247,0.5)]"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={actionLoading}
+                className="w-full rounded-[25px] bg-[linear-gradient(135deg,#8b4cd9,#a855f7)] px-8 py-3 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_30px_rgba(168,85,247,0.6)] transition-transform hover:scale-105 disabled:opacity-50"
+              >
+                {actionLoading ? "Creating..." : "CREATE TEAM"}
+              </button>
+            </form>
+          </div>
+
+          {/* Right — Pending Invites */}
+          <div className="space-y-6 rounded-[30px] border-2 border-[#8b4cd9] bg-[linear-gradient(135deg,rgba(80,30,120,0.3)_0%,rgba(0,0,0,0.5)_100%)] p-8 shadow-[0_0_30px_rgba(139,76,217,0.4)]">
+            <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
+              PENDING INVITES
+            </h2>
+
+            {pendingInvites.length === 0 ? (
+              <p className="text-center text-sm text-zinc-500">
+                No pending invites. Ask a team owner to share their invite link
+                with you.
+              </p>
+            ) : (
+              <div className="space-y-3">
+                {pendingInvites.map((inv) => (
+                  <div
+                    key={inv.inviteId}
+                    className="flex items-center justify-between rounded-[10px] border border-[#8b4cd9] bg-black/40 px-5 py-3"
+                  >
+                    <span className="truncate text-sm text-white">
+                      {inv.teamName}
+                    </span>
+                    <span className="shrink-0 rounded-full border border-yellow-500 px-3 py-1 text-xs text-yellow-400">
+                      #pending
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // has-team state
+  const owners = members.filter((m) => m.role === "owner");
+  const regularMembers = members.filter((m) => m.role === "member");
+  const requests = members.filter((m) => m.role === "request");
+
+  return (
+    <div className="mx-auto max-w-5xl space-y-8 px-4 py-8">
+      {error && (
+        <div className="rounded border border-red-800 bg-red-900/30 p-3 text-sm text-red-200">
+          {error}
+        </div>
+      )}
+
+      <div className="grid gap-8 lg:grid-cols-2">
+        {/* Instructions */}
+        <div className="rounded-[30px] border-2 border-[#8b4cd9] bg-[linear-gradient(135deg,rgba(80,30,120,0.3)_0%,rgba(0,0,0,0.5)_100%)] p-8 shadow-[0_0_30px_rgba(139,76,217,0.4)]">
+          <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
+            INSTRUCTIONS
+          </h2>
+          <ul className="space-y-3 text-sm text-zinc-300">
+            <li>1. Create a team or join one via an invite link.</li>
+            <li>2. Share your invite link with teammates.</li>
+            <li>3. The team owner can accept or reject join requests.</li>
+            <li>4. Maximum team size is 4 members.</li>
+            <li>5. Only the owner can dissolve the team.</li>
+          </ul>
+        </div>
+
+        {/* Team Section */}
+        <div className="space-y-6">
+          {/* Team Name */}
+          {isOwner ? (
+            <div className="flex items-center gap-3">
+              <input
+                type="text"
+                value={editingName}
+                onChange={(e) => setEditingName(e.target.value)}
+                className="flex-1 rounded-[15px] border-2 border-[#8b4cd9] bg-black/30 px-4 py-3 font-['Cinzel'] text-lg tracking-[2px] text-white outline-none focus:border-[#a855f7] focus:shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+              />
+              <button
+                onClick={handleRenameTeam}
+                disabled={
+                  actionLoading ||
+                  !editingName.trim() ||
+                  editingName === teamName
+                }
+                className="rounded-[15px] bg-[linear-gradient(135deg,#8b4cd9,#a855f7)] px-6 py-3 font-['Cinzel'] text-sm tracking-[2px] text-white shadow-[0_0_20px_rgba(168,85,247,0.6)] transition-transform hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
+              >
+                SAVE
+              </button>
+            </div>
+          ) : (
+            <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
+              {teamName}
+            </h2>
+          )}
+
+          {/* Participants */}
+          <div>
+            <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
+              PARTICIPANTS
+            </h2>
+            <div className="space-y-3">
+              {owners.map((m) => (
+                <MemberRow
+                  key={m.userId}
+                  member={m}
+                  isOwner={!!isOwner}
+                  currentUserId={user?.id ?? ""}
+                  onRemove={handleRemoveMember}
+                  onAccept={(id) => handleInviteAction(id, "accepted")}
+                  onReject={(id) => handleInviteAction(id, "rejected")}
+                  disabled={actionLoading}
+                />
+              ))}
+              {regularMembers.map((m) => (
+                <MemberRow
+                  key={m.userId}
+                  member={m}
+                  isOwner={!!isOwner}
+                  currentUserId={user?.id ?? ""}
+                  onRemove={handleRemoveMember}
+                  onAccept={(id) => handleInviteAction(id, "accepted")}
+                  onReject={(id) => handleInviteAction(id, "rejected")}
+                  disabled={actionLoading}
+                />
+              ))}
+              {requests.map((m) => (
+                <MemberRow
+                  key={m.inviteId ?? m.userId}
+                  member={m}
+                  isOwner={!!isOwner}
+                  currentUserId={user?.id ?? ""}
+                  onRemove={handleRemoveMember}
+                  onAccept={(id) => handleInviteAction(id, "accepted")}
+                  onReject={(id) => handleInviteAction(id, "rejected")}
+                  disabled={actionLoading}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex flex-wrap items-center justify-center gap-4">
+        {isOwner && (
+          <button
+            onClick={handleCopyLink}
+            className="rounded-[30px] bg-[linear-gradient(135deg,#8b4cd9,#a855f7)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_40px_rgba(168,85,247,0.8)] transition-transform hover:scale-105"
+          >
+            {copyText}
+          </button>
+        )}
+        {isOwner ? (
+          <button
+            onClick={handleDissolveTeam}
+            disabled={actionLoading}
+            className="rounded-[30px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
+          >
+            DISSOLVE TEAM
+          </button>
+        ) : (
+          <button
+            onClick={handleLeaveTeam}
+            disabled={actionLoading}
+            className="rounded-[30px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
+          >
+            LEAVE TEAM
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function MemberRow({
+  member,
+  isOwner,
+  currentUserId,
+  onRemove,
+  onAccept,
+  onReject,
+  disabled,
+}: {
+  member: Member;
+  isOwner: boolean;
+  currentUserId: string;
+  onRemove: (userId: string) => void;
+  onAccept: (inviteId: string) => void;
+  onReject: (inviteId: string) => void;
+  disabled: boolean;
+}) {
+  const roleColors: Record<string, string> = {
+    owner: "border-[#a855f7] text-[#a855f7]",
+    member: "border-[#8b4cd9] text-[#8b4cd9]",
+    request: "border-yellow-500 text-yellow-400",
+  };
+
+  return (
+    <div className="flex items-center justify-between rounded-[10px] border border-[#8b4cd9] bg-black/40 px-5 py-3">
+      <span className="truncate text-sm text-white">{member.email}</span>
+      <div className="flex shrink-0 items-center gap-3">
+        <span
+          className={`rounded-full border px-3 py-1 text-xs ${roleColors[member.role] ?? ""}`}
+        >
+          #{member.role}
+        </span>
+        {member.role === "request" && isOwner && member.inviteId && (
+          <>
+            <button
+              onClick={() => onAccept(member.inviteId!)}
+              disabled={disabled}
+              className="flex h-7 w-7 items-center justify-center rounded border-2 border-green-500 text-green-500 transition-colors hover:bg-green-500/20 disabled:opacity-50"
+            >
+              ✓
+            </button>
+            <button
+              onClick={() => onReject(member.inviteId!)}
+              disabled={disabled}
+              className="flex h-7 w-7 items-center justify-center rounded border-2 border-red-500 text-red-500 transition-colors hover:bg-red-500/20 disabled:opacity-50"
+            >
+              ✕
+            </button>
+          </>
+        )}
+        {member.role === "member" &&
+          isOwner &&
+          member.userId !== currentUserId && (
+            <button
+              onClick={() => onRemove(member.userId)}
+              disabled={disabled}
+              className="flex h-7 w-7 items-center justify-center rounded border-2 border-red-500 text-red-500 transition-colors hover:bg-red-500/20 disabled:opacity-50"
+            >
+              ✕
+            </button>
+          )}
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,12 @@
+---
+import Header from "../components/Header.astro";
+import TeamPage from "../components/TeamPage";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Team">
+  <Header />
+  <div class="pt-28">
+    <TeamPage client:load />
+  </div>
+</Layout>

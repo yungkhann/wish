@@ -3,6 +3,7 @@ import { and, eq, or } from "drizzle-orm";
 import { getDb } from "../db/db";
 import { invite, team, user } from "../db/schema";
 import { AppError } from "../exception/AppError";
+import { rejectAllPendingInvites } from "./invitation.service";
 
 const MAX_TEAM_SIZE = 4;
 
@@ -29,6 +30,8 @@ export async function createTeam(
   }
 
   const newTeamId = crypto.randomUUID();
+
+  await rejectAllPendingInvites(binding, creatorUserId);
 
   await db.batch([
     db.insert(team).values({
@@ -268,5 +271,25 @@ export async function getTeamMembersAndRequests(
     })),
   ];
 
-  return result;
+  return { teamName: t.name, members: result };
+}
+
+export async function renameTeam(
+  binding: D1Database,
+  creatorUserId: string,
+  newName: string,
+) {
+  const db = getDb(binding);
+
+  const t = await getTeamByCreatorId(binding, creatorUserId);
+
+  if (!t) {
+    throw new AppError("You do not have a team");
+  }
+
+  if (t.creatorId !== creatorUserId) {
+    throw new AppError("Only the team owner can rename the team", 403);
+  }
+
+  await db.update(team).set({ name: newName }).where(eq(team.id, t.id));
 }
