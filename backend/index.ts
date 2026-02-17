@@ -5,6 +5,7 @@ import { createAuth } from "./lib/auth";
 import { authMiddleware } from "./middleware/auth";
 import { userInvitationRouter } from "./routes/invite";
 import { userRegistrationRouter } from "./routes/register";
+import { reportRouter } from "./routes/report";
 import { teamRegistrationRouter } from "./routes/team";
 
 export type Bindings = {
@@ -27,6 +28,8 @@ app.all("/auth/*", async (c) => {
   const auth = createAuth(c.env);
   return auth.handler(c.req.raw);
 });
+
+app.route("/report", reportRouter);
 
 // Protected routes
 
