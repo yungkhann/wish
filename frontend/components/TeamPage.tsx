@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { authClient } from "../lib/auth-client";
 import AuthForm from "./AuthForm";
 
 type State = "loading" | "unauthenticated" | "no-team" | "has-team";
@@ -482,6 +483,15 @@ export default function TeamPage() {
             LEAVE TEAM
           </button>
         )}
+        <button
+          onClick={async () => {
+            await authClient.signOut();
+            window.location.href = "/";
+          }}
+          className="rounded-[30px] border-2 border-zinc-600 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-zinc-400 transition-colors hover:bg-zinc-600/20"
+        >
+          LOG OUT
+        </button>
       </div>
     </div>
   );
