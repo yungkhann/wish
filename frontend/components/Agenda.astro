@@ -1,77 +1,88 @@
 ---
-import { Image } from "astro:assets";
-import Earth from "../assets/schedule/earth.svg";
-import Jupiter from "../assets/schedule/jupiter.svg";
-import Mars from "../assets/schedule/mars.svg";
-import Mercury from "../assets/schedule/mercury.svg";
-import Saturn from "../assets/schedule/saturn.svg";
-import Venus from "../assets/schedule/venus.svg";
-
 const events = [
-  {
-    time: "09:00-10:00",
-    title: "Registration",
-    iconSrc: Mercury,
-  },
-  {
-    time: "10:00-10:40",
-    title: "Opening Ceremony",
-    iconSrc: Venus,
-  },
-  {
-    time: "11:00-16:00",
-    title: "Competition",
-    iconSrc: Earth,
-  },
-  {
-    time: "16:00-16:30",
-    title: "Coffee Break",
-    iconSrc: Mars,
-  },
-  {
-    time: "16:30-17:00",
-    title: "Photoshoot",
-    iconSrc: Jupiter,
-  },
-  {
-    time: "17:00-18:00",
-    title: "Closing Ceremony",
-    iconSrc: Saturn,
-  },
+  { time: "9:00-10:00", title: "Registration", side: "left" },
+  { time: "10:00-11:00", title: "Opening Ceremony", side: "right" },
+  { time: "11:00-12:00", title: "Mathematics", side: "left" },
+  { time: "12:00-13:00", title: "ICPC", side: "right" },
+  { time: "13:00-14:00", title: "Coffee Break", side: "left" },
+  { time: "14:00-16:00", title: "Product Design", side: "right" },
+  { time: "16:00-17:00", title: "Pitching", side: "left" },
+  { time: "17:30-18:30", title: "Closing Ceremony", side: "right" },
 ];
 ---
 
-<section id="schedule" class="flex flex-col items-center py-20 md:py-24">
-  <h2 class="mb-12 text-center text-5xl font-bold">Agenda</h2>
-
-  <!-- Unified View -->
-  <div
-    class="flex flex-col gap-12 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-x-16 md:gap-y-12"
-    style="transform: translateX(0)"
+<section id="schedule" class="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
+  <h2
+    class="mb-10 text-center font-['Cinzel'] text-5xl leading-none font-bold uppercase md:mb-16 md:text-[80px]"
   >
-    {
-      events.map((event) => (
-        <div class="grid grid-cols-[auto_1fr] gap-x-4 md:contents">
-          {/* Time */}
-          <h3 class="flex items-center justify-end text-[16px] font-bold md:col-start-1 md:row-auto md:h-25 md:text-[32px] md:whitespace-nowrap">
-            {event.time}
-          </h3>
+    Schedule
+  </h2>
+  <div class="relative mx-auto max-w-5xl">
+    <div
+      class="absolute top-0 bottom-0 left-1/2 hidden w-[5px] -translate-x-1/2 rounded-full bg-white md:block"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute top-0 bottom-0 left-6 w-[4px] rounded-full bg-white md:hidden"
+      aria-hidden="true"
+    ></div>
 
-          {/* Icon */}
-          <div class="row-span-2 place-self-center md:col-start-2 md:row-auto">
-            <Image
-              class="size-15 shrink-0 md:h-25 md:w-auto"
-              src={event.iconSrc}
-              alt={event.title}
-            />
+    <div class="flex flex-col gap-8 md:gap-10">
+    {
+      events.map((event, idx) => (
+        <article
+          class:list={[
+            "relative grid items-start gap-y-1 md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-x-14",
+            idx === 0 && "pt-1",
+          ]}
+        >
+          <div
+            class:list={[
+              "hidden md:block",
+              event.side === "left" ? "text-right" : "opacity-0",
+            ]}
+            aria-hidden={event.side !== "left"}
+          >
+            <p class="font-['Marcellus'] text-[25px] leading-none text-white">
+              {event.time}
+            </p>
+            <p class="mt-2 font-['Marcellus'] text-[54px] leading-[1] text-white">
+              {event.title}
+            </p>
           </div>
 
-          {/* Title */}
-          <h3 class="flex items-center justify-start text-[16px] font-bold md:col-start-3 md:row-auto md:h-25 md:text-[32px] md:whitespace-nowrap">
-            {event.title}
-          </h3>
-        </div>
+          <div class="relative z-10 hidden size-[30px] rounded-full bg-[#7214D9] md:block"></div>
+
+          <div
+            class:list={[
+              "hidden md:block",
+              event.side === "right" ? "text-left" : "opacity-0",
+            ]}
+            aria-hidden={event.side !== "right"}
+          >
+            <p class="font-['Marcellus'] text-[25px] leading-none text-white">
+              {event.time}
+            </p>
+            <p class="mt-2 font-['Marcellus'] text-[54px] leading-[1] text-white">
+              {event.title}
+            </p>
+          </div>
+
+          <div class="relative pl-16 md:hidden">
+            <div
+              class="absolute top-2 left-[14px] z-10 size-6 rounded-full bg-[#7214D9]"
+              aria-hidden="true"
+            ></div>
+            <p class="font-['Marcellus'] text-[28px] leading-none text-white">
+              {event.time}
+            </p>
+            <p class="mt-2 font-['Marcellus'] text-[44px] leading-[1] text-white">
+              {event.title}
+            </p>
+          </div>
+        </article>
       ))
     }
+    </div>
   </div>
 </section>
