@@ -24,7 +24,7 @@ export default function RegistrationPage() {
         if (!data) return;
         if (data.isRegistered) {
           setState("registered");
-          window.location.href = "/";
+          window.location.href = "/team";
         } else {
           setState("needs-registration");
         }

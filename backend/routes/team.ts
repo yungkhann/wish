@@ -8,9 +8,14 @@ import {
   getTeamMembersAndRequests,
   leaveTeam,
   removeMember,
+  renameTeam,
 } from "../services/team.service";
 
 const createTeamSchema = z.object({
+  teamName: z.string().min(1, "Team name is required").max(100),
+});
+
+const renameTeamSchema = z.object({
   teamName: z.string().min(1, "Team name is required").max(100),
 });
 
@@ -39,10 +44,7 @@ teamRegistrationRouter.get("/link", async (c) => {
 
   const invitationCode = await getInvitationCode(c.env.wishDB, session.user.id);
 
-  return c.json(
-    { link: c.env.CLIENT_URL + "/api/invite/" + invitationCode },
-    200,
-  );
+  return c.json({ link: c.env.CLIENT_URL + "/invite#" + invitationCode }, 200);
 });
 
 teamRegistrationRouter.get("/members", async (c) => {
@@ -69,6 +71,24 @@ teamRegistrationRouter.post("/leave", async (c) => {
   const session = c.var.session;
 
   await leaveTeam(c.env.wishDB, session.user.id);
+
+  return c.json({ success: true }, 200);
+});
+
+teamRegistrationRouter.patch("/name", async (c) => {
+  const session = c.var.session;
+
+  const body = await c.req.json();
+  const result = renameTeamSchema.safeParse(body);
+
+  if (!result.success) {
+    return c.json(
+      { error: "Validation failed", details: result.error.issues },
+      400,
+    );
+  }
+
+  await renameTeam(c.env.wishDB, session.user.id, result.data.teamName);
 
   return c.json({ success: true }, 200);
 });

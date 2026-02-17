@@ -48,7 +48,7 @@ export default function RegistrationForm() {
         return;
       }
 
-      window.location.href = "/";
+      window.location.href = "/team";
     } catch {
       setError("An unexpected error occurred.");
     } finally {

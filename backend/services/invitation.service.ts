@@ -1,7 +1,7 @@
 import type { D1Database } from "@cloudflare/workers-types";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { getDb } from "../db/db";
-import { invite, user } from "../db/schema";
+import { invite, team, user } from "../db/schema";
 import { AppError } from "../exception/AppError";
 import {
   getTeamByCreatorId,
@@ -27,12 +27,27 @@ export async function createInvitation(
     throw new AppError("You are already in a team");
   }
 
-  await checkInviteExistence(binding, userId);
-
   const t = await getTeamByInvitationCode(binding, invitationCode);
 
   if (!t) {
     throw new AppError("The provided invite code does not exist");
+  }
+
+  // Prevent duplicate pending invite for the same team
+  const existing = await db
+    .select({ id: invite.id })
+    .from(invite)
+    .where(
+      and(
+        eq(invite.userId, userId),
+        eq(invite.teamId, t.id),
+        eq(invite.status, "pending"),
+      ),
+    )
+    .get();
+
+  if (existing) {
+    throw new AppError("You already have a pending request for this team");
   }
 
   const memberCount = await getTeamMemberCount(binding, t.id);
@@ -48,19 +63,16 @@ export async function createInvitation(
   });
 }
 
-async function checkInviteExistence(binding: D1Database, userId: string) {
+export async function rejectAllPendingInvites(
+  binding: D1Database,
+  userId: string,
+) {
   const db = getDb(binding);
 
-  const invites = await db
-    .select()
-    .from(invite)
-    .where(eq(invite.userId, userId));
-
-  for (const inv of invites) {
-    if (inv.status === "accepted" || inv.status === "pending") {
-      throw new AppError("The user already has an active invite");
-    }
-  }
+  return db
+    .update(invite)
+    .set({ status: "rejected" })
+    .where(and(eq(invite.userId, userId), eq(invite.status, "pending")));
 }
 
 export async function getAllInvitesWithUsers(
@@ -125,6 +137,16 @@ export async function handleInviteStatus(
         .update(invite)
         .set({ status: invitationStatus })
         .where(eq(invite.id, invitationId)),
+      // Reject all other pending invites for this user
+      db
+        .update(invite)
+        .set({ status: "rejected" })
+        .where(
+          and(
+            eq(invite.userId, invitation.userId),
+            eq(invite.status, "pending"),
+          ),
+        ),
     ]);
     return;
   }
@@ -150,8 +172,16 @@ async function getInvite(binding: D1Database, invitationId: string) {
     .get();
 }
 
-// async function removeInvite(binding: D1Database, userId: string) {
-//   const db = getDb(binding);
+export async function getMyPendingInvites(binding: D1Database, userId: string) {
+  const db = getDb(binding);
 
-//   return await db.delete(invite).where(eq(invite.userId, userId));
-// }
+  return await db
+    .select({
+      inviteId: invite.id,
+      teamName: team.name,
+      status: invite.status,
+    })
+    .from(invite)
+    .innerJoin(team, eq(invite.teamId, team.id))
+    .where(and(eq(invite.userId, userId), eq(invite.status, "pending")));
+}
