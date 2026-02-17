@@ -8,8 +8,8 @@
   "compatibility_flags": ["nodejs_compat"],
   "account_id": "15da7213905a1f5b05432a12f9da2a13",
   "vars": {
-    "BETTER_AUTH_URL": "https://wish.nuacmw.kz/",
-    "CLIENT_URL": "https://wish.nuacmw.kz/",
+    "BETTER_AUTH_URL": "https://wish.nuacmw.kz",
+    "CLIENT_URL": "https://wish.nuacmw.kz",
   },
   "assets": {
     "directory": "./dist",
