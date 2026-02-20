@@ -1,5 +1,10 @@
 ---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
 import TeamVideos from "../../components/TeamVideos";
 ---
 
-<TeamVideos />
+<Layout title="Team Videos">
+  <Header />
+  <TeamVideos client:load />
+</Layout>
