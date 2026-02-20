@@ -13,7 +13,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "deploy:dry": "bun run build && wrangler deploy --dry-run",
-    "deploy": "bun run install && bun run build && wrangler deploy",
+    "deploy": "bun install && bun run build && wrangler deploy",
     "db:generate": "drizzle-kit generate",
     "db:migrate:local": "wrangler d1 migrations apply wishDB --local",
     "db:migrate:prod": "wrangler d1 migrations apply wishDB --remote",
