@@ -33,7 +33,6 @@ export default function TeamPage() {
   const [error, setError] = useState<string | null>(null);
   const [actionLoading, setActionLoading] = useState(false);
   const [copyText, setCopyText] = useState("COPY INVITE LINK");
-  const [editingName, setEditingName] = useState("");
 
   const fetchUser = async () => {
     const res = await fetch("/api/user/me");
@@ -76,7 +75,6 @@ export default function TeamPage() {
       const data = await res.json();
       setMembers(data.members);
       setTeamName(data.teamName);
-      setEditingName("");
       setState("has-team");
     } catch {
       setState("no-team");
@@ -227,29 +225,6 @@ export default function TeamPage() {
         return;
       }
       window.location.reload();
-    } catch {
-      setError("An unexpected error occurred.");
-    } finally {
-      setActionLoading(false);
-    }
-  };
-
-  const handleRenameTeam = async () => {
-    if (!editingName.trim() || editingName === teamName) return;
-    setError(null);
-    setActionLoading(true);
-    try {
-      const res = await fetch("/api/team/name", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ teamName: editingName.trim() }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? "Failed to rename team");
-        return;
-      }
-      setTeamName(editingName.trim());
     } catch {
       setError("An unexpected error occurred.");
     } finally {

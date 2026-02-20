@@ -3,12 +3,15 @@ import { Image } from "astro:assets";
 import NavAuthButton from "./NavAuthButton";
 import wishLogo from "../assets/WISHLOGO.svg";
 
+const isHome = Astro.url.pathname === "/";
+const prefix = isHome ? "" : "/";
+
 const links = [
-  { href: "/#about", label: "about" },
-  { href: "/#benefits", label: "benefits" },
-  { href: "/#schedule", label: "schedule" },
-  { href: "/#sponsors", label: "sponsors" },
-  { href: "/#faq", label: "FAQs" },
+  { href: `${prefix}#about`, label: "about" },
+  { href: `${prefix}#benefits`, label: "benefits" },
+  { href: `${prefix}#schedule`, label: "schedule" },
+  { href: `${prefix}#sponsors`, label: "sponsors" },
+  { href: `${prefix}#faq`, label: "FAQs" },
 ];
 ---
 
