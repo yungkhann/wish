@@ -3,7 +3,7 @@ import { authClient } from "../lib/auth-client";
 
 type Step = "email" | "otp";
 
-export default function AuthForm() {
+export default function AuthForm({ redirectTo }: { redirectTo?: string } = {}) {
   const [step, setStep] = useState<Step>("email");
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
@@ -41,24 +41,35 @@ export default function AuthForm() {
     setError(null);
 
     try {
-      const { error: verifyError } = await authClient.signIn.emailOtp(
-        { email, otp },
-        {
-          onSuccess: async () => {
-            try {
-              const res = await fetch("/api/user/me");
-              const data = await res.json();
-              window.location.href = data.isRegistered ? "/" : "/registration";
-            } catch {
-              window.location.href = "/registration";
-            }
-          },
-        },
-      );
+      const { error: verifyError } = await authClient.signIn.emailOtp({
+        email,
+        otp,
+      });
 
       if (verifyError) {
         setError(verifyError.message ?? "Invalid code.");
         return;
+      }
+
+      try {
+        const res = await fetch("/api/user/me");
+        const data = await res.json();
+        if (data.isRegistered) {
+          const target = redirectTo ?? "/";
+          if (target === window.location.pathname + window.location.hash) {
+            window.location.reload();
+          } else {
+            window.location.href = target;
+          }
+        } else {
+          window.location.href = redirectTo
+            ? `/registration?redirect=${encodeURIComponent(redirectTo)}`
+            : "/registration";
+        }
+      } catch {
+        window.location.href = redirectTo
+          ? `/registration?redirect=${encodeURIComponent(redirectTo)}`
+          : "/registration";
       }
     } catch {
       setError("An unexpected error occurred.");

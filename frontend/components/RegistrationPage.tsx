@@ -47,7 +47,9 @@ export default function RegistrationPage() {
   }
 
   if (state === "needs-registration") {
-    return <RegistrationForm />;
+    const redirectTo =
+      new URLSearchParams(window.location.search).get("redirect") ?? undefined;
+    return <RegistrationForm redirectTo={redirectTo} />;
   }
 
   // "registered" state — redirecting to /

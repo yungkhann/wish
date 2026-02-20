@@ -55,7 +55,11 @@ export default function InvitePage() {
   }
 
   if (state === "unauthenticated") {
-    return <AuthForm />;
+    return (
+      <AuthForm
+        redirectTo={window.location.pathname + window.location.hash}
+      />
+    );
   }
 
   return (

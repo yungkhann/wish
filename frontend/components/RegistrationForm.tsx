@@ -8,7 +8,7 @@ const EDUCATION_LEVELS = [
   { value: "master", label: "Master's" },
 ];
 
-export default function RegistrationForm() {
+export default function RegistrationForm({ redirectTo }: { redirectTo?: string } = {}) {
   const [form, setForm] = useState({
     name: "",
     surname: "",
@@ -99,7 +99,7 @@ export default function RegistrationForm() {
         }
       }
 
-      window.location.href = "/team";
+      window.location.href = redirectTo ?? "/team";
     } catch {
       setError("An unexpected error occurred.");
     } finally {
