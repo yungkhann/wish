@@ -19,12 +19,12 @@ const Timeline = () => {
             <img
               src={timelineImg1.src}
               alt="Registration Period"
-              className="mb-6 h-80 w-full max-w-[400px] rounded-[20px] object-cover shadow-[5px_5px_80px_0px_rgba(154,68,233,1.00)]"
+              className="mb-6 h-80 w-full max-w-[400px] rounded-[20px] object-cover shadow-[8px_8px_80px_0px_rgba(154,68,233,1)]"
             />
-            <p className="mb-3 text-center font-['Cinzel'] text-4xl font-normal text-purple-500/95 [text-shadow:_0px_0px_4px_rgb(119_22_208_/_1.00)]">
+            <p className="mb-3 text-center font-['Cinzel'] text-2xl font-normal text-purple-500/95 [text-shadow:_0px_0px_4px_rgb(119_22_208_/_1.00)]">
               February 16 - March 11
             </p>
-            <p className="text-center font-['Cinzel'] text-4xl font-normal text-white [text-shadow:_0px_0px_3px_rgb(255_255_255_/_1.00)]">
+            <p className="text-center font-['Cinzel'] text-2xl font-normal text-white [text-shadow:_0px_0px_3px_rgb(255_255_255_/_1.00)]">
               Registration Period
             </p>
           </div>
@@ -34,12 +34,12 @@ const Timeline = () => {
             <img
               src={timelineImg2.src}
               alt="Confirmation Period"
-              className="mb-6 h-80 w-full max-w-[400px] rounded-[20px] object-cover shadow-[0px_5px_80px_0px_rgba(154,68,233,1.00)]"
+              className="mb-6 h-80 w-full max-w-[400px] rounded-[20px] object-cover shadow-[0px_8px_120px_0px_rgba(154,68,233,0.7)]"
             />
-            <p className="mb-3 text-center font-['Cinzel'] text-4xl font-normal text-purple-500 [text-shadow:_0px_0px_4px_rgb(119_22_208_/_1.00)]">
+            <p className="mb-3 text-center font-['Cinzel'] text-2xl font-normal text-purple-500 [text-shadow:_0px_0px_4px_rgb(119_22_208_/_1.00)]">
               March 11 - 13
             </p>
-            <p className="text-center font-['Cinzel'] text-4xl font-normal text-white [text-shadow:_0px_0px_3px_rgb(255_255_255_/_1.00)]">
+            <p className="text-center font-['Cinzel'] text-2xl font-normal text-white [text-shadow:_0px_0px_3px_rgb(255_255_255_/_1.00)]">
               Confirmation Period
             </p>
           </div>
@@ -49,13 +49,13 @@ const Timeline = () => {
             <img
               src={timelineImg3.src}
               alt="Women's Hack Day"
-              className="mb-6 h-80 w-full max-w-[400px] rounded-[20px] object-cover shadow-[0px_5px_80px_0px_rgba(154,68,233,1.00)]"
+              className="mb-6 h-80 w-full max-w-[400px] rounded-[20px] object-cover shadow-[0px_8px_120px_0px_rgba(154,68,233,0.7)]"
             />
-            <p className="mb-3 text-center font-['Cinzel'] text-4xl font-normal text-purple-500 [text-shadow:_0px_0px_4px_rgb(119_22_208_/_1.00)]">
+            <p className="mb-3 text-center font-['Cinzel'] text-2xl font-normal text-purple-500 [text-shadow:_0px_0px_4px_rgb(119_22_208_/_1.00)]">
               March 14 - 15
             </p>
-            <p className="text-center font-['Cinzel'] text-4xl font-normal text-white [text-shadow:_0px_0px_3px_rgb(255_255_255_/_1.00)]">
-              Women&apos;s Hack Day
+            <p className="text-center font-['Cinzel'] text-2xl font-normal text-white [text-shadow:_0px_0px_3px_rgb(255_255_255_/_1.00)]">
+              Women in STEM Hackathon{" "}
             </p>
           </div>
         </div>

@@ -1,7 +1,11 @@
 import { Hono } from "hono";
 import { z } from "zod";
 import type { AppEnv } from "../middleware/auth";
-import { createUser, getUserByUserId } from "../services/user.service";
+import {
+  createUser,
+  getUserByUserId,
+  updateUserCvFileId,
+} from "../services/user.service";
 
 const registrationSchema = z
   .object({
@@ -71,6 +75,57 @@ userRegistrationRouter.post("/", async (c) => {
   }
 
   await createUser(c.env.wishDB, session.user.id, result.data);
+
+  return c.json({ success: true }, 200);
+});
+
+const MAX_CV_SIZE = 2 * 1024 * 1024;
+
+userRegistrationRouter.post("/cv", async (c) => {
+  const session = c.var.session;
+  const formData = await c.req.formData();
+  const file = formData.get("cv");
+
+  if (!(file instanceof File)) {
+    return c.json({ error: "CV file is required" }, 400);
+  }
+  if (file.type !== "application/pdf") {
+    return c.json({ error: "Only PDF files are allowed" }, 400);
+  }
+  if (file.size > MAX_CV_SIZE) {
+    return c.json({ error: "File must be under 2 MB" }, 400);
+  }
+
+  const profile = await getUserByUserId(c.env.wishDB, session.user.id);
+  if (!profile?.name || !profile?.surname || !profile?.iin) {
+    return c.json({ error: "Complete registration before uploading CV" }, 400);
+  }
+
+  const fileName = `${profile.name.toUpperCase()}_${profile.surname.toUpperCase()}_${profile.iin.slice(0, 6)}.pdf`;
+
+  const arrayBuffer = await file.arrayBuffer();
+  const bytes = new Uint8Array(arrayBuffer);
+  let binary = "";
+  for (const b of bytes) binary += String.fromCharCode(b);
+  const fileBase64 = btoa(binary);
+
+  const gasRes = await fetch(c.env.GAS_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      secret: c.env.GAS_SECRET,
+      action: "uploadCV",
+      fileName,
+      fileBase64,
+    }),
+  });
+
+  if (!gasRes.ok) {
+    return c.json({ error: "Failed to upload CV" }, 502);
+  }
+
+  const gasData: any = await gasRes.json();
+  await updateUserCvFileId(c.env.wishDB, session.user.id, gasData.fileId);
 
   return c.json({ success: true }, 200);
 });

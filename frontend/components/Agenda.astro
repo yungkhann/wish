@@ -1,90 +1,138 @@
 ---
-const events = [
-  { time: "9:00-10:00", title: "Registration", side: "left" },
-  { time: "10:00-11:00", title: "Opening Ceremony", side: "right" },
-  { time: "11:00-12:00", title: "Mathematics", side: "left" },
-  { time: "12:00-13:00", title: "ICPC", side: "right" },
-  { time: "13:00-14:00", title: "Coffee Break", side: "left" },
-  { time: "14:00-16:00", title: "Product Design", side: "right" },
-  { time: "16:00-17:00", title: "Pitching", side: "left" },
-  { time: "17:30-18:30", title: "Closing Ceremony", side: "right" },
+const day1 = [
+  { time: "9:00", title: "Registration" },
+  { time: "10:00", title: "Opening Ceremony" },
+  { time: "11:00", title: "Case Presentations by Companies + Q&A" },
+  { time: "12:00", title: "Coding Begins" },
+  { time: "14:00", title: "Coffee Break" },
+];
+
+const day2 = [
+  { time: "12:00", title: "Case Submission Deadline" },
+  { time: "13:00", title: "Pizza Break" },
+  { time: "13:30", title: "Pitching Session" },
+  { time: "18:30", title: "Closing Ceremony" },
 ];
 ---
 
-<section id="schedule" class="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-24">
+<section id="schedule" class="bg-black py-20 text-white">
   <h2
-    class="mb-10 text-center font-['Cinzel'] text-5xl leading-none font-bold uppercase md:mb-16 md:text-[80px]"
+    class="mb-20 text-center font-['Cinzel'] text-6xl font-bold tracking-widest uppercase"
   >
     Schedule
   </h2>
-  <div class="relative mx-auto max-w-5xl">
-    <div
-      class="absolute top-0 bottom-0 left-1/2 hidden w-[5px] -translate-x-1/2 rounded-full bg-white md:block"
-      aria-hidden="true"
-    >
-    </div>
-    <div
-      class="absolute top-0 bottom-0 left-6 w-[4px] rounded-full bg-white md:hidden"
-      aria-hidden="true"
-    >
-    </div>
 
-    <div class="flex flex-col gap-8 md:gap-10">
-      {
-        events.map((event, idx) => (
-          <article
-            class:list={[
-              "relative grid items-start gap-y-1 md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-x-14",
-              idx === 0 && "pt-1",
-            ]}
-          >
-            <div
-              class:list={[
-                "hidden md:block",
-                event.side === "left" ? "text-right" : "opacity-0",
-              ]}
-              aria-hidden={event.side !== "left"}
-            >
-              <p class="font-['Marcellus'] text-[25px] leading-none text-white">
-                {event.time}
-              </p>
-              <p class="mt-2 font-['Marcellus'] text-[54px] leading-[1] text-white">
-                {event.title}
-              </p>
-            </div>
+  <div
+    class="mx-auto grid max-w-7xl grid-cols-1 gap-24 md:grid-cols-2 md:gap-12"
+  >
+    <div class="relative">
+      <h3
+        class="mb-16 text-center font-['Cinzel'] text-4xl font-bold text-white/90 uppercase"
+      >
+        March 14
+      </h3>
 
-            <div class="relative z-10 hidden size-[30px] rounded-full bg-[#7214D9] md:block" />
+      <div
+        class="absolute top-24 bottom-0 left-1/2 w-[2px] -translate-x-1/2 bg-white/40"
+        aria-hidden="true"
+      >
+      </div>
 
-            <div
-              class:list={[
-                "hidden md:block",
-                event.side === "right" ? "text-left" : "opacity-0",
-              ]}
-              aria-hidden={event.side !== "right"}
-            >
-              <p class="font-['Marcellus'] text-[25px] leading-none text-white">
-                {event.time}
-              </p>
-              <p class="mt-2 font-['Marcellus'] text-[54px] leading-[1] text-white">
-                {event.title}
-              </p>
-            </div>
-
-            <div class="relative pl-16 md:hidden">
+      <div class="flex flex-col gap-16">
+        {
+          day1.map((event, idx) => (
+            <div class="relative grid grid-cols-[1fr_auto_1fr] items-center gap-4 md:gap-10">
               <div
-                class="absolute top-2 left-[14px] z-10 size-6 rounded-full bg-[#7214D9]"
-                aria-hidden="true"
-              />
-              <p class="font-['Marcellus'] text-[28px] leading-none text-white">
-                {event.time}
-              </p>
-              <p class="mt-2 font-['Marcellus'] text-[44px] leading-[1] text-white">
-                {event.title}
-              </p>
+                class:list={[
+                  "text-right",
+                  idx % 2 !== 0 && "invisible opacity-0 md:block",
+                ]}
+              >
+                <p class="font-['Marcellus'] text-lg opacity-70">
+                  {event.time}
+                </p>
+                <h4 class="mt-1 font-['Marcellus'] text-xl leading-tight md:text-2xl">
+                  {event.title}
+                </h4>
+              </div>
+
+              <div class="relative z-10 flex size-6 items-center justify-center">
+                <div class="size-3 rounded-full bg-[#A855F7] shadow-[0_0_15px_#A855F7]" />
+                <div class="absolute size-8 animate-pulse rounded-full bg-[#A855F7]/20 blur-md" />
+              </div>
+
+              <div
+                class:list={[
+                  "text-left",
+                  idx % 2 === 0 && "invisible opacity-0 md:block",
+                ]}
+              >
+                <p class="font-['Marcellus'] text-lg opacity-70">
+                  {event.time}
+                </p>
+                <h4 class="mt-1 font-['Marcellus'] text-xl leading-tight md:text-2xl">
+                  {event.title}
+                </h4>
+              </div>
             </div>
-          </article>
-        ))
-      }
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="relative">
+      <h3
+        class="mb-16 text-center font-['Cinzel'] text-4xl font-bold text-white/90 uppercase"
+      >
+        March 15
+      </h3>
+
+      <div
+        class="absolute top-24 bottom-0 left-1/2 w-[2px] -translate-x-1/2 bg-white/40"
+        aria-hidden="true"
+      >
+      </div>
+
+      <div class="flex flex-col gap-16">
+        {
+          day2.map((event, idx) => (
+            <div class="relative grid grid-cols-[1fr_auto_1fr] items-center gap-4 md:gap-10">
+              <div
+                class:list={[
+                  "text-right",
+                  idx % 2 !== 0 && "invisible opacity-0 md:block",
+                ]}
+              >
+                <p class="font-['Marcellus'] text-lg opacity-70">
+                  {event.time}
+                </p>
+                <h4 class="mt-1 font-['Marcellus'] text-xl leading-tight md:text-2xl">
+                  {event.title}
+                </h4>
+              </div>
+
+              <div class="relative z-10 flex size-6 items-center justify-center">
+                <div class="size-3 rounded-full bg-[#A855F7] shadow-[0_0_15px_#A855F7]" />
+                <div class="absolute size-8 animate-pulse rounded-full bg-[#A855F7]/20 blur-md" />
+              </div>
+
+              <div
+                class:list={[
+                  "text-left",
+                  idx % 2 === 0 && "invisible opacity-0 md:block",
+                ]}
+              >
+                <p class="font-['Marcellus'] text-lg opacity-70">
+                  {event.time}
+                </p>
+                <h4 class="mt-1 font-['Marcellus'] text-xl leading-tight md:text-2xl">
+                  {event.title}
+                </h4>
+              </div>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>

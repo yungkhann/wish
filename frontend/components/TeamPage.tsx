@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { authClient } from "../lib/auth-client";
 import AuthForm from "./AuthForm";
 
 type State = "loading" | "unauthenticated" | "no-team" | "has-team";
@@ -77,7 +76,7 @@ export default function TeamPage() {
       const data = await res.json();
       setMembers(data.members);
       setTeamName(data.teamName);
-      setEditingName(data.teamName);
+      setEditingName("");
       setState("has-team");
     } catch {
       setState("no-team");
@@ -284,7 +283,7 @@ export default function TeamPage() {
 
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Left — Create Team */}
-          <div className="space-y-6 rounded-[30px] border-2 border-[#8b4cd9] bg-[linear-gradient(135deg,rgba(80,30,120,0.3)_0%,rgba(0,0,0,0.5)_100%)] p-8 shadow-[0_0_30px_rgba(139,76,217,0.4)]">
+          <div className="space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
             <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
               CREATE TEAM
             </h2>
@@ -305,28 +304,30 @@ export default function TeamPage() {
                   required
                   maxLength={100}
                   placeholder="Enter team name"
-                  className="w-full rounded-[25px] border-2 border-[#8b4cd9] bg-black/60 px-6 py-3 text-white transition-all outline-none focus:border-[#a855f7] focus:shadow-[0_0_15px_rgba(168,85,247,0.5)]"
+                  className="w-full rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-6 py-3 text-white shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] outline-none sm:rounded-tl-[60px] sm:rounded-br-[60px]"
                 />
               </div>
-              <button
-                type="submit"
-                disabled={actionLoading}
-                className="w-full rounded-[25px] bg-[linear-gradient(135deg,#8b4cd9,#a855f7)] px-8 py-3 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_30px_rgba(168,85,247,0.6)] transition-transform hover:scale-105 disabled:opacity-50"
-              >
-                {actionLoading ? "Creating..." : "CREATE TEAM"}
-              </button>
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  disabled={actionLoading}
+                  className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-8 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] [text-shadow:0_0_3px_rgba(255,255,255,1)] transition-transform hover:scale-105 disabled:opacity-50"
+                >
+                  {actionLoading ? "Creating..." : "CREATE TEAM"}
+                </button>
+              </div>
             </form>
           </div>
 
           {/* Right — Pending Invites */}
-          <div className="space-y-6 rounded-[30px] border-2 border-[#8b4cd9] bg-[linear-gradient(135deg,rgba(80,30,120,0.3)_0%,rgba(0,0,0,0.5)_100%)] p-8 shadow-[0_0_30px_rgba(139,76,217,0.4)]">
+          <div className="space-y-6 rounded-tl-lg rounded-tr-[40px] rounded-br-lg rounded-bl-[40px] bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tr-[60px] sm:rounded-bl-[60px]">
             <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
-              PENDING INVITES
+              PENDING REQUESTS
             </h2>
 
             {pendingInvites.length === 0 ? (
               <p className="text-center text-sm text-zinc-500">
-                No pending invites. Ask a team owner to share their invite link
+                No pending requests. Ask a team owner to share their invite link
                 with you.
               </p>
             ) : (
@@ -358,20 +359,23 @@ export default function TeamPage() {
   const requests = members.filter((m) => m.role === "request");
 
   return (
-    <div className="mx-auto max-w-5xl space-y-8 px-4 py-8">
+    <div className="relative overflow-hidden">
+      {/* Background blob */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[45vw] w-[45vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,rgba(91,31,156,0.80)_0%,rgba(0,0,0,0.80)_100%)] blur-[52.5px]" />
+    <div className="relative mx-auto max-w-7xl space-y-8 px-4 py-8">
       {error && (
         <div className="rounded border border-red-800 bg-red-900/30 p-3 text-sm text-red-200">
           {error}
         </div>
       )}
 
-      <div className="grid gap-8 lg:grid-cols-2">
+      <div className="grid gap-16 lg:grid-cols-2">
         {/* Instructions */}
         <div className="rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
           <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
             INSTRUCTIONS
           </h2>
-          <ul className="space-y-3 text-sm text-zinc-300">
+          <ul className="space-y-6 font-['Marcellus'] text-[22px] text-zinc-300">
             <li>1. Create a team or join one via an invite link.</li>
             <li>2. Share your invite link with teammates.</li>
             <li>3. The team owner can accept or reject join requests.</li>
@@ -399,17 +403,19 @@ export default function TeamPage() {
                   className="flex-1 rounded-tl-[45px] rounded-tr-[6px] rounded-br-[45px] rounded-bl-[6px] bg-[linear-gradient(90deg,rgba(0,0,0,0.20)_13%,rgba(0,0,0,0.20)_50%,rgba(0,0,0,0.20)_93%)] px-6 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0px_0px_45px_rgba(119,22,208,0.60)] outline-none"
                 />
               </div>
-              <button
-                onClick={handleRenameTeam}
-                disabled={
-                  actionLoading ||
-                  !editingName.trim() ||
-                  editingName === teamName
-                }
-                className="w-full rounded-tl-[30px] rounded-tr-[4px] rounded-br-[30px] rounded-bl-[4px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-6 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_3px_#7716D0,0_0_7.5px_#7716D0,0_0_30px_rgba(119,22,208,0.60),0_0_45px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_2px_rgba(255,255,255,1)] hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
-              >
-                SAVE
-              </button>
+              <div className="flex justify-center">
+                <button
+                  onClick={handleRenameTeam}
+                  disabled={
+                    actionLoading ||
+                    !editingName.trim() ||
+                    editingName === teamName
+                  }
+                  className="rounded-tl-[30px] rounded-tr-[4px] rounded-br-[30px] rounded-bl-[4px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_3px_#7716D0,0_0_7.5px_#7716D0,0_0_30px_rgba(119,22,208,0.60),0_0_45px_rgba(119,22,208,1)] [text-shadow:0_0_2px_rgba(255,255,255,1)] transition-transform hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
+                >
+                  SAVE
+                </button>
+              </div>
             </>
           ) : (
             <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
@@ -422,20 +428,32 @@ export default function TeamPage() {
             <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
               PARTICIPANTS
             </h2>
-            <table className="w-full border-collapse">
+            <table className="w-full table-fixed border-collapse">
               <tbody>
-                {[...owners, ...regularMembers, ...requests].map((m) => (
-                  <MemberRow
-                    key={m.inviteId ?? m.userId}
-                    member={m}
-                    isOwner={!!isOwner}
-                    currentUserId={user?.id ?? ""}
-                    onRemove={handleRemoveMember}
-                    onAccept={(id) => handleInviteAction(id, "accepted")}
-                    onReject={(id) => handleInviteAction(id, "rejected")}
-                    disabled={actionLoading}
-                  />
-                ))}
+                {(() => {
+                  const allMembers = [...owners, ...regularMembers, ...requests];
+                  const rows = Array.from({ length: 4 }, (_, i) => allMembers[i] ?? null);
+                  return rows.map((m, i) =>
+                    m ? (
+                      <MemberRow
+                        key={m.inviteId ?? m.userId}
+                        member={m}
+                        isOwner={!!isOwner}
+                        currentUserId={user?.id ?? ""}
+                        onRemove={handleRemoveMember}
+                        onAccept={(id) => handleInviteAction(id, "accepted")}
+                        onReject={(id) => handleInviteAction(id, "rejected")}
+                        disabled={actionLoading}
+                      />
+                    ) : (
+                      <tr key={`empty-${i}`}>
+                        <td className="h-[67px] border-b border-white/30 pr-6" />
+                        <td className="h-[67px] w-[130px] border-b border-l border-white/30 px-6" />
+                        <td className="h-[67px] w-[130px] border-b border-l border-white/30 pl-6" />
+                      </tr>
+                    )
+                  );
+                })()}
               </tbody>
             </table>
           </div>
@@ -456,7 +474,7 @@ export default function TeamPage() {
           <button
             onClick={handleDissolveTeam}
             disabled={actionLoading}
-            className="rounded-[30px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
+            className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
           >
             DISSOLVE TEAM
           </button>
@@ -464,21 +482,13 @@ export default function TeamPage() {
           <button
             onClick={handleLeaveTeam}
             disabled={actionLoading}
-            className="rounded-[30px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
+            className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
           >
             LEAVE TEAM
           </button>
         )}
-        <button
-          onClick={async () => {
-            await authClient.signOut();
-            window.location.href = "/";
-          }}
-          className="rounded-[30px] border-2 border-zinc-600 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-zinc-400 transition-colors hover:bg-zinc-600/20"
-        >
-          LOG OUT
-        </button>
       </div>
+    </div>
     </div>
   );
 }
@@ -502,13 +512,15 @@ function MemberRow({
 }) {
   return (
     <tr>
-      <td className="py-4 pr-6 font-['Marcellus'] text-base text-white lowercase">
-        {member.email}
+      <td className="h-[67px] overflow-hidden border-b border-white/30 pr-6 font-['Marcellus'] text-base lowercase text-white">
+        <div className="overflow-x-auto whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {member.email}
+        </div>
       </td>
-      <td className="border-l border-white px-6 py-4 font-['Marcellus'] text-base text-white lowercase">
+      <td className="h-[67px] w-[130px] border-b border-l border-white/30 px-6 font-['Marcellus'] text-base lowercase text-white">
         #{member.role}
       </td>
-      <td className="border-l border-white py-4 pl-6">
+      <td className="h-[67px] w-[130px] border-b border-l border-white/30 pl-6">
         <div className="flex items-center gap-2">
           {member.role === "request" && isOwner && member.inviteId && (
             <>
