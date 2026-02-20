@@ -63,6 +63,13 @@ body {
       hue-rotate(356deg) brightness(88%) contrast(114%);
   }
 
+  .icon-purple {
+    width: 60px;
+    height: 60px;
+    filter: brightness(0) saturate(100%) invert(38%) sepia(78%) saturate(4925%)
+      hue-rotate(262deg) brightness(101%) contrast(101%);
+  }
+
   .icon-white {
     width: 46px;
     height: 28px;

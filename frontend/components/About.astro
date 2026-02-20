@@ -1,6 +1,30 @@
 ---
 import { Image } from "astro:assets";
+import calendar from "../assets/calendar.svg";
 import fairy from "../assets/fairy.svg";
+import location from "../assets/location.svg";
+import who from "../assets/who.svg";
+
+const eventDetails = [
+  {
+    icon: calendar,
+    alt: "Calendar",
+    title: "When?",
+    lines: ["March 14-15, 2026"],
+  },
+  {
+    icon: location,
+    alt: "Location",
+    title: "Where?",
+    lines: ["Nazarbayev University", "Astana, Kazakhstan"],
+  },
+  {
+    icon: who,
+    alt: "Who",
+    title: "Who?",
+    lines: ["Everyone older than 16"],
+  },
+];
 ---
 
 <section
@@ -36,6 +60,38 @@ import fairy from "../assets/fairy.svg";
           class="h-full w-full object-contain"
         />
       </div>
+    </div>
+  </div>
+
+  <!-- Event details card -->
+  <div
+    class="relative z-10 mx-auto mt-16 max-w-7xl rounded-2xl border border-purple-500/40 p-6 md:mt-20 md:p-8"
+    style="box-shadow: 0 0 20px rgba(119, 22, 208, 0.15), inset 0 0 30px rgba(119, 22, 208, 0.05);"
+  >
+    <div
+      class="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-16"
+    >
+      {
+        eventDetails.map((detail) => (
+          <div class="flex flex-row items-center gap-5">
+            <Image
+              src={detail.icon}
+              alt={detail.alt}
+              class="icon-purple shrink-0"
+            />
+            <div class="flex flex-col text-left">
+              <h3 class="mb-1 font-['Marcellus'] text-2xl font-bold tracking-wide md:text-3xl">
+                {detail.title}
+              </h3>
+              {detail.lines.map((line) => (
+                <p class="font-['Marcellus'] text-lg text-white/80 md:text-xl">
+                  {line}
+                </p>
+              ))}
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
