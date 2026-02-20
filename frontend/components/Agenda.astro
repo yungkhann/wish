@@ -21,68 +21,70 @@ const events = [
     <div
       class="absolute top-0 bottom-0 left-1/2 hidden w-[5px] -translate-x-1/2 rounded-full bg-white md:block"
       aria-hidden="true"
-    ></div>
+    >
+    </div>
     <div
       class="absolute top-0 bottom-0 left-6 w-[4px] rounded-full bg-white md:hidden"
       aria-hidden="true"
-    ></div>
+    >
+    </div>
 
     <div class="flex flex-col gap-8 md:gap-10">
-    {
-      events.map((event, idx) => (
-        <article
-          class:list={[
-            "relative grid items-start gap-y-1 md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-x-14",
-            idx === 0 && "pt-1",
-          ]}
-        >
-          <div
+      {
+        events.map((event, idx) => (
+          <article
             class:list={[
-              "hidden md:block",
-              event.side === "left" ? "text-right" : "opacity-0",
+              "relative grid items-start gap-y-1 md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-x-14",
+              idx === 0 && "pt-1",
             ]}
-            aria-hidden={event.side !== "left"}
           >
-            <p class="font-['Marcellus'] text-[25px] leading-none text-white">
-              {event.time}
-            </p>
-            <p class="mt-2 font-['Marcellus'] text-[54px] leading-[1] text-white">
-              {event.title}
-            </p>
-          </div>
-
-          <div class="relative z-10 hidden size-[30px] rounded-full bg-[#7214D9] md:block"></div>
-
-          <div
-            class:list={[
-              "hidden md:block",
-              event.side === "right" ? "text-left" : "opacity-0",
-            ]}
-            aria-hidden={event.side !== "right"}
-          >
-            <p class="font-['Marcellus'] text-[25px] leading-none text-white">
-              {event.time}
-            </p>
-            <p class="mt-2 font-['Marcellus'] text-[54px] leading-[1] text-white">
-              {event.title}
-            </p>
-          </div>
-
-          <div class="relative pl-16 md:hidden">
             <div
-              class="absolute top-2 left-[14px] z-10 size-6 rounded-full bg-[#7214D9]"
-              aria-hidden="true"
-            ></div>
-            <p class="font-['Marcellus'] text-[28px] leading-none text-white">
-              {event.time}
-            </p>
-            <p class="mt-2 font-['Marcellus'] text-[44px] leading-[1] text-white">
-              {event.title}
-            </p>
-          </div>
-        </article>
-      ))
-    }
+              class:list={[
+                "hidden md:block",
+                event.side === "left" ? "text-right" : "opacity-0",
+              ]}
+              aria-hidden={event.side !== "left"}
+            >
+              <p class="font-['Marcellus'] text-[25px] leading-none text-white">
+                {event.time}
+              </p>
+              <p class="mt-2 font-['Marcellus'] text-[54px] leading-[1] text-white">
+                {event.title}
+              </p>
+            </div>
+
+            <div class="relative z-10 hidden size-[30px] rounded-full bg-[#7214D9] md:block" />
+
+            <div
+              class:list={[
+                "hidden md:block",
+                event.side === "right" ? "text-left" : "opacity-0",
+              ]}
+              aria-hidden={event.side !== "right"}
+            >
+              <p class="font-['Marcellus'] text-[25px] leading-none text-white">
+                {event.time}
+              </p>
+              <p class="mt-2 font-['Marcellus'] text-[54px] leading-[1] text-white">
+                {event.title}
+              </p>
+            </div>
+
+            <div class="relative pl-16 md:hidden">
+              <div
+                class="absolute top-2 left-[14px] z-10 size-6 rounded-full bg-[#7214D9]"
+                aria-hidden="true"
+              />
+              <p class="font-['Marcellus'] text-[28px] leading-none text-white">
+                {event.time}
+              </p>
+              <p class="mt-2 font-['Marcellus'] text-[44px] leading-[1] text-white">
+                {event.title}
+              </p>
+            </div>
+          </article>
+        ))
+      }
     </div>
   </div>
 </section>

@@ -13,41 +13,43 @@ export function setupMobileMenu(config: {
 
   if (!btn || !menu || !hamburger || !close) return;
 
-  function toggleMenu() {
-    const isHidden = menu?.classList.contains("hidden");
+  let isOpen = false;
 
-    if (isHidden) {
-      menu?.classList.remove("hidden");
-      hamburger?.classList.add("hidden");
-      close?.classList.remove("hidden");
-    } else {
-      menu?.classList.add("hidden");
-      hamburger?.classList.remove("hidden");
-      close?.classList.add("hidden");
-    }
+  function openMenu() {
+    isOpen = true;
+    menu!.classList.remove("mobile-menu-closed");
+    menu!.classList.add("mobile-menu-open");
+    menu!.setAttribute("aria-hidden", "false");
+    btn!.setAttribute("aria-expanded", "true");
+    hamburger!.classList.add("hidden");
+    close!.classList.remove("hidden");
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    menu!.classList.remove("mobile-menu-open");
+    menu!.classList.add("mobile-menu-closed");
+    menu!.setAttribute("aria-hidden", "true");
+    btn!.setAttribute("aria-expanded", "false");
+    hamburger!.classList.remove("hidden");
+    close!.classList.add("hidden");
   }
 
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
-    toggleMenu();
+    isOpen ? closeMenu() : openMenu();
   });
 
   links.forEach((link) => {
     link.addEventListener("click", () => {
-      if (!menu.classList.contains("hidden")) {
-        toggleMenu();
-      }
+      if (isOpen) closeMenu();
     });
   });
 
   document.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
-    if (
-      !menu.classList.contains("hidden") &&
-      !menu.contains(target) &&
-      !btn.contains(target)
-    ) {
-      toggleMenu();
+    if (isOpen && !menu!.contains(target) && !btn!.contains(target)) {
+      closeMenu();
     }
   });
 }

@@ -406,7 +406,7 @@ export default function TeamPage() {
                   !editingName.trim() ||
                   editingName === teamName
                 }
-                className="w-full rounded-tl-[30px] rounded-tr-[4px] rounded-br-[30px] rounded-bl-[4px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-6 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_3px_#7716D0,0_0_7.5px_#7716D0,0_0_30px_rgba(119,22,208,0.60),0_0_45px_rgba(119,22,208,1)] [text-shadow:0_0_2px_rgba(255,255,255,1)] transition-transform hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
+                className="w-full rounded-tl-[30px] rounded-tr-[4px] rounded-br-[30px] rounded-bl-[4px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-6 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_3px_#7716D0,0_0_7.5px_#7716D0,0_0_30px_rgba(119,22,208,0.60),0_0_45px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_2px_rgba(255,255,255,1)] hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
               >
                 SAVE
               </button>
@@ -447,7 +447,7 @@ export default function TeamPage() {
         {isOwner && (
           <button
             onClick={handleCopyLink}
-            className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] [text-shadow:0_0_3px_rgba(255,255,255,1)] transition-transform hover:scale-105"
+            className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
           >
             {copyText}
           </button>
@@ -502,10 +502,10 @@ function MemberRow({
 }) {
   return (
     <tr>
-      <td className="py-4 pr-6 font-['Marcellus'] text-base lowercase text-white">
+      <td className="py-4 pr-6 font-['Marcellus'] text-base text-white lowercase">
         {member.email}
       </td>
-      <td className="border-l border-white px-6 py-4 font-['Marcellus'] text-base lowercase text-white">
+      <td className="border-l border-white px-6 py-4 font-['Marcellus'] text-base text-white lowercase">
         #{member.role}
       </td>
       <td className="border-l border-white py-4 pl-6">

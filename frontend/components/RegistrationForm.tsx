@@ -236,14 +236,15 @@ export default function RegistrationForm() {
             </label>
           </div>
 
-          {/* Register Button Mobile */}
-          <button
-            type="submit"
-            disabled={loading}
-            className="mt-6 flex h-20 w-full items-center justify-center rounded-tl-lg rounded-tr-[30px] rounded-br-lg rounded-bl-[30px] border border-white/80 bg-black/50 font-['Cinzel'] text-4xl font-normal text-white lowercase shadow-[0px_0px_6px_0px_rgba(119,22,208,1.00)] shadow-[0px_0px_15px_0px_rgba(119,22,208,1.00)] shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] shadow-[0px_0px_90px_0px_rgba(119,22,208,1.00)] transition-colors [text-shadow:_0px_0px_5px_rgb(255_255_255_/_1.00)] hover:bg-black/70 disabled:cursor-not-allowed disabled:opacity-50 lg:mt-12 lg:h-28 lg:w-96 lg:rounded-tr-[60px] lg:rounded-bl-[60px] lg:border-[1.50px] lg:text-6xl"
-          >
-            {loading ? "..." : "Register"}
-          </button>
+          <div className="form-submit-outer mt-6 w-full lg:mt-12 lg:w-96">
+            <button
+              type="submit"
+              disabled={loading}
+              className="form-submit-inner flex h-20 w-full items-center justify-center font-['Cinzel'] text-4xl font-normal text-white lowercase transition-colors [text-shadow:_0px_0px_5px_rgb(255_255_255_/_1.00)] hover:bg-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 lg:h-28 lg:text-6xl"
+            >
+              {loading ? "..." : "Register"}
+            </button>
+          </div>
         </form>
       </div>
     </div>

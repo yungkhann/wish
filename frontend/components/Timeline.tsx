@@ -55,7 +55,7 @@ const Timeline = () => {
               March 14 - 15
             </p>
             <p className="text-center font-['Cinzel'] text-4xl font-normal text-white [text-shadow:_0px_0px_3px_rgb(255_255_255_/_1.00)]">
-              Women's Hack Day
+              Women&apos;s Hack Day
             </p>
           </div>
         </div>
