@@ -41,7 +41,7 @@ export default function InvitePage() {
         return;
       }
 
-      setMessage(data.message ?? "Invite request sent!");
+      setMessage(data.message ?? "You have joined the team!");
       setState("success");
     })();
   }, []);
@@ -65,11 +65,10 @@ export default function InvitePage() {
           <>
             <div className="text-4xl">&#10003;</div>
             <h2 className="font-['Cinzel'] text-2xl tracking-[3px]">
-              INVITE SENT
+              JOINED TEAM
             </h2>
             <p className="text-sm text-zinc-400">
-              Your request to join the team has been sent. The team owner needs
-              to accept it before you become a member.
+              You have successfully joined the team!
             </p>
           </>
         ) : (
@@ -82,7 +81,7 @@ export default function InvitePage() {
 
         <a
           href="/team"
-          className="mt-4 inline-block rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] [text-shadow:0_0_3px_rgba(255,255,255,1)] transition-transform hover:scale-105"
+          className="mt-4 inline-block rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
         >
           TEAM PAGE
         </a>

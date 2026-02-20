@@ -10,12 +10,6 @@ type Member = {
   inviteId?: string;
 };
 
-type PendingInvite = {
-  inviteId: string;
-  teamName: string;
-  status: string;
-};
-
 type UserData = {
   id: string;
   email: string;
@@ -29,11 +23,9 @@ export default function TeamPage() {
   const [teamName, setTeamName] = useState("");
   const [newTeamName, setNewTeamName] = useState("");
   const [members, setMembers] = useState<Member[]>([]);
-  const [pendingInvites, setPendingInvites] = useState<PendingInvite[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [actionLoading, setActionLoading] = useState(false);
   const [copyText, setCopyText] = useState("COPY INVITE LINK");
-  const [editingName, setEditingName] = useState("");
 
   const fetchUser = async () => {
     const res = await fetch("/api/user/me");
@@ -54,18 +46,6 @@ export default function TeamPage() {
     return data as UserData;
   };
 
-  const fetchPendingInvites = async () => {
-    try {
-      const res = await fetch("/api/invite/me/pending");
-      if (res.ok) {
-        const data = await res.json();
-        setPendingInvites(data);
-      }
-    } catch {
-      // ignore — not critical
-    }
-  };
-
   const fetchTeamData = async () => {
     try {
       const res = await fetch("/api/team/members");
@@ -76,7 +56,6 @@ export default function TeamPage() {
       const data = await res.json();
       setMembers(data.members);
       setTeamName(data.teamName);
-      setEditingName("");
       setState("has-team");
     } catch {
       setState("no-team");
@@ -90,7 +69,6 @@ export default function TeamPage() {
       if (userData.teamId) {
         await fetchTeamData();
       } else {
-        await fetchPendingInvites();
         setState("no-team");
       }
     })();
@@ -234,29 +212,6 @@ export default function TeamPage() {
     }
   };
 
-  const handleRenameTeam = async () => {
-    if (!editingName.trim() || editingName === teamName) return;
-    setError(null);
-    setActionLoading(true);
-    try {
-      const res = await fetch("/api/team/name", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ teamName: editingName.trim() }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? "Failed to rename team");
-        return;
-      }
-      setTeamName(editingName.trim());
-    } catch {
-      setError("An unexpected error occurred.");
-    } finally {
-      setActionLoading(false);
-    }
-  };
-
   const isOwner =
     user && members.some((m) => m.userId === user.id && m.role === "owner");
 
@@ -281,9 +236,8 @@ export default function TeamPage() {
           </div>
         )}
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          {/* Left — Create Team */}
-          <div className="space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
+        <div className="flex justify-center">
+          <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
             <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
               CREATE TEAM
             </h2>
@@ -317,36 +271,6 @@ export default function TeamPage() {
                 </button>
               </div>
             </form>
-          </div>
-
-          {/* Right — Pending Invites */}
-          <div className="space-y-6 rounded-tl-lg rounded-tr-[40px] rounded-br-lg rounded-bl-[40px] bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tr-[60px] sm:rounded-bl-[60px]">
-            <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
-              PENDING REQUESTS
-            </h2>
-
-            {pendingInvites.length === 0 ? (
-              <p className="text-center text-sm text-zinc-500">
-                No pending requests. Ask a team owner to share their invite link
-                with you.
-              </p>
-            ) : (
-              <div className="space-y-3">
-                {pendingInvites.map((inv) => (
-                  <div
-                    key={inv.inviteId}
-                    className="flex items-center justify-between rounded-[10px] border border-[#8b4cd9] bg-black/40 px-5 py-3"
-                  >
-                    <span className="truncate text-sm text-white">
-                      {inv.teamName}
-                    </span>
-                    <span className="shrink-0 rounded-full border border-yellow-500 px-3 py-1 text-xs text-yellow-400">
-                      #pending
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </div>
@@ -387,41 +311,9 @@ export default function TeamPage() {
           {/* Team Section */}
           <div className="space-y-6">
             {/* Team Name */}
-            {isOwner ? (
-              <>
-                <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
-                  {teamName}
-                </h2>
-                <div className="flex items-center gap-3">
-                  <label className="shrink-0 font-['Marcellus'] text-base text-white">
-                    Enter Team Name:
-                  </label>
-                  <input
-                    type="text"
-                    value={editingName}
-                    onChange={(e) => setEditingName(e.target.value)}
-                    className="flex-1 rounded-tl-[45px] rounded-tr-[6px] rounded-br-[45px] rounded-bl-[6px] bg-[linear-gradient(90deg,rgba(0,0,0,0.20)_13%,rgba(0,0,0,0.20)_50%,rgba(0,0,0,0.20)_93%)] px-6 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0px_0px_45px_rgba(119,22,208,0.60)] outline-none"
-                  />
-                </div>
-                <div className="flex justify-center">
-                  <button
-                    onClick={handleRenameTeam}
-                    disabled={
-                      actionLoading ||
-                      !editingName.trim() ||
-                      editingName === teamName
-                    }
-                    className="rounded-tl-[30px] rounded-tr-[4px] rounded-br-[30px] rounded-bl-[4px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_3px_#7716D0,0_0_7.5px_#7716D0,0_0_30px_rgba(119,22,208,0.60),0_0_45px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_2px_rgba(255,255,255,1)] hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
-                  >
-                    SAVE
-                  </button>
-                </div>
-              </>
-            ) : (
-              <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
-                {teamName}
-              </h2>
-            )}
+            <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
+              {teamName}
+            </h2>
 
             {/* Participants */}
             <div>
@@ -472,14 +364,14 @@ export default function TeamPage() {
           {isOwner && (
             <button
               onClick={handleCopyLink}
-              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_#7716D0] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
+              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
             >
               {copyText}
             </button>
           )}
           <a
             href="/team/videos"
-            className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-purple-500/40 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-4 font-['Cinzel'] text-lg tracking-[2px] text-purple-300 shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_#7716D0] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
+            className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-purple-500/40 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-4 font-['Cinzel'] text-lg tracking-[2px] text-purple-300 shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
           >
             TEAM VIDEOS
           </a>
