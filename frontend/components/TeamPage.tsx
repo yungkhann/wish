@@ -33,7 +33,6 @@ export default function TeamPage() {
   const [error, setError] = useState<string | null>(null);
   const [actionLoading, setActionLoading] = useState(false);
   const [copyText, setCopyText] = useState("COPY INVITE LINK");
-  const [editingName, setEditingName] = useState("");
 
   const fetchUser = async () => {
     const res = await fetch("/api/user/me");
@@ -76,7 +75,6 @@ export default function TeamPage() {
       const data = await res.json();
       setMembers(data.members);
       setTeamName(data.teamName);
-      setEditingName("");
       setState("has-team");
     } catch {
       setState("no-team");
@@ -234,29 +232,6 @@ export default function TeamPage() {
     }
   };
 
-  const handleRenameTeam = async () => {
-    if (!editingName.trim() || editingName === teamName) return;
-    setError(null);
-    setActionLoading(true);
-    try {
-      const res = await fetch("/api/team/name", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ teamName: editingName.trim() }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? "Failed to rename team");
-        return;
-      }
-      setTeamName(editingName.trim());
-    } catch {
-      setError("An unexpected error occurred.");
-    } finally {
-      setActionLoading(false);
-    }
-  };
-
   const isOwner =
     user && members.some((m) => m.userId === user.id && m.role === "owner");
 
@@ -387,6 +362,7 @@ export default function TeamPage() {
           {/* Team Section */}
           <div className="space-y-6">
             {/* Team Name */}
+<<<<<<< HEAD
             {isOwner ? (
               <>
                 <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
@@ -422,6 +398,11 @@ export default function TeamPage() {
                 {teamName}
               </h2>
             )}
+=======
+            <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
+              {teamName}
+            </h2>
+>>>>>>> 133fd71dc047fe2025521f6e3a5f4888543c024c
 
             {/* Participants */}
             <div>
@@ -472,17 +453,24 @@ export default function TeamPage() {
           {isOwner && (
             <button
               onClick={handleCopyLink}
+<<<<<<< HEAD
               className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_#7716D0] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
+=======
+              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
+>>>>>>> 133fd71dc047fe2025521f6e3a5f4888543c024c
             >
               {copyText}
             </button>
           )}
+<<<<<<< HEAD
           <a
             href="/team/videos"
             className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-purple-500/40 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-4 font-['Cinzel'] text-lg tracking-[2px] text-purple-300 shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_#7716D0] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
           >
             TEAM VIDEOS
           </a>
+=======
+>>>>>>> 133fd71dc047fe2025521f6e3a5f4888543c024c
           {isOwner ? (
             <button
               onClick={handleDissolveTeam}
