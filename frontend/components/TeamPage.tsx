@@ -311,7 +311,7 @@ export default function TeamPage() {
                 <button
                   type="submit"
                   disabled={actionLoading}
-                  className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-8 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] [text-shadow:0_0_3px_rgba(255,255,255,1)] transition-transform hover:scale-105 disabled:opacity-50"
+                  className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-8 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105 disabled:opacity-50"
                 >
                   {actionLoading ? "Creating..." : "CREATE TEAM"}
                 </button>
@@ -361,134 +361,141 @@ export default function TeamPage() {
   return (
     <div className="relative overflow-hidden">
       {/* Background blob */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[45vw] w-[45vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,rgba(91,31,156,0.80)_0%,rgba(0,0,0,0.80)_100%)] blur-[52.5px]" />
-    <div className="relative mx-auto max-w-7xl space-y-8 px-4 py-8">
-      {error && (
-        <div className="rounded border border-red-800 bg-red-900/30 p-3 text-sm text-red-200">
-          {error}
-        </div>
-      )}
+      <div className="pointer-events-none absolute top-1/2 left-1/2 h-[45vw] w-[45vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,rgba(91,31,156,0.80)_0%,rgba(0,0,0,0.80)_100%)] blur-[52.5px]" />
+      <div className="relative mx-auto max-w-7xl space-y-8 px-4 py-8">
+        {error && (
+          <div className="rounded border border-red-800 bg-red-900/30 p-3 text-sm text-red-200">
+            {error}
+          </div>
+        )}
 
-      <div className="grid gap-16 lg:grid-cols-2">
-        {/* Instructions */}
-        <div className="rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
-          <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
-            INSTRUCTIONS
-          </h2>
-          <ul className="space-y-6 font-['Marcellus'] text-[22px] text-zinc-300">
-            <li>1. Create a team or join one via an invite link.</li>
-            <li>2. Share your invite link with teammates.</li>
-            <li>3. The team owner can accept or reject join requests.</li>
-            <li>4. Maximum team size is 4 members.</li>
-            <li>5. Only the owner can dissolve the team.</li>
-          </ul>
-        </div>
+        <div className="grid gap-16 lg:grid-cols-2">
+          {/* Instructions */}
+          <div className="rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
+            <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
+              INSTRUCTIONS
+            </h2>
+            <ul className="space-y-6 font-['Marcellus'] text-[22px] text-zinc-300">
+              <li>1. Create a team or join one via an invite link.</li>
+              <li>2. Share your invite link with teammates.</li>
+              <li>3. The team owner can accept or reject join requests.</li>
+              <li>4. Maximum team size is 4 members.</li>
+              <li>5. Only the owner can dissolve the team.</li>
+            </ul>
+          </div>
 
-        {/* Team Section */}
-        <div className="space-y-6">
-          {/* Team Name */}
-          {isOwner ? (
-            <>
+          {/* Team Section */}
+          <div className="space-y-6">
+            {/* Team Name */}
+            {isOwner ? (
+              <>
+                <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
+                  {teamName}
+                </h2>
+                <div className="flex items-center gap-3">
+                  <label className="shrink-0 font-['Marcellus'] text-base text-white">
+                    Enter Team Name:
+                  </label>
+                  <input
+                    type="text"
+                    value={editingName}
+                    onChange={(e) => setEditingName(e.target.value)}
+                    className="flex-1 rounded-tl-[45px] rounded-tr-[6px] rounded-br-[45px] rounded-bl-[6px] bg-[linear-gradient(90deg,rgba(0,0,0,0.20)_13%,rgba(0,0,0,0.20)_50%,rgba(0,0,0,0.20)_93%)] px-6 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0px_0px_45px_rgba(119,22,208,0.60)] outline-none"
+                  />
+                </div>
+                <div className="flex justify-center">
+                  <button
+                    onClick={handleRenameTeam}
+                    disabled={
+                      actionLoading ||
+                      !editingName.trim() ||
+                      editingName === teamName
+                    }
+                    className="rounded-tl-[30px] rounded-tr-[4px] rounded-br-[30px] rounded-bl-[4px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_3px_#7716D0,0_0_7.5px_#7716D0,0_0_30px_rgba(119,22,208,0.60),0_0_45px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_2px_rgba(255,255,255,1)] hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
+                  >
+                    SAVE
+                  </button>
+                </div>
+              </>
+            ) : (
               <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
                 {teamName}
               </h2>
-              <div className="flex items-center gap-3">
-                <label className="shrink-0 font-['Marcellus'] text-base text-white">
-                  Enter Team Name:
-                </label>
-                <input
-                  type="text"
-                  value={editingName}
-                  onChange={(e) => setEditingName(e.target.value)}
-                  className="flex-1 rounded-tl-[45px] rounded-tr-[6px] rounded-br-[45px] rounded-bl-[6px] bg-[linear-gradient(90deg,rgba(0,0,0,0.20)_13%,rgba(0,0,0,0.20)_50%,rgba(0,0,0,0.20)_93%)] px-6 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0px_0px_45px_rgba(119,22,208,0.60)] outline-none"
-                />
-              </div>
-              <div className="flex justify-center">
-                <button
-                  onClick={handleRenameTeam}
-                  disabled={
-                    actionLoading ||
-                    !editingName.trim() ||
-                    editingName === teamName
-                  }
-                  className="rounded-tl-[30px] rounded-tr-[4px] rounded-br-[30px] rounded-bl-[4px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_3px_#7716D0,0_0_7.5px_#7716D0,0_0_30px_rgba(119,22,208,0.60),0_0_45px_rgba(119,22,208,1)] [text-shadow:0_0_2px_rgba(255,255,255,1)] transition-transform hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
-                >
-                  SAVE
-                </button>
-              </div>
-            </>
-          ) : (
-            <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
-              {teamName}
-            </h2>
-          )}
+            )}
 
-          {/* Participants */}
-          <div>
-            <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
-              PARTICIPANTS
-            </h2>
-            <table className="w-full table-fixed border-collapse">
-              <tbody>
-                {(() => {
-                  const allMembers = [...owners, ...regularMembers, ...requests];
-                  const rows = Array.from({ length: 4 }, (_, i) => allMembers[i] ?? null);
-                  return rows.map((m, i) =>
-                    m ? (
-                      <MemberRow
-                        key={m.inviteId ?? m.userId}
-                        member={m}
-                        isOwner={!!isOwner}
-                        currentUserId={user?.id ?? ""}
-                        onRemove={handleRemoveMember}
-                        onAccept={(id) => handleInviteAction(id, "accepted")}
-                        onReject={(id) => handleInviteAction(id, "rejected")}
-                        disabled={actionLoading}
-                      />
-                    ) : (
-                      <tr key={`empty-${i}`}>
-                        <td className="h-[67px] border-b border-white/30 pr-6" />
-                        <td className="h-[67px] w-[130px] border-b border-l border-white/30 px-6" />
-                        <td className="h-[67px] w-[130px] border-b border-l border-white/30 pl-6" />
-                      </tr>
-                    )
-                  );
-                })()}
-              </tbody>
-            </table>
+            {/* Participants */}
+            <div>
+              <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
+                PARTICIPANTS
+              </h2>
+              <table className="w-full table-fixed border-collapse">
+                <tbody>
+                  {(() => {
+                    const allMembers = [
+                      ...owners,
+                      ...regularMembers,
+                      ...requests,
+                    ];
+                    const rows = Array.from(
+                      { length: 4 },
+                      (_, i) => allMembers[i] ?? null,
+                    );
+                    return rows.map((m, i) =>
+                      m ? (
+                        <MemberRow
+                          key={m.inviteId ?? m.userId}
+                          member={m}
+                          isOwner={!!isOwner}
+                          currentUserId={user?.id ?? ""}
+                          onRemove={handleRemoveMember}
+                          onAccept={(id) => handleInviteAction(id, "accepted")}
+                          onReject={(id) => handleInviteAction(id, "rejected")}
+                          disabled={actionLoading}
+                        />
+                      ) : (
+                        <tr key={`empty-${i}`}>
+                          <td className="h-[67px] border-b border-white/30 pr-6" />
+                          <td className="h-[67px] w-[130px] border-b border-l border-white/30 px-6" />
+                          <td className="h-[67px] w-[130px] border-b border-l border-white/30 pl-6" />
+                        </tr>
+                      ),
+                    );
+                  })()}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Action Buttons */}
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        {isOwner && (
-          <button
-            onClick={handleCopyLink}
-            className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
-          >
-            {copyText}
-          </button>
-        )}
-        {isOwner ? (
-          <button
-            onClick={handleDissolveTeam}
-            disabled={actionLoading}
-            className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
-          >
-            DISSOLVE TEAM
-          </button>
-        ) : (
-          <button
-            onClick={handleLeaveTeam}
-            disabled={actionLoading}
-            className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
-          >
-            LEAVE TEAM
-          </button>
-        )}
+        {/* Action Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          {isOwner && (
+            <button
+              onClick={handleCopyLink}
+              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
+            >
+              {copyText}
+            </button>
+          )}
+          {isOwner ? (
+            <button
+              onClick={handleDissolveTeam}
+              disabled={actionLoading}
+              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
+            >
+              DISSOLVE TEAM
+            </button>
+          ) : (
+            <button
+              onClick={handleLeaveTeam}
+              disabled={actionLoading}
+              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
+            >
+              LEAVE TEAM
+            </button>
+          )}
+        </div>
       </div>
-    </div>
     </div>
   );
 }
@@ -512,12 +519,12 @@ function MemberRow({
 }) {
   return (
     <tr>
-      <td className="h-[67px] overflow-hidden border-b border-white/30 pr-6 font-['Marcellus'] text-base lowercase text-white">
+      <td className="h-[67px] overflow-hidden border-b border-white/30 pr-6 font-['Marcellus'] text-base text-white lowercase">
         <div className="overflow-x-auto whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {member.email}
         </div>
       </td>
-      <td className="h-[67px] w-[130px] border-b border-l border-white/30 px-6 font-['Marcellus'] text-base lowercase text-white">
+      <td className="h-[67px] w-[130px] border-b border-l border-white/30 px-6 font-['Marcellus'] text-base text-white lowercase">
         #{member.role}
       </td>
       <td className="h-[67px] w-[130px] border-b border-l border-white/30 pl-6">

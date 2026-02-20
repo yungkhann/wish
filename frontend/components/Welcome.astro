@@ -170,50 +170,41 @@ import { Countdown } from "./additional/Countdown";
       return a + (b - a) * t;
     }
 
-    // ── Mobile detection ────────────────────────────────────────────────────
-    function isMobile(): boolean {
-      return window.innerWidth < 768;
-    }
+    let isMobileCache = false;
+    let finalLx = "",
+      finalRx = "",
+      finalY = "-40%";
+    let slideOffsetCache = 0;
 
-    function getFinalTransform(which: "l" | "r"): { x: string; y: string } {
-      const mobile = isMobile();
-      const tablet = window.innerWidth >= 768 && window.innerWidth <= 1024;
-      if (which === "l") {
-        const x = mobile ? "-30%" : tablet ? "-20%" : "15%";
-        return { x, y: "-40%" };
-      } else {
-        const x = mobile ? "30%" : tablet ? "20%" : "-15%";
-        return { x, y: "-40%" };
-      }
+    function updateBreakpointCache() {
+      const w = window.innerWidth;
+      isMobileCache = w < 768;
+      const tablet = w >= 768 && w <= 1024;
+      finalLx = isMobileCache ? "-30%" : tablet ? "-20%" : "15%";
+      finalRx = isMobileCache ? "30%" : tablet ? "20%" : "-15%";
+      slideOffsetCache = w * 0.6;
     }
 
     let startDxL = 0;
     let startDxR = 0;
 
     function measureCenterOffsets() {
-      const vw = window.innerWidth;
-      const centerX = vw / 2;
-
+      if (isMobileCache) return;
+      const centerX = window.innerWidth / 2;
       const rL = wingL.getBoundingClientRect();
       const rR = wingR.getBoundingClientRect();
-
       startDxL = centerX - rL.right;
       startDxR = centerX - rR.left;
     }
 
     function applyProgress(rawProgress: number) {
       const p = easeInOutCubic(clamp(rawProgress, 0, 1));
-      const mobile = isMobile();
 
-      const finalL = getFinalTransform("l");
-      const finalR = getFinalTransform("r");
-
-      if (mobile) {
-        const slideOffset = window.innerWidth * 0.6; // how far off-screen they start
-        const extraL = lerp(-slideOffset, 0, p);
-        const extraR = lerp(slideOffset, 0, p);
-        wingL.style.transform = `translate(calc(${finalL.x} + ${extraL}px), ${finalL.y})`;
-        wingR.style.transform = `translate(calc(${finalR.x} + ${extraR}px), ${finalR.y})`;
+      if (isMobileCache) {
+        const extraL = lerp(-slideOffsetCache, 0, p);
+        const extraR = lerp(slideOffsetCache, 0, p);
+        wingL.style.transform = `translate(calc(${finalLx} + ${extraL}px), ${finalY})`;
+        wingR.style.transform = `translate(calc(${finalRx} + ${extraR}px), ${finalY})`;
         wingL.style.opacity = String(p * 0.4);
         wingR.style.opacity = String(p * 0.4);
         content.style.opacity = "";
@@ -221,8 +212,8 @@ import { Countdown } from "./additional/Countdown";
       } else {
         const dxL = lerp(startDxL, 0, p);
         const dxR = lerp(startDxR, 0, p);
-        wingL.style.transform = `translate(calc(${finalL.x} + ${dxL}px), ${finalL.y})`;
-        wingR.style.transform = `translate(calc(${finalR.x} + ${dxR}px), ${finalR.y})`;
+        wingL.style.transform = `translate(calc(${finalLx} + ${dxL}px), ${finalY})`;
+        wingR.style.transform = `translate(calc(${finalRx} + ${dxR}px), ${finalY})`;
         wingL.style.opacity = "1";
         wingR.style.opacity = "1";
         const contentP = clamp((rawProgress - 0.4) / 0.5, 0, 1);
@@ -233,9 +224,12 @@ import { Countdown } from "./additional/Countdown";
     }
 
     function setWingHeight() {
-      const mobile = isMobile();
       const tablet = window.innerWidth >= 768 && window.innerWidth <= 1024;
-      const h = mobile ? "45vh" : tablet ? "55vh" : "clamp(200px, 60vh, 700px)";
+      const h = isMobileCache
+        ? "45vh"
+        : tablet
+          ? "55vh"
+          : "clamp(200px, 60vh, 700px)";
       wingL.style.height = h;
       wingR.style.height = h;
     }
@@ -245,18 +239,17 @@ import { Countdown } from "./additional/Countdown";
     let scrollableHeight = 0;
 
     function init() {
+      updateBreakpointCache();
       setWingHeight();
       scrollableHeight = scene.offsetHeight - window.innerHeight;
 
       wingL.style.opacity = "0";
       wingR.style.opacity = "0";
-      const finalL = getFinalTransform("l");
-      const finalR = getFinalTransform("r");
-      wingL.style.transform = `translate(${finalL.x}, ${finalL.y})`;
-      wingR.style.transform = `translate(${finalR.x}, ${finalR.y})`;
+      wingL.style.transform = `translate(${finalLx}, ${finalY})`;
+      wingR.style.transform = `translate(${finalRx}, ${finalY})`;
       void wingL.offsetWidth; // force layout
 
-      if (!isMobile()) measureCenterOffsets();
+      measureCenterOffsets(); // skips on mobile (guarded inside)
 
       const scrollProgress = clamp(
         window.scrollY / Math.max(1, scrollableHeight),
@@ -314,9 +307,10 @@ import { Countdown } from "./additional/Countdown";
       window.addEventListener(
         "resize",
         () => {
+          updateBreakpointCache();
           scrollableHeight = scene.offsetHeight - window.innerHeight;
           setWingHeight();
-          if (!isMobile()) measureCenterOffsets();
+          measureCenterOffsets(); // skips on mobile
           const p = clamp(window.scrollY / Math.max(1, scrollableHeight), 0, 1);
           applyProgress(p);
         },
