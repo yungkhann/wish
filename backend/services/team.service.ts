@@ -19,6 +19,16 @@ export async function createTeam(
     throw new AppError("You have already created a team");
   }
 
+  const nameTaken = await db
+    .select({ id: team.id })
+    .from(team)
+    .where(eq(team.name, teamName))
+    .get();
+
+  if (nameTaken) {
+    throw new AppError("A team with this name already exists");
+  }
+
   const existingUser = await db
     .select({ teamId: user.teamId })
     .from(user)
@@ -289,6 +299,16 @@ export async function renameTeam(
 
   if (t.creatorId !== creatorUserId) {
     throw new AppError("Only the team owner can rename the team", 403);
+  }
+
+  const nameTaken = await db
+    .select({ id: team.id })
+    .from(team)
+    .where(eq(team.name, newName))
+    .get();
+
+  if (nameTaken) {
+    throw new AppError("A team with this name already exists");
   }
 
   await db.update(team).set({ name: newName }).where(eq(team.id, t.id));
