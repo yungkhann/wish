@@ -27,6 +27,7 @@ export default function TeamPage() {
   const [state, setState] = useState<State>("loading");
   const [user, setUser] = useState<UserData | null>(null);
   const [teamName, setTeamName] = useState("");
+  const [editingName, setEditingName] = useState("");
   const [newTeamName, setNewTeamName] = useState("");
   const [members, setMembers] = useState<Member[]>([]);
   const [pendingInvites, setPendingInvites] = useState<PendingInvite[]>([]);
@@ -75,6 +76,7 @@ export default function TeamPage() {
       const data = await res.json();
       setMembers(data.members);
       setTeamName(data.teamName);
+      setEditingName(data.teamName);
       setState("has-team");
     } catch {
       setState("no-team");
@@ -189,6 +191,29 @@ export default function TeamPage() {
         return;
       }
       await fetchTeamData();
+    } catch {
+      setError("An unexpected error occurred.");
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleRenameTeam = async () => {
+    setError(null);
+    setActionLoading(true);
+    try {
+      const res = await fetch("/api/team", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ teamName: editingName }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error ?? "Failed to rename team");
+        return;
+      }
+      setTeamName(editingName);
+      setError("Team renamed successfully!");
     } catch {
       setError("An unexpected error occurred.");
     } finally {
