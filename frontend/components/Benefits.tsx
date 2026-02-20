@@ -18,40 +18,28 @@ const Benefits = () => {
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-6 sm:max-w-6xl sm:gap-8 md:grid-cols-2">
           {/* Benefit 1 */}
           <div className="flex h-auto min-h-[160px] items-center justify-center rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-60 sm:rounded-tl-[60px] sm:rounded-br-[60px] sm:px-12 sm:py-0">
-            <p
-              className="text-center font-['Marcellus'] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)]"
-              style={{ fontSize: "32px" }}
-            >
+            <p className="text-center font-['Marcellus'] text-[20px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[32px]">
               Hands-on experience in ML, AI, and data analytics
             </p>
           </div>
 
           {/* Benefit 2 */}
           <div className="flex h-auto min-h-[160px] items-center justify-center rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-60 sm:rounded-tl-[60px] sm:rounded-br-[60px] sm:px-12 sm:py-0">
-            <p
-              className="text-center font-['Marcellus'] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)]"
-              style={{ fontSize: "32px" }}
-            >
+            <p className="text-center font-['Marcellus'] text-[20px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[32px]">
               New technical skills and real-world teamwork experience
             </p>
           </div>
 
           {/* Benefit 3 */}
           <div className="flex h-auto min-h-[160px] items-center justify-center rounded-tl-lg rounded-tr-[40px] rounded-br-lg rounded-bl-[40px] bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-60 sm:rounded-tr-[60px] sm:rounded-bl-[60px] sm:px-12 sm:py-0">
-            <p
-              className="text-center font-['Marcellus'] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)]"
-              style={{ fontSize: "32px" }}
-            >
+            <p className="text-center font-['Marcellus'] text-[20px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[32px]">
               Cash prizes and merchandise
             </p>
           </div>
 
           {/* Benefit 4 */}
           <div className="flex h-auto min-h-[160px] items-center justify-center rounded-tl-lg rounded-tr-[40px] rounded-br-lg rounded-bl-[40px] bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-60 sm:rounded-tr-[60px] sm:rounded-bl-[60px] sm:px-12 sm:py-0">
-            <p
-              className="text-center font-['Marcellus'] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)]"
-              style={{ fontSize: "32px" }}
-            >
+            <p className="text-center font-['Marcellus'] text-[20px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[32px]">
               Coffee breaks, a photobooth, and engaging activities
             </p>
           </div>
