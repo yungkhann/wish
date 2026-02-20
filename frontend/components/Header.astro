@@ -1,27 +1,29 @@
 ---
+import { Image } from "astro:assets";
 import NavAuthButton from "./NavAuthButton";
+import wishLogo from "../assets/WISHLOGO.svg";
 
 const links = [
   { href: "#about", label: "about" },
   { href: "#benefits", label: "benefits" },
   { href: "#schedule", label: "schedule" },
   { href: "#sponsors", label: "sponsors" },
-  { href: "#faq", label: "faqs" },
+  { href: "#faq", label: "FAQs" },
 ];
 ---
 
 <header class="fixed inset-x-0 top-0 z-50 py-4">
   <div class="mx-auto w-full max-w-[1780px] px-4 sm:px-6 lg:px-8">
     <nav
-      class="relative flex items-center justify-between rounded-[60px_7.5px_60px_7.5px] bg-black/80 px-6 py-3 shadow-[0px_0px_20px_0px_rgba(119,22,208,0.4)] backdrop-blur-md transition-all duration-300 sm:px-8 md:px-12"
+      class="nav-mobile-bg relative flex items-center justify-between rounded-3xl bg-black/80 px-6 py-3 shadow-[0px_0px_20px_0px_rgba(119,22,208,0.4)] backdrop-blur-md transition-all duration-300 sm:px-8 md:px-12 lg:rounded-[60px_7.5px_60px_7.5px] lg:bg-black/80"
     >
       <div class="flex shrink-0">
         <a href="/" class="group relative">
-          <span
-            class="bg-gradient-to-b from-white via-[#794DFE] to-[#B743FF] bg-clip-text font-['Cinzel_Decorative'] text-2xl font-bold text-transparent drop-shadow-[0px_0px_6px_#7716D0] transition-all duration-300 sm:text-3xl md:text-4xl"
-          >
-            WISH
-          </span>
+          <Image
+            src={wishLogo}
+            alt="WISH"
+            class="h-6 w-auto drop-shadow-[0px_0px_8px_rgba(119,22,208,0.8)] transition-all duration-300 group-hover:drop-shadow-[0px_0px_12px_rgba(183,67,255,1)] sm:h-7 lg:h-9 xl:h-10"
+          />
         </a>
       </div>
 
@@ -64,22 +66,30 @@ const links = [
 
     <div
       id="mobile-menu"
-      class="mt-4 hidden rounded-[30px_3.75px_30px_3.75px] border border-purple-900/50 bg-black/95 p-6 backdrop-blur-xl lg:hidden"
+      class="mobile-menu-closed overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out lg:hidden"
+      aria-hidden="true"
     >
-      <nav class="flex flex-col items-center gap-6" id="mobile-nav-links">
+      <div class="flex flex-col items-center" id="mobile-nav-links">
         {
-          links.map((link) => (
-            <a
-              href={link.href}
-              class="font-['Marcellus'] text-2xl text-white hover:text-purple-300"
+          links.map((link, i) => (
+            <div
+              class="mobile-nav-item flex justify-center"
+              style={`width: ${95 - i * 9}%`}
             >
-              {link.label}
-            </a>
+              <a
+                href={link.href}
+                class="block w-full py-3 text-center font-['Marcellus'] text-xl font-normal text-white transition-colors duration-200 hover:text-[#E0AAFF]"
+              >
+                {link.label}
+              </a>
+            </div>
           ))
         }
 
-        <NavAuthButton mobile client:load />
-      </nav>
+        <div class="flex justify-center py-3" style="width: auto">
+          <NavAuthButton mobile client:load />
+        </div>
+      </div>
     </div>
   </div>
 
@@ -99,3 +109,46 @@ const links = [
     });
   </script>
 </header>
+
+<style>
+  .mobile-menu-closed {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .mobile-menu-open {
+    max-height: 700px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-nav-item {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(65, 8, 115, 0.95) 49%,
+      rgba(0, 0, 0, 1) 93%
+    );
+    border-radius: 0 0 2rem 2rem;
+    box-shadow:
+      0px 6px 20px 0px rgba(119, 22, 208, 0.5),
+      0px 0px 8px 0px rgba(119, 22, 208, 0.25);
+    margin-bottom: 1px;
+  }
+
+  @media (max-width: 1023px) {
+    .nav-mobile-bg {
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(60, 10, 110, 0.92) 49%,
+        rgba(0, 0, 0, 0.95) 93%
+      ) !important;
+      box-shadow:
+        0px 0px 0px 1px rgba(119, 22, 208, 0.4),
+        0px 0px 18px 2px rgba(119, 22, 208, 0.45),
+        0px 0px 40px 4px rgba(119, 22, 208, 0.2) !important;
+    }
+  }
+</style>

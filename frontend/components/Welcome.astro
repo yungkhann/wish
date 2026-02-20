@@ -2,80 +2,127 @@
 import { Image } from "astro:assets";
 import lWing from "../assets/L_Wing.svg";
 import rWing from "../assets/R_Wing.svg";
+import wishLogo from "../assets/WISHLOGO.svg";
 import { Countdown } from "./additional/Countdown";
 ---
 
-<section
-  class="welcome-section relative flex min-h-screen flex-col items-center justify-center overflow-hidden"
->
-  <Image
-    src={lWing}
-    alt=""
-    class="wing wing-left pointer-events-none absolute select-none"
-  />
+<div id="wings-scene" class="wings-scene">
+  <div id="wings-sticky" class="wings-sticky">
+    <!-- Left wing -->
+    <img
+      id="wing-l"
+      src={lWing.src}
+      alt=""
+      class="wing wing-l pointer-events-none select-none"
+      aria-hidden="true"
+    />
 
-  <Image
-    src={rWing}
-    alt=""
-    class="wing wing-right pointer-events-none absolute select-none"
-  />
+    <!-- Right wing -->
+    <img
+      id="wing-r"
+      src={rWing.src}
+      alt=""
+      class="wing wing-r pointer-events-none select-none"
+      aria-hidden="true"
+    />
 
-  <div
-    class="relative z-10 flex flex-col items-center gap-6 px-4 pt-24 sm:gap-8 md:gap-10 md:pt-32 lg:gap-12"
-  >
-    <h1
-      class="welcome-title text-center font-['Cinzel_Decorative'] leading-[1.4] font-normal tracking-tight text-white"
+    <!-- Welcome content — fades in as wings spread -->
+    <div
+      id="welcome-content"
+      class="welcome-content relative z-10 flex flex-col items-center gap-6 px-4 pt-24 sm:gap-8 md:gap-10 md:pt-32 lg:gap-12"
     >
-      Make your biggest
-      <span
-        style="text-shadow: none;"
-        class="bg-gradient-to-b from-white via-[#794DFE] to-[#B743FF] bg-clip-text font-['Cinzel_Decorative'] text-2xl font-bold text-transparent drop-shadow-[0px_0px_6px_#7716D0] transition-all duration-300 sm:text-3xl md:text-4xl"
+      <h1
+        class="welcome-title text-center font-['Cinzel_Decorative'] leading-[1.4] font-normal tracking-tight text-white"
       >
-        WISH
-      </span>
-      come true
-    </h1>
+        Make your biggest
+        <Image
+          src={wishLogo}
+          alt="WISH"
+          class="wish-logo-inline inline-block align-middle drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]"
+        />
+        come true
+      </h1>
 
-    <Countdown client:only="react" />
+      <Countdown client:only="react" />
 
-    <a
-      href="/registration"
-      class="register-btn group relative overflow-hidden rounded-[7.5px_60px_7.5px_60px] p-[1.5px]"
-    >
-      <div
-        class="absolute inset-0 rounded-[7.5px_60px_7.5px_60px] bg-gradient-to-tr from-white/80 to-transparent opacity-50"
+      <a
+        href="/registration"
+        class="register-btn group relative overflow-hidden rounded-[7.5px_60px_7.5px_60px] p-[1.5px]"
       >
-      </div>
-      <div
-        class="register-btn-inner relative flex items-center justify-center rounded-[7.5px_60px_7.5px_60px] bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.5)_0%,#9A44E9_100%)] transition-transform duration-300 group-hover:scale-105"
-      >
-        <span class="register-btn-text font-['Cinzel'] text-white">
-          Register
-        </span>
-      </div>
-    </a>
+        <div
+          class="absolute inset-0 rounded-[7.5px_60px_7.5px_60px] bg-gradient-to-tr from-white/80 to-transparent opacity-50"
+        >
+        </div>
+        <div
+          class="register-btn-inner relative flex items-center justify-center rounded-[7.5px_60px_7.5px_60px] bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.5)_0%,#9A44E9_100%)] transition-transform duration-300 group-hover:scale-105"
+        >
+          <span class="register-btn-text font-['Cinzel'] text-white">
+            Register
+          </span>
+        </div>
+      </a>
+    </div>
   </div>
-</section>
+</div>
 
 <style>
+  :root:not(.js) .wing,
+  :root:not(.js) .welcome-content {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .wings-scene {
+    position: relative;
+    height: 200dvh;
+  }
+
+  .wings-sticky {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .wing {
+    position: absolute;
     top: 50%;
-    transform: translateY(-40%);
-    height: clamp(200px, 60vh, 700px);
     width: auto;
-    opacity: 1;
+    height: clamp(200px, 60vh, 700px);
+    opacity: 0;
+    transition: none;
+    will-change: transform, opacity;
   }
 
-  .wing-left {
+  .wing-l {
     left: 0;
-    transform: translate(15%, -40%);
   }
-
-  .wing-right {
+  .wing-r {
     right: 0;
-    transform: translate(-15%, -40%);
   }
 
+  .welcome-content {
+    opacity: 0;
+    transform: translateY(24px);
+    will-change: opacity, transform;
+    transition: none;
+    z-index: 10;
+  }
+
+  @media (max-width: 767px) {
+    .welcome-content {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .wing {
+      z-index: 0;
+    }
+  }
+
+  /* ── Text / button sizing (unchanged from original) ── */
   .welcome-title {
     font-size: clamp(1rem, 2.5vw, 3rem);
     letter-spacing: -0.02em;
@@ -83,6 +130,13 @@ import { Countdown } from "./additional/Countdown";
       0px 0px 4.5px rgba(255, 255, 255, 1),
       0px 0px 60px rgba(255, 255, 255, 0.8),
       0px 0px 75px rgba(255, 255, 255, 0.4);
+  }
+
+  .wish-logo-inline {
+    height: 1.1em;
+    width: auto;
+    vertical-align: middle;
+    margin: 0 0.1em;
   }
 
   .register-btn-inner {
@@ -95,34 +149,179 @@ import { Countdown } from "./additional/Countdown";
     font-size: clamp(1rem, 2vw, 2.5rem);
     filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.6));
   }
-
-  @media (max-width: 640px) {
-    .wing {
-      opacity: 0.4;
-      height: 45vh;
-    }
-
-    .wing-left {
-      transform: translate(-30%, -40%);
-    }
-
-    .wing-right {
-      transform: translate(30%, -40%);
-    }
-  }
-
-  @media (min-width: 641px) and (max-width: 1024px) {
-    .wing {
-      opacity: 0.8;
-      height: 55vh;
-    }
-
-    .wing-left {
-      transform: translate(-20%, -40%);
-    }
-
-    .wing-right {
-      transform: translate(20%, -40%);
-    }
-  }
 </style>
+
+<script>
+  (function () {
+    const scene = document.getElementById("wings-scene")!;
+    const wingL = document.getElementById("wing-l") as HTMLImageElement;
+    const wingR = document.getElementById("wing-r") as HTMLImageElement;
+    const content = document.getElementById("welcome-content")!;
+
+    if (!scene || !wingL || !wingR || !content) return;
+
+    function easeInOutCubic(t: number): number {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+    function clamp(v: number, lo: number, hi: number): number {
+      return Math.max(lo, Math.min(hi, v));
+    }
+    function lerp(a: number, b: number, t: number): number {
+      return a + (b - a) * t;
+    }
+
+    // ── Mobile detection ────────────────────────────────────────────────────
+    function isMobile(): boolean {
+      return window.innerWidth < 768;
+    }
+
+    function getFinalTransform(which: "l" | "r"): { x: string; y: string } {
+      const mobile = isMobile();
+      const tablet = window.innerWidth >= 768 && window.innerWidth <= 1024;
+      if (which === "l") {
+        const x = mobile ? "-30%" : tablet ? "-20%" : "15%";
+        return { x, y: "-40%" };
+      } else {
+        const x = mobile ? "30%" : tablet ? "20%" : "-15%";
+        return { x, y: "-40%" };
+      }
+    }
+
+    let startDxL = 0;
+    let startDxR = 0;
+
+    function measureCenterOffsets() {
+      const vw = window.innerWidth;
+      const centerX = vw / 2;
+
+      const rL = wingL.getBoundingClientRect();
+      const rR = wingR.getBoundingClientRect();
+
+      startDxL = centerX - rL.right;
+      startDxR = centerX - rR.left;
+    }
+
+    function applyProgress(rawProgress: number) {
+      const p = easeInOutCubic(clamp(rawProgress, 0, 1));
+      const mobile = isMobile();
+
+      const finalL = getFinalTransform("l");
+      const finalR = getFinalTransform("r");
+
+      if (mobile) {
+        const slideOffset = window.innerWidth * 0.6; // how far off-screen they start
+        const extraL = lerp(-slideOffset, 0, p);
+        const extraR = lerp(slideOffset, 0, p);
+        wingL.style.transform = `translate(calc(${finalL.x} + ${extraL}px), ${finalL.y})`;
+        wingR.style.transform = `translate(calc(${finalR.x} + ${extraR}px), ${finalR.y})`;
+        wingL.style.opacity = String(p * 0.4);
+        wingR.style.opacity = String(p * 0.4);
+        content.style.opacity = "";
+        content.style.transform = "";
+      } else {
+        const dxL = lerp(startDxL, 0, p);
+        const dxR = lerp(startDxR, 0, p);
+        wingL.style.transform = `translate(calc(${finalL.x} + ${dxL}px), ${finalL.y})`;
+        wingR.style.transform = `translate(calc(${finalR.x} + ${dxR}px), ${finalR.y})`;
+        wingL.style.opacity = "1";
+        wingR.style.opacity = "1";
+        const contentP = clamp((rawProgress - 0.4) / 0.5, 0, 1);
+        const contentEased = easeInOutCubic(contentP);
+        content.style.opacity = String(contentEased);
+        content.style.transform = `translateY(${lerp(24, 0, contentEased)}px)`;
+      }
+    }
+
+    function setWingHeight() {
+      const mobile = isMobile();
+      const tablet = window.innerWidth >= 768 && window.innerWidth <= 1024;
+      const h = mobile ? "45vh" : tablet ? "55vh" : "clamp(200px, 60vh, 700px)";
+      wingL.style.height = h;
+      wingR.style.height = h;
+    }
+
+    let rafId = 0;
+    let lastProgress = -1;
+    let scrollableHeight = 0;
+
+    function init() {
+      setWingHeight();
+      scrollableHeight = scene.offsetHeight - window.innerHeight;
+
+      wingL.style.opacity = "0";
+      wingR.style.opacity = "0";
+      const finalL = getFinalTransform("l");
+      const finalR = getFinalTransform("r");
+      wingL.style.transform = `translate(${finalL.x}, ${finalL.y})`;
+      wingR.style.transform = `translate(${finalR.x}, ${finalR.y})`;
+      void wingL.offsetWidth; // force layout
+
+      if (!isMobile()) measureCenterOffsets();
+
+      const scrollProgress = clamp(
+        window.scrollY / Math.max(1, scrollableHeight),
+        0,
+        1,
+      );
+      applyProgress(scrollProgress);
+    }
+
+    function onScroll() {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = 0;
+        if (scrollableHeight <= 0) {
+          applyProgress(1);
+          return;
+        }
+        const progress = clamp(window.scrollY / scrollableHeight, 0, 1);
+        if (Math.abs(progress - lastProgress) > 0.0005) {
+          lastProgress = progress;
+          applyProgress(progress);
+        }
+      });
+    }
+
+    function whenLoaded(cb: () => void) {
+      const imgs = [wingL, wingR];
+      const pending = imgs.filter((img) => !img.complete);
+      if (pending.length === 0) {
+        cb();
+        return;
+      }
+      let count = pending.length;
+      pending.forEach((img) => {
+        img.addEventListener(
+          "load",
+          () => {
+            if (--count === 0) cb();
+          },
+          { once: true },
+        );
+        img.addEventListener(
+          "error",
+          () => {
+            if (--count === 0) cb();
+          },
+          { once: true },
+        );
+      });
+    }
+
+    whenLoaded(() => {
+      init();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener(
+        "resize",
+        () => {
+          scrollableHeight = scene.offsetHeight - window.innerHeight;
+          setWingHeight();
+          if (!isMobile()) measureCenterOffsets();
+          const p = clamp(window.scrollY / Math.max(1, scrollableHeight), 0, 1);
+          applyProgress(p);
+        },
+        { passive: true },
+      );
+    });
+  })();
+</script>

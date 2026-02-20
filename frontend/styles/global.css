@@ -12,6 +12,16 @@ body {
   color: white;
 }
 
+#about,
+#faq,
+#schedule,
+#sponsors {
+  scroll-margin-top: 96px;
+}
+#benefits {
+  scroll-margin-top: 44px;
+}
+
 @font-face {
   font-family: "dseg7";
   font-style: normal;
@@ -57,5 +67,36 @@ body {
     width: 46px;
     height: 28px;
     filter: brightness(0) saturate(100%) invert(100%);
+  }
+
+  .form-submit-outer {
+    padding: 2px;
+    border-radius: 0.5rem 2.5rem 0.5rem 2.5rem;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(154, 68, 233, 0.5) 100%
+    );
+    box-shadow:
+      0px 0px 8px 0px rgba(119, 22, 208, 1),
+      0px 0px 24px 0px rgba(119, 22, 208, 0.8),
+      0px 0px 60px 0px rgba(119, 22, 208, 0.5),
+      0px 0px 100px 0px rgba(119, 22, 208, 0.3);
+  }
+
+  .form-submit-inner {
+    border-radius: calc(0.5rem - 2px) calc(2.5rem - 2px) calc(0.5rem - 2px)
+      calc(2.5rem - 2px);
+    background-color: #000;
+  }
+
+  @media (min-width: 1024px) {
+    .form-submit-outer {
+      border-radius: 0.5rem 3.75rem 0.5rem 3.75rem;
+    }
+    .form-submit-inner {
+      border-radius: calc(0.5rem - 2px) calc(3.75rem - 2px) calc(0.5rem - 2px)
+        calc(3.75rem - 2px);
+    }
   }
 }
