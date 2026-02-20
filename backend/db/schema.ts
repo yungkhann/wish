@@ -22,6 +22,7 @@ export const user = sqliteTable("user", {
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
   teamId: text("team_id").references(() => team.id),
+  cvDriveFileId: text("cv_drive_file_id"),
 });
 
 export const team = sqliteTable("team", {

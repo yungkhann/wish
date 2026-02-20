@@ -64,6 +64,19 @@ export async function updateUserTeam(
   return await db.update(user).set({ teamId }).where(eq(user.id, userId));
 }
 
+export async function updateUserCvFileId(
+  binding: D1Database,
+  userId: string,
+  fileId: string,
+) {
+  const db = getDb(binding);
+
+  await db
+    .update(user)
+    .set({ cvDriveFileId: fileId })
+    .where(eq(user.id, userId));
+}
+
 export async function getUserByEmail(binding: D1Database, email: string) {
   const db = getDb(binding);
 

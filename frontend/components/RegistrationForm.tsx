@@ -29,9 +29,24 @@ export default function RegistrationForm() {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      update("cv", e.target.files[0]);
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.type !== "application/pdf") {
+      setError("Only PDF files are allowed");
+      update("cv", null);
+      e.target.value = "";
+      return;
     }
+    if (file.size > 2 * 1024 * 1024) {
+      setError("CV file must be under 2 MB");
+      update("cv", null);
+      e.target.value = "";
+      return;
+    }
+
+    setError(null);
+    update("cv", file);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -70,6 +85,18 @@ export default function RegistrationForm() {
           data.details?.[0]?.message ?? data.error ?? "Registration failed";
         setError(msg);
         return;
+      }
+
+      if (form.cv) {
+        const fd = new FormData();
+        fd.append("cv", form.cv);
+        const cvRes = await fetch("/api/user/cv", { method: "POST", body: fd });
+
+        if (!cvRes.ok) {
+          const cvData = await cvRes.json();
+          setError(cvData.error ?? "CV upload failed");
+          return;
+        }
       }
 
       window.location.href = "/team";
@@ -199,7 +226,7 @@ export default function RegistrationForm() {
                 type="file"
                 id="cv-upload"
                 onChange={handleFileChange}
-                accept=".pdf,.doc,.docx"
+                accept="application/pdf"
                 className="hidden"
               />
               <label
