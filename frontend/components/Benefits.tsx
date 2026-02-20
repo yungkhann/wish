@@ -1,6 +1,9 @@
 const Benefits = () => {
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black py-16 sm:py-20">
+    <div
+      id="benefits"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black py-16 sm:py-20"
+    >
       {/* Gradient Blobs */}
       <div className="absolute top-[15%] left-[10%] h-[350px] w-[350px] rounded-full bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,_rgba(91,31,156,0.9)_0%,_rgba(0,0,0,0.9)_100%)] opacity-50 blur-[32px] sm:h-[638px] sm:w-[638px] sm:blur-[52.5px]" />
       <div className="absolute top-[15%] right-[15%] h-[350px] w-[350px] rounded-full bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,_rgba(91,31,156,0.9)_0%,_rgba(0,0,0,0.9)_100%)] opacity-50 blur-[32px] sm:h-[638px] sm:w-[638px] sm:blur-[52.5px]" />

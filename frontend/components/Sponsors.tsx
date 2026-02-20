@@ -3,7 +3,7 @@ import freedomLogo from "../assets/freedom.jpg";
 
 const Sponsors = () => {
   return (
-    <div className="flex flex-col items-center py-16">
+    <div id="sponsors" className="flex flex-col items-center py-16">
       <h2 className="mb-10 text-center font-['Cinzel_Decorative'] text-4xl font-bold text-white sm:text-6xl">
         Our Sponsors
       </h2>
