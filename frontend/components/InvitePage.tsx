@@ -41,7 +41,7 @@ export default function InvitePage() {
         return;
       }
 
-      setMessage(data.message ?? "Invite request sent!");
+      setMessage(data.message ?? "You have joined the team!");
       setState("success");
     })();
   }, []);
@@ -65,11 +65,10 @@ export default function InvitePage() {
           <>
             <div className="text-4xl">&#10003;</div>
             <h2 className="font-['Cinzel'] text-2xl tracking-[3px]">
-              INVITE SENT
+              JOINED TEAM
             </h2>
             <p className="text-sm text-zinc-400">
-              Your request to join the team has been sent. The team owner needs
-              to accept it before you become a member.
+              You have successfully joined the team!
             </p>
           </>
         ) : (

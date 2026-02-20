@@ -10,12 +10,6 @@ type Member = {
   inviteId?: string;
 };
 
-type PendingInvite = {
-  inviteId: string;
-  teamName: string;
-  status: string;
-};
-
 type UserData = {
   id: string;
   email: string;
@@ -29,8 +23,7 @@ export default function TeamPage() {
   const [teamName, setTeamName] = useState("");
   const [newTeamName, setNewTeamName] = useState("");
   const [members, setMembers] = useState<Member[]>([]);
-  const [pendingInvites, setPendingInvites] = useState<PendingInvite[]>([]);
-  const [error, setError] = useState<string | null>(null);
+const [error, setError] = useState<string | null>(null);
   const [actionLoading, setActionLoading] = useState(false);
   const [copyText, setCopyText] = useState("COPY INVITE LINK");
 
@@ -51,18 +44,6 @@ export default function TeamPage() {
     }
     setUser(data);
     return data as UserData;
-  };
-
-  const fetchPendingInvites = async () => {
-    try {
-      const res = await fetch("/api/invite/me/pending");
-      if (res.ok) {
-        const data = await res.json();
-        setPendingInvites(data);
-      }
-    } catch {
-      // ignore — not critical
-    }
   };
 
   const fetchTeamData = async () => {
@@ -88,7 +69,6 @@ export default function TeamPage() {
       if (userData.teamId) {
         await fetchTeamData();
       } else {
-        await fetchPendingInvites();
         setState("no-team");
       }
     })();
@@ -256,9 +236,8 @@ export default function TeamPage() {
           </div>
         )}
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          {/* Left — Create Team */}
-          <div className="space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
+        <div className="flex justify-center">
+          <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
             <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
               CREATE TEAM
             </h2>
@@ -292,36 +271,6 @@ export default function TeamPage() {
                 </button>
               </div>
             </form>
-          </div>
-
-          {/* Right — Pending Invites */}
-          <div className="space-y-6 rounded-tl-lg rounded-tr-[40px] rounded-br-lg rounded-bl-[40px] bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tr-[60px] sm:rounded-bl-[60px]">
-            <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
-              PENDING REQUESTS
-            </h2>
-
-            {pendingInvites.length === 0 ? (
-              <p className="text-center text-sm text-zinc-500">
-                No pending requests. Ask a team owner to share their invite link
-                with you.
-              </p>
-            ) : (
-              <div className="space-y-3">
-                {pendingInvites.map((inv) => (
-                  <div
-                    key={inv.inviteId}
-                    className="flex items-center justify-between rounded-[10px] border border-[#8b4cd9] bg-black/40 px-5 py-3"
-                  >
-                    <span className="truncate text-sm text-white">
-                      {inv.teamName}
-                    </span>
-                    <span className="shrink-0 rounded-full border border-yellow-500 px-3 py-1 text-xs text-yellow-400">
-                      #pending
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </div>

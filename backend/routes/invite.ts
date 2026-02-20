@@ -4,7 +4,6 @@ import type { AppEnv } from "../middleware/auth";
 import {
   createInvitation,
   getAllInvitesWithUsers,
-  getMyPendingInvites,
   handleInviteStatus,
 } from "../services/invitation.service";
 
@@ -23,15 +22,7 @@ userInvitationRouter.get("/:uuid", async (c) => {
 
   await createInvitation(c.env.wishDB, invitationCode, session.user.id);
 
-  return c.json({ message: "Successfully registered invitation" }, 200);
-});
-
-userInvitationRouter.get("/me/pending", async (c) => {
-  const session = c.var.session;
-
-  const invites = await getMyPendingInvites(c.env.wishDB, session.user.id);
-
-  return c.json(invites, 200);
+  return c.json({ message: "You have successfully joined the team!" }, 200);
 });
 
 userInvitationRouter.get("/all/invites", async (c) => {
