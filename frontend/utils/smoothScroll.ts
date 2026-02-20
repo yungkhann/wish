@@ -7,18 +7,25 @@ export function setupSmoothScroll(selector: string) {
     if (target.tagName !== "A") return;
 
     const href = target.getAttribute("href");
-    if (href?.startsWith("#")) {
-      e.preventDefault();
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+    if (!href) return;
 
+    const hashMatch = href.match(/^(?:\/)?#(.+)$/);
+    if (!hashMatch) return;
+
+    const hash = "#" + hashMatch[1];
+
+    if (window.location.pathname === "/" || window.location.pathname === "") {
+      const element = document.querySelector(hash);
+      if (element) {
+        e.preventDefault();
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
         (element as HTMLElement).focus({ preventScroll: true });
       }
+      return;
     }
+
+    e.preventDefault();
+    window.location.href = "/" + hash;
   };
 
   container.addEventListener("click", handleScroll);

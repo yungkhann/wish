@@ -4,18 +4,18 @@ import NavAuthButton from "./NavAuthButton";
 import wishLogo from "../assets/WISHLOGO.svg";
 
 const links = [
-  { href: "#about", label: "about" },
-  { href: "#benefits", label: "benefits" },
-  { href: "#schedule", label: "schedule" },
-  { href: "#sponsors", label: "sponsors" },
-  { href: "#faq", label: "FAQs" },
+  { href: "/#about", label: "about" },
+  { href: "/#benefits", label: "benefits" },
+  { href: "/#schedule", label: "schedule" },
+  { href: "/#sponsors", label: "sponsors" },
+  { href: "/#faq", label: "FAQs" },
 ];
 ---
 
 <header class="fixed inset-x-0 top-0 z-50 py-4">
   <div class="mx-auto w-full max-w-[1780px] px-4 sm:px-6 lg:px-8">
     <nav
-      class="nav-mobile-bg relative flex items-center justify-between rounded-3xl bg-black/80 px-6 py-3 shadow-[0px_0px_20px_0px_rgba(119,22,208,0.4)] backdrop-blur-md transition-all duration-300 sm:px-8 md:px-12 lg:rounded-[60px_7.5px_60px_7.5px] lg:bg-black/80"
+      class="nav-mobile-bg relative flex items-center justify-between rounded-[24px] bg-black/80 px-6 py-3 shadow-[0px_0px_20px_0px_rgba(119,22,208,0.4)] backdrop-blur-md transition-all duration-300 sm:px-8 md:px-12 lg:rounded-[35px_4px_35px_4px] lg:bg-black/80"
     >
       <div class="flex shrink-0">
         <a href="/" class="group relative">
@@ -66,7 +66,7 @@ const links = [
 
     <div
       id="mobile-menu"
-      class="mobile-menu-closed overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out lg:hidden"
+      class="mobile-menu-closed overflow-hidden transition-[max-height] duration-500 ease-in-out lg:hidden"
       aria-hidden="true"
     >
       <div class="flex flex-col items-center" id="mobile-nav-links">
@@ -113,14 +113,14 @@ const links = [
 <style>
   .mobile-menu-closed {
     max-height: 0;
-    opacity: 0;
     pointer-events: none;
+    visibility: hidden;
   }
 
   .mobile-menu-open {
     max-height: 700px;
-    opacity: 1;
     pointer-events: auto;
+    visibility: visible;
   }
 
   .mobile-nav-item {
@@ -131,10 +131,10 @@ const links = [
       rgba(0, 0, 0, 1) 93%
     );
     border-radius: 0 0 2rem 2rem;
+    margin-bottom: 1px;
     box-shadow:
       0px 6px 20px 0px rgba(119, 22, 208, 0.5),
       0px 0px 8px 0px rgba(119, 22, 208, 0.25);
-    margin-bottom: 1px;
   }
 
   @media (max-width: 1023px) {

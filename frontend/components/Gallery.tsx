@@ -17,7 +17,7 @@ const images = [img1, img2, img3, img4, img5, img6, img7, img8];
 const Gallery = () => {
   return (
     <div className="flex w-full flex-col items-center px-4 py-16 md:px-12">
-      <h2 className="mb-10 text-center font-['Cinzel_Decorative'] text-4xl font-bold text-white sm:text-6xl">
+      <h2 className="mb-10 text-center font-['Cinzel_Decorative'] text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
         Gallery
       </h2>
       <Swiper
@@ -34,11 +34,11 @@ const Gallery = () => {
       >
         {images.map((img, idx) => (
           <SwiperSlide key={idx}>
-            <div className="flex h-[400px] items-center justify-center">
+            <div className="flex h-[220px] items-center justify-center sm:h-[300px] lg:h-[380px]">
               <img
                 src={img.src ?? img}
                 alt={`Gallery image ${idx + 1}`}
-                className="h-[400px] w-full rounded-xl bg-black/40 object-cover"
+                className="h-[220px] w-full rounded-xl bg-black/40 object-cover sm:h-[300px] lg:h-[380px]"
               />
             </div>
           </SwiperSlide>

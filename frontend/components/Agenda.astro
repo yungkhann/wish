@@ -15,9 +15,9 @@ const day2 = [
 ];
 ---
 
-<section id="schedule" class="bg-black py-20 text-white">
+<section id="schedule" class="bg-black py-12 text-white sm:py-20">
   <h2
-    class="mb-20 text-center font-['Cinzel'] text-6xl font-bold tracking-widest uppercase"
+    class="mb-10 text-center font-['Cinzel'] text-4xl font-bold tracking-widest uppercase sm:mb-14 sm:text-5xl lg:mb-20 lg:text-6xl"
   >
     Schedule
   </h2>
@@ -27,18 +27,18 @@ const day2 = [
   >
     <div class="relative">
       <h3
-        class="mb-16 text-center font-['Cinzel'] text-4xl font-bold text-white/90 uppercase"
+        class="mb-10 text-center font-['Cinzel'] text-xl font-bold text-white/90 uppercase sm:mb-14 sm:text-2xl md:mb-16 md:text-4xl"
       >
         March 14
       </h3>
 
       <div
-        class="absolute top-24 bottom-0 left-1/2 w-[2px] -translate-x-1/2 bg-white/40"
+        class="absolute top-20 bottom-0 left-1/2 w-[2px] -translate-x-1/2 bg-white/40"
         aria-hidden="true"
       >
       </div>
 
-      <div class="flex flex-col gap-16">
+      <div class="flex flex-col gap-8 sm:gap-12 md:gap-16">
         {
           day1.map((event, idx) => (
             <div class="relative grid grid-cols-[1fr_auto_1fr] items-center gap-4 md:gap-10">
@@ -48,10 +48,10 @@ const day2 = [
                   idx % 2 !== 0 && "invisible opacity-0 md:block",
                 ]}
               >
-                <p class="font-['Marcellus'] text-lg opacity-70">
+                <p class="font-['Marcellus'] text-sm opacity-70 sm:text-base lg:text-lg">
                   {event.time}
                 </p>
-                <h4 class="mt-1 font-['Marcellus'] text-xl leading-tight md:text-2xl">
+                <h4 class="mt-1 font-['Marcellus'] text-sm leading-tight sm:text-base lg:text-xl xl:text-2xl">
                   {event.title}
                 </h4>
               </div>
@@ -67,10 +67,10 @@ const day2 = [
                   idx % 2 === 0 && "invisible opacity-0 md:block",
                 ]}
               >
-                <p class="font-['Marcellus'] text-lg opacity-70">
+                <p class="font-['Marcellus'] text-sm opacity-70 sm:text-base lg:text-lg">
                   {event.time}
                 </p>
-                <h4 class="mt-1 font-['Marcellus'] text-xl leading-tight md:text-2xl">
+                <h4 class="mt-1 font-['Marcellus'] text-sm leading-tight sm:text-base lg:text-xl xl:text-2xl">
                   {event.title}
                 </h4>
               </div>
@@ -82,18 +82,18 @@ const day2 = [
 
     <div class="relative">
       <h3
-        class="mb-16 text-center font-['Cinzel'] text-4xl font-bold text-white/90 uppercase"
+        class="mb-10 text-center font-['Cinzel'] text-xl font-bold text-white/90 uppercase sm:mb-14 sm:text-2xl md:mb-16 md:text-4xl"
       >
         March 15
       </h3>
 
       <div
-        class="absolute top-24 bottom-0 left-1/2 w-[2px] -translate-x-1/2 bg-white/40"
+        class="absolute top-20 bottom-0 left-1/2 w-[2px] -translate-x-1/2 bg-white/40"
         aria-hidden="true"
       >
       </div>
 
-      <div class="flex flex-col gap-16">
+      <div class="flex flex-col gap-8 sm:gap-12 md:gap-16">
         {
           day2.map((event, idx) => (
             <div class="relative grid grid-cols-[1fr_auto_1fr] items-center gap-4 md:gap-10">
@@ -103,10 +103,10 @@ const day2 = [
                   idx % 2 !== 0 && "invisible opacity-0 md:block",
                 ]}
               >
-                <p class="font-['Marcellus'] text-lg opacity-70">
+                <p class="font-['Marcellus'] text-sm opacity-70 sm:text-base lg:text-lg">
                   {event.time}
                 </p>
-                <h4 class="mt-1 font-['Marcellus'] text-xl leading-tight md:text-2xl">
+                <h4 class="mt-1 font-['Marcellus'] text-sm leading-tight sm:text-base lg:text-xl xl:text-2xl">
                   {event.title}
                 </h4>
               </div>
@@ -122,10 +122,10 @@ const day2 = [
                   idx % 2 === 0 && "invisible opacity-0 md:block",
                 ]}
               >
-                <p class="font-['Marcellus'] text-lg opacity-70">
+                <p class="font-['Marcellus'] text-sm opacity-70 sm:text-base lg:text-lg">
                   {event.time}
                 </p>
-                <h4 class="mt-1 font-['Marcellus'] text-xl leading-tight md:text-2xl">
+                <h4 class="mt-1 font-['Marcellus'] text-sm leading-tight sm:text-base lg:text-xl xl:text-2xl">
                   {event.title}
                 </h4>
               </div>
