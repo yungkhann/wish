@@ -2,7 +2,7 @@ import bgBenefits from "../assets/bg-benefits.png";
 
 const Benefits = () => {
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black py-16 sm:py-20">
+    <div id="benefits" className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black py-16 sm:py-20">
       {/* Background Image */}
       <img
         src={bgBenefits.src}
