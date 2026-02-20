@@ -40,6 +40,7 @@ reportRouter.get("/", async (c) => {
       userId: user.id,
       teamMemberCount: teamMemberCounts.memberCount,
       registeredAt: user.createdAt,
+      cvDriveFileId: user.cvDriveFileId,
     })
     .from(user)
     .where(isNotNull(user.name))
@@ -59,6 +60,9 @@ reportRouter.get("/", async (c) => {
     isTeamCreator: row.teamCreatorId === row.userId,
     teamMemberCount: row.teamMemberCount ?? 0,
     registeredAt: row.registeredAt,
+    cvLink: row.cvDriveFileId
+      ? `https://drive.google.com/file/d/${row.cvDriveFileId}/view`
+      : "",
   }));
 
   return c.json(data);
