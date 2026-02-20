@@ -221,7 +221,10 @@ export default function RegistrationForm() {
             <div className="font-['Marcellus'] text-2xl font-normal text-white lg:text-4xl lg:leading-[54px]">
               CV Dropbox
             </div>
-            <div className="flex h-60 w-full cursor-pointer flex-col items-center justify-center rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/80 via-black/80 to-black/80 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] transition-shadow hover:shadow-[0px_0px_60px_0px_rgba(119,22,208,1.00)] lg:h-72 lg:max-w-[566px] lg:rounded-tl-[60px] lg:rounded-br-[60px]">
+            <label
+              htmlFor="cv-upload"
+              className="flex h-60 w-full cursor-pointer flex-col items-center justify-center rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/80 via-black/80 to-black/80 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] transition-shadow hover:shadow-[0px_0px_60px_0px_rgba(119,22,208,1.00)] lg:h-72 lg:max-w-[566px] lg:rounded-tl-[60px] lg:rounded-br-[60px]"
+            >
               <input
                 type="file"
                 id="cv-upload"
@@ -229,20 +232,15 @@ export default function RegistrationForm() {
                 accept="application/pdf"
                 className="hidden"
               />
-              <label
-                htmlFor="cv-upload"
-                className="flex cursor-pointer flex-col items-center"
-              >
-                <div className="font-['Marcellus'] text-5xl font-normal text-violet-400 [text-shadow:_0px_0px_4px_rgb(119_22_208_/_1.00)] lg:text-6xl">
-                  +
+              <div className="font-['Marcellus'] text-5xl font-normal text-violet-400 [text-shadow:_0px_0px_4px_rgb(119_22_208_/_1.00)] lg:text-6xl">
+                +
+              </div>
+              {form.cv && (
+                <div className="mt-4 text-center text-sm text-white">
+                  {form.cv.name}
                 </div>
-                {form.cv && (
-                  <div className="mt-4 text-center text-sm text-white">
-                    {form.cv.name}
-                  </div>
-                )}
-              </label>
-            </div>
+              )}
+            </label>
           </div>
 
           {/* Age Confirmation Checkbox */}
