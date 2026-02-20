@@ -33,7 +33,6 @@ export default function TeamPage() {
   const [error, setError] = useState<string | null>(null);
   const [actionLoading, setActionLoading] = useState(false);
   const [copyText, setCopyText] = useState("COPY INVITE LINK");
-  const [editingName, setEditingName] = useState("");
 
   const fetchUser = async () => {
     const res = await fetch("/api/user/me");
@@ -76,7 +75,6 @@ export default function TeamPage() {
       const data = await res.json();
       setMembers(data.members);
       setTeamName(data.teamName);
-      setEditingName("");
       setState("has-team");
     } catch {
       setState("no-team");
@@ -234,29 +232,6 @@ export default function TeamPage() {
     }
   };
 
-  const handleRenameTeam = async () => {
-    if (!editingName.trim() || editingName === teamName) return;
-    setError(null);
-    setActionLoading(true);
-    try {
-      const res = await fetch("/api/team/name", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ teamName: editingName.trim() }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? "Failed to rename team");
-        return;
-      }
-      setTeamName(editingName.trim());
-    } catch {
-      setError("An unexpected error occurred.");
-    } finally {
-      setActionLoading(false);
-    }
-  };
-
   const isOwner =
     user && members.some((m) => m.userId === user.id && m.role === "owner");
 
@@ -387,41 +362,9 @@ export default function TeamPage() {
           {/* Team Section */}
           <div className="space-y-6">
             {/* Team Name */}
-            {isOwner ? (
-              <>
-                <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
-                  {teamName}
-                </h2>
-                <div className="flex items-center gap-3">
-                  <label className="shrink-0 font-['Marcellus'] text-base text-white">
-                    Enter Team Name:
-                  </label>
-                  <input
-                    type="text"
-                    value={editingName}
-                    onChange={(e) => setEditingName(e.target.value)}
-                    className="flex-1 rounded-tl-[45px] rounded-tr-[6px] rounded-br-[45px] rounded-bl-[6px] bg-[linear-gradient(90deg,rgba(0,0,0,0.20)_13%,rgba(0,0,0,0.20)_50%,rgba(0,0,0,0.20)_93%)] px-6 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0px_0px_45px_rgba(119,22,208,0.60)] outline-none"
-                  />
-                </div>
-                <div className="flex justify-center">
-                  <button
-                    onClick={handleRenameTeam}
-                    disabled={
-                      actionLoading ||
-                      !editingName.trim() ||
-                      editingName === teamName
-                    }
-                    className="rounded-tl-[30px] rounded-tr-[4px] rounded-br-[30px] rounded-bl-[4px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_3px_#7716D0,0_0_7.5px_#7716D0,0_0_30px_rgba(119,22,208,0.60),0_0_45px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_2px_rgba(255,255,255,1)] hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
-                  >
-                    SAVE
-                  </button>
-                </div>
-              </>
-            ) : (
-              <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
-                {teamName}
-              </h2>
-            )}
+            <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
+              {teamName}
+            </h2>
 
             {/* Participants */}
             <div>
