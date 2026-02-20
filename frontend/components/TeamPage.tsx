@@ -367,7 +367,7 @@ export default function TeamPage() {
 
       <div className="grid gap-8 lg:grid-cols-2">
         {/* Instructions */}
-        <div className="rounded-[30px] border-2 border-[#8b4cd9] bg-[linear-gradient(135deg,rgba(80,30,120,0.3)_0%,rgba(0,0,0,0.5)_100%)] p-8 shadow-[0_0_30px_rgba(139,76,217,0.4)]">
+        <div className="rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
           <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
             INSTRUCTIONS
           </h2>
@@ -384,13 +384,21 @@ export default function TeamPage() {
         <div className="space-y-6">
           {/* Team Name */}
           {isOwner ? (
-            <div className="flex items-center gap-3">
-              <input
-                type="text"
-                value={editingName}
-                onChange={(e) => setEditingName(e.target.value)}
-                className="flex-1 rounded-[15px] border-2 border-[#8b4cd9] bg-black/30 px-4 py-3 font-['Cinzel'] text-lg tracking-[2px] text-white outline-none focus:border-[#a855f7] focus:shadow-[0_0_20px_rgba(168,85,247,0.4)]"
-              />
+            <>
+              <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
+                {teamName}
+              </h2>
+              <div className="flex items-center gap-3">
+                <label className="shrink-0 font-['Marcellus'] text-base text-white">
+                  Enter Team Name:
+                </label>
+                <input
+                  type="text"
+                  value={editingName}
+                  onChange={(e) => setEditingName(e.target.value)}
+                  className="flex-1 rounded-tl-[45px] rounded-tr-[6px] rounded-br-[45px] rounded-bl-[6px] bg-[linear-gradient(90deg,rgba(0,0,0,0.20)_13%,rgba(0,0,0,0.20)_50%,rgba(0,0,0,0.20)_93%)] px-6 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0px_0px_45px_rgba(119,22,208,0.60)] outline-none"
+                />
+              </div>
               <button
                 onClick={handleRenameTeam}
                 disabled={
@@ -398,11 +406,11 @@ export default function TeamPage() {
                   !editingName.trim() ||
                   editingName === teamName
                 }
-                className="rounded-[15px] bg-[linear-gradient(135deg,#8b4cd9,#a855f7)] px-6 py-3 font-['Cinzel'] text-sm tracking-[2px] text-white shadow-[0_0_20px_rgba(168,85,247,0.6)] transition-transform hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
+                className="w-full rounded-tl-[30px] rounded-tr-[4px] rounded-br-[30px] rounded-bl-[4px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-6 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_3px_#7716D0,0_0_7.5px_#7716D0,0_0_30px_rgba(119,22,208,0.60),0_0_45px_rgba(119,22,208,1)] [text-shadow:0_0_2px_rgba(255,255,255,1)] transition-transform hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
               >
                 SAVE
               </button>
-            </div>
+            </>
           ) : (
             <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
               {teamName}
@@ -414,44 +422,22 @@ export default function TeamPage() {
             <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
               PARTICIPANTS
             </h2>
-            <div className="space-y-3">
-              {owners.map((m) => (
-                <MemberRow
-                  key={m.userId}
-                  member={m}
-                  isOwner={!!isOwner}
-                  currentUserId={user?.id ?? ""}
-                  onRemove={handleRemoveMember}
-                  onAccept={(id) => handleInviteAction(id, "accepted")}
-                  onReject={(id) => handleInviteAction(id, "rejected")}
-                  disabled={actionLoading}
-                />
-              ))}
-              {regularMembers.map((m) => (
-                <MemberRow
-                  key={m.userId}
-                  member={m}
-                  isOwner={!!isOwner}
-                  currentUserId={user?.id ?? ""}
-                  onRemove={handleRemoveMember}
-                  onAccept={(id) => handleInviteAction(id, "accepted")}
-                  onReject={(id) => handleInviteAction(id, "rejected")}
-                  disabled={actionLoading}
-                />
-              ))}
-              {requests.map((m) => (
-                <MemberRow
-                  key={m.inviteId ?? m.userId}
-                  member={m}
-                  isOwner={!!isOwner}
-                  currentUserId={user?.id ?? ""}
-                  onRemove={handleRemoveMember}
-                  onAccept={(id) => handleInviteAction(id, "accepted")}
-                  onReject={(id) => handleInviteAction(id, "rejected")}
-                  disabled={actionLoading}
-                />
-              ))}
-            </div>
+            <table className="w-full border-collapse">
+              <tbody>
+                {[...owners, ...regularMembers, ...requests].map((m) => (
+                  <MemberRow
+                    key={m.inviteId ?? m.userId}
+                    member={m}
+                    isOwner={!!isOwner}
+                    currentUserId={user?.id ?? ""}
+                    onRemove={handleRemoveMember}
+                    onAccept={(id) => handleInviteAction(id, "accepted")}
+                    onReject={(id) => handleInviteAction(id, "rejected")}
+                    disabled={actionLoading}
+                  />
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -461,7 +447,7 @@ export default function TeamPage() {
         {isOwner && (
           <button
             onClick={handleCopyLink}
-            className="rounded-[30px] bg-[linear-gradient(135deg,#8b4cd9,#a855f7)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_40px_rgba(168,85,247,0.8)] transition-transform hover:scale-105"
+            className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] [text-shadow:0_0_3px_rgba(255,255,255,1)] transition-transform hover:scale-105"
           >
             {copyText}
           </button>
@@ -514,51 +500,47 @@ function MemberRow({
   onReject: (inviteId: string) => void;
   disabled: boolean;
 }) {
-  const roleColors: Record<string, string> = {
-    owner: "border-[#a855f7] text-[#a855f7]",
-    member: "border-[#8b4cd9] text-[#8b4cd9]",
-    request: "border-yellow-500 text-yellow-400",
-  };
-
   return (
-    <div className="flex items-center justify-between rounded-[10px] border border-[#8b4cd9] bg-black/40 px-5 py-3">
-      <span className="truncate text-sm text-white">{member.email}</span>
-      <div className="flex shrink-0 items-center gap-3">
-        <span
-          className={`rounded-full border px-3 py-1 text-xs ${roleColors[member.role] ?? ""}`}
-        >
-          #{member.role}
-        </span>
-        {member.role === "request" && isOwner && member.inviteId && (
-          <>
-            <button
-              onClick={() => onAccept(member.inviteId!)}
-              disabled={disabled}
-              className="flex h-7 w-7 items-center justify-center rounded border-2 border-green-500 text-green-500 transition-colors hover:bg-green-500/20 disabled:opacity-50"
-            >
-              ✓
-            </button>
-            <button
-              onClick={() => onReject(member.inviteId!)}
-              disabled={disabled}
-              className="flex h-7 w-7 items-center justify-center rounded border-2 border-red-500 text-red-500 transition-colors hover:bg-red-500/20 disabled:opacity-50"
-            >
-              ✕
-            </button>
-          </>
-        )}
-        {member.role === "member" &&
-          isOwner &&
-          member.userId !== currentUserId && (
-            <button
-              onClick={() => onRemove(member.userId)}
-              disabled={disabled}
-              className="flex h-7 w-7 items-center justify-center rounded border-2 border-red-500 text-red-500 transition-colors hover:bg-red-500/20 disabled:opacity-50"
-            >
-              ✕
-            </button>
+    <tr>
+      <td className="py-4 pr-6 font-['Marcellus'] text-base lowercase text-white">
+        {member.email}
+      </td>
+      <td className="border-l border-white px-6 py-4 font-['Marcellus'] text-base lowercase text-white">
+        #{member.role}
+      </td>
+      <td className="border-l border-white py-4 pl-6">
+        <div className="flex items-center gap-2">
+          {member.role === "request" && isOwner && member.inviteId && (
+            <>
+              <button
+                onClick={() => onAccept(member.inviteId!)}
+                disabled={disabled}
+                className="flex h-[45px] w-[45px] items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-green-500/40 bg-black/20 font-['Marcellus'] text-xl text-green-500 shadow-[0_0_4.5px_3.375px_rgba(0,255,0,0.20),inset_0_0_4.5px_4.5px_rgba(0,255,0,0.25)] transition-opacity disabled:opacity-50"
+              >
+                ✓
+              </button>
+              <button
+                onClick={() => onReject(member.inviteId!)}
+                disabled={disabled}
+                className="flex h-[45px] w-[45px] items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Cinzel'] text-lg text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
+              >
+                x
+              </button>
+            </>
           )}
-      </div>
-    </div>
+          {member.role === "member" &&
+            isOwner &&
+            member.userId !== currentUserId && (
+              <button
+                onClick={() => onRemove(member.userId)}
+                disabled={disabled}
+                className="flex h-[45px] w-[45px] items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Cinzel'] text-lg text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
+              >
+                x
+              </button>
+            )}
+        </div>
+      </td>
+    </tr>
   );
 }
