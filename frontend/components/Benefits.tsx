@@ -20,7 +20,7 @@ const Benefits = () => {
         {/* Benefits Grid */}
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-6 sm:max-w-6xl sm:gap-8 md:grid-cols-2">
           {/* Benefit 1 */}
-          <div className="flex h-auto min-h-[130px] items-center justify-center rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tl-[60px] sm:rounded-br-[60px] sm:px-12 sm:py-0 lg:h-52">
+          <div className="flex h-auto min-h-[130px] items-center justify-center rounded-tl-lg rounded-tr-[40px] rounded-br-lg rounded-bl-[40px] bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tr-[60px] sm:rounded-bl-[60px] sm:px-12 sm:py-0 lg:h-52">
             <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[20px] lg:text-[23px]">
               Hands-on experience in ML, AI, and data analytics
             </p>
@@ -34,7 +34,7 @@ const Benefits = () => {
           </div>
 
           {/* Benefit 3 */}
-          <div className="flex h-auto min-h-[130px] items-center justify-center rounded-tl-lg rounded-tr-[40px] rounded-br-lg rounded-bl-[40px] bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tr-[60px] sm:rounded-bl-[60px] sm:px-12 sm:py-0 lg:h-52">
+          <div className="flex h-auto min-h-[130px] items-center justify-center rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tl-[60px] sm:rounded-br-[60px] sm:px-12 sm:py-0 lg:h-52">
             <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[20px] lg:text-[23px]">
               Cash prizes and merchandise
             </p>

@@ -60,10 +60,6 @@ const Timeline = () => {
           </div>
         </div>
       </div>
-
-      {/* Decorative blur elements */}
-      <div className="absolute right-[150px] bottom-[140px] h-28 w-28 rounded-[50px] bg-indigo-950 blur-[10px]" />
-      <div className="absolute right-[165px] bottom-[140px] h-40 w-40 rounded-[50px] bg-gray-900 blur-[100px]" />
     </div>
   );
 };
