@@ -4,6 +4,10 @@ import lWing from "../assets/L_Wing.svg";
 import rWing from "../assets/R_Wing.svg";
 import wishLogo from "../assets/WISHLOGO.svg";
 import { Countdown } from "./additional/Countdown";
+import { getLangFromCookie, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromCookie(Astro.cookies);
+const t = useTranslations(lang);
 ---
 
 <div id="wings-scene" class="wings-scene">
@@ -34,16 +38,16 @@ import { Countdown } from "./additional/Countdown";
       <h1
         class="welcome-title text-center font-['Cinzel_Decorative'] leading-[1.4] font-normal tracking-tight text-white"
       >
-        Make your biggest
+        {t("welcome.line1")}
         <Image
           src={wishLogo}
           alt="WISH"
           class="wish-logo-inline inline-block align-middle drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]"
         />
-        come true
+        {t("welcome.line2")}
       </h1>
 
-      <Countdown client:only="react" />
+      <Countdown lang={lang} client:only="react" />
 
       <a
         href="/registration"
@@ -57,7 +61,7 @@ import { Countdown } from "./additional/Countdown";
           class="register-btn-inner relative flex items-center justify-center rounded-[7.5px_60px_7.5px_60px] bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.5)_0%,#9A44E9_100%)] transition-transform duration-300 group-hover:scale-105"
         >
           <span class="register-btn-text font-['Cinzel'] text-white">
-            Register
+            {t("welcome.register")}
           </span>
         </div>
       </a>

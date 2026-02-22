@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
+import type { Lang } from "../i18n/ui";
+import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 import AuthForm from "./AuthForm";
 
 type State = "loading" | "unauthenticated" | "success" | "error";
 
-export default function InvitePage() {
+export default function InvitePage({ lang: langProp }: { lang?: Lang }) {
+  const lang = langProp ?? getLangFromCookieClient();
+  const t = useTranslations(lang);
+
   const [state, setState] = useState<State>("loading");
   const [message, setMessage] = useState("");
 
   useEffect(() => {
     const uuid = window.location.hash.slice(1);
     if (!uuid) {
-      setMessage("Invalid invite link.");
+      setMessage(t("invite.invalidLink"));
       setState("error");
       return;
     }
@@ -36,12 +41,12 @@ export default function InvitePage() {
       const res = await fetch(`/api/invite/${uuid}`);
       const data = await res.json();
       if (!res.ok) {
-        setMessage(data.error ?? "Failed to process invite.");
+        setMessage(data.error ?? t("invite.failedProcess"));
         setState("error");
         return;
       }
 
-      setMessage(data.message ?? "You have joined the team!");
+      setMessage(data.message ?? t("invite.joinedFallback"));
       setState("success");
     })();
   }, []);
@@ -49,13 +54,13 @@ export default function InvitePage() {
   if (state === "loading") {
     return (
       <div className="flex min-h-[50vh] items-center justify-center text-zinc-500">
-        Loading...
+        {t("invite.loading")}
       </div>
     );
   }
 
   if (state === "unauthenticated") {
-    return <AuthForm />;
+    return <AuthForm lang={lang} />;
   }
 
   return (
@@ -65,16 +70,16 @@ export default function InvitePage() {
           <>
             <div className="text-4xl">&#10003;</div>
             <h2 className="font-['Cinzel'] text-2xl tracking-[3px]">
-              JOINED TEAM
+              {t("invite.joinedTitle")}
             </h2>
-            <p className="text-sm text-zinc-400">
-              You have successfully joined the team!
-            </p>
+            <p className="text-sm text-zinc-400">{t("invite.joinedMessage")}</p>
           </>
         ) : (
           <>
             <div className="text-4xl">&#10007;</div>
-            <h2 className="font-['Cinzel'] text-2xl tracking-[3px]">ERROR</h2>
+            <h2 className="font-['Cinzel'] text-2xl tracking-[3px]">
+              {t("invite.errorTitle")}
+            </h2>
             <p className="text-sm text-red-300">{message}</p>
           </>
         )}
@@ -83,7 +88,7 @@ export default function InvitePage() {
           href="/team"
           className="mt-4 inline-block rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
         >
-          TEAM PAGE
+          {t("invite.teamPage")}
         </a>
       </div>
     </div>

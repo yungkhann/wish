@@ -1,9 +1,14 @@
 import { useState } from "react";
+import type { Lang } from "../i18n/ui";
+import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 import { authClient } from "../lib/auth-client";
 
 type Step = "email" | "otp";
 
-export default function AuthForm() {
+export default function AuthForm({ lang: langProp }: { lang?: Lang }) {
+  const lang = langProp ?? getLangFromCookieClient();
+  const t = useTranslations(lang);
+
   const [step, setStep] = useState<Step>("email");
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
@@ -23,13 +28,13 @@ export default function AuthForm() {
         });
 
       if (sendError) {
-        setError(sendError.message ?? "Failed to send code.");
+        setError(sendError.message ?? t("auth.failedSend"));
         return;
       }
 
       setStep("otp");
     } catch {
-      setError("An unexpected error occurred.");
+      setError(t("auth.unexpectedError"));
     } finally {
       setLoading(false);
     }
@@ -57,26 +62,26 @@ export default function AuthForm() {
       );
 
       if (verifyError) {
-        setError(verifyError.message ?? "Invalid code.");
+        setError(verifyError.message ?? t("auth.invalidCode"));
         return;
       }
     } catch {
-      setError("An unexpected error occurred.");
+      setError(t("auth.unexpectedError"));
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center text-white">
-      <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
+    <div className="flex min-h-screen flex-col items-center justify-center px-4 text-white sm:px-6 lg:px-8">
+      <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px] sm:p-8">
         <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
-          {step === "email" ? "SIGN IN" : "ENTER CODE"}
+          {step === "email" ? t("auth.signIn") : t("auth.enterCode")}
         </h2>
 
         {step === "otp" && (
           <p className="text-center text-sm text-zinc-400">
-            We sent a 6-digit code to{" "}
+            {t("auth.codeSent")}{" "}
             <span className="font-medium text-white">{email}</span>
           </p>
         )}
@@ -91,7 +96,7 @@ export default function AuthForm() {
           <form onSubmit={handleSendOtp} className="space-y-4">
             <div>
               <label className="mb-1 block text-sm font-medium text-zinc-400">
-                Email
+                {t("auth.email")}
               </label>
               <input
                 type="email"
@@ -99,7 +104,7 @@ export default function AuthForm() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="w-full rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-6 py-3 text-white shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] outline-none sm:rounded-tl-[60px] sm:rounded-br-[60px]"
-                placeholder="you@example.com"
+                placeholder={t("auth.emailPlaceholder")}
               />
             </div>
 
@@ -109,7 +114,7 @@ export default function AuthForm() {
                 disabled={loading}
                 className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {loading ? "SENDING..." : "CONTINUE"}
+                {loading ? t("auth.sending") : t("auth.continue")}
               </button>
             </div>
           </form>
@@ -117,7 +122,7 @@ export default function AuthForm() {
           <form onSubmit={handleVerifyOtp} className="space-y-4">
             <div>
               <label className="mb-1 block text-sm font-medium text-zinc-400">
-                Verification Code
+                {t("auth.verificationCode")}
               </label>
               <input
                 type="text"
@@ -129,7 +134,7 @@ export default function AuthForm() {
                 required
                 autoFocus
                 className="w-full rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-6 py-3 text-center text-2xl tracking-[0.5em] text-white shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] outline-none sm:rounded-tl-[60px] sm:rounded-br-[60px]"
-                placeholder="------"
+                placeholder={t("auth.otpPlaceholder")}
               />
             </div>
 
@@ -139,7 +144,7 @@ export default function AuthForm() {
                 disabled={loading}
                 className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {loading ? "VERIFYING..." : "VERIFY"}
+                {loading ? t("auth.verifying") : t("auth.verify")}
               </button>
             </div>
 
@@ -152,7 +157,7 @@ export default function AuthForm() {
               }}
               className="w-full text-center text-sm text-zinc-500 hover:text-white"
             >
-              Use a different email
+              {t("auth.differentEmail")}
             </button>
           </form>
         )}

@@ -1,12 +1,22 @@
 import { useEffect, useState } from "react";
+import type { Lang } from "../i18n/ui";
+import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 import { authClient } from "../lib/auth-client";
 
 type Status = "loading" | "guest" | "registered";
 
 let cachedStatus: Status | null = null;
 
-export default function NavAuthButton({ mobile }: { mobile?: boolean }) {
+export default function NavAuthButton({
+  mobile,
+  lang: langProp,
+}: {
+  mobile?: boolean;
+  lang?: Lang;
+}) {
   const [status, setStatus] = useState<Status>(cachedStatus ?? "loading");
+  const lang = langProp ?? getLangFromCookieClient();
+  const t = useTranslations(lang);
 
   useEffect(() => {
     if (cachedStatus) return;
@@ -40,7 +50,7 @@ export default function NavAuthButton({ mobile }: { mobile?: boolean }) {
 
   if (status === "loading" && mobile) return null;
 
-  const label = status === "registered" ? "Team Page" : "Register";
+  const label = status === "registered" ? t("nav.teamPage") : t("nav.register");
   const href = status === "registered" ? "/team" : "/registration";
 
   if (mobile) {
@@ -69,7 +79,7 @@ export default function NavAuthButton({ mobile }: { mobile?: boolean }) {
             onClick={handleLogout}
             className="font-['Marcellus'] text-sm text-white/60 transition-colors duration-200 hover:text-red-400"
           >
-            Log out
+            {t("nav.logOut")}
           </button>
         )}
       </div>
@@ -94,7 +104,7 @@ export default function NavAuthButton({ mobile }: { mobile?: boolean }) {
           onClick={handleLogout}
           className="font-['Marcellus'] text-base text-white/60 transition-colors duration-200 hover:text-red-400"
         >
-          Log out
+          {t("nav.logOut")}
         </button>
       )}
     </div>

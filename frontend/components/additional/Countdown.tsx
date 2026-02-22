@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import type { Lang } from "../../i18n/ui";
+import { getLangFromCookieClient, useTranslations } from "../../i18n/utils";
 
 interface TimeLeft {
   days: number;
@@ -7,7 +9,9 @@ interface TimeLeft {
   seconds: number;
 }
 
-export function Countdown() {
+export function Countdown({ lang: langProp }: { lang?: Lang }) {
+  const lang = langProp ?? getLangFromCookieClient();
+  const t = useTranslations(lang);
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
@@ -84,13 +88,13 @@ export function Countdown() {
 
   return (
     <div className="flex w-full max-w-[clamp(20rem,75vw,1200px)] items-start justify-center">
-      <TimeUnit value={timeLeft.days} label="Days" />
+      <TimeUnit value={timeLeft.days} label={t("countdown.days")} />
       <Separator />
-      <TimeUnit value={timeLeft.hours} label="Hours" />
+      <TimeUnit value={timeLeft.hours} label={t("countdown.hours")} />
       <Separator />
-      <TimeUnit value={timeLeft.minutes} label="Mins" />
+      <TimeUnit value={timeLeft.minutes} label={t("countdown.mins")} />
       <Separator />
-      <TimeUnit value={timeLeft.seconds} label="Sec" />
+      <TimeUnit value={timeLeft.seconds} label={t("countdown.sec")} />
     </div>
   );
 }
