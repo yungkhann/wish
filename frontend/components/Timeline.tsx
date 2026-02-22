@@ -7,9 +7,8 @@ const Timeline = () => {
     <div className="relative min-h-screen overflow-hidden bg-black py-20">
       {/* Content Container */}
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        {/* Title */}
-        <h2 className="mb-10 text-center font-['Cinzel_Decorative'] text-4xl font-bold text-white sm:mb-14 sm:text-5xl lg:mb-20 lg:text-6xl">
-          Timeline
+        <h2 className="mb-10 text-center font-['Cinzel'] text-4xl font-bold tracking-widest uppercase sm:mb-14 sm:text-5xl lg:mb-20 lg:text-6xl">
+          Schedule
         </h2>
 
         {/* Timeline Cards */}
