@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import type { Lang } from "../i18n/ui";
+import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 import AuthForm from "./AuthForm";
 import RegistrationForm from "./RegistrationForm";
 
@@ -8,7 +10,10 @@ type State =
   | "needs-registration"
   | "registered";
 
-export default function RegistrationPage() {
+export default function RegistrationPage({ lang: langProp }: { lang?: Lang }) {
+  const lang = langProp ?? getLangFromCookieClient();
+  const t = useTranslations(lang);
+
   const [state, setState] = useState<State>("loading");
 
   useEffect(() => {
@@ -37,23 +42,23 @@ export default function RegistrationPage() {
   if (state === "loading") {
     return (
       <div className="flex min-h-[50vh] items-center justify-center text-zinc-500">
-        Loading...
+        {t("regPage.loading")}
       </div>
     );
   }
 
   if (state === "unauthenticated") {
-    return <AuthForm />;
+    return <AuthForm lang={lang} />;
   }
 
   if (state === "needs-registration") {
-    return <RegistrationForm />;
+    return <RegistrationForm lang={lang} />;
   }
 
   // "registered" state — redirecting to /
   return (
     <div className="flex min-h-[50vh] items-center justify-center text-zinc-500">
-      Redirecting...
+      {t("regPage.redirecting")}
     </div>
   );
 }

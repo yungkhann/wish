@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"bun:dev:*\"",
     "dev:frontend": "bun run --bun astro dev",
-    "dev:backend": "wrangler dev",
+    "dev:backend": "wrangler dev --config wrangler.dev.jsonc",
     "build": "bun run --bun astro build",
     "lint:frontend": "eslint 'frontend/**/*.{js,ts,tsx,astro}'",
     "lint:backend": "eslint 'backend/**/*.{js,ts,tsx,astro}'",
@@ -23,6 +23,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/react": "^4.4.2",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.17.1",

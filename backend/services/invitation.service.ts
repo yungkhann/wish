@@ -164,4 +164,3 @@ async function getInvite(binding: D1Database, invitationId: string) {
     .where(eq(invite.id, invitationId))
     .get();
 }
-

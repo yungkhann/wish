@@ -1,46 +1,23 @@
 ---
+import { getLangFromCookie, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromCookie(Astro.cookies);
+const t = useTranslations(lang);
+
 const faqs = [
-  {
-    question: "What is WISH?",
-    answer:
-      "WHD is an annual three-round team competition in mathematics, competitive programming, and product design. Each team should consist of 3 to 4 members.",
-  },
-  {
-    question: "Who can participate?",
-    answer: "Female high school and university students aged 16 to 20.",
-  },
-  {
-    question: "What if I don't have a team?",
-    answer: "You can find team members in our Women's Hack Day chat. *link*",
-  },
-  {
-    question: "Do I need to be a professional?",
-    answer: "No, it's a beginner-friendly competition.",
-  },
-  {
-    question: "Can I participate online?",
-    answer: "No, Women's Hack Day 2025 is fully offline.",
-  },
-  {
-    question: "How can I participate?",
-    answer:
-      "Assemble a team, register, and come to Nazarbayev University on the 25th of October 2025. Please note that the application for participation is filled out only by the captain of the team.",
-  },
-  {
-    question: "Will participants receive certificates or prizes?",
-    answer:
-      "Yes, every participant will receive a certificate of participation, winners will receive a cash prize and merch. Also, there is a welcome package for 100 people, and a coffee break.",
-  },
-  {
-    question: "I didn't find an answer to my question. What should I do?",
-    answer:
-      "Join our Telegram chat and ask your questions. Or you can contact us via email: acm_w@nu.edu.kz",
-  },
+  { question: t("faq.q1"), answer: t("faq.a1") },
+  { question: t("faq.q2"), answer: t("faq.a2") },
+  { question: t("faq.q3"), answer: t("faq.a3") },
+  { question: t("faq.q4"), answer: t("faq.a4") },
+  { question: t("faq.q5"), answer: t("faq.a5") },
+  { question: t("faq.q6"), answer: t("faq.a6") },
+  { question: t("faq.q7"), answer: t("faq.a7") },
+  { question: t("faq.q8"), answer: t("faq.a8") },
 ];
 ---
 
 <section id="faq">
-  <h2>FAQs</h2>
+  <h2>{t("faq.title")}</h2>
 
   <div class="grid">
     {
@@ -66,12 +43,12 @@ const faqs = [
 
   <footer>
     <div class="links">
-      <a href="https://www.instagram.com/nuacmsc/">Instagram</a>
-      <a href="https://t.me/nuacmsc">Telegram</a>
-      <a href="https://www.youtube.com/@nuacmsc">Youtube</a>
-      <a href="mailto:acm_w@nu.edu.kz">Email</a>
+      <a href="https://www.instagram.com/nuacmsc/">{t("faq.instagram")}</a>
+      <a href="https://t.me/nuacmsc">{t("faq.telegram")}</a>
+      <a href="https://www.youtube.com/@nuacmsc">{t("faq.youtube")}</a>
+      <a href="mailto:acm_w@nu.edu.kz">{t("faq.email")}</a>
     </div>
-    <p class="copy">© 2026 NU ACM-W SC All rights reserved.</p>
+    <p class="copy">{t("faq.copyright")}</p>
   </footer>
 </section>
 

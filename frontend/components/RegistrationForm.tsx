@@ -1,14 +1,19 @@
 import { useState } from "react";
 import butterflyBg from "../assets/butterfly-register.png";
+import type { Lang } from "../i18n/ui";
+import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 
-const EDUCATION_LEVELS = [
-  { value: "school", label: "School Student (16+ age)" },
-  { value: "college", label: "College" },
-  { value: "bachelor", label: "Bachelor's" },
-  { value: "master", label: "Master's" },
-];
+export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
+  const lang = langProp ?? getLangFromCookieClient();
+  const t = useTranslations(lang);
 
-export default function RegistrationForm() {
+  const EDUCATION_LEVELS = [
+    { value: "school", label: t("reg.school") },
+    { value: "college", label: t("reg.college") },
+    { value: "bachelor", label: t("reg.bachelor") },
+    { value: "master", label: t("reg.master") },
+  ];
+
   const [form, setForm] = useState({
     name: "",
     surname: "",
@@ -33,13 +38,13 @@ export default function RegistrationForm() {
     if (!file) return;
 
     if (file.type !== "application/pdf") {
-      setError("Only PDF files are allowed");
+      setError(t("reg.pdfOnly"));
       update("cv", null);
       e.target.value = "";
       return;
     }
     if (file.size > 2 * 1024 * 1024) {
-      setError("CV file must be under 2 MB");
+      setError(t("reg.cvSizeLimit"));
       update("cv", null);
       e.target.value = "";
       return;
@@ -55,9 +60,7 @@ export default function RegistrationForm() {
     setError(null);
 
     if (!form.ageConfirmed) {
-      setError(
-        "Please confirm that you are above 16 years old and agree with the code of conduct",
-      );
+      setError(t("reg.pleaseConfirmAge"));
       setLoading(false);
       return;
     }
@@ -81,8 +84,7 @@ export default function RegistrationForm() {
       const data = await res.json();
 
       if (!res.ok) {
-        const msg =
-          data.details?.[0]?.message ?? data.error ?? "Registration failed";
+        const msg = data.details?.[0]?.message ?? data.error ?? t("reg.failed");
         setError(msg);
         return;
       }
@@ -94,14 +96,14 @@ export default function RegistrationForm() {
 
         if (!cvRes.ok) {
           const cvData = await cvRes.json();
-          setError(cvData.error ?? "CV upload failed");
+          setError(cvData.error ?? t("reg.cvFailed"));
           return;
         }
       }
 
       window.location.href = "/team";
     } catch {
-      setError("An unexpected error occurred.");
+      setError(t("auth.unexpectedError"));
     } finally {
       setLoading(false);
     }
@@ -136,7 +138,7 @@ export default function RegistrationForm() {
             value={form.name}
             onChange={(e) => update("name", e.target.value)}
             required
-            placeholder="first name:"
+            placeholder={t("reg.firstName")}
             className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           />
 
@@ -145,7 +147,7 @@ export default function RegistrationForm() {
             value={form.surname}
             onChange={(e) => update("surname", e.target.value)}
             required
-            placeholder="last name:"
+            placeholder={t("reg.lastName")}
             className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           />
 
@@ -154,7 +156,7 @@ export default function RegistrationForm() {
             value={form.placeOfStudy}
             onChange={(e) => update("placeOfStudy", e.target.value)}
             required
-            placeholder="place of study:"
+            placeholder={t("reg.placeOfStudy")}
             className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           />
 
@@ -163,7 +165,7 @@ export default function RegistrationForm() {
             value={form.city}
             onChange={(e) => update("city", e.target.value)}
             required
-            placeholder="city:"
+            placeholder={t("reg.city")}
             className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           />
 
@@ -174,7 +176,7 @@ export default function RegistrationForm() {
             className="h-16 w-full appearance-none rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           >
             <option value="" disabled className="text-white/70">
-              education level:
+              {t("reg.educationLevel")}
             </option>
             {EDUCATION_LEVELS.map((lvl) => (
               <option key={lvl.value} value={lvl.value} className="bg-black">
@@ -191,7 +193,7 @@ export default function RegistrationForm() {
             value={form.iin}
             onChange={(e) => update("iin", e.target.value)}
             required
-            placeholder="IIN:"
+            placeholder={t("reg.iin")}
             className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           />
 
@@ -200,7 +202,7 @@ export default function RegistrationForm() {
             value={form.phoneNumber}
             onChange={(e) => update("phoneNumber", e.target.value)}
             required
-            placeholder="phone number:"
+            placeholder={t("reg.phone")}
             className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           />
 
@@ -211,7 +213,7 @@ export default function RegistrationForm() {
               value={form.parentPhoneNumber}
               onChange={(e) => update("parentPhoneNumber", e.target.value)}
               required
-              placeholder="parent's phone number:"
+              placeholder={t("reg.parentPhone")}
               className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
             />
           )}
@@ -219,7 +221,7 @@ export default function RegistrationForm() {
           {/* CV Dropbox */}
           <div className="mt-2 flex w-full flex-col items-center gap-3 lg:mt-4 lg:gap-4">
             <div className="font-['Marcellus'] text-2xl font-normal text-white lg:text-4xl lg:leading-[54px]">
-              CV Dropbox
+              {t("reg.cvDropbox")}
             </div>
             <label
               htmlFor="cv-upload"
@@ -256,8 +258,7 @@ export default function RegistrationForm() {
               htmlFor="age-confirm"
               className="font-['Marcellus'] text-sm leading-6 font-normal text-white lg:text-xl lg:leading-7"
             >
-              I confirm that I am above 16 years old &amp; agree with the code
-              of conduct
+              {t("reg.ageConfirm")}
             </label>
           </div>
 
@@ -267,7 +268,7 @@ export default function RegistrationForm() {
               disabled={loading}
               className="form-submit-inner flex h-20 w-full items-center justify-center font-['Cinzel'] text-4xl font-normal text-white lowercase transition-colors [text-shadow:_0px_0px_5px_rgb(255_255_255_/_1.00)] hover:bg-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 lg:h-28 lg:text-6xl"
             >
-              {loading ? "..." : "Register"}
+              {loading ? "..." : t("reg.register")}
             </button>
           </div>
         </form>

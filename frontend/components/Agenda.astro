@@ -1,17 +1,22 @@
 ---
+import { getLangFromCookie, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromCookie(Astro.cookies);
+const t = useTranslations(lang);
+
 const day1 = [
-  { time: "9:00", title: "Registration" },
-  { time: "10:00", title: "Opening Ceremony" },
-  { time: "11:00", title: "Case Presentations by Companies + Q&A" },
-  { time: "12:00", title: "Coding Begins" },
-  { time: "14:00", title: "Coffee Break" },
+  { time: "9:00", title: t("schedule.d1_t1") },
+  { time: "10:00", title: t("schedule.d1_t2") },
+  { time: "11:00", title: t("schedule.d1_t3") },
+  { time: "12:00", title: t("schedule.d1_t4") },
+  { time: "14:00", title: t("schedule.d1_t5") },
 ];
 
 const day2 = [
-  { time: "12:00", title: "Case Submission Deadline" },
-  { time: "13:00", title: "Pizza Break" },
-  { time: "13:30", title: "Pitching Session" },
-  { time: "18:30", title: "Closing Ceremony" },
+  { time: "12:00", title: t("schedule.d2_t1") },
+  { time: "13:00", title: t("schedule.d2_t2") },
+  { time: "13:30", title: t("schedule.d2_t3") },
+  { time: "18:30", title: t("schedule.d2_t4") },
 ];
 ---
 
@@ -19,7 +24,7 @@ const day2 = [
   <h2
     class="mb-10 text-center font-['Cinzel'] text-4xl font-bold tracking-widest uppercase sm:mb-14 sm:text-5xl lg:mb-20 lg:text-6xl"
   >
-    Schedule
+    {t("schedule.title")}
   </h2>
 
   <div
@@ -29,7 +34,7 @@ const day2 = [
       <h3
         class="mb-10 text-center font-['Cinzel'] text-xl font-bold text-white/90 uppercase sm:mb-14 sm:text-2xl md:mb-16 md:text-4xl"
       >
-        March 14
+        {t("schedule.day1")}
       </h3>
 
       <div
@@ -84,7 +89,7 @@ const day2 = [
       <h3
         class="mb-10 text-center font-['Cinzel'] text-xl font-bold text-white/90 uppercase sm:mb-14 sm:text-2xl md:mb-16 md:text-4xl"
       >
-        March 15
+        {t("schedule.day2")}
       </h3>
 
       <div

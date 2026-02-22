@@ -1,19 +1,13 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "wish",
-  "workers_dev": false,
-  "preview_urls": false,
-  "main": "dist/_worker.js",
+  "main": "backend/index.ts",
   "compatibility_date": "2026-01-22",
   "compatibility_flags": ["nodejs_compat"],
   "account_id": "15da7213905a1f5b05432a12f9da2a13",
   "vars": {
-    "BETTER_AUTH_URL": "https://wish.nuacmw.kz",
-    "CLIENT_URL": "https://wish.nuacmw.kz",
-  },
-  "assets": {
-    "directory": "dist/client",
-    "binding": "ASSETS",
+    "BETTER_AUTH_URL": "http://localhost:8787",
+    "CLIENT_URL": "http://localhost:4321",
   },
   "d1_databases": [
     {
@@ -21,16 +15,6 @@
       "database_name": "wishDB",
       "database_id": "f49da847-89f1-46b9-8a12-b223fb3add17",
       "migrations_dir": "backend/db/migrations",
-    },
-  ],
-  "observability": {
-    "enabled": true,
-  },
-  "routes": [
-    {
-      "pattern": "wish.nuacmw.kz",
-      "zone_name": "nuacmw.kz",
-      "custom_domain": true,
     },
   ],
 }
