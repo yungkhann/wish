@@ -18,32 +18,60 @@ const Benefits = () => {
         </h2>
 
         {/* Benefits Grid */}
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-6 sm:max-w-6xl sm:gap-8 md:grid-cols-2">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-6 sm:max-w-6xl sm:gap-8 md:grid-cols-2 lg:grid-cols-2">
           {/* Benefit 1 */}
           <div className="flex h-auto min-h-[130px] items-center justify-center rounded-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tr-[60px] sm:rounded-bl-[60px] sm:px-12 sm:py-0 lg:h-52">
             <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[20px] lg:text-[23px]">
-              Hands-on experience in ML, AI, and data analytics
+              Preparation tips video lessons after registration
             </p>
           </div>
 
           {/* Benefit 2 */}
           <div className="flex h-auto min-h-[130px] items-center justify-center rounded-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tl-[60px] sm:rounded-br-[60px] sm:px-12 sm:py-0 lg:h-52">
             <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[20px] lg:text-[23px]">
-              New technical skills and real-world teamwork experience
+              Hands-on experience in Data Science, ML & AI
             </p>
           </div>
 
           {/* Benefit 3 */}
           <div className="flex h-auto min-h-[130px] items-center justify-center rounded-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tl-[60px] sm:rounded-br-[60px] sm:px-12 sm:py-0 lg:h-52">
             <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[20px] lg:text-[23px]">
-              Cash prizes and merchandise
+              1 200 000 ₸ Prize Fund and Exclusive Merchandise
             </p>
           </div>
 
           {/* Benefit 4 */}
           <div className="flex h-auto min-h-[130px] items-center justify-center rounded-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tr-[60px] sm:rounded-bl-[60px] sm:px-12 sm:py-0 lg:h-52">
             <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[20px] lg:text-[23px]">
-              Coffee breaks, a photobooth, and engaging activities
+              Welcome Package for the first 50 participants
+            </p>
+          </div>
+
+          {/* Benefit 5 */}
+          <div className="flex h-auto min-h-[130px] items-center justify-center rounded-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tl-[60px] sm:rounded-br-[60px] sm:px-12 sm:py-0 lg:h-52">
+            <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[20px] lg:text-[23px]">
+              Career opportunities as ML Engineers
+            </p>
+          </div>
+
+          {/* Benefit 6 */}
+          <div className="flex h-auto min-h-[130px] items-center justify-center rounded-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tr-[60px] sm:rounded-bl-[60px] sm:px-12 sm:py-0 lg:h-52">
+            <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[20px] lg:text-[23px]">
+              Coffee Breaks & Engaging Activities
+            </p>
+          </div>
+
+          {/* Benefit 7 */}
+          <div className="flex h-auto min-h-[130px] items-center justify-center rounded-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tl-[60px] sm:rounded-br-[60px] sm:px-12 sm:py-0 lg:h-52">
+            <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[20px] lg:text-[23px]">
+              New technical skills & real teamwork experience
+            </p>
+          </div>
+
+          {/* Benefit 8 */}
+          <div className="flex h-auto min-h-[130px] items-center justify-center rounded-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tr-[60px] sm:rounded-bl-[60px] sm:px-12 sm:py-0 lg:h-52">
+            <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[20px] lg:text-[23px]">
+              Certificates of Participation for every participant
             </p>
           </div>
         </div>
