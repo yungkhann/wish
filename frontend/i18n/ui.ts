@@ -78,8 +78,8 @@ export const ui = {
     "sponsors.infoPartners": "Info Partners",
     "sponsors.sponsor": "Sponsor",
     "sponsors.partner": "Partner",
-    "sponsors.choco.description":
-      "Kazakhstan's leading IT company and SuperApp. The Choco ecosystem integrates projects like Chocolife.me, Chocofood, Smart Restaurant, Ryadom, and Idoctor, providing essential digital services for everyday life. For this hackathon, Choco provides two real-world business cases, which will serve as the primary challenges for the participants.",
+    "sponsors.freedomAILabs.description":
+      "A division of the Kazakhstan-based Freedom Holding Corp. dedicated to the development and implementation of Artificial Intelligence technologies across the ecosystem's internal and client services.",
     "sponsors.freedom.description":
       "A lifestyle service ecosystem within the Freedom holding. It integrates leading leisure and ticketing projects such as Ticketon, Sxodim, Kino.kz, Aviata, and Chocotravel, making your travel and entertainment experiences more accessible.",
     "sponsors.issai.description":
@@ -382,8 +382,8 @@ export const ui = {
     "sponsors.infoPartners": "Инфо-партнёры",
     "sponsors.sponsor": "Спонсор",
     "sponsors.partner": "Партнёр",
-    "sponsors.choco.description":
-      "Ведущая IT-компания Казахстана и SuperApp. Экосистема Choco интегрирует проекты Chocolife.me, Chocofood, Smart Restaurant, Ryadom и Idoctor, предоставляя важные цифровые услуги для повседневной жизни. Для этого хакатона Choco предоставляет два реальных бизнес-кейса, которые будут основными задачами для участников.",
+    "sponsors.freedomAILabs.description":
+      "Подразделение казахстанского Freedom Holding Corp., занимающееся разработкой и внедрением технологий искусственного интеллекта во внутренние и клиентские сервисы экосистемы.",
     "sponsors.freedom.description":
       "Экосистема услуг образа жизни в рамках холдинга Freedom. Она объединяет ведущие проекты досуга и продажи билетов, такие как Ticketon, Sxodim, Kino.kz, Aviata и Chocotravel, делая ваши путешествия и развлечения более доступными.",
     "sponsors.issai.description":
@@ -689,8 +689,8 @@ export const ui = {
     "sponsors.infoPartners": "Ақпараттық серіктестер",
     "sponsors.sponsor": "Демеуші",
     "sponsors.partner": "Серіктес",
-    "sponsors.choco.description":
-      "Қазақстанның ең ірі IT компаниясы және SuperApp. Choco экосистемасы Chocolife.me, Chocofood, Smart Restaurant, Ryadom және Idoctor сияқты жобаларды біріктіреді, күнделік өмір үшін қажетті цифрлық қызметтерді ұсынады. Осы хакатон үшін Choco екі нақты бизнес-кейс ұсынады, олар қатысушылар үшін негізгі сынақ болады.",
+    "sponsors.freedomAILabs.description":
+      "Freedom Holding Corp. компаниясының қазақстандық бөлімі, экожүйенің ішкі және клиенттік қызметтері бойынша жасанды интеллект технологияларын әзірлеу мен енгізуге арналған.",
     "sponsors.freedom.description":
       "Freedom холдингінің өмір салты қызметтерінің экосистемасы. Ол Ticketon, Sxodim, Kino.kz, Aviata және Chocotravel сияқты іс-әрекет пен билет сатау жобаларын біріктіреді, ваша саяхаттар мен ойын-күлік тәжірибелерін барынша қолжетімді ете түседі.",
     "sponsors.issai.description":

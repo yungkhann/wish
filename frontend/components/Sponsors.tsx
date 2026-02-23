@@ -1,4 +1,4 @@
-import chocoLogo from "../assets/choco.png";
+import freedomAILabsLogo from "../assets/freedom-ai-labs.svg";
 import datasciLogo from "../assets/datasci.png";
 import freedomLogo from "../assets/freedom.jpg";
 import issaiLogo from "../assets/issai.jpg";
@@ -9,9 +9,9 @@ const resolveSrc = (img: any) => (img?.src ?? img);
 
 const sponsorsData = [
   {
-    name: "Choco",
-    logo: resolveSrc(chocoLogo),
-    descriptionKey: "sponsors.choco.description",
+    name: "Freedom AI Labs",
+    logo: resolveSrc(freedomAILabsLogo),
+    descriptionKey: "sponsors.freedomAILabs.description",
   },
   {
     name: "Freedom",
