@@ -177,19 +177,106 @@ const TeamVideos = () => {
 
           {/* Footer / Links Section */}
           <div className="mt-8 flex w-full flex-col items-center gap-6">
-            <div className="w-full max-w-2xl text-center font-['Marcellus'] text-sm font-normal text-white sm:text-base md:text-lg">
+            <div className="w-full max-w-2xl text-start font-['Marcellus'] text-sm font-normal text-white sm:text-base md:text-lg">
               Useful Links:
             </div>
-            <div className="w-full max-w-2xl space-y-2 text-center font-['Marcellus'] text-xs font-normal text-purple-500 sm:text-sm md:text-base">
+            <div className="w-full max-w-2xl space-y-2 text-start font-['Marcellus'] text-xs font-normal text-white sm:text-sm md:text-base">
               <p>
                 <a
                   href="https://education.github.com/pack"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-purple-300"
+                  className="text-purple-500 underline hover:text-purple-300"
                 >
-                  GitHub Student Developer Pack - Get free access to GitHub
-                  Copilot Pro and other premium developer tools.
+                  GitHub Student Developer Pack
+                </a>
+                {" - "}Get free access to GitHub Copilot Pro and other premium
+                developer tools.
+              </p>
+              <p>
+                <a
+                  href="https://cursor.sh/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-purple-500 underline hover:text-purple-300"
+                >
+                  Cursor
+                </a>
+                {" - "}The most effective AI code editor for rapid development.
+              </p>
+              <p>
+                <a
+                  href="https://claude.ai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-purple-500 underline hover:text-purple-300"
+                >
+                  Claude
+                </a>
+                {" - "}Powerful AI agent for code generation and analysis.
+              </p>
+              <p>
+                <a
+                  href="https://huggingface.co/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-purple-500 underline hover:text-purple-300"
+                >
+                  Hugging Face
+                </a>
+                {" - "}The go-to platform for finding pretrained models (Text,
+                Image, Audio) to jumpstart your prototype.
+              </p>
+              <p>
+                <a
+                  href="https://docs.ultralytics.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-purple-500 underline hover:text-purple-300"
+                >
+                  YOLO by Ultralytics
+                </a>
+                {" - "}A powerful tool for quick object detection and computer
+                vision tasks.
+              </p>
+              <p>
+                <a
+                  href="https://fastapi.tiangolo.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-purple-500 underline hover:text-purple-300"
+                >
+                  FastAPI Documentation
+                </a>
+                {" - "}A fast and modern framework for building your project's
+                backend.
+              </p>
+              <p>
+                <a
+                  href="https://docs.github.com/en/get-started"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-purple-500 underline hover:text-purple-300"
+                >
+                  Git & GitHub Guide
+                </a>
+                {" - "}Master branching and version control to collaborate
+                without losing your code.
+              </p>
+            </div>
+
+            <div className="w-full max-w-2xl pt-2 text-start font-['Marcellus'] text-sm font-normal text-white sm:text-base md:text-lg">
+              Quick Access:
+            </div>
+            <div className="w-full max-w-2xl space-y-2 text-start font-['Marcellus'] text-xs font-normal text-white sm:text-sm md:text-base">
+              <p>
+                <a
+                  href="https://education.github.com/pack"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-purple-500 underline hover:text-purple-300"
+                >
+                  GitHub Student Developer Pack
                 </a>
               </p>
               <p>
@@ -197,10 +284,9 @@ const TeamVideos = () => {
                   href="https://cursor.sh/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-purple-300"
+                  className="text-purple-500 underline hover:text-purple-300"
                 >
-                  Cursor - The most effective AI code editor for rapid
-                  development.
+                  Cursor
                 </a>
               </p>
               <p>
@@ -208,9 +294,9 @@ const TeamVideos = () => {
                   href="https://claude.ai/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-purple-300"
+                  className="text-purple-500 underline hover:text-purple-300"
                 >
-                  Claude - Powerful AI agent for code generation and analysis.
+                  Claude
                 </a>
               </p>
               <p>
@@ -218,10 +304,9 @@ const TeamVideos = () => {
                   href="https://huggingface.co/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-purple-300"
+                  className="text-purple-500 underline hover:text-purple-300"
                 >
-                  Hugging Face - The go-to platform for finding pretrained
-                  models (Text, Image, Audio) to jumpstart your prototype.
+                  Hugging Face
                 </a>
               </p>
               <p>
@@ -229,10 +314,9 @@ const TeamVideos = () => {
                   href="https://docs.ultralytics.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-purple-300"
+                  className="text-purple-500 underline hover:text-purple-300"
                 >
-                  YOLO by Ultralytics - A powerful tool for quick object
-                  detection and computer vision tasks.
+                  YOLO by Ultralytics
                 </a>
               </p>
               <p>
@@ -240,10 +324,9 @@ const TeamVideos = () => {
                   href="https://fastapi.tiangolo.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-purple-300"
+                  className="text-purple-500 underline hover:text-purple-300"
                 >
-                  FastAPI Documentation - A fast and modern framework for
-                  building your project's backend.
+                  FastAPI Documentation
                 </a>
               </p>
               <p>
@@ -251,10 +334,9 @@ const TeamVideos = () => {
                   href="https://docs.github.com/en/get-started"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-purple-300"
+                  className="text-purple-500 underline hover:text-purple-300"
                 >
-                  Git & GitHub Guide - Master branching and version control to
-                  collaborate without losing your code.
+                  Git & GitHub Guide
                 </a>
               </p>
             </div>
