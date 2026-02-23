@@ -38,40 +38,13 @@ const t = useTranslations(lang);
       <h1
         class="welcome-title text-center font-['Cinzel_Decorative'] leading-[1.4] font-normal tracking-tight text-white"
       >
-        {
-          lang === "en" && (
-            <>
-              {t("welcome.line1")}
-              <Image
-                src={wishLogo}
-                alt="WISH"
-                class="wish-logo-inline inline-block align-middle drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]"
-              />
-              {t("welcome.line2")}
-            </>
-          )
-        }
-        {
-          lang === "ru" && (
-            <>
-              Исполни свою самую заветную{" "}
-              <span class="text-[#E394FF] drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]">
-                мечту
-              </span>
-            </>
-          )
-        }
-        {
-          lang === "kz" && (
-            <>
-              Ең үлкен{" "}
-              <span class="text-[#E394FF] drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]">
-                арманың
-              </span>{" "}
-              шындыққа айналсын
-            </>
-          )
-        }
+        {t("welcome.line1")}
+        <Image
+          src={wishLogo}
+          alt="WISH"
+          class="wish-logo-inline inline-block align-middle drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]"
+        />
+        {t("welcome.line2")}
       </h1>
 
       <Countdown lang={lang} client:only="react" />
@@ -164,7 +137,7 @@ const t = useTranslations(lang);
   }
 
   .wish-logo-inline {
-    height: 0.85em;
+    height: 1.1em;
     width: auto;
     vertical-align: middle;
     margin: 0 0.1em;
@@ -338,26 +311,12 @@ const t = useTranslations(lang);
       window.addEventListener(
         "resize",
         () => {
-          if (rafId) return;
-          rafId = requestAnimationFrame(() => {
-            rafId = 0;
-            updateBreakpointCache();
-            scrollableHeight = scene.offsetHeight - window.innerHeight;
-            setWingHeight();
-
-            // Reset base positions before measuring offsets so they are accurate across breakpoints
-            wingL.style.transform = `translate(${finalLx}, ${finalY})`;
-            wingR.style.transform = `translate(${finalRx}, ${finalY})`;
-            void wingL.offsetWidth; // force reflow
-
-            measureCenterOffsets(); // skips on mobile
-            const p = clamp(
-              window.scrollY / Math.max(1, scrollableHeight),
-              0,
-              1,
-            );
-            applyProgress(p);
-          });
+          updateBreakpointCache();
+          scrollableHeight = scene.offsetHeight - window.innerHeight;
+          setWingHeight();
+          measureCenterOffsets(); // skips on mobile
+          const p = clamp(window.scrollY / Math.max(1, scrollableHeight), 0, 1);
+          applyProgress(p);
         },
         { passive: true },
       );

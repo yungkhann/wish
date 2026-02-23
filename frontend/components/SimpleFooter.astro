@@ -1,8 +1,5 @@
 ---
-import { getLangFromCookie, useTranslations } from "../i18n/utils";
 
-const lang = getLangFromCookie(Astro.cookies);
-const t = useTranslations(lang);
 ---
 
 <footer class="footer">
@@ -12,7 +9,7 @@ const t = useTranslations(lang);
     <a href="https://www.youtube.com/@nuacmsc">Youtube</a>
     <a href="mailto:acm_w@nu.edu.kz">Email</a>
   </div>
-  <p class="copy">{t("faq.copyright")}</p>
+  <p class="copy">© 2026 NU ACM-W SC All rights reserved.</p>
 </footer>
 
 <style>
