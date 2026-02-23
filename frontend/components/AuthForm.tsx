@@ -5,7 +5,10 @@ import { authClient } from "../lib/auth-client";
 
 type Step = "email" | "otp";
 
-export default function AuthForm({ lang: langProp, redirectTo }: { lang?: Lang; redirectTo?: string } = {}) {
+export default function AuthForm({
+  lang: langProp,
+  redirectTo,
+}: { lang?: Lang; redirectTo?: string } = {}) {
   const lang = langProp ?? getLangFromCookieClient();
   const t = useTranslations(lang);
 
@@ -84,7 +87,7 @@ export default function AuthForm({ lang: langProp, redirectTo }: { lang?: Lang; 
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center px-4 text-white sm:px-6 lg:px-8">
+    <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 py-12 text-white sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px] sm:p-8">
         <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
           {step === "email" ? t("auth.signIn") : t("auth.enterCode")}
