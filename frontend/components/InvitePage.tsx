@@ -60,12 +60,7 @@ export default function InvitePage({ lang: langProp }: { lang?: Lang }) {
   }
 
   if (state === "unauthenticated") {
-    return (
-      <AuthForm
-        lang={lang}
-        redirectTo={window.location.pathname + window.location.hash}
-      />
-    );
+    return <AuthForm lang={lang} />;
   }
 
   return (

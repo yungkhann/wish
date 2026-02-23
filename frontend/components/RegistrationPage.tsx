@@ -52,9 +52,7 @@ export default function RegistrationPage({ lang: langProp }: { lang?: Lang }) {
   }
 
   if (state === "needs-registration") {
-    const redirectTo =
-      new URLSearchParams(window.location.search).get("redirect") ?? undefined;
-    return <RegistrationForm lang={lang} redirectTo={redirectTo} />;
+    return <RegistrationForm lang={lang} />;
   }
 
   // "registered" state — redirecting to /

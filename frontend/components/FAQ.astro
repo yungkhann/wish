@@ -40,6 +40,16 @@ const faqs = [
       ))
     }
   </div>
+
+  <footer>
+    <div class="links">
+      <a href="https://www.instagram.com/nuacmsc/">{t("faq.instagram")}</a>
+      <a href="https://t.me/nuacmsc">{t("faq.telegram")}</a>
+      <a href="https://www.youtube.com/@nuacmsc">{t("faq.youtube")}</a>
+      <a href="mailto:acm_w@nu.edu.kz">{t("faq.email")}</a>
+    </div>
+    <p class="copy">{t("faq.copyright")}</p>
+  </footer>
 </section>
 
 <style>
@@ -147,6 +157,11 @@ const faqs = [
     font-size: clamp(0.9rem, 1.1vw, 1.1rem);
     color: #e5e5e5;
     line-height: 1.7;
+  }
+
+  footer {
+    margin-top: 3rem;
+    text-align: center;
   }
 
   .links {
