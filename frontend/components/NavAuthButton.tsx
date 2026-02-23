@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { authClient } from "../lib/auth-client";
 
-type Status = "loading" | "guest" | "registered";
+type Status = "loading" | "guest" | "incomplete" | "registered";
 
 let cachedStatus: Status | null = null;
 
@@ -22,7 +22,7 @@ export default function NavAuthButton({ mobile }: { mobile?: boolean }) {
       })
       .then((data) => {
         if (!data) return;
-        const s = data.isRegistered ? "registered" : "guest";
+        const s = data.isRegistered ? "registered" : "incomplete";
         cachedStatus = s;
         setStatus(s);
       })
@@ -42,6 +42,7 @@ export default function NavAuthButton({ mobile }: { mobile?: boolean }) {
 
   const label = status === "registered" ? "Team Page" : "Register";
   const href = status === "registered" ? "/team" : "/registration";
+  const showLogout = status === "registered" || status === "incomplete";
 
   if (mobile) {
     return (
@@ -64,7 +65,7 @@ export default function NavAuthButton({ mobile }: { mobile?: boolean }) {
             {label}
           </span>
         </a>
-        {status === "registered" && (
+        {showLogout && (
           <button
             onClick={handleLogout}
             className="font-['Marcellus'] text-sm text-white/60 transition-colors duration-200 hover:text-red-400"
@@ -89,7 +90,7 @@ export default function NavAuthButton({ mobile }: { mobile?: boolean }) {
           </span>
         </div>
       </a>
-      {status === "registered" && (
+      {showLogout && (
         <button
           onClick={handleLogout}
           className="font-['Marcellus'] text-base text-white/60 transition-colors duration-200 hover:text-red-400"

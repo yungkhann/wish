@@ -272,25 +272,21 @@ export default function RegistrationForm({
               className={inputClasses}
             />
           </label>
-          {/* Conditional Parent Phone for School Students */}
-          {form.educationLevel === "school" && (
-            <label className={wrapperClasses}>
+          <label className={wrapperClasses}>
               <Phone className={iconClasses} aria-hidden="true" />
               <input
                 type="tel"
                 value={form.parentPhoneNumber}
                 onChange={(e) => update("parentPhoneNumber", e.target.value)}
-                required
-                placeholder="parent's phone number:"
+                placeholder="parent's phone number (optional):"
                 className={inputClasses}
               />
-            </label>
-          )}
+          </label>
 
           {/* CV Dropbox */}
           <div className="mt-2 flex w-full flex-col items-center gap-3 lg:mt-4 lg:gap-4">
             <div className="font-['Marcellus'] text-2xl font-normal text-white lg:text-4xl lg:leading-13.5">
-              CV Dropbox
+              CV Dropbox (optional)
             </div>
             <label
               htmlFor="cv-upload"
@@ -306,10 +302,14 @@ export default function RegistrationForm({
               <div className="font-['Marcellus'] text-5xl font-normal text-violet-400 [text-shadow:0px_0px_4px_rgb(119_22_208/1.00)] lg:text-6xl">
                 +
               </div>
-              {form.cv && (
+              {form.cv ? (
                 <div className="mt-4 text-center text-sm text-white">
                   {form.cv.name}
                 </div>
+              ) : (
+                <p className="mt-3 font-['Poppins'] text-sm text-white/50 lg:text-base">
+                  PDF only · max 2 MB
+                </p>
               )}
             </label>
           </div>
@@ -327,8 +327,8 @@ export default function RegistrationForm({
               htmlFor="age-confirm"
               className="font-['Marcellus'] text-sm leading-6 font-normal text-white lg:text-xl lg:leading-7"
             >
-              I confirm that I am above 16 years old &amp; agree with the code
-              of conduct
+              I confirm that I am above 16 years old &amp; agree with the  
+              <a href="https://docs.google.com/document/d/1g4uJt2xtxm_ucZ7WqDpeTI6fsTValmFCVQW_FBxLCQU/edit?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-violet-400 underline underline-offset-2 hover:text-violet-300"> code of conduct</a>.
             </label>
           </div>
 
