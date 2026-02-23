@@ -13,6 +13,8 @@ const faqs = [
   { question: t("faq.q6"), answer: t("faq.a6") },
   { question: t("faq.q7"), answer: t("faq.a7") },
   { question: t("faq.q8"), answer: t("faq.a8") },
+  { question: t("faq.q9"), answer: t("faq.a9") },
+  { question: t("faq.q10"), answer: t("faq.a10")},
 ];
 ---
 
@@ -31,7 +33,7 @@ const faqs = [
               <summary>{faq.question}</summary>
               <div class="answer">
                 <div class="answer-inner">
-                  <p>{faq.answer}</p>
+                  <p set:html={faq.answer} />
                 </div>
               </div>
             </details>
@@ -147,6 +149,12 @@ const faqs = [
     font-size: clamp(0.9rem, 1.1vw, 1.1rem);
     color: #e5e5e5;
     line-height: 1.7;
+  }
+
+  .answer-inner :global(a) {
+    color: #ad54ff;
+    text-decoration: underline;
+    font-weight: 500;
   }
 
   .links {
