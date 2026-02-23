@@ -252,7 +252,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
   }
 
   if (state === "unauthenticated") {
-    return <AuthForm lang={lang} />;
+    return <AuthForm lang={lang} redirectTo="/team" />;
   }
 
   if (state === "no-team") {
@@ -382,14 +382,10 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
               <table className="w-full table-fixed border-collapse">
                 <tbody>
                   {(() => {
-                    const allMembers = [
-                      ...owners,
-                      ...regularMembers,
-                      ...requests,
-                    ];
+                    const confirmedMembers = [...owners, ...regularMembers];
                     const rows = Array.from(
                       { length: 4 },
-                      (_, i) => allMembers[i] ?? null,
+                      (_, i) => confirmedMembers[i] ?? null,
                     );
                     return rows.map((m, i) =>
                       m ? (
@@ -402,6 +398,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
                           onAccept={(id) => handleInviteAction(id, "accepted")}
                           onReject={(id) => handleInviteAction(id, "rejected")}
                           disabled={actionLoading}
+                          t={t}
                         />
                       ) : (
                         <tr key={`empty-${i}`}>
@@ -415,6 +412,32 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
                 </tbody>
               </table>
             </div>
+
+            {/* Pending Invites */}
+            {isOwner && requests.length > 0 && (
+              <div>
+                <h2 className="mb-4 text-center font-['Cinzel'] text-xl tracking-[3px] text-zinc-400">
+                  {t("team.pendingTitle")}
+                </h2>
+                <table className="w-full table-fixed border-collapse">
+                  <tbody>
+                    {requests.map((m) => (
+                      <MemberRow
+                        key={m.inviteId ?? m.userId}
+                        member={m}
+                        isOwner={!!isOwner}
+                        currentUserId={user?.id ?? ""}
+                        onRemove={handleRemoveMember}
+                        onAccept={(id) => handleInviteAction(id, "accepted")}
+                        onReject={(id) => handleInviteAction(id, "rejected")}
+                        disabled={actionLoading}
+                        t={t}
+                      />
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         </div>
 
@@ -465,6 +488,7 @@ function MemberRow({
   onAccept,
   onReject,
   disabled,
+  t,
 }: {
   member: Member;
   isOwner: boolean;
@@ -473,6 +497,7 @@ function MemberRow({
   onAccept: (inviteId: string) => void;
   onReject: (inviteId: string) => void;
   disabled: boolean;
+  t: ReturnType<typeof useTranslations>;
 }) {
   return (
     <tr>
@@ -491,16 +516,16 @@ function MemberRow({
               <button
                 onClick={() => onAccept(member.inviteId!)}
                 disabled={disabled}
-                className="flex h-[45px] w-[45px] items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-green-500/40 bg-black/20 font-['Marcellus'] text-xl text-green-500 shadow-[0_0_4.5px_3.375px_rgba(0,255,0,0.20),inset_0_0_4.5px_4.5px_rgba(0,255,0,0.25)] transition-opacity disabled:opacity-50"
+                className="flex h-[45px] w-[45px] items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-green-500/40 bg-black/20 font-['Marcellus'] text-sm text-green-500 shadow-[0_0_4.5px_3.375px_rgba(0,255,0,0.20),inset_0_0_4.5px_4.5px_rgba(0,255,0,0.25)] transition-opacity disabled:opacity-50"
               >
-                ✓
+                {t("team.accept")}
               </button>
               <button
                 onClick={() => onReject(member.inviteId!)}
                 disabled={disabled}
-                className="flex h-[45px] w-[45px] items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Cinzel'] text-lg text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
+                className="flex h-[45px] w-[45px] items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Marcellus'] text-sm text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
               >
-                x
+                {t("team.reject")}
               </button>
             </>
           )}

@@ -11,6 +11,7 @@ import Timeline from "../components/Timeline";
 import Welcome from "../components/Welcome.astro";
 import { getLangFromCookie } from "../i18n/utils";
 import Layout from "../layouts/Layout.astro";
+import SimpleFooter from "../components/SimpleFooter.astro";
 
 const lang = getLangFromCookie(Astro.cookies);
 ---
@@ -27,4 +28,5 @@ const lang = getLangFromCookie(Astro.cookies);
   <Agenda />
   <Gallery lang={lang} client:load />
   <FAQ />
+  <SimpleFooter />
 </Layout>
