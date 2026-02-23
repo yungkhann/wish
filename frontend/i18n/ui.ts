@@ -11,10 +11,10 @@ export const defaultLang: Lang = "en";
 export const ui = {
   en: {
     // ── Nav ──
-    "nav.about": "about",
-    "nav.benefits": "benefits",
-    "nav.schedule": "schedule",
-    "nav.sponsors": "sponsors",
+    "nav.about": "About",
+    "nav.benefits": "Benefits",
+    "nav.schedule": "Schedule",
+    "nav.sponsors": "Partners",
     "nav.faq": "FAQs",
     "nav.register": "Register",
     "nav.teamPage": "Team Page",
@@ -802,8 +802,7 @@ export const ui = {
     "reg.cvHint": "Тек PDF · макс 2 МБ",
     "reg.ageConfirm":
       "Менің жасым 16-дан асқанын және мінез-құлық кодексімен келісетінімді растаймын",
-    "reg.ageConfirmPre":
-      "Менің жасым 16-дан асқанын және мен келісемін",
+    "reg.ageConfirmPre": "Менің жасым 16-дан асқанын және мен келісемін",
     "reg.codeOfConduct": "мінез-құлық кодексімен",
     "reg.register": "Тіркелу",
     "reg.pdfOnly": "Тек PDF файлдар рұқсат етіледі",
