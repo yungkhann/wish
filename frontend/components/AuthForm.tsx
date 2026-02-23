@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Lang } from "../i18n/ui";
 import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 import { authClient } from "../lib/auth-client";
 
 type Step = "email" | "otp";
 
-export default function AuthForm({ lang: langProp, redirectTo }: { lang?: Lang; redirectTo?: string } = {}) {
+export default function AuthForm({
+  lang: langProp,
+  redirectTo,
+}: { lang?: Lang; redirectTo?: string } = {}) {
   const lang = langProp ?? getLangFromCookieClient();
   const t = useTranslations(lang);
 
@@ -14,6 +17,14 @@ export default function AuthForm({ lang: langProp, redirectTo }: { lang?: Lang; 
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [resendCooldown, setResendCooldown] = useState(0);
+  const [resendSuccess, setResendSuccess] = useState(false);
+
+  useEffect(() => {
+    if (resendCooldown <= 0) return;
+    const id = setTimeout(() => setResendCooldown((c) => c - 1), 1000);
+    return () => clearTimeout(id);
+  }, [resendCooldown]);
 
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,6 +44,7 @@ export default function AuthForm({ lang: langProp, redirectTo }: { lang?: Lang; 
       }
 
       setStep("otp");
+      setResendCooldown(60);
     } catch {
       setError(t("auth.unexpectedError"));
     } finally {
@@ -83,17 +95,50 @@ export default function AuthForm({ lang: langProp, redirectTo }: { lang?: Lang; 
     }
   };
 
+  const handleResendOtp = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const { error: resendError } =
+        await authClient.emailOtp.sendVerificationOtp({
+          email,
+          type: "sign-in",
+        });
+
+      if (resendError) {
+        setError(resendError.message ?? t("auth.failedSend"));
+      } else {
+        setResendSuccess(true);
+        setResendCooldown(60);
+      }
+    } catch {
+      setError(t("auth.unexpectedError"));
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center px-4 text-white sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px] sm:p-8">
+    <div className="flex min-h-screen flex-col items-center justify-center text-white">
+      <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
         <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
           {step === "email" ? t("auth.signIn") : t("auth.enterCode")}
         </h2>
 
         {step === "otp" && (
           <p className="text-center text-sm text-zinc-400">
-            {t("auth.codeSent")}{" "}
-            <span className="font-medium text-white">{email}</span>
+            {resendSuccess ? (
+              <>
+                {t("auth.codeResent")}{" "}
+                <span className="font-medium text-white">{email}</span>
+              </>
+            ) : (
+              <>
+                {t("auth.codeSent")}{" "}
+                <span className="font-medium text-white">{email}</span>
+              </>
+            )}
           </p>
         )}
 
@@ -159,17 +204,33 @@ export default function AuthForm({ lang: langProp, redirectTo }: { lang?: Lang; 
               </button>
             </div>
 
-            <button
-              type="button"
-              onClick={() => {
-                setStep("email");
-                setOtp("");
-                setError(null);
-              }}
-              className="w-full text-center text-sm text-zinc-500 hover:text-white"
-            >
-              {t("auth.differentEmail")}
-            </button>
+            <div className="flex items-center justify-center gap-4 text-sm text-zinc-500">
+              <button
+                type="button"
+                onClick={handleResendOtp}
+                disabled={loading || resendCooldown > 0}
+                className="hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {resendCooldown > 0
+                  ? `${t("auth.sendAgain")} (${resendCooldown}s)`
+                  : t("auth.sendAgain")}
+              </button>
+              <span aria-hidden="true">|</span>
+              <button
+                type="button"
+                onClick={() => {
+                  setStep("email");
+                  setOtp("");
+                  setError(null);
+                  setResendCooldown(0);
+                  setResendSuccess(false);
+                }}
+                disabled={loading}
+                className="hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {t("auth.differentEmail")}
+              </button>
+            </div>
           </form>
         )}
       </div>
