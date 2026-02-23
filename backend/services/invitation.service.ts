@@ -1,7 +1,7 @@
 import type { D1Database } from "@cloudflare/workers-types";
 import { and, eq } from "drizzle-orm";
 import { getDb } from "../db/db";
-import { invite, user } from "../db/schema";
+import { invite, team, user } from "../db/schema";
 import { AppError } from "../exception/AppError";
 import {
   getTeamByCreatorId,
@@ -33,27 +33,34 @@ export async function createInvitation(
     throw new AppError("The provided invite code does not exist");
   }
 
+  // Prevent duplicate pending invite for the same team
+  const existing = await db
+    .select({ id: invite.id })
+    .from(invite)
+    .where(
+      and(
+        eq(invite.userId, userId),
+        eq(invite.teamId, t.id),
+        eq(invite.status, "pending"),
+      ),
+    )
+    .get();
+
+  if (existing) {
+    throw new AppError("You already have a pending request for this team");
+  }
+
   const memberCount = await getTeamMemberCount(binding, t.id);
   if (memberCount >= MAX_TEAM_SIZE) {
     throw new AppError("This team is already full");
   }
 
-  const inviteId = crypto.randomUUID();
-
-  await db.batch([
-    db.update(user).set({ teamId: t.id }).where(eq(user.id, userId)),
-    db.insert(invite).values({
-      id: inviteId,
-      teamId: t.id,
-      userId: userId,
-      status: "accepted",
-    }),
-    // Reject all other pending invites for this user
-    db
-      .update(invite)
-      .set({ status: "rejected" })
-      .where(and(eq(invite.userId, userId), eq(invite.status, "pending"))),
-  ]);
+  await db.insert(invite).values({
+    id: crypto.randomUUID(),
+    teamId: t.id,
+    userId: userId,
+    status: "pending",
+  });
 }
 
 export async function rejectAllPendingInvites(
@@ -165,3 +172,16 @@ async function getInvite(binding: D1Database, invitationId: string) {
     .get();
 }
 
+export async function getMyPendingInvites(binding: D1Database, userId: string) {
+  const db = getDb(binding);
+
+  return await db
+    .select({
+      inviteId: invite.id,
+      teamName: team.name,
+      status: invite.status,
+    })
+    .from(invite)
+    .innerJoin(team, eq(invite.teamId, team.id))
+    .where(and(eq(invite.userId, userId), eq(invite.status, "pending")));
+}
