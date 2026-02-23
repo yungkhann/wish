@@ -1,13 +1,10 @@
 ---
 import "../styles/global.css";
-import { getLangFromCookie } from "../i18n/utils";
-
-const lang = getLangFromCookie(Astro.cookies);
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang === "kz" ? "kk" : lang}>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />

@@ -11,19 +11,14 @@ import img5 from "../assets/gallery/gallery-img5.jpg";
 import img6 from "../assets/gallery/gallery-img6.png";
 import img7 from "../assets/gallery/gallery-img7.png";
 import img8 from "../assets/gallery/gallery-img8.png";
-import type { Lang } from "../i18n/ui";
-import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 
 const images = [img1, img2, img3, img4, img5, img6, img7, img8];
 
-const Gallery = ({ lang: langProp }: { lang?: Lang }) => {
-  const lang = langProp ?? getLangFromCookieClient();
-  const t = useTranslations(lang);
-
+const Gallery = () => {
   return (
     <div className="flex w-full flex-col items-center px-4 py-16 md:px-12">
       <h2 className="mb-10 text-center font-['Cinzel_Decorative'] text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
-        {t("gallery.title")}
+        Gallery
       </h2>
       <Swiper
         pagination={{ dynamicBullets: true }}

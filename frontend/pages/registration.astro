@@ -1,14 +1,10 @@
 ---
 import Header from "../components/Header.astro";
 import RegistrationPage from "../components/RegistrationPage";
-import { getLangFromCookie, useTranslations } from "../i18n/utils";
 import Layout from "../layouts/Layout.astro";
-
-const lang = getLangFromCookie(Astro.cookies);
-const t = useTranslations(lang);
 ---
 
-<Layout title={t("page.registration")}>
+<Layout title="Registration">
   <Header />
-  <RegistrationPage lang={lang} client:load />
+  <RegistrationPage client:load />
 </Layout>

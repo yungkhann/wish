@@ -4,29 +4,25 @@ import calendar from "../assets/calendar.svg";
 import fairy from "../assets/fairy.svg";
 import location from "../assets/location.svg";
 import who from "../assets/who.svg";
-import { getLangFromCookie, useTranslations } from "../i18n/utils";
-
-const lang = getLangFromCookie(Astro.cookies);
-const t = useTranslations(lang);
 
 const eventDetails = [
   {
     icon: calendar,
     alt: "Calendar",
-    title: t("about.when"),
-    lines: [t("about.whenDate")],
+    title: "When?",
+    lines: ["March 14-15, 2026"],
   },
   {
     icon: location,
     alt: "Location",
-    title: t("about.where"),
-    lines: [t("about.whereLine1"), t("about.whereLine2")],
+    title: "Where?",
+    lines: ["Nazarbayev University", "Astana, Kazakhstan"],
   },
   {
     icon: who,
     alt: "Who",
-    title: t("about.who"),
-    lines: [t("about.whoLine")],
+    title: "Who?",
+    lines: ["Everyone older than 16"],
   },
 ];
 ---
@@ -42,15 +38,17 @@ const eventDetails = [
   >
     <!-- Text column -->
     <div class="w-full md:w-3/5 lg:w-1/2">
-      <h2 class="sr-only">{t("about.srTitle")}</h2>
+      <h2 class="sr-only">About WISH</h2>
       <p
         class="about-paragraph text-justify font-['Marcellus'] leading-snug tracking-wide"
       >
-        <span class="text-[#B743FF]">{t("about.p1_highlight")}</span>{
-          t("about.p1_text1")
-        }<span class="text-[#B743FF]">{t("about.p1_highlight2")}</span>{
-          t("about.p1_text2")
-        }<span class="text-[#B743FF]">{t("about.p1_highlight3")}</span>
+        <span class="text-[#B743FF]">Women in STEM Hackathon</span> is a 24-hour hackathon
+        for girls and women, where participants form teams of <span
+          class="text-[#B743FF]">2–4 people</span
+        > and collaboratively work on real-world challenges provided by sponsors in
+        the fields of data analytics, machine learning, and artificial intelligence.
+        Participation is open to high school students, college students, and university
+        students <span class="text-[#B743FF]">aged 16 and above.</span>
       </p>
     </div>
 

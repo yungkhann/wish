@@ -1,15 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import stongs from "../assets/stongs.svg";
-import { getLangFromCookie, useTranslations } from "../i18n/utils";
-
-const lang = getLangFromCookie(Astro.cookies);
-const t = useTranslations(lang);
 
 const statsItems = [
-  { number: "1900+", label: t("pastYears.participants") },
-  { number: "750+", label: t("pastYears.teams") },
-  { number: "10+", label: t("pastYears.countries") },
+  { number: "1900+", label: "participants" },
+  { number: "750+", label: "teams" },
+  { number: "10+", label: "countries" },
 ];
 ---
 
@@ -17,7 +13,7 @@ const statsItems = [
   <h1
     class="mb-8 text-center text-4xl font-bold sm:text-5xl md:mb-12 md:text-6xl"
   >
-    {t("pastYears.title")}
+    Over the past years
   </h1>
 
   <div class="flex w-full flex-col gap-4 md:grid md:grid-cols-3 lg:gap-6">

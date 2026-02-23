@@ -9,10 +9,7 @@ import PrizePool from "../components/PrizePool.astro";
 import Sponsors from "../components/Sponsors";
 import Timeline from "../components/Timeline";
 import Welcome from "../components/Welcome.astro";
-import { getLangFromCookie } from "../i18n/utils";
 import Layout from "../layouts/Layout.astro";
-
-const lang = getLangFromCookie(Astro.cookies);
 ---
 
 <Layout title="WISH">
@@ -20,11 +17,11 @@ const lang = getLangFromCookie(Astro.cookies);
   <Welcome />
   <About />
   <PrizePool />
-  <Benefits lang={lang} client:load />
+  <Benefits client:load />
 
-  <Timeline lang={lang} client:load />
-  <Sponsors />
+  <Timeline client:load />
+  <Sponsors client:load />
   <Agenda />
-  <Gallery lang={lang} client:load />
+  <Gallery client:load />
   <FAQ />
 </Layout>

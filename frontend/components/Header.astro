@@ -1,22 +1,17 @@
 ---
 import { Image } from "astro:assets";
 import NavAuthButton from "./NavAuthButton";
-import LanguageSwitcher from "./LanguageSwitcher";
 import wishLogo from "../assets/WISHLOGO.svg";
-import { getLangFromCookie, useTranslations } from "../i18n/utils";
-
-const lang = getLangFromCookie(Astro.cookies);
-const t = useTranslations(lang);
 
 const isHome = Astro.url.pathname === "/";
 const prefix = isHome ? "" : "/";
 
 const links = [
-  { href: `${prefix}#about`, label: t("nav.about") },
-  { href: `${prefix}#benefits`, label: t("nav.benefits") },
-  { href: `${prefix}#schedule`, label: t("nav.schedule") },
-  { href: `${prefix}#sponsors`, label: t("nav.sponsors") },
-  { href: `${prefix}#faq`, label: t("nav.faq") },
+  { href: `${prefix}#about`, label: "about" },
+  { href: `${prefix}#benefits`, label: "benefits" },
+  { href: `${prefix}#schedule`, label: "schedule" },
+  { href: `${prefix}#sponsors`, label: "sponsors" },
+  { href: `${prefix}#faq`, label: "FAQs" },
 ];
 ---
 
@@ -47,8 +42,7 @@ const links = [
           ))
         }
 
-        <NavAuthButton lang={lang} client:load />
-        <LanguageSwitcher client:load />
+        <NavAuthButton client:load />
       </div>
 
       <button
@@ -96,10 +90,7 @@ const links = [
         }
 
         <div class="flex justify-center py-3" style="width: auto">
-          <NavAuthButton mobile lang={lang} client:load />
-        </div>
-        <div class="flex justify-center py-3" style="width: auto">
-          <LanguageSwitcher client:load />
+          <NavAuthButton mobile client:load />
         </div>
       </div>
     </div>

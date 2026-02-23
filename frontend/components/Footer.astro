@@ -1,8 +1,4 @@
 ---
-import { getLangFromCookie, useTranslations } from "../i18n/utils";
-
-const lang = getLangFromCookie(Astro.cookies);
-const t = useTranslations(lang);
 const year = new Date().getFullYear();
 ---
 
@@ -15,8 +11,7 @@ const year = new Date().getFullYear();
         WISH
       </h2>
       <p class="font-['Marcellus'] text-purple-200/60">
-        &copy; {year}
-        {t("footer.copyright")}
+        &copy; {year} Women in STEM Hackathon. All rights reserved.
       </p>
     </div>
   </div>

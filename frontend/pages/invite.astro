@@ -1,16 +1,12 @@
 ---
 import Header from "../components/Header.astro";
 import InvitePage from "../components/InvitePage";
-import { getLangFromCookie, useTranslations } from "../i18n/utils";
 import Layout from "../layouts/Layout.astro";
-
-const lang = getLangFromCookie(Astro.cookies);
-const t = useTranslations(lang);
 ---
 
-<Layout title={t("page.invite")}>
+<Layout title="Team Invite">
   <Header />
   <div class="pt-28">
-    <InvitePage lang={lang} client:load />
+    <InvitePage client:load />
   </div>
 </Layout>

@@ -1,19 +1,14 @@
 import { useState } from "react";
 import butterflyBg from "../assets/butterfly-register.png";
-import type { Lang } from "../i18n/ui";
-import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 
-export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
-  const lang = langProp ?? getLangFromCookieClient();
-  const t = useTranslations(lang);
+const EDUCATION_LEVELS = [
+  { value: "school", label: "School Student (16+ age)" },
+  { value: "college", label: "College" },
+  { value: "bachelor", label: "Bachelor's" },
+  { value: "master", label: "Master's" },
+];
 
-  const EDUCATION_LEVELS = [
-    { value: "school", label: t("reg.school") },
-    { value: "college", label: t("reg.college") },
-    { value: "bachelor", label: t("reg.bachelor") },
-    { value: "master", label: t("reg.master") },
-  ];
-
+export default function RegistrationForm() {
   const [form, setForm] = useState({
     name: "",
     surname: "",
@@ -38,13 +33,13 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
     if (!file) return;
 
     if (file.type !== "application/pdf") {
-      setError(t("reg.pdfOnly"));
+      setError("Only PDF files are allowed");
       update("cv", null);
       e.target.value = "";
       return;
     }
     if (file.size > 2 * 1024 * 1024) {
-      setError(t("reg.cvSizeLimit"));
+      setError("CV file must be under 2 MB");
       update("cv", null);
       e.target.value = "";
       return;
@@ -60,7 +55,9 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
     setError(null);
 
     if (!form.ageConfirmed) {
-      setError(t("reg.pleaseConfirmAge"));
+      setError(
+        "Please confirm that you are above 16 years old and agree with the code of conduct",
+      );
       setLoading(false);
       return;
     }
@@ -84,7 +81,8 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
       const data = await res.json();
 
       if (!res.ok) {
-        const msg = data.details?.[0]?.message ?? data.error ?? t("reg.failed");
+        const msg =
+          data.details?.[0]?.message ?? data.error ?? "Registration failed";
         setError(msg);
         return;
       }
@@ -96,14 +94,14 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
 
         if (!cvRes.ok) {
           const cvData = await cvRes.json();
-          setError(cvData.error ?? t("reg.cvFailed"));
+          setError(cvData.error ?? "CV upload failed");
           return;
         }
       }
 
       window.location.href = "/team";
     } catch {
-      setError(t("auth.unexpectedError"));
+      setError("An unexpected error occurred.");
     } finally {
       setLoading(false);
     }
@@ -138,7 +136,7 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
             value={form.name}
             onChange={(e) => update("name", e.target.value)}
             required
-            placeholder={t("reg.firstName")}
+            placeholder="first name:"
             className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           />
 
@@ -147,7 +145,7 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
             value={form.surname}
             onChange={(e) => update("surname", e.target.value)}
             required
-            placeholder={t("reg.lastName")}
+            placeholder="last name:"
             className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           />
 
@@ -156,7 +154,7 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
             value={form.placeOfStudy}
             onChange={(e) => update("placeOfStudy", e.target.value)}
             required
-            placeholder={t("reg.placeOfStudy")}
+            placeholder="place of study:"
             className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           />
 
@@ -165,7 +163,7 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
             value={form.city}
             onChange={(e) => update("city", e.target.value)}
             required
-            placeholder={t("reg.city")}
+            placeholder="city:"
             className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           />
 
@@ -176,7 +174,7 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
             className="h-16 w-full appearance-none rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           >
             <option value="" disabled className="text-white/70">
-              {t("reg.educationLevel")}
+              education level:
             </option>
             {EDUCATION_LEVELS.map((lvl) => (
               <option key={lvl.value} value={lvl.value} className="bg-black">
@@ -193,7 +191,7 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
             value={form.iin}
             onChange={(e) => update("iin", e.target.value)}
             required
-            placeholder={t("reg.iin")}
+            placeholder="IIN:"
             className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           />
 
@@ -202,7 +200,7 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
             value={form.phoneNumber}
             onChange={(e) => update("phoneNumber", e.target.value)}
             required
-            placeholder={t("reg.phone")}
+            placeholder="phone number:"
             className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           />
 
@@ -213,7 +211,7 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
               value={form.parentPhoneNumber}
               onChange={(e) => update("parentPhoneNumber", e.target.value)}
               required
-              placeholder={t("reg.parentPhone")}
+              placeholder="parent's phone number:"
               className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
             />
           )}
@@ -221,7 +219,7 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
           {/* CV Dropbox */}
           <div className="mt-2 flex w-full flex-col items-center gap-3 lg:mt-4 lg:gap-4">
             <div className="font-['Marcellus'] text-2xl font-normal text-white lg:text-4xl lg:leading-[54px]">
-              {t("reg.cvDropbox")}
+              CV Dropbox
             </div>
             <label
               htmlFor="cv-upload"
@@ -258,7 +256,8 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
               htmlFor="age-confirm"
               className="font-['Marcellus'] text-sm leading-6 font-normal text-white lg:text-xl lg:leading-7"
             >
-              {t("reg.ageConfirm")}
+              I confirm that I am above 16 years old &amp; agree with the code
+              of conduct
             </label>
           </div>
 
@@ -268,7 +267,7 @@ export default function RegistrationForm({ lang: langProp }: { lang?: Lang }) {
               disabled={loading}
               className="form-submit-inner flex h-20 w-full items-center justify-center font-['Cinzel'] text-4xl font-normal text-white lowercase transition-colors [text-shadow:_0px_0px_5px_rgb(255_255_255_/_1.00)] hover:bg-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 lg:h-28 lg:text-6xl"
             >
-              {loading ? "..." : t("reg.register")}
+              {loading ? "..." : "Register"}
             </button>
           </div>
         </form>

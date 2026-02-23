@@ -1,10 +1,4 @@
-import type { Lang } from "../i18n/ui";
-import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
-
-const Benefits = ({ lang: langProp }: { lang?: Lang }) => {
-  const lang = langProp ?? getLangFromCookieClient();
-  const t = useTranslations(lang);
-
+const Benefits = () => {
   return (
     <div
       id="benefits"
@@ -20,7 +14,7 @@ const Benefits = ({ lang: langProp }: { lang?: Lang }) => {
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6">
         {/* Title */}
         <h2 className="mb-10 text-center font-['Cinzel_Decorative'] text-4xl font-bold text-white sm:mb-16 sm:text-5xl lg:text-6xl">
-          {t("benefits.title")}
+          Benefits
         </h2>
 
         {/* Benefits Grid */}
@@ -28,28 +22,28 @@ const Benefits = ({ lang: langProp }: { lang?: Lang }) => {
           {/* Benefit 1 */}
           <div className="flex h-auto min-h-[130px] items-center justify-center rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tl-[60px] sm:rounded-br-[60px] sm:px-12 sm:py-0 lg:h-52">
             <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[20px] lg:text-[23px]">
-              {t("benefits.card1")}
+              Hands-on experience in ML, AI, and data analytics
             </p>
           </div>
 
           {/* Benefit 2 */}
           <div className="flex h-auto min-h-[130px] items-center justify-center rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tl-[60px] sm:rounded-br-[60px] sm:px-12 sm:py-0 lg:h-52">
             <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[20px] lg:text-[23px]">
-              {t("benefits.card2")}
+              New technical skills and real-world teamwork experience
             </p>
           </div>
 
           {/* Benefit 3 */}
           <div className="flex h-auto min-h-[130px] items-center justify-center rounded-tl-lg rounded-tr-[40px] rounded-br-lg rounded-bl-[40px] bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tr-[60px] sm:rounded-bl-[60px] sm:px-12 sm:py-0 lg:h-52">
             <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[20px] lg:text-[23px]">
-              {t("benefits.card3")}
+              Cash prizes and merchandise
             </p>
           </div>
 
           {/* Benefit 4 */}
           <div className="flex h-auto min-h-[130px] items-center justify-center rounded-tl-lg rounded-tr-[40px] rounded-br-lg rounded-bl-[40px] bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-4 py-6 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-44 sm:rounded-tr-[60px] sm:rounded-bl-[60px] sm:px-12 sm:py-0 lg:h-52">
             <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:_0px_4px_15px_rgb(255_255_255_/_1.00)] sm:text-[20px] lg:text-[23px]">
-              {t("benefits.card4")}
+              Coffee breaks, a photobooth, and engaging activities
             </p>
           </div>
         </div>

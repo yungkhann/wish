@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import type { Lang } from "../i18n/ui";
-import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 import AuthForm from "./AuthForm";
 
 type State = "loading" | "unauthenticated" | "no-team" | "has-team";
@@ -19,9 +17,7 @@ type UserData = {
   isRegistered: boolean;
 };
 
-export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
-  const lang = langProp ?? getLangFromCookieClient();
-  const t = useTranslations(lang);
+export default function TeamPage() {
   const [state, setState] = useState<State>("loading");
   const [user, setUser] = useState<UserData | null>(null);
   const [teamName, setTeamName] = useState("");
@@ -30,7 +26,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
   const [members, setMembers] = useState<Member[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [actionLoading, setActionLoading] = useState(false);
-  const [copyText, setCopyText] = useState(t("team.copyInvite"));
+  const [copyText, setCopyText] = useState("COPY INVITE LINK");
 
   const fetchUser = async () => {
     const res = await fetch("/api/user/me");
@@ -92,13 +88,13 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error ?? t("team.failedCreate"));
+        setError(data.error ?? "Failed to create team");
         return;
       }
       setNewTeamName("");
       window.location.reload();
     } catch {
-      setError(t("auth.unexpectedError"));
+      setError("An unexpected error occurred.");
     } finally {
       setActionLoading(false);
     }
@@ -112,7 +108,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       // we claim clipboard access synchronously while the fetch resolves.
       const textPromise = fetch("/api/team/link").then(async (res) => {
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error ?? t("team.failedInviteLink"));
+        if (!res.ok) throw new Error(data.error ?? "Failed to get invite link");
         return data.link as string;
       });
 
@@ -130,10 +126,11 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
         await navigator.clipboard.writeText(text);
       }
 
-      setCopyText(t("team.copied"));
-      setTimeout(() => setCopyText(t("team.copyInvite")), 2000);
+      setCopyText("COPIED!");
+      setTimeout(() => setCopyText("COPY INVITE LINK"), 2000);
     } catch (e) {
-      const msg = e instanceof Error ? e.message : t("team.failedCopy");
+      const msg =
+        e instanceof Error ? e.message : "Failed to copy invite link.";
       setError(msg);
     }
   };
@@ -150,12 +147,12 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       });
       if (!res.ok) {
         const data = await res.json();
-        setError(data.error ?? t("team.actionFailed"));
+        setError(data.error ?? "Action failed");
         return;
       }
       await fetchTeamData();
     } catch {
-      setError(t("auth.unexpectedError"));
+      setError("An unexpected error occurred.");
     } finally {
       setActionLoading(false);
     }
@@ -170,12 +167,12 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       });
       if (!res.ok) {
         const data = await res.json();
-        setError(data.error ?? t("team.failedRemove"));
+        setError(data.error ?? "Failed to remove member");
         return;
       }
       await fetchTeamData();
     } catch {
-      setError(t("auth.unexpectedError"));
+      setError("An unexpected error occurred.");
     } finally {
       setActionLoading(false);
     }
@@ -192,13 +189,13 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error ?? t("team.failedRename"));
+        setError(data.error ?? "Failed to rename team");
         return;
       }
       setTeamName(editingName);
-      setError(t("team.renamedSuccess"));
+      setError("Team renamed successfully!");
     } catch {
-      setError(t("auth.unexpectedError"));
+      setError("An unexpected error occurred.");
     } finally {
       setActionLoading(false);
     }
@@ -211,12 +208,12 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       const res = await fetch("/api/team/leave", { method: "POST" });
       if (!res.ok) {
         const data = await res.json();
-        setError(data.error ?? t("team.failedLeave"));
+        setError(data.error ?? "Failed to leave team");
         return;
       }
       window.location.reload();
     } catch {
-      setError(t("auth.unexpectedError"));
+      setError("An unexpected error occurred.");
     } finally {
       setActionLoading(false);
     }
@@ -229,12 +226,12 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       const res = await fetch("/api/team", { method: "DELETE" });
       if (!res.ok) {
         const data = await res.json();
-        setError(data.error ?? t("team.failedDissolve"));
+        setError(data.error ?? "Failed to dissolve team");
         return;
       }
       window.location.reload();
     } catch {
-      setError(t("auth.unexpectedError"));
+      setError("An unexpected error occurred.");
     } finally {
       setActionLoading(false);
     }
@@ -246,13 +243,13 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
   if (state === "loading") {
     return (
       <div className="flex min-h-[50vh] items-center justify-center text-zinc-500">
-        {t("team.loading")}
+        Loading...
       </div>
     );
   }
 
   if (state === "unauthenticated") {
-    return <AuthForm lang={lang} />;
+    return <AuthForm />;
   }
 
   if (state === "no-team") {
@@ -267,16 +264,17 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
         <div className="flex justify-center">
           <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
             <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
-              {t("team.createTeam")}
+              CREATE TEAM
             </h2>
             <p className="text-center text-sm text-zinc-400">
-              {t("team.noTeamYet")}
+              You are not part of any team yet. Create one or join via an invite
+              link.
             </p>
 
             <form onSubmit={handleCreateTeam} className="space-y-4">
               <div>
                 <label className="mb-1 block text-sm font-medium text-zinc-400">
-                  {t("team.teamName")}
+                  Team Name
                 </label>
                 <input
                   type="text"
@@ -284,7 +282,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
                   onChange={(e) => setNewTeamName(e.target.value)}
                   required
                   maxLength={100}
-                  placeholder={t("team.enterTeamName")}
+                  placeholder="Enter team name"
                   className="w-full rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-6 py-3 text-white shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] outline-none sm:rounded-tl-[60px] sm:rounded-br-[60px]"
                 />
               </div>
@@ -294,7 +292,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
                   disabled={actionLoading}
                   className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-8 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105 disabled:opacity-50"
                 >
-                  {actionLoading ? t("team.creating") : t("team.createTeamBtn")}
+                  {actionLoading ? "Creating..." : "CREATE TEAM"}
                 </button>
               </div>
             </form>
@@ -324,14 +322,14 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
           {/* Instructions */}
           <div className="rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
             <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
-              {t("team.instructions")}
+              INSTRUCTIONS
             </h2>
             <ul className="space-y-6 font-['Marcellus'] text-[22px] text-zinc-300">
-              <li>{t("team.instr1")}</li>
-              <li>{t("team.instr2")}</li>
-              <li>{t("team.instr3")}</li>
-              <li>{t("team.instr4")}</li>
-              <li>{t("team.instr5")}</li>
+              <li>1. Create a team or join one via an invite link.</li>
+              <li>2. Share your invite link with teammates.</li>
+              <li>3. The team owner can accept or reject join requests.</li>
+              <li>4. Maximum team size is 4 members.</li>
+              <li>5. Only the owner can dissolve the team.</li>
             </ul>
           </div>
 
@@ -345,7 +343,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
                 </h2>
                 <div className="flex items-center gap-3">
                   <label className="shrink-0 font-['Marcellus'] text-base text-white">
-                    {t("team.enterTeamNameLabel")}
+                    Enter Team Name:
                   </label>
                   <input
                     type="text"
@@ -364,7 +362,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
                     }
                     className="rounded-tl-[30px] rounded-tr-[4px] rounded-br-[30px] rounded-bl-[4px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_3px_#7716D0,0_0_7.5px_#7716D0,0_0_30px_rgba(119,22,208,0.60),0_0_45px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_2px_rgba(255,255,255,1)] hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
                   >
-                    {t("team.save")}
+                    SAVE
                   </button>
                 </div>
               </>
@@ -377,7 +375,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
             {/* Participants */}
             <div>
               <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
-                {t("team.participants")}
+                PARTICIPANTS
               </h2>
               <table className="w-full table-fixed border-collapse">
                 <tbody>
@@ -432,7 +430,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
             href="/team/videos"
             className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-purple-500/40 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-4 font-['Cinzel'] text-lg tracking-[2px] text-purple-300 shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
           >
-            {t("team.teamVideos")}
+            TEAM VIDEOS
           </a>
           {isOwner ? (
             <button
@@ -440,7 +438,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
               disabled={actionLoading}
               className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
             >
-              {t("team.dissolve")}
+              DISSOLVE TEAM
             </button>
           ) : (
             <button
@@ -448,7 +446,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
               disabled={actionLoading}
               className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
             >
-              {t("team.leave")}
+              LEAVE TEAM
             </button>
           )}
         </div>
