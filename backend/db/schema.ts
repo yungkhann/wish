@@ -27,7 +27,7 @@ export const user = sqliteTable("user", {
 
 export const team = sqliteTable("team", {
   id: text("id").primaryKey().notNull(),
-  name: text("name").notNull().unique(),
+  name: text("name").notNull(),
   inviteCode: text("invite_code").notNull(),
   creatorId: text("creator_id").notNull(),
 });

@@ -1,1 +1,0 @@
-CREATE UNIQUE INDEX `team_name_unique` ON `team` (`name`);
