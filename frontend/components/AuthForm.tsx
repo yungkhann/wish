@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { authClient } from "../lib/auth-client";
 
 type Step = "email" | "otp";
@@ -9,6 +9,14 @@ export default function AuthForm({ redirectTo }: { redirectTo?: string } = {}) {
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [resendCooldown, setResendCooldown] = useState(0);
+  const [resendSuccess, setResendSuccess] = useState(false);
+
+  useEffect(() => {
+    if (resendCooldown <= 0) return;
+    const id = setTimeout(() => setResendCooldown((c) => c - 1), 1000);
+    return () => clearTimeout(id);
+  }, [resendCooldown]);
 
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,6 +36,7 @@ export default function AuthForm({ redirectTo }: { redirectTo?: string } = {}) {
       }
 
       setStep("otp");
+      setResendCooldown(60);
     } catch {
       setError("An unexpected error occurred.");
     } finally {
@@ -91,6 +100,9 @@ export default function AuthForm({ redirectTo }: { redirectTo?: string } = {}) {
 
       if (resendError) {
         setError(resendError.message ?? "Failed to send code.");
+      } else {
+        setResendSuccess(true);
+        setResendCooldown(60);
       }
     } catch {
       setError("An unexpected error occurred.");
@@ -108,8 +120,17 @@ export default function AuthForm({ redirectTo }: { redirectTo?: string } = {}) {
 
         {step === "otp" && (
           <p className="text-center text-sm text-zinc-400">
-            We sent a 6-digit code to{" "}
-            <span className="font-medium text-white">{email}</span>
+            {resendSuccess ? (
+              <>
+                Code resent to{" "}
+                <span className="font-medium text-white">{email}</span>
+              </>
+            ) : (
+              <>
+                We sent a 6-digit code to{" "}
+                <span className="font-medium text-white">{email}</span>
+              </>
+            )}
           </p>
         )}
 
@@ -179,10 +200,12 @@ export default function AuthForm({ redirectTo }: { redirectTo?: string } = {}) {
               <button
                 type="button"
                 onClick={handleResendOtp}
-                disabled={loading}
+                disabled={loading || resendCooldown > 0}
                 className="hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
               >
-                Send again
+                {resendCooldown > 0
+                  ? `Send again (${resendCooldown}s)`
+                  : "Send again"}
               </button>
               <span aria-hidden="true">|</span>
               <button
@@ -191,6 +214,8 @@ export default function AuthForm({ redirectTo }: { redirectTo?: string } = {}) {
                   setStep("email");
                   setOtp("");
                   setError(null);
+                  setResendCooldown(0);
+                  setResendSuccess(false);
                 }}
                 disabled={loading}
                 className="hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
