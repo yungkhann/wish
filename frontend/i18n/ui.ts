@@ -22,7 +22,8 @@ export const ui = {
 
     // ── Welcome ──
     "welcome.line1": "Make your biggest ",
-    "welcome.line2": "come true",
+    "welcome.highlight": "WISH",
+    "welcome.line2": " come true",
     "welcome.register": "Register",
 
     // ── Countdown ──
@@ -323,8 +324,9 @@ export const ui = {
     "nav.logOut": "Выйти",
 
     // ── Welcome ──
-    "welcome.line1": "Исполни свою самую большую",
-    "welcome.line2": "мечту",
+    "welcome.line1": "Исполни свою самую заветную ",
+    "welcome.highlight": "мечту",
+    "welcome.line2": "",
     "welcome.register": "Регистрация",
 
     // ── Countdown ──
@@ -627,8 +629,9 @@ export const ui = {
     "nav.logOut": "Шығу",
 
     // ── Welcome ──
-    "welcome.line1": "Өзіңнің ең үлкен",
-    "welcome.line2": "арманыңды орында",
+    "welcome.line1": "Ең үлкен ",
+    "welcome.highlight": "арманың",
+    "welcome.line2": " шындыққа айналсын",
     "welcome.register": "Тіркелу",
 
     // ── Countdown ──
