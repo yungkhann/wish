@@ -21,7 +21,7 @@ export const ui = {
     "nav.logOut": "Log out",
 
     // ── Welcome ──
-    "welcome.line1": "Make your biggest",
+    "welcome.line1": "Make your biggest ",
     "welcome.line2": "come true",
     "welcome.register": "Register",
 
@@ -87,6 +87,7 @@ export const ui = {
     "schedule.d2_t2": "Pizza Break",
     "schedule.d2_t3": "Pitching Session",
     "schedule.d2_t4": "Closing Ceremony",
+    "schedule.disclaimer": "There may be minor changes to the schedule",
 
     // ── Gallery ──
     "gallery.title": "Gallery",
@@ -231,11 +232,11 @@ export const ui = {
 
   ru: {
     // ── Nav ──
-    "nav.about": "о нас",
-    "nav.benefits": "преимущества",
-    "nav.schedule": "расписание",
-    "nav.sponsors": "спонсоры",
-    "nav.faq": "ЧаВо",
+    "nav.about": "Описание",
+    "nav.benefits": "Преимущества",
+    "nav.schedule": "Расписание",
+    "nav.sponsors": "Партнёры",
+    "nav.faq": "Вопросы",
     "nav.register": "Регистрация",
     "nav.teamPage": "Команда",
     "nav.logOut": "Выйти",
@@ -289,7 +290,7 @@ export const ui = {
     "timeline.label3": "Women in STEM Hackathon",
 
     // ── Sponsors ──
-    "sponsors.title": "Наши спонсоры",
+    "sponsors.title": "Наши партнёры",
     "sponsors.infoPartners": "Инфо-партнёры",
     "sponsors.sponsor": "Спонсор",
     "sponsors.partner": "Партнёр",
@@ -307,6 +308,7 @@ export const ui = {
     "schedule.d2_t2": "Пицца-брейк",
     "schedule.d2_t3": "Питчинг-сессия",
     "schedule.d2_t4": "Церемония закрытия",
+    "schedule.disclaimer": "Возможны небольшие изменения в расписании",
 
     // ── Gallery ──
     "gallery.title": "Галерея",
@@ -318,7 +320,7 @@ export const ui = {
     "pastYears.countries": "стран",
 
     // ── FAQ ──
-    "faq.title": "ЧаВо",
+    "faq.title": "Вопросы",
     "faq.q1": "Что такое WISH?",
     "faq.a1":
       "WISH — это 24-часовой командный хакатон в области аналитики данных, машинного обучения и искусственного интеллекта. Каждая команда состоит из 2–4 участниц.",
@@ -347,7 +349,7 @@ export const ui = {
     "faq.copyright": "© 2026 NU ACM-W SC Все права защищены.",
 
     // ── Footer ──
-    "footer.copyright": "Women in STEM Hackathon. Все права защищены.",
+    "footer.copyright": "NU ACM-W SC. Все права защищены.",
 
     // ── Auth ──
     "auth.signIn": "ВХОД",
@@ -453,12 +455,12 @@ export const ui = {
 
   kz: {
     // ── Nav ──
-    "nav.about": "біз туралы",
-    "nav.benefits": "артықшылықтар",
-    "nav.schedule": "кесте",
-    "nav.sponsors": "демеушілер",
-    "nav.faq": "ЖҚС",
-    "nav.register": "Тіркелу",
+    "nav.about": "Сипаттама",
+    "nav.benefits": "Артықшылықтар",
+    "nav.schedule": "Кесте",
+    "nav.sponsors": "Серіктестер",
+    "nav.faq": "Сұрақтар",
+    "nav.register": "Тіркеу",
     "nav.teamPage": "Команда",
     "nav.logOut": "Шығу",
 
@@ -513,7 +515,7 @@ export const ui = {
     "timeline.label3": "Women in STEM Hackathon",
 
     // ── Sponsors ──
-    "sponsors.title": "Біздің демеушілер",
+    "sponsors.title": "Біздің серіктестер",
     "sponsors.infoPartners": "Ақпараттық серіктестер",
     "sponsors.sponsor": "Демеуші",
     "sponsors.partner": "Серіктес",
@@ -531,6 +533,7 @@ export const ui = {
     "schedule.d2_t2": "Пицца-брейк",
     "schedule.d2_t3": "Питчинг сессиясы",
     "schedule.d2_t4": "Жабылу салтанаты",
+    "schedule.disclaimer": "Кестеге шағын өзгерістер болуы мүмкін",
 
     // ── Gallery ──
     "gallery.title": "Галерея",
@@ -542,7 +545,7 @@ export const ui = {
     "pastYears.countries": "ел",
 
     // ── FAQ ──
-    "faq.title": "ЖҚС",
+    "faq.title": "Сұрақтар",
     "faq.q1": "WISH дегеніміз не?",
     "faq.a1":
       "WISH — деректер аналитикасы, машиналық оқыту және жасанды интеллект саласындағы 24 сағаттық командалық хакатон. Әр команда 2–4 қатысушыдан тұрады.",
@@ -571,7 +574,7 @@ export const ui = {
     "faq.copyright": "© 2026 NU ACM-W SC Барлық құқықтар қорғалған.",
 
     // ── Footer ──
-    "footer.copyright": "Women in STEM Hackathon. Барлық құқықтар қорғалған.",
+    "footer.copyright": "NU ACM-W SC. Барлық құқықтар қорғалған.",
 
     // ── Auth ──
     "auth.signIn": "КІРУ",
