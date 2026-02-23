@@ -445,7 +445,11 @@ function MemberRow({
         </div>
       </td>
       <td className="h-[67px] w-[130px] border-b border-l border-white/30 px-6 text-center font-['Marcellus'] text-base text-white lowercase">
-        {member.role}
+        {member.role === "owner"
+          ? t("team.roleOwner")
+          : member.role === "member"
+            ? t("team.roleMember")
+            : t("team.roleRequest")}
       </td>
       <td className="h-[67px] w-[130px] border-b border-l border-white/30 text-center">
         <div className="flex items-center justify-center gap-2">
