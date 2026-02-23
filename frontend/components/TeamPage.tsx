@@ -421,11 +421,11 @@ function MemberRow({
           {member.email}
         </div>
       </td>
-      <td className="h-[67px] w-[130px] border-b border-l border-white/30 px-6 font-['Marcellus'] text-base text-white lowercase">
+      <td className="h-[67px] w-[130px] border-b border-l border-white/30 px-6 text-center font-['Marcellus'] text-base text-white lowercase">
         {member.role}
       </td>
-      <td className="h-[67px] w-[130px] border-b border-l border-white/30 pl-6">
-        <div className="flex items-center gap-2">
+      <td className="h-[67px] w-[130px] border-b border-l border-white/30 text-center">
+        <div className="flex items-center justify-center gap-2">
           {member.role === "request" && isOwner && member.inviteId && (
             <>
               <button
@@ -438,7 +438,7 @@ function MemberRow({
               <button
                 onClick={() => onReject(member.inviteId!)}
                 disabled={disabled}
-                className="flex h-[45px] w-[45px] items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Cinzel'] text-lg text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
+                className="flex h-[45px] w-[45px] cursor-pointer items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Cinzel'] text-lg text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
               >
                 x
               </button>
@@ -450,7 +450,7 @@ function MemberRow({
               <button
                 onClick={() => onRemove(member.userId)}
                 disabled={disabled}
-                className="flex h-[45px] w-[45px] items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Cinzel'] text-lg text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
+                className="flex h-[45px] w-[45px] cursor-pointer items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Cinzel'] text-lg text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
               >
                 x
               </button>
