@@ -77,10 +77,14 @@ export const ui = {
     "sponsors.infoPartners": "Info Partners",
     "sponsors.sponsor": "Sponsor",
     "sponsors.partner": "Partner",
-    "sponsors.choco.description": "Kazakhstan's leading IT company and SuperApp. The Choco ecosystem integrates projects like Chocolife.me, Chocofood, Smart Restaurant, Ryadom, and Idoctor, providing essential digital services for everyday life. For this hackathon, Choco provides two real-world business cases, which will serve as the primary challenges for the participants.",
-    "sponsors.freedom.description": "A lifestyle service ecosystem within the Freedom holding. It integrates leading leisure and ticketing projects such as Ticketon, Sxodim, Kino.kz, Aviata, and Chocotravel, making your travel and entertainment experiences more accessible.",
-    "sponsors.issai.description": "The Institute of Smart Systems and Artificial Intelligence (ISSAI) at Nazarbayev University is a driver of AI innovation in Kazakhstan. It facilitates collaboration with sponsors.",
-    "sponsors.nuDatasciClub.description": "A student club at Nazarbayev University dedicated to promoting Data Science. As a content partner for WISH, the club provided the essential video lessons to help participants prepare for the hackathon.",
+    "sponsors.choco.description":
+      "Kazakhstan's leading IT company and SuperApp. The Choco ecosystem integrates projects like Chocolife.me, Chocofood, Smart Restaurant, Ryadom, and Idoctor, providing essential digital services for everyday life. For this hackathon, Choco provides two real-world business cases, which will serve as the primary challenges for the participants.",
+    "sponsors.freedom.description":
+      "A lifestyle service ecosystem within the Freedom holding. It integrates leading leisure and ticketing projects such as Ticketon, Sxodim, Kino.kz, Aviata, and Chocotravel, making your travel and entertainment experiences more accessible.",
+    "sponsors.issai.description":
+      "The Institute of Smart Systems and Artificial Intelligence (ISSAI) at Nazarbayev University is a driver of AI innovation in Kazakhstan. It facilitates collaboration with sponsors.",
+    "sponsors.nuDatasciClub.description":
+      "A student club at Nazarbayev University dedicated to promoting Data Science. As a content partner for WISH, the club provided the essential video lessons to help participants prepare for the hackathon.",
 
     // ── Schedule / Agenda ──
     "schedule.title": "Schedule",
@@ -116,7 +120,7 @@ export const ui = {
       "We welcome high school, college, and university students aged 16 and above. Participation is in teams of 2 to 4 people.",
     "faq.q3": "What if I don't have a team?",
     "faq.a3":
-      "Don't worry! You can find teammates in our dedicated <a href=\"https://t.me/wish_nuacmw\" target=\"_blank\" rel=\"noopener noreferrer\">WISH Telegram chat</a>, where other participants are also looking for partners.",
+      'Don\'t worry! You can find teammates in our dedicated <a href="https://t.me/wish_nuacmw" target="_blank" rel="noopener noreferrer">WISH Telegram chat</a>, where other participants are also looking for partners.',
     "faq.q4": "Do I need to be a professional?",
     "faq.a4":
       "No, everyone interested in Data Science and AI is welcome! To help you prepare, all registered participants will receive access to exclusive video lessons covering essential tools and methods used at hackathons.",
@@ -131,7 +135,7 @@ export const ui = {
       "Yes! The total prize fund is 1 200 000 ₸. Winners will also receive exclusive merchandise, and the first 50 participants will get a special Welcome Package. Every participant will receive a certificate of participation. Moreover, the best-performing participants will have the chance to receive job offers or internship opportunities from our partners.",
     "faq.q8": "I didn't find an answer to my question. What should I do?",
     "faq.a8":
-      "Join our <a href=\"https://t.me/wish_nuacmw\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram chat</a> and ask your questions there, or contact us via email: <a href=\"https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm\" target=\"_blank\" rel=\"noopener noreferrer\">acm_w@nu.edu.kz</a>.",
+      'Join our <a href="https://t.me/wish_nuacmw" target="_blank" rel="noopener noreferrer">Telegram chat</a> and ask your questions there, or contact us via email: <a href="https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm" target="_blank" rel="noopener noreferrer">acm_w@nu.edu.kz</a>.',
     "faq.instagram": "Instagram",
     "faq.telegram": "Telegram",
     "faq.youtube": "Youtube",
@@ -142,11 +146,12 @@ export const ui = {
       "The organizer is the NU ACM-W Student Chapter - the first and only branch of ACM-Women in Kazakhstan and Central Asia. Our mission is to support women in STEM fields, especially in IT, through initiatives that foster social, professional, and technical growth.",
     "faq.q10": "Are there any other events for girls?",
     "faq.a10":
-      "Yes! NU ACM-W SC annually organizes events for girls such as Women's Hack Day - 3-round team competition for girls (product design, mathematics, programming), CodeW - an individual competitive programming contest, and Code Girl Summer - a two-week web development camp. You can find more details and information on our <a href=\"https://t.me/nu_acm_w\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram</a> and <a href=\"https://www.instagram.com/nuacm_wsc/\" target=\"_blank\" rel=\"noopener noreferrer\">Instagram</a> pages.",
+      'Yes! NU ACM-W SC annually organizes events for girls such as Women\'s Hack Day - 3-round team competition for girls (product design, mathematics, programming), CodeW - an individual competitive programming contest, and Code Girl Summer - a two-week web development camp. You can find more details and information on our <a href="https://t.me/nu_acm_w" target="_blank" rel="noopener noreferrer">Telegram</a> and <a href="https://www.instagram.com/nuacm_wsc/" target="_blank" rel="noopener noreferrer">Instagram</a> pages.',
 
     // ── Footer ──
-    "footer.description": "NU ACM-W Student Chapter is the first student chapter of the international ACM-Women organization in Kazakhstan and Central Asia, based at Nazarbayev University. Since 2017, we have been providing social and professional support to women in STEM by organizing various events.",
-    "footer.copyright": "© 2026 Women in STEM Hackathon. All rights reserved.",
+    "footer.description":
+      "NU ACM-W Student Chapter is the first student chapter of the international ACM-Women organization in Kazakhstan and Central Asia, based at Nazarbayev University. Since 2017, we have been providing social and professional support to women in STEM by organizing various events.",
+    "footer.copyright": "© 2026 ACM-W SC. All rights reserved.",
 
     // ── Auth ──
     "auth.signIn": "SIGN IN",
@@ -295,13 +300,14 @@ export const ui = {
 
     // ── Benefits ──
     "benefits.title": "Преимущества",
-"benefits.card1": "Видеоуроки по подготовке к хакатону после регистрации",
+    "benefits.card1": "Видеоуроки по подготовке к хакатону после регистрации",
     "benefits.card2": "Практический опыт в Data Science, ML и AI",
     "benefits.card3": "Призовой фонд 1 200 000 ₸ и эксклюзивный мерч",
     "benefits.card4": "Приветственный пакет для первых 50 участниц",
     "benefits.card5": "Карьерные возможности в роли ML-инженеров",
     "benefits.card6": "Кофе-брейки и увлекательные активности",
-    "benefits.card7": "Новые технические навыки и реальный опыт командной работы",
+    "benefits.card7":
+      "Новые технические навыки и реальный опыт командной работы",
     "benefits.card8": "Сертификаты об участии для каждой участницы",
 
     // ── Timeline ──
@@ -318,10 +324,14 @@ export const ui = {
     "sponsors.infoPartners": "Инфо-партнёры",
     "sponsors.sponsor": "Спонсор",
     "sponsors.partner": "Партнёр",
-    "sponsors.choco.description": "Ведущая IT-компания Казахстана и SuperApp. Экосистема Choco интегрирует проекты Chocolife.me, Chocofood, Smart Restaurant, Ryadom и Idoctor, предоставляя важные цифровые услуги для повседневной жизни. Для этого хакатона Choco предоставляет два реальных бизнес-кейса, которые будут основными задачами для участников.",
-    "sponsors.freedom.description": "Экосистема услуг образа жизни в рамках холдинга Freedom. Она объединяет ведущие проекты досуга и продажи билетов, такие как Ticketon, Sxodim, Kino.kz, Aviata и Chocotravel, делая ваши путешествия и развлечения более доступными.",
-    "sponsors.issai.description": "Институт интеллектуальных систем и искусственного интеллекта (ISSAI) при Назарбаев Университете является движущей силой инноваций в сфере ИИ в Казахстане. Он способствует сотрудничеству со спонсорами.",
-    "sponsors.nuDatasciClub.description": "Студенческий клуб Назарбаев Университета, посвящённый развитию Data Science. Как партнёр контента для WISH, клуб предоставил важные видеоуроки для подготовки участников к хакатону.",
+    "sponsors.choco.description":
+      "Ведущая IT-компания Казахстана и SuperApp. Экосистема Choco интегрирует проекты Chocolife.me, Chocofood, Smart Restaurant, Ryadom и Idoctor, предоставляя важные цифровые услуги для повседневной жизни. Для этого хакатона Choco предоставляет два реальных бизнес-кейса, которые будут основными задачами для участников.",
+    "sponsors.freedom.description":
+      "Экосистема услуг образа жизни в рамках холдинга Freedom. Она объединяет ведущие проекты досуга и продажи билетов, такие как Ticketon, Sxodim, Kino.kz, Aviata и Chocotravel, делая ваши путешествия и развлечения более доступными.",
+    "sponsors.issai.description":
+      "Институт интеллектуальных систем и искусственного интеллекта (ISSAI) при Назарбаев Университете является движущей силой инноваций в сфере ИИ в Казахстане. Он способствует сотрудничеству со спонсорами.",
+    "sponsors.nuDatasciClub.description":
+      "Студенческий клуб Назарбаев Университета, посвящённый развитию Data Science. Как партнёр контента для WISH, клуб предоставил важные видеоуроки для подготовки участников к хакатону.",
 
     // ── Schedule / Agenda ──
     "schedule.title": "Расписание",
@@ -357,7 +367,7 @@ export const ui = {
       "Мы приглашаем школьниц, студенток колледжей и университетов от 16 лет и старше. Участие командное — от 2 до 4 человек.",
     "faq.q3": "Что делать, если у меня нет команды?",
     "faq.a3":
-      "Не переживайте! Вы можете найти напарниц в нашем специальном <a href=\"https://t.me/wish_nuacmw\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram-чате WISH</a>, где другие участницы тоже ищут партнёров.",
+      'Не переживайте! Вы можете найти напарниц в нашем специальном <a href="https://t.me/wish_nuacmw" target="_blank" rel="noopener noreferrer">Telegram-чате WISH</a>, где другие участницы тоже ищут партнёров.',
     "faq.q4": "Нужно ли быть профессионалом?",
     "faq.a4":
       "Нет, мы приветствуем всех, кто интересуется Data Science и AI! Для подготовки все зарегистрированные участницы получат доступ к эксклюзивным видеоурокам, охватывающим основные инструменты и методы, используемые на хакатонах.",
@@ -372,7 +382,7 @@ export const ui = {
       "Да! Общий призовой фонд составляет 1 200 000 ₸. Победительницы также получат эксклюзивный мерч, а первые 50 участниц — специальный Welcome Package. Каждая участница получит сертификат участия. Кроме того, лучшие участницы получат шанс на предложение о работе или стажировке от наших партнёров.",
     "faq.q8": "Я не нашла ответ на свой вопрос. Что делать?",
     "faq.a8":
-      "Присоединяйтесь к нашему <a href=\"https://t.me/wish_nuacmw\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram-чату</a> и задавайте вопросы, или свяжитесь с нами по email: <a href=\"https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm\" target=\"_blank\" rel=\"noopener noreferrer\">acm_w@nu.edu.kz</a>.",
+      'Присоединяйтесь к нашему <a href="https://t.me/wish_nuacmw" target="_blank" rel="noopener noreferrer">Telegram-чату</a> и задавайте вопросы, или свяжитесь с нами по email: <a href="https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm" target="_blank" rel="noopener noreferrer">acm_w@nu.edu.kz</a>.',
     "faq.instagram": "Instagram",
     "faq.telegram": "Telegram",
     "faq.youtube": "Youtube",
@@ -383,10 +393,11 @@ export const ui = {
       "Организатором является NU ACM-W Student Chapter — первый и единственный филиал ACM-Women в Казахстане и Центральной Азии. Наша миссия — поддержка женщин в STEM-сферах, особенно в IT, через инициативы, способствующие социальному, профессиональному и техническому росту.",
     "faq.q10": "Проводятся ли другие мероприятия для девушек?",
     "faq.a10":
-      "Да! NU ACM-W SC ежегодно проводит мероприятия для девушек: Women's Hack Day — командное соревнование из 3 раундов (дизайн продукта, математика, программирование), CodeW — индивидуальное соревнование по спортивному программированию и Code Girl Summer — двухнедельный лагерь по веб-разработке. Подробности можно найти в нашем <a href=\"https://t.me/nu_acm_w\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram</a> и <a href=\"https://www.instagram.com/nuacm_wsc/\" target=\"_blank\" rel=\"noopener noreferrer\">Instagram</a>.",
+      'Да! NU ACM-W SC ежегодно проводит мероприятия для девушек: Women\'s Hack Day — командное соревнование из 3 раундов (дизайн продукта, математика, программирование), CodeW — индивидуальное соревнование по спортивному программированию и Code Girl Summer — двухнедельный лагерь по веб-разработке. Подробности можно найти в нашем <a href="https://t.me/nu_acm_w" target="_blank" rel="noopener noreferrer">Telegram</a> и <a href="https://www.instagram.com/nuacm_wsc/" target="_blank" rel="noopener noreferrer">Instagram</a>.',
 
     // ── Footer ──
-    "footer.description": "NU ACM-W Student Chapter - первое в Казахстане и Центральной Азии студенческое подразделение международной организации ACM-Women, базирующееся в Назарбаев Университете. С 2017 года мы оказываем социальную и профессиональную поддержку девушкам в STEM сферах, организуя различные мероприятия.",
+    "footer.description":
+      "NU ACM-W Student Chapter - первое в Казахстане и Центральной Азии студенческое подразделение международной организации ACM-Women, базирующееся в Назарбаев Университете. С 2017 года мы оказываем социальную и профессиональную поддержку девушкам в STEM сферах, организуя различные мероприятия.",
     "footer.copyright": "© 2026 Women in STEM Hackathon. Все права защищены.",
 
     // ── Auth ──
@@ -538,13 +549,16 @@ export const ui = {
 
     // ── Benefits ──
     "benefits.title": "Артықшылықтар",
-    "benefits.card1": "Тіркелгеннен кейін хакатонға дайындық бойынша бейнесабақтар",
-    "benefits.card2": "Data Science, ML және AI саласындағы практикалық тәжірибе",
+    "benefits.card1":
+      "Тіркелгеннен кейін хакатонға дайындық бойынша бейнесабақтар",
+    "benefits.card2":
+      "Data Science, ML және AI саласындағы практикалық тәжірибе",
     "benefits.card3": "1 200 000 ₸ жүлде қоры және эксклюзивті мерч",
     "benefits.card4": "Алғашқы 50 қатысушыға арналған сәлемдесу пакеті",
     "benefits.card5": "ML-инженер ретінде мансаптық мүмкіндіктер",
     "benefits.card6": "Кофе-брейктер және қызықты белсенділіктер",
-    "benefits.card7": "Жаңа техникалық дағдылар мен командалық жұмыстың шынайы тәжірибесі",
+    "benefits.card7":
+      "Жаңа техникалық дағдылар мен командалық жұмыстың шынайы тәжірибесі",
     "benefits.card8": "Әрбір қатысушыға арналған қатысу сертификаттар",
 
     // ── Timeline ──
@@ -561,10 +575,14 @@ export const ui = {
     "sponsors.infoPartners": "Ақпараттық серіктестер",
     "sponsors.sponsor": "Демеуші",
     "sponsors.partner": "Серіктес",
-    "sponsors.choco.description": "Қазақстанның ең ірі IT компаниясы және SuperApp. Choco экосистемасы Chocolife.me, Chocofood, Smart Restaurant, Ryadom және Idoctor сияқты жобаларды біріктіреді, күнделік өмір үшін қажетті цифрлық қызметтерді ұсынады. Осы хакатон үшін Choco екі нақты бизнес-кейс ұсынады, олар қатысушылар үшін негізгі сынақ болады.",
-    "sponsors.freedom.description": "Freedom холдингінің өмір салты қызметтерінің экосистемасы. Ол Ticketon, Sxodim, Kino.kz, Aviata және Chocotravel сияқты іс-әрекет пен билет сатау жобаларын біріктіреді, ваша саяхаттар мен ойын-күлік тәжірибелерін барынша қолжетімді ете түседі.",
-    "sponsors.issai.description": "Назарбаев Университетіндегі Ақылды жүйелер және жасанды интеллект институты (ISSAI) Қазақстандағы AI инновациясының қозғалтқышы. Ол спонсорлармен ынамдастықты дамыту үшін ғана ғана назар аудартады.",
-    "sponsors.nuDatasciClub.description": "Назарбаев Университетінің Data Science дамытуына арналған студенттік клубы. WISH үшін контент серіктесі ретінде клуб хакатонға дайындалуға арналған маңызды бейнесабақтарды ұсынды.",
+    "sponsors.choco.description":
+      "Қазақстанның ең ірі IT компаниясы және SuperApp. Choco экосистемасы Chocolife.me, Chocofood, Smart Restaurant, Ryadom және Idoctor сияқты жобаларды біріктіреді, күнделік өмір үшін қажетті цифрлық қызметтерді ұсынады. Осы хакатон үшін Choco екі нақты бизнес-кейс ұсынады, олар қатысушылар үшін негізгі сынақ болады.",
+    "sponsors.freedom.description":
+      "Freedom холдингінің өмір салты қызметтерінің экосистемасы. Ол Ticketon, Sxodim, Kino.kz, Aviata және Chocotravel сияқты іс-әрекет пен билет сатау жобаларын біріктіреді, ваша саяхаттар мен ойын-күлік тәжірибелерін барынша қолжетімді ете түседі.",
+    "sponsors.issai.description":
+      "Назарбаев Университетіндегі Ақылды жүйелер және жасанды интеллект институты (ISSAI) Қазақстандағы AI инновациясының қозғалтқышы. Ол спонсорлармен ынамдастықты дамыту үшін ғана ғана назар аудартады.",
+    "sponsors.nuDatasciClub.description":
+      "Назарбаев Университетінің Data Science дамытуына арналған студенттік клубы. WISH үшін контент серіктесі ретінде клуб хакатонға дайындалуға арналған маңызды бейнесабақтарды ұсынды.",
 
     // ── Schedule / Agenda ──
     "schedule.title": "Кесте",
@@ -600,7 +618,7 @@ export const ui = {
       "Біз 16 жастан асқан мектеп оқушыларын, колледж және университет студенттерін шақырамыз. Қатысу командалық — 2-ден 4 адамға дейін.",
     "faq.q3": "Командам болмаса не істеймін?",
     "faq.a3":
-      "Алаңдамаңыз! Біздің арнайы <a href=\"https://t.me/wish_nuacmw\" target=\"_blank\" rel=\"noopener noreferrer\">WISH Telegram чатында</a> серіктес іздеп жүрген басқа қатысушыларды таба аласыз.",
+      'Алаңдамаңыз! Біздің арнайы <a href="https://t.me/wish_nuacmw" target="_blank" rel="noopener noreferrer">WISH Telegram чатында</a> серіктес іздеп жүрген басқа қатысушыларды таба аласыз.',
     "faq.q4": "Кәсіби маман болу керек пе?",
     "faq.a4":
       "Жоқ, Data Science және AI-ға қызығушылық танытатын барлығын қарсы аламыз! Дайындыққа көмектесу үшін барлық тіркелген қатысушылар хакатондарда қолданылатын негізгі құралдар мен әдістерді қамтитын эксклюзивті бейнесабақтарға қол жеткізе алады.",
@@ -615,7 +633,7 @@ export const ui = {
       "Иә! Жалпы жүлде қоры 1 200 000 ₸ құрайды. Жеңімпаздар сонымен қатар эксклюзивті мерч алады, ал алғашқы 50 қатысушы арнайы Welcome Package алады. Әр қатысушы қатысу сертификатын алады. Сонымен қатар, ең жақсы нәтиже көрсеткен қатысушылар серіктестерімізден жұмыс немесе тағылымдама ұсыныстарын алу мүмкіндігіне ие болады.",
     "faq.q8": "Сұрағыма жауап таппадым. Не істеуім керек?",
     "faq.a8":
-      "Біздің <a href=\"https://t.me/wish_nuacmw\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram чатқа</a> қосылыңыз және сұрақтарыңызды қойыңыз, немесе бізге email арқылы хабарласыңыз: <a href=\"https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm\" target=\"_blank\" rel=\"noopener noreferrer\">acm_w@nu.edu.kz</a>.",
+      'Біздің <a href="https://t.me/wish_nuacmw" target="_blank" rel="noopener noreferrer">Telegram чатқа</a> қосылыңыз және сұрақтарыңызды қойыңыз, немесе бізге email арқылы хабарласыңыз: <a href="https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm" target="_blank" rel="noopener noreferrer">acm_w@nu.edu.kz</a>.',
     "faq.instagram": "Instagram",
     "faq.telegram": "Telegram",
     "faq.youtube": "Youtube",
@@ -626,11 +644,13 @@ export const ui = {
       "Ұйымдастырушы — NU ACM-W Student Chapter, Қазақстан мен Орталық Азиядағы ACM-Women-нің алғашқы және жалғыз бөлімшесі. Біздің миссиямыз — әлеуметтік, кәсіби және техникалық өсуге ықпал ететін бастамалар арқылы STEM салаларындағы, әсіресе IT-дегі әйелдерді қолдау.",
     "faq.q10": "Қыздарға арналған басқа да іс-шаралар бар ма?",
     "faq.a10":
-      "Иә! NU ACM-W SC жыл сайын қыздарға арналған іс-шараларды ұйымдастырады: Women's Hack Day — 3 раундтық командалық жарыс (өнім дизайны, математика, бағдарламалау), CodeW — жеке спорттық бағдарламалау жарысы және Code Girl Summer — екі апталық веб-әзірлеу лагері. Толығырақ ақпаратты біздің <a href=\"https://t.me/nu_acm_w\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram</a> және <a href=\"https://www.instagram.com/nuacm_wsc/\" target=\"_blank\" rel=\"noopener noreferrer\">Instagram</a> парақшаларымыздан таба аласыз.",
+      'Иә! NU ACM-W SC жыл сайын қыздарға арналған іс-шараларды ұйымдастырады: Women\'s Hack Day — 3 раундтық командалық жарыс (өнім дизайны, математика, бағдарламалау), CodeW — жеке спорттық бағдарламалау жарысы және Code Girl Summer — екі апталық веб-әзірлеу лагері. Толығырақ ақпаратты біздің <a href="https://t.me/nu_acm_w" target="_blank" rel="noopener noreferrer">Telegram</a> және <a href="https://www.instagram.com/nuacm_wsc/" target="_blank" rel="noopener noreferrer">Instagram</a> парақшаларымыздан таба аласыз.',
 
     // ── Footer ──
-    "footer.description": "NU ACM-W Student Chapter - Назарбаев Университетінде орналасқан халықаралық ACM-Women ұйымының Қазақстан мен Орталық Азиядағы алғашқы студенттік бөлімшесі. 2017 жылдан бастап біз түрлі іс-шаралар ұйымдастыру арқылы STEM саласындағы қыздарға әлеуметтік және кәсіби қолдау көрсетіп келеміз.",
-    "footer.copyright": "© 2026 Women in STEM Hackathon. Барлық құқықтар қорғалған.",
+    "footer.description":
+      "NU ACM-W Student Chapter - Назарбаев Университетінде орналасқан халықаралық ACM-Women ұйымының Қазақстан мен Орталық Азиядағы алғашқы студенттік бөлімшесі. 2017 жылдан бастап біз түрлі іс-шаралар ұйымдастыру арқылы STEM саласындағы қыздарға әлеуметтік және кәсіби қолдау көрсетіп келеміз.",
+    "footer.copyright":
+      "© 2026 Women in STEM Hackathon. Барлық құқықтар қорғалған.",
 
     // ── Auth ──
     "auth.signIn": "КІРУ",
