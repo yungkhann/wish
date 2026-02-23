@@ -19,7 +19,7 @@ export default function RegistrationPage({ lang: langProp }: { lang?: Lang }) {
   useEffect(() => {
     fetch("/api/user/me")
       .then((res) => {
-        if (res.status === 401) {
+        if (!res.ok && res.status !== 404) {
           setState("unauthenticated");
           return null;
         }

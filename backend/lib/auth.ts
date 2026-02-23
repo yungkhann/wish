@@ -34,6 +34,8 @@ export function createAuth(env: Bindings) {
   const db = getDb(env.wishDB);
 
   return betterAuth({
+    secret: env.BETTER_AUTH_SECRET,
+
     database: drizzleAdapter(db, {
       provider: "sqlite",
       schema,
@@ -49,7 +51,7 @@ export function createAuth(env: Bindings) {
     },
 
     cookies: {
-      secure: true,
+      secure: env.CLIENT_URL.startsWith("https://"),
       httpOnly: true,
       sameSite: "lax",
     },

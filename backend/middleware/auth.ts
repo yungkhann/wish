@@ -34,9 +34,14 @@ export type AppEnv = {
 export const authMiddleware = createMiddleware<AppEnv>(async (c, next) => {
   const auth = createAuth(c.env);
 
-  const session = await auth.api.getSession({
-    headers: c.req.raw.headers,
-  });
+  let session;
+  try {
+    session = await auth.api.getSession({
+      headers: c.req.raw.headers,
+    });
+  } catch {
+    return c.json({ error: "Unauthorized" }, 401);
+  }
 
   if (!session) {
     return c.json({ error: "Unauthorized" }, 401);
