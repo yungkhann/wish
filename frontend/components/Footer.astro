@@ -1,18 +1,146 @@
 ---
-const year = new Date().getFullYear();
+import { Image } from "astro:assets";
+import acmwLogo from "../assets/acmwLOGO.svg";
 ---
 
-<footer class="border-t border-purple-900/30 bg-black py-8">
-  <div class="mx-auto max-w-[1780px] px-4 text-center">
-    <div class="flex flex-col items-center justify-center gap-4">
-      <h2
-        class="bg-gradient-to-b from-white via-[#794DFE] to-[#B743FF] bg-clip-text font-['Cinzel_Decorative'] text-2xl font-bold text-transparent"
-      >
-        WISH
-      </h2>
-      <p class="font-['Marcellus'] text-purple-200/60">
-        &copy; {year} Women in STEM Hackathon. All rights reserved.
+<footer
+  class="relative border-t border-white/5 bg-black/40 backdrop-blur-md pt-16 pb-12 px-4"
+>
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between gap-12 md:gap-8">
+    <div class="flex flex-col gap-6 max-w-md">
+      <Image
+        src={acmwLogo}
+        alt="ACMW Logo"
+        class="h-10 w-auto object-contain self-start"
+      />
+      <p class="text-sm sm:text-base text-default-400 leading-relaxed font-sans">
+        NU ACM-W Student Chapter is the first student chapter of the international ACM-Women organization in Kazakhstan and Central Asia, based at Nazarbayev University. Since 2017, we have been providing social and professional support to women in STEM by organizing various events.
       </p>
     </div>
+
+    <div class="flex flex-col gap-6 md:items-end">
+      <div class="flex flex-col gap-1 md:items-end">
+        
+      </div>
+
+      <div class="flex items-center gap-4">
+      <!-- Telegram -->
+        <a
+          class="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-primary/50 hover:text-primary text-default-400 transition-all"
+          aria-label="Telegram"
+          href="https://t.me/nu_acm_w"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-5 h-5"
+            aria-hidden="true"
+          >
+            <path
+              d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"
+            ></path>
+            <path d="m21.854 2.147-10.94 10.939"></path>
+          </svg>
+        </a>
+
+
+        <!-- Instagram -->
+        <a
+          class="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-primary/50 hover:text-primary text-default-400 transition-all"
+          aria-label="Instagram"
+          href="https://www.instagram.com/nuacm_wsc/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-5 h-5"
+            aria-hidden="true"
+          >
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+          </svg>
+        </a>
+
+        <!-- TikTok -->
+        <a
+          class="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-primary/50 hover:text-primary text-default-400 transition-all"
+          aria-label="TikTok"
+          href="https://www.tiktok.com/@nuacmsc"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-5 h-5"
+            aria-hidden="true"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M21 7.917v4.034a9.948 9.948 0 0 1-5 -1.951v4.5a6.5 6.5 0 1 1-8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" />
+          </svg>
+        </a>
+
+        <!-- EMail -->
+        <a
+          class="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-primary/50 hover:text-primary text-default-400 transition-all"
+          aria-label="Email"
+          href="https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-5 h-5"
+            aria-hidden="true"
+          >
+            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="max-w-5xl mx-auto mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-default-400"
+  >
+
+      <p class="font-['Marcellus'] text-purple-200/60">
+        &copy; 2026 Women in STEM Hackathon. All rights reserved.
+      </p>
   </div>
 </footer>

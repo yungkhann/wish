@@ -3,38 +3,47 @@ const faqs = [
   {
     question: "What is WISH?",
     answer:
-      "WHD is an annual three-round team competition in mathematics, competitive programming, and product design. Each team should consist of 3 to 4 members.",
-  },
-  {
-    question: "Who can participate?",
-    answer: "Female high school and university students aged 16 to 20.",
-  },
-  {
-    question: "What if I don't have a team?",
-    answer: "You can find team members in our Women's Hack Day chat. *link*",
-  },
-  {
-    question: "Do I need to be a professional?",
-    answer: "No, it's a beginner-friendly competition.",
+      "Women in STEM Hackathon (WISH) is a 24-hour offline hackathon for girls, where participants team up to solve practical challenges from sponsors in Data Science, ML, and AI. It is an intensive event designed for those who dream of building a career in the world of high-tech and innovation.",
   },
   {
     question: "Can I participate online?",
-    answer: "No, Women's Hack Day 2025 is fully offline.",
+    answer: "No, WISH will be held offline at Nazarbayev University, Astana, Kazakhstan.",
+  },
+  {
+    question: "Who are the organisers of WISH?",
+    answer:
+      "The organizer is the NU ACM-W Student Chapter - the first and only branch of ACM-Women in Kazakhstan and Central Asia. Our mission is to support women in STEM fields, especially in IT, through initiatives that foster social, professional, and technical growth.",
   },
   {
     question: "How can I participate?",
     answer:
-      "Assemble a team, register, and come to Nazarbayev University on the 25th of October 2025. Please note that the application for participation is filled out only by the captain of the team.",
+      "Form a team of 2-4 people and register through our website. Registration is open from February 23 to March 11, 2026. Please note that every team member must register individually through the website.",
+  },
+  {
+    question: "Who can participate?",
+    answer: "We welcome high school, college, and university students aged 16 and above. Participation is in teams of 2 to 4 people.",
   },
   {
     question: "Will participants receive certificates or prizes?",
     answer:
-      "Yes, every participant will receive a certificate of participation, winners will receive a cash prize and merch. Also, there is a welcome package for 100 people, and a coffee break.",
+      "Yes! The total prize fund is 1 200 000 ₸. Winners will also receive exclusive merchandise, and the first 50 participants will get a special Welcome Package. Every participant will receive a certificate of participation. Moreover, the best-performing participants will have the chance to receive job offers or internship opportunities from our partners.",
+  },
+  {
+    question: "What if I don't have a team?",
+    answer: `Don’t worry! You can find teammates in our dedicated <a href="https://t.me/wish_nuacmw" target="_blank" rel="noopener noreferrer">WISH Telegram chat</a>, where other participants are also looking for partners.`,
+  }, 
+  {
+    question: "Are there any other events for girls? ",
+    answer: `Yes! NU ACM-W SC annually organizes events for girls such as Women\`s Hack Day - 3-round team competition for girls (product design, mathematics, programming), CodeW - an individual competitive programming contest, and Code Girl Summer - a two-week web development camp. You can find more details and information on our <a href="https://t.me/nu_acm_w" target="_blank" rel="noopener noreferrer">Telegram</a> and <a href="https://www.instagram.com/nuacm_wsc/" target="_blank" rel="noopener noreferrer">Instagram</a> pages.`,
+  }, 
+  {
+    question: "Do I need to be a professional?",
+    answer: "No, everyone interested in Data Science and AI is welcome! To help you prepare, all registered participants will receive access to exclusive video lessons covering essential tools and methods used at hackathons.",
   },
   {
     question: "I didn't find an answer to my question. What should I do?",
     answer:
-      "Join our Telegram chat and ask your questions. Or you can contact us via email: acm_w@nu.edu.kz",
+      `Join our <a href="https://t.me/wish_nuacmw" target="_blank" rel="noopener noreferrer">Telegram chat</a> and ask your questions there, or contact us via email: <a href="https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm" target="_blank" rel="noopener noreferrer">acm_w@nu.edu.kz</a>.`,
   },
 ];
 ---
@@ -54,7 +63,7 @@ const faqs = [
               <summary>{faq.question}</summary>
               <div class="answer">
                 <div class="answer-inner">
-                  <p>{faq.answer}</p>
+                  <p set:html={faq.answer} />
                 </div>
               </div>
             </details>
@@ -170,6 +179,11 @@ const faqs = [
     font-size: clamp(0.9rem, 1.1vw, 1.1rem);
     color: #e5e5e5;
     line-height: 1.7;
+  }
+
+  .answer-inner :global(a) {
+    color: #ad54ff;
+    text-decoration: underline;
   }
 
   .links {

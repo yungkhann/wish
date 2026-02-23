@@ -21,7 +21,6 @@ export default function TeamPage() {
   const [state, setState] = useState<State>("loading");
   const [user, setUser] = useState<UserData | null>(null);
   const [teamName, setTeamName] = useState("");
-  const [editingName, setEditingName] = useState("");
   const [newTeamName, setNewTeamName] = useState("");
   const [members, setMembers] = useState<Member[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -57,7 +56,6 @@ export default function TeamPage() {
       const data = await res.json();
       setMembers(data.members);
       setTeamName(data.teamName);
-      setEditingName(data.teamName);
       setState("has-team");
     } catch {
       setState("no-team");
@@ -171,29 +169,6 @@ export default function TeamPage() {
         return;
       }
       await fetchTeamData();
-    } catch {
-      setError("An unexpected error occurred.");
-    } finally {
-      setActionLoading(false);
-    }
-  };
-
-  const handleRenameTeam = async () => {
-    setError(null);
-    setActionLoading(true);
-    try {
-      const res = await fetch("/api/team", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ teamName: editingName }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? "Failed to rename team");
-        return;
-      }
-      setTeamName(editingName);
-      setError("Team renamed successfully!");
     } catch {
       setError("An unexpected error occurred.");
     } finally {
@@ -336,47 +311,12 @@ export default function TeamPage() {
           {/* Team Section */}
           <div className="space-y-6">
             {/* Team Name */}
-            {isOwner ? (
-              <>
-                <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
-                  {teamName}
-                </h2>
-                <div className="flex items-center gap-3">
-                  <label className="shrink-0 font-['Marcellus'] text-base text-white">
-                    Enter Team Name:
-                  </label>
-                  <input
-                    type="text"
-                    value={editingName}
-                    onChange={(e) => setEditingName(e.target.value)}
-                    className="flex-1 rounded-tl-[45px] rounded-tr-[6px] rounded-br-[45px] rounded-bl-[6px] bg-[linear-gradient(90deg,rgba(0,0,0,0.20)_13%,rgba(0,0,0,0.20)_50%,rgba(0,0,0,0.20)_93%)] px-6 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0px_0px_45px_rgba(119,22,208,0.60)] outline-none"
-                  />
-                </div>
-                <div className="flex justify-center">
-                  <button
-                    onClick={handleRenameTeam}
-                    disabled={
-                      actionLoading ||
-                      !editingName.trim() ||
-                      editingName === teamName
-                    }
-                    className="rounded-tl-[30px] rounded-tr-[4px] rounded-br-[30px] rounded-bl-[4px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_3px_#7716D0,0_0_7.5px_#7716D0,0_0_30px_rgba(119,22,208,0.60),0_0_45px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_2px_rgba(255,255,255,1)] hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
-                  >
-                    SAVE
-                  </button>
-                </div>
-              </>
-            ) : (
-              <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
-                {teamName}
-              </h2>
-            )}
+            <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
+              TEAM NAME: {teamName}
+            </h2>
 
             {/* Participants */}
             <div>
-              <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
-                PARTICIPANTS
-              </h2>
               <table className="w-full table-fixed border-collapse">
                 <tbody>
                   {(() => {
@@ -412,6 +352,14 @@ export default function TeamPage() {
                   })()}
                 </tbody>
               </table>
+              <div className="mt-4 flex justify-center">
+                <a
+                  href="/team/videos"
+                  className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-purple-500/40 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-4 font-['Cinzel'] text-lg tracking-[2px] text-purple-300 shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
+                >
+                  VIDEO LESSONS
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -426,12 +374,6 @@ export default function TeamPage() {
               {copyText}
             </button>
           )}
-          <a
-            href="/team/videos"
-            className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-purple-500/40 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-4 font-['Cinzel'] text-lg tracking-[2px] text-purple-300 shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
-          >
-            TEAM VIDEOS
-          </a>
           {isOwner ? (
             <button
               onClick={handleDissolveTeam}
@@ -480,7 +422,7 @@ function MemberRow({
         </div>
       </td>
       <td className="h-[67px] w-[130px] border-b border-l border-white/30 px-6 font-['Marcellus'] text-base text-white lowercase">
-        #{member.role}
+        {member.role}
       </td>
       <td className="h-[67px] w-[130px] border-b border-l border-white/30 pl-6">
         <div className="flex items-center gap-2">
