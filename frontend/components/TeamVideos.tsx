@@ -1,5 +1,3 @@
-import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
-
 const videos = [
   "https://youtu.be/WwnTk-EElYM",
   "https://youtu.be/hA10d3ZM7zk",
@@ -17,29 +15,19 @@ function getYoutubeEmbed(url: string) {
 }
 
 const TeamVideos = () => {
-  const lang = getLangFromCookieClient();
-  const t = useTranslations(lang);
-
   return (
     <>
       <div className="mx-auto mt-20 flex flex-col items-center bg-black py-20">
         <div className="inline-flex h-auto w-full max-w-4xl flex-col items-center justify-start gap-10 rounded-tl-3xl rounded-tr-md rounded-br-3xl rounded-bl-md bg-linear-to-r from-black/20 via-black/20 to-black/20 px-2 pt-8 pb-10 shadow-[0px_0px_40px_0px_rgba(119,22,208,0.40)] sm:max-w-3xl sm:px-4 md:max-w-4xl md:px-8 lg:max-w-5xl lg:px-16 xl:max-w-6xl">
           <h1 className="mt-2 text-center font-['Marcellus'] text-base font-normal tracking-widest text-purple-600 uppercase sm:text-lg md:text-xl lg:text-2xl">
-            {t("videos.title")}
+            Team Videos
           </h1>
 
           {/* Intro Text */}
           <div className="w-full max-w-2xl px-2 text-justify font-['Marcellus'] text-base text-white md:text-lg lg:text-xl">
-            {t("videos.introBefore")}
-            <a
-              href="https://www.datasci.website/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-purple-500 underline hover:text-purple-300"
-            >
-              {t("videos.datasciClubName")}
-            </a>
-            {t("videos.introAfter")}
+            These videos were prepared by the NU DataSci Club to help you master
+            the essentials before you start. Learn the best tips and strategies
+            to build a great project and get ready for the hackathon.
           </div>
 
           {/* Video Descriptions and Embeds */}
@@ -48,16 +36,20 @@ const TeamVideos = () => {
             <div className="flex flex-col items-center gap-4">
               <div className="w-full max-w-2xl px-2 text-justify font-['Marcellus'] text-base text-white md:text-lg lg:text-xl">
                 <span className="font-bold text-purple-500">
-                  {t("videos.video1Title")}
+                  How to Win a Hackathon
                 </span>
                 <br />
-                {t("videos.video1Desc")}
+                The first video explains how to navigate the full hackathon
+                process, from forming a small, effective team to delivering a
+                winning 3-minute pitch. You will learn how to focus on a working
+                demo rather than technical complexity and how to confidently
+                handle the judges&apos; Q&A session.
               </div>
               <div className="flex w-full flex-col items-center justify-center gap-2.5 p-2.5">
                 <iframe
                   className="aspect-video w-full max-w-3xl rounded-xl bg-black"
                   src={getYoutubeEmbed(videos[0])}
-                  title={t("videos.video1Title")}
+                  title="How to Win a Hackathon"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   loading="lazy"
@@ -69,16 +61,20 @@ const TeamVideos = () => {
             <div className="flex flex-col items-center gap-4">
               <div className="w-full max-w-2xl px-2 text-justify font-['Marcellus'] text-base text-white md:text-lg lg:text-xl">
                 <span className="font-bold text-purple-500">
-                  {t("videos.video2Title")}
+                  Working with AI Agents as an Architect
                 </span>
                 <br />
-                {t("videos.video2Desc")}
+                This video introduces &quot;Vibe Coding,&quot; where you act as
+                a system architect by designing logic and creating clear
+                technical tasks for AI. You will learn how to efficiently fix
+                bugs by finding their root cause and guiding AI agents to the
+                right solution.
               </div>
               <div className="flex w-full flex-col items-center justify-center gap-2.5 p-2.5">
                 <iframe
                   className="aspect-video w-full max-w-3xl rounded-xl bg-black"
                   src={getYoutubeEmbed(videos[1])}
-                  title={t("videos.video2Title")}
+                  title="Working with AI Agents as an Architect"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   loading="lazy"
@@ -90,16 +86,21 @@ const TeamVideos = () => {
             <div className="flex flex-col items-center gap-4">
               <div className="w-full max-w-2xl px-2 text-justify font-['Marcellus'] text-base text-white md:text-lg lg:text-xl">
                 <span className="font-bold text-purple-500">
-                  {t("videos.video3Title")}
+                  Effective Workflow & Toolset
                 </span>
                 <br />
-                {t("videos.video3Desc")}
+                Now, you will understand how to work faster by using AI agents
+                like Cursor or Claude for code generation and analysis. You will
+                learn how to choose the right tech stack (React, FastAPI,
+                PyTorch) and why it is better to focus on a working prototype
+                rather than overcomplicating the project with unnecessary
+                features.
               </div>
               <div className="flex w-full flex-col items-center justify-center gap-2.5 p-2.5">
                 <iframe
                   className="aspect-video w-full max-w-3xl rounded-xl bg-black"
                   src={getYoutubeEmbed(videos[2])}
-                  title={t("videos.video3Title")}
+                  title="Effective Workflow & Toolset"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   loading="lazy"
@@ -111,16 +112,20 @@ const TeamVideos = () => {
             <div className="flex flex-col items-center gap-4">
               <div className="w-full max-w-2xl px-2 text-justify font-['Marcellus'] text-base text-white md:text-lg lg:text-xl">
                 <span className="font-bold text-purple-500">
-                  {t("videos.video4Title")}
+                  Pretrained Models for Rapid Prototyping
                 </span>
                 <br />
-                {t("videos.video4Desc")}
+                Let`s look at why using pretrained models is the best strategy
+                for a hackathon to save time and get better results. You will
+                learn about popular models for different tasks and see a real
+                example of how to quickly fine-tune a model to create a
+                high-quality demo.
               </div>
               <div className="flex w-full flex-col items-center justify-center gap-2.5 p-2.5">
                 <iframe
                   className="aspect-video w-full max-w-3xl rounded-xl bg-black"
                   src={getYoutubeEmbed(videos[3])}
-                  title={t("videos.video4Title")}
+                  title="Pretrained Models for Rapid Prototyping"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   loading="lazy"
@@ -132,16 +137,20 @@ const TeamVideos = () => {
             <div className="flex flex-col items-center gap-4">
               <div className="w-full max-w-2xl px-2 text-justify font-['Marcellus'] text-base text-white md:text-lg lg:text-xl">
                 <span className="font-bold text-purple-500">
-                  {t("videos.video5Title")}
+                  Version Control with Git
                 </span>
                 <br />
-                {t("videos.video5Desc")}
+                Finally, we will show how to use GitHub to keep your project
+                safe and work effectively in a team. You will learn how to save
+                working versions of your code, use branches for experiments, and
+                resolve conflicts when merging your team&apos;s changes
+                together.
               </div>
               <div className="flex w-full flex-col items-center justify-center gap-2.5 p-2.5">
                 <iframe
                   className="aspect-video w-full max-w-3xl rounded-xl bg-black"
                   src={getYoutubeEmbed(videos[4])}
-                  title={t("videos.video5Title")}
+                  title="Version Control with Git"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   loading="lazy"
@@ -152,24 +161,26 @@ const TeamVideos = () => {
 
           {/* Outro Text */}
           <div className="mt-10 w-full max-w-2xl px-2 text-justify font-['Marcellus'] text-base text-white md:text-lg lg:text-xl">
-            {t("videos.outro1")}
+            That&apos;s it for our video series! We hope these lessons help you
+            navigate the hackathon with confidence. Focus on building a
+            presentable prototype, stay aligned with the task requirements, and
+            use AI as your main superpower to speed up development.
             <br />
             <span className="font-bold text-purple-500">
-              {t("videos.outro2")}
+              DON&apos;T JUST WISH. BUILD IT.
             </span>{" "}
-            {t("videos.outro3")}
+            This is your moment to turn inspiration into impact and code into
+            reality. We can&apos;t wait to see the incredible projects
+            you&apos;ll bring to life. Believe in your vision, trust your team,
+            and make it happen.
             <br />
-            {t("videos.outro4Before")}
-            <span className="font-bold text-purple-500">
-              {t("videos.outro4Wish")}
-            </span>
-            {t("videos.outro4After")}
+            Good luck - we&apos;ll see you at WISH!
           </div>
 
           {/* Footer / Links Section */}
           <div className="mt-8 flex w-full flex-col items-center gap-6">
             <div className="w-full max-w-2xl text-start font-['Marcellus'] text-sm font-normal text-white sm:text-base md:text-lg">
-              {t("videos.linksTitle")}:
+              Useful Links:
             </div>
             <div className="w-full max-w-2xl space-y-2 text-start font-['Marcellus'] text-xs font-normal text-white sm:text-sm md:text-base">
               <p>
@@ -179,10 +190,10 @@ const TeamVideos = () => {
                   rel="noopener noreferrer"
                   className="text-purple-500 underline hover:text-purple-300"
                 >
-                  {t("videos.link1Title")}
+                  GitHub Student Developer Pack
                 </a>
-                {" - "}
-                {t("videos.link1Desc")}
+                {" - "}Get free access to GitHub Copilot Pro and other premium
+                developer tools.
               </p>
               <p>
                 <a
@@ -191,19 +202,20 @@ const TeamVideos = () => {
                   rel="noopener noreferrer"
                   className="text-purple-500 underline hover:text-purple-300"
                 >
-                  {t("videos.link2Cursor")}
+                  Cursor
                 </a>
-                {" & "}
+                {" - "}The most effective AI code editor for rapid development.
+              </p>
+              <p>
                 <a
                   href="https://claude.ai/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-purple-500 underline hover:text-purple-300"
                 >
-                  {t("videos.link2Claude")}
+                  Claude
                 </a>
-                {" - "}
-                {t("videos.link2Desc")}
+                {" - "}Powerful AI agent for code generation and analysis.
               </p>
               <p>
                 <a
@@ -212,10 +224,10 @@ const TeamVideos = () => {
                   rel="noopener noreferrer"
                   className="text-purple-500 underline hover:text-purple-300"
                 >
-                  {t("videos.link3Title")}
+                  Hugging Face
                 </a>
-                {" - "}
-                {t("videos.link3Desc")}
+                {" - "}The go-to platform for finding pretrained models (Text,
+                Image, Audio) to jumpstart your prototype.
               </p>
               <p>
                 <a
@@ -224,10 +236,10 @@ const TeamVideos = () => {
                   rel="noopener noreferrer"
                   className="text-purple-500 underline hover:text-purple-300"
                 >
-                  {t("videos.link4Title")}
+                  YOLO by Ultralytics
                 </a>
-                {" - "}
-                {t("videos.link4Desc")}
+                {" - "}A powerful tool for quick object detection and computer
+                vision tasks.
               </p>
               <p>
                 <a
@@ -236,10 +248,10 @@ const TeamVideos = () => {
                   rel="noopener noreferrer"
                   className="text-purple-500 underline hover:text-purple-300"
                 >
-                  {t("videos.link5Title")}
+                  FastAPI Documentation
                 </a>
-                {" - "}
-                {t("videos.link5Desc")}
+                {" - "}A fast and modern framework for building your
+                project&apos;s backend.
               </p>
               <p>
                 <a
@@ -248,10 +260,10 @@ const TeamVideos = () => {
                   rel="noopener noreferrer"
                   className="text-purple-500 underline hover:text-purple-300"
                 >
-                  {t("videos.link6Title")}
+                  Git & GitHub Guide
                 </a>
-                {" - "}
-                {t("videos.link6Desc")}
+                {" - "}Master branching and version control to collaborate
+                without losing your code.
               </p>
             </div>
           </div>

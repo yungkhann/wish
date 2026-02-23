@@ -3,18 +3,16 @@ import { defineConfig } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 
+import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-
-import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://wish.nuacmw.kz",
   srcDir: "frontend",
   output: "server",
-  integrations: [react(), sitemap()],
-
+  adapter: cloudflare(),
   vite: {
     plugins: [tailwindcss()],
     server: {
@@ -25,8 +23,5 @@ export default defineConfig({
       },
     },
   },
-
-  adapter: cloudflare({
-    imageService: "passthrough",
-  }),
+  integrations: [react()],
 });

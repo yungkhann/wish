@@ -12,7 +12,7 @@
     "CLIENT_URL": "https://wish.nuacmw.kz",
   },
   "assets": {
-    "directory": "./dist",
+    "directory": "dist/client",
     "binding": "ASSETS",
   },
   "d1_databases": [
