@@ -110,34 +110,39 @@ export const ui = {
     "faq.title": "FAQs",
     "faq.q1": "What is WISH?",
     "faq.a1":
-      "WISH is a 24-hour team hackathon in data analytics, machine learning, and artificial intelligence. Each team should consist of 2 to 4 members.",
+      "Women in STEM Hackathon (WISH) is a 24-hour offline hackathon for girls, where participants team up to solve practical challenges from sponsors in Data Science, ML, and AI. It is an intensive event designed for those who dream of building a career in the world of high-tech and innovation.",
     "faq.q2": "Who can participate?",
-    "faq.a2": "Female high school and university students aged 16 and above.",
+    "faq.a2":
+      "We welcome high school, college, and university students aged 16 and above. Participation is in teams of 2 to 4 people.",
     "faq.q3": "What if I don't have a team?",
     "faq.a3":
-      "You can find team members in our Women in STEM Hackathon Telegram chat.",
+      "Don't worry! You can find teammates in our dedicated <a href=\"https://t.me/wish_nuacmw\" target=\"_blank\" rel=\"noopener noreferrer\">WISH Telegram chat</a>, where other participants are also looking for partners.",
     "faq.q4": "Do I need to be a professional?",
-    "faq.a4": "No, it's a beginner-friendly competition.",
+    "faq.a4":
+      "No, everyone interested in Data Science and AI is welcome! To help you prepare, all registered participants will receive access to exclusive video lessons covering essential tools and methods used at hackathons.",
     "faq.q5": "Can I participate online?",
-    "faq.a5": "No, WISH 2026 is fully offline.",
+    "faq.a5":
+      "No, WISH will be held offline at Nazarbayev University, Astana, Kazakhstan.",
     "faq.q6": "How can I participate?",
     "faq.a6":
-      "Assemble a team, register, and come to Nazarbayev University on March 14, 2026. Please note that the registration is filled out by each participant individually.",
+      "Form a team of 2-4 people and register through our website. Registration is open from February 23 to March 11, 2026. Please note that every team member must register individually through the website.",
     "faq.q7": "Will participants receive certificates or prizes?",
     "faq.a7":
-      "Yes, every participant will receive a certificate of participation, winners will receive a cash prize and merch. Also, there is a welcome package and a coffee break.",
+      "Yes! The total prize fund is 1 200 000 ₸. Winners will also receive exclusive merchandise, and the first 50 participants will get a special Welcome Package. Every participant will receive a certificate of participation. Moreover, the best-performing participants will have the chance to receive job offers or internship opportunities from our partners.",
     "faq.q8": "I didn't find an answer to my question. What should I do?",
     "faq.a8":
-      "Join our Telegram chat and ask your questions. Or you can contact us via email: acm_w@nu.edu.kz",
+      "Join our <a href=\"https://t.me/wish_nuacmw\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram chat</a> and ask your questions there, or contact us via email: <a href=\"https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm\" target=\"_blank\" rel=\"noopener noreferrer\">acm_w@nu.edu.kz</a>.",
     "faq.instagram": "Instagram",
     "faq.telegram": "Telegram",
     "faq.youtube": "Youtube",
     "faq.email": "Email",
     "faq.copyright": "© 2026 NU ACM-W SC All rights reserved.",
     "faq.q9": "Who are the organisers of WISH?",
-    "faq.a9": "The organizer is the <strong>NU ACM-W Student Chapter</strong> - the first and only branch of ACM-Women in Kazakhstan and Central Asia. Our mission is to support women in STEM fields, especially in IT, through initiatives that foster social, professional, and technical growth.",
+    "faq.a9":
+      "The organizer is the NU ACM-W Student Chapter - the first and only branch of ACM-Women in Kazakhstan and Central Asia. Our mission is to support women in STEM fields, especially in IT, through initiatives that foster social, professional, and technical growth.",
     "faq.q10": "Are there any other events for girls?",
-    "faq.a10": "Yes! NU ACM-W SC annually organizes events for girls such as <strong>Women's Hack Day</strong> (product design, mathematics, programming), <strong>CodeW</strong> (competitive programming), and <strong>Code Girl Summer</strong> (web development camp). You can find more details on our <a href='https://t.me/nu_acm_w' target='_blank'>Telegram</a> and <a href='https://www.instagram.com/nuacm_wsc/' target='_blank'>Instagram</a> pages.",
+    "faq.a10":
+      "Yes! NU ACM-W SC annually organizes events for girls such as Women's Hack Day - 3-round team competition for girls (product design, mathematics, programming), CodeW - an individual competitive programming contest, and Code Girl Summer - a two-week web development camp. You can find more details and information on our <a href=\"https://t.me/nu_acm_w\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram</a> and <a href=\"https://www.instagram.com/nuacm_wsc/\" target=\"_blank\" rel=\"noopener noreferrer\">Instagram</a> pages.",
 
     // ── Footer ──
     "footer.description": "NU ACM-W Student Chapter is the first student chapter of the international ACM-Women organization in Kazakhstan and Central Asia, based at Nazarbayev University. Since 2017, we have been providing social and professional support to women in STEM by organizing various events.",
@@ -346,34 +351,39 @@ export const ui = {
     "faq.title": "Вопросы",
     "faq.q1": "Что такое WISH?",
     "faq.a1":
-      "WISH — это 24-часовой командный хакатон в области аналитики данных, машинного обучения и искусственного интеллекта. Каждая команда состоит из 2–4 участниц.",
+      "Women in STEM Hackathon (WISH) — это 24-часовой оффлайн-хакатон для девушек, где участницы объединяются в команды для решения практических задач от спонсоров в области Data Science, ML и AI. Это интенсивное мероприятие для тех, кто мечтает построить карьеру в мире высоких технологий и инноваций.",
     "faq.q2": "Кто может участвовать?",
-    "faq.a2": "Школьницы и студентки от 16 лет и старше.",
+    "faq.a2":
+      "Мы приглашаем школьниц, студенток колледжей и университетов от 16 лет и старше. Участие командное — от 2 до 4 человек.",
     "faq.q3": "Что делать, если у меня нет команды?",
     "faq.a3":
-      "Вы можете найти участниц в нашем Telegram-чате Women in STEM Hackathon.",
+      "Не переживайте! Вы можете найти напарниц в нашем специальном <a href=\"https://t.me/wish_nuacmw\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram-чате WISH</a>, где другие участницы тоже ищут партнёров.",
     "faq.q4": "Нужно ли быть профессионалом?",
-    "faq.a4": "Нет, соревнование подходит для начинающих.",
+    "faq.a4":
+      "Нет, мы приветствуем всех, кто интересуется Data Science и AI! Для подготовки все зарегистрированные участницы получат доступ к эксклюзивным видеоурокам, охватывающим основные инструменты и методы, используемые на хакатонах.",
     "faq.q5": "Можно ли участвовать онлайн?",
-    "faq.a5": "Нет, WISH 2026 проходит полностью оффлайн.",
+    "faq.a5":
+      "Нет, WISH пройдёт оффлайн в Назарбаев Университете, Астана, Казахстан.",
     "faq.q6": "Как я могу участвовать?",
     "faq.a6":
-      "Соберите команду, зарегистрируйтесь и приходите в Назарбаев Университет 14 марта 2026 года. Обратите внимание, что регистрация заполняется каждой участницей индивидуально.",
+      "Соберите команду из 2–4 человек и зарегистрируйтесь через наш сайт. Регистрация открыта с 23 февраля по 11 марта 2026 года. Обратите внимание, что каждая участница должна зарегистрироваться индивидуально через сайт.",
     "faq.q7": "Получат ли участницы сертификаты или призы?",
     "faq.a7":
-      "Да, каждая участница получит сертификат участия, победительницы получат денежный приз и мерч. Также будет welcome-пакет и кофе-брейк.",
+      "Да! Общий призовой фонд составляет 1 200 000 ₸. Победительницы также получат эксклюзивный мерч, а первые 50 участниц — специальный Welcome Package. Каждая участница получит сертификат участия. Кроме того, лучшие участницы получат шанс на предложение о работе или стажировке от наших партнёров.",
     "faq.q8": "Я не нашла ответ на свой вопрос. Что делать?",
     "faq.a8":
-      "Присоединяйтесь к нашему Telegram-чату и задавайте вопросы. Или свяжитесь с нами по email: acm_w@nu.edu.kz",
+      "Присоединяйтесь к нашему <a href=\"https://t.me/wish_nuacmw\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram-чату</a> и задавайте вопросы, или свяжитесь с нами по email: <a href=\"https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm\" target=\"_blank\" rel=\"noopener noreferrer\">acm_w@nu.edu.kz</a>.",
     "faq.instagram": "Instagram",
     "faq.telegram": "Telegram",
     "faq.youtube": "Youtube",
     "faq.email": "Email",
     "faq.copyright": "© 2026 NU ACM-W SC Все права защищены.",
     "faq.q9": "Кто является организаторами WISH?",
-    "faq.a9": "Организатором является <strong>NU ACM-W Student Chapter</strong> — первый и единственный филиал ACM-Women в Казахстане и Центральной Азии. Наша миссия — поддержка женщин в STEM-сферах, особенно в IT, через инициативы, способствующие социальному, профессиональному и техническому росту.",
+    "faq.a9":
+      "Организатором является NU ACM-W Student Chapter — первый и единственный филиал ACM-Women в Казахстане и Центральной Азии. Наша миссия — поддержка женщин в STEM-сферах, особенно в IT, через инициативы, способствующие социальному, профессиональному и техническому росту.",
     "faq.q10": "Проводятся ли другие мероприятия для девушек?",
-    "faq.a10": "Да! NU ACM-W SC ежегодно проводит такие мероприятия, как <strong>Women's Hack Day</strong> (дизайн продукта, математика, программирование), <strong>CodeW</strong> (спортивное программирование) и <strong>Code Girl Summer</strong> (лагерь по веб-разработке). Подробности можно найти в нашем <a href='https://t.me/nu_acm_w' target='_blank'>Telegram</a> и <a href='https://www.instagram.com/nuacm_wsc/' target='_blank'>Instagram</a>.",
+    "faq.a10":
+      "Да! NU ACM-W SC ежегодно проводит мероприятия для девушек: Women's Hack Day — командное соревнование из 3 раундов (дизайн продукта, математика, программирование), CodeW — индивидуальное соревнование по спортивному программированию и Code Girl Summer — двухнедельный лагерь по веб-разработке. Подробности можно найти в нашем <a href=\"https://t.me/nu_acm_w\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram</a> и <a href=\"https://www.instagram.com/nuacm_wsc/\" target=\"_blank\" rel=\"noopener noreferrer\">Instagram</a>.",
 
     // ── Footer ──
     "footer.description": "NU ACM-W Student Chapter - первое в Казахстане и Центральной Азии студенческое подразделение международной организации ACM-Women, базирующееся в Назарбаев Университете. С 2017 года мы оказываем социальную и профессиональную поддержку девушкам в STEM сферах, организуя различные мероприятия.",
@@ -584,34 +594,39 @@ export const ui = {
     "faq.title": "Сұрақтар",
     "faq.q1": "WISH дегеніміз не?",
     "faq.a1":
-      "WISH — деректер аналитикасы, машиналық оқыту және жасанды интеллект саласындағы 24 сағаттық командалық хакатон. Әр команда 2–4 қатысушыдан тұрады.",
+      "Women in STEM Hackathon (WISH) — қыздарға арналған 24 сағаттық оффлайн хакатон, мұнда қатысушылар Data Science, ML және AI салаларында демеушілердің практикалық тапсырмаларын шешу үшін команда құрады. Бұл жоғары технология мен инновация әлемінде мансап құруды армандайтындарға арналған қарқынды іс-шара.",
     "faq.q2": "Кім қатыса алады?",
-    "faq.a2": "16 жастан асқан мектеп оқушылары мен студент қыздар.",
+    "faq.a2":
+      "Біз 16 жастан асқан мектеп оқушыларын, колледж және университет студенттерін шақырамыз. Қатысу командалық — 2-ден 4 адамға дейін.",
     "faq.q3": "Командам болмаса не істеймін?",
     "faq.a3":
-      "Біздің Women in STEM Hackathon Telegram чатында командалас таба аласыз.",
+      "Алаңдамаңыз! Біздің арнайы <a href=\"https://t.me/wish_nuacmw\" target=\"_blank\" rel=\"noopener noreferrer\">WISH Telegram чатында</a> серіктес іздеп жүрген басқа қатысушыларды таба аласыз.",
     "faq.q4": "Кәсіби маман болу керек пе?",
-    "faq.a4": "Жоқ, бұл жаңадан бастаушыларға да ыңғайлы жарыс.",
+    "faq.a4":
+      "Жоқ, Data Science және AI-ға қызығушылық танытатын барлығын қарсы аламыз! Дайындыққа көмектесу үшін барлық тіркелген қатысушылар хакатондарда қолданылатын негізгі құралдар мен әдістерді қамтитын эксклюзивті бейнесабақтарға қол жеткізе алады.",
     "faq.q5": "Онлайн қатысуға болады ма?",
-    "faq.a5": "Жоқ, WISH 2026 толығымен оффлайн өтеді.",
+    "faq.a5":
+      "Жоқ, WISH Назарбаев Университетінде, Астана, Қазақстанда оффлайн өтеді.",
     "faq.q6": "Қалай қатысуға болады?",
     "faq.a6":
-      "Команда құрыңыз, тіркеліңіз және 2026 жылы 14 наурызда Назарбаев Университетіне келіңіз. Тіркелуді әр қатысушы жеке толтырады.",
+      "2–4 адамнан тұратын команда құрыңыз және біздің сайт арқылы тіркеліңіз. Тіркелу 2026 жылдың 23 ақпанынан 11 наурызға дейін ашық. Әр команда мүшесі сайт арқылы жеке тіркелуі керек екенін ескеріңіз.",
     "faq.q7": "Қатысушылар сертификат немесе жүлде алады ма?",
     "faq.a7":
-      "Иә, әр қатысушы қатысу сертификатын алады, жеңімпаздар ақшалай жүлде мен мерч алады. Сонымен қатар, welcome-пакет пен кофе-брейк болады.",
+      "Иә! Жалпы жүлде қоры 1 200 000 ₸ құрайды. Жеңімпаздар сонымен қатар эксклюзивті мерч алады, ал алғашқы 50 қатысушы арнайы Welcome Package алады. Әр қатысушы қатысу сертификатын алады. Сонымен қатар, ең жақсы нәтиже көрсеткен қатысушылар серіктестерімізден жұмыс немесе тағылымдама ұсыныстарын алу мүмкіндігіне ие болады.",
     "faq.q8": "Сұрағыма жауап таппадым. Не істеуім керек?",
     "faq.a8":
-      "Біздің Telegram чатқа қосылыңыз және сұрағыңызды қойыңыз. Немесе бізге email арқылы хабарласыңыз: acm_w@nu.edu.kz",
+      "Біздің <a href=\"https://t.me/wish_nuacmw\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram чатқа</a> қосылыңыз және сұрақтарыңызды қойыңыз, немесе бізге email арқылы хабарласыңыз: <a href=\"https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm\" target=\"_blank\" rel=\"noopener noreferrer\">acm_w@nu.edu.kz</a>.",
     "faq.instagram": "Instagram",
     "faq.telegram": "Telegram",
     "faq.youtube": "Youtube",
     "faq.email": "Email",
     "faq.copyright": "© 2026 NU ACM-W SC Барлық құқықтар қорғалған.",
     "faq.q9": "WISH ұйымдастырушылары кім?",
-    "faq.a9": "Ұйымдастырушы — <strong>NU ACM-W Student Chapter</strong>, Қазақстан мен Орталық Азиядағы ACM-Women-нің алғашқы және жалғыз бөлімшесі. Біздің миссиямыз — әлеуметтік, кәсіби және техникалық өсуге ықпал ететін бастамалар арқылы STEM салаларындағы, әсіресе IT-дегі әйелдерді қолдау.",
+    "faq.a9":
+      "Ұйымдастырушы — NU ACM-W Student Chapter, Қазақстан мен Орталық Азиядағы ACM-Women-нің алғашқы және жалғыз бөлімшесі. Біздің миссиямыз — әлеуметтік, кәсіби және техникалық өсуге ықпал ететін бастамалар арқылы STEM салаларындағы, әсіресе IT-дегі әйелдерді қолдау.",
     "faq.q10": "Қыздарға арналған басқа да іс-шаралар бар ма?",
-    "faq.a10": "Иә! NU ACM-W SC жыл сайын қыздарға арналған <strong>Women's Hack Day</strong> (өнім дизайны, математика, бағдарламалау), <strong>CodeW</strong> (спорттық бағдарламалау) және <strong>Code Girl Summer</strong> (веб-әзірлеу лагері) сияқты іс-шараларды ұйымдастырады. Толығырақ ақпаратты біздің <a href='https://t.me/nu_acm_w' target='_blank'>Telegram</a> және <a href='https://www.instagram.com/nuacm_wsc/' target='_blank'>Instagram</a> парақшаларымыздан таба аласыз.",
+    "faq.a10":
+      "Иә! NU ACM-W SC жыл сайын қыздарға арналған іс-шараларды ұйымдастырады: Women's Hack Day — 3 раундтық командалық жарыс (өнім дизайны, математика, бағдарламалау), CodeW — жеке спорттық бағдарламалау жарысы және Code Girl Summer — екі апталық веб-әзірлеу лагері. Толығырақ ақпаратты біздің <a href=\"https://t.me/nu_acm_w\" target=\"_blank\" rel=\"noopener noreferrer\">Telegram</a> және <a href=\"https://www.instagram.com/nuacm_wsc/\" target=\"_blank\" rel=\"noopener noreferrer\">Instagram</a> парақшаларымыздан таба аласыз.",
 
     // ── Footer ──
     "footer.description": "NU ACM-W Student Chapter - Назарбаев Университетінде орналасқан халықаралық ACM-Women ұйымының Қазақстан мен Орталық Азиядағы алғашқы студенттік бөлімшесі. 2017 жылдан бастап біз түрлі іс-шаралар ұйымдастыру арқылы STEM саласындағы қыздарға әлеуметтік және кәсіби қолдау көрсетіп келеміз.",
