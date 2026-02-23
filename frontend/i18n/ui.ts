@@ -255,8 +255,10 @@ export const ui = {
 
     // ── Videos page ──
     "videos.title": "VIDEO LESSONS",
-    "videos.intro":
-      "These videos were prepared by the NU DataSci Club to help you master the essentials before you start. Learn the best tips and strategies to build a great project and get ready for the hackathon.",
+    "videos.introBefore": "These videos were prepared by the ",
+    "videos.datasciClubName": "NU DataSci Club",
+    "videos.introAfter":
+      " to help you master the essentials before you start. Learn the best tips and strategies to build a great project and get ready for the hackathon.",
     "videos.video1Title": "How to Win a Hackathon",
     "videos.video1Desc":
       "The first video explains how to navigate the full hackathon process, from forming a small, effective team to delivering a winning 3-minute pitch. You will learn how to focus on a working demo rather than technical complexity and how to confidently handle the judges' Q&A session.",
@@ -277,7 +279,9 @@ export const ui = {
     "videos.outro2": "DON'T JUST WISH. BUILD IT.",
     "videos.outro3":
       "This is your moment to turn inspiration into impact and code into reality. We can't wait to see the incredible projects you'll bring to life. Believe in your vision, trust your team, and make it happen.",
-    "videos.outro4": "Good luck - we'll see you at WISH!",
+    "videos.outro4Before": "Good luck - we'll see you at ",
+    "videos.outro4Wish": "WISH!",
+    "videos.outro4After": "",
     "videos.linksTitle": "Useful Links",
     "videos.link1Title": "GitHub Student Developer Pack",
     "videos.link1Desc":
@@ -550,8 +554,10 @@ export const ui = {
 
     // ── Videos page ──
     "videos.title": "ВИДЕОУРОКИ",
-    "videos.intro":
-      "Эти видео были подготовлены NU DataSci Club, чтобы помочь вам освоить основы перед стартом. Узнайте лучшие советы и стратегии для создания отличного проекта и подготовки к хакатону.",
+    "videos.introBefore": "Эти видео были подготовлены ",
+    "videos.datasciClubName": "NU DataSci Club",
+    "videos.introAfter":
+      ", чтобы помочь вам освоить основы перед стартом. Узнайте лучшие советы и стратегии для создания отличного проекта и подготовки к хакатону.",
     "videos.video1Title": "Как победить на хакатоне",
     "videos.video1Desc":
       "Первое видео объясняет, как пройти весь путь хакатона: от формирования небольшой эффективной команды до победного 3-минутного питча. Вы научитесь фокусироваться на рабочем демо, а не на технической сложности, и уверенно отвечать на вопросы жюри.",
@@ -572,7 +578,9 @@ export const ui = {
     "videos.outro2": "DON'T JUST WISH. BUILD IT.",
     "videos.outro3":
       "Это ваш момент, чтобы превратить вдохновение в результат, а код — в реальность. Нам не терпится увидеть невероятные проекты, которые вы создадите. Верьте в свою идею, доверяйте команде и действуйте!",
-    "videos.outro4": "Удачи — увидимся на WISH!",
+    "videos.outro4Before": "Удачи — увидимся на ",
+    "videos.outro4Wish": "WISH!",
+    "videos.outro4After": "",
     "videos.linksTitle": "Полезные ссылки",
     "videos.link1Title": "GitHub Student Developer Pack",
     "videos.link1Desc":
@@ -848,8 +856,10 @@ export const ui = {
 
     // ── Videos page ──
     "videos.title": "ВИДЕО САБАҚТАР",
-    "videos.intro":
-      "Бұл видеоларды NU DataSci Club хакатон алдында ең қажетті дағдыларды меңгеруге көмектесу үшін дайындады. Үздік жоба жасау және жарысқа дайындалу үшін ең пайдалы кеңестер мен стратегияларды үйреніңіз.",
+    "videos.introBefore": "Бұл видеоларды ",
+    "videos.datasciClubName": "NU DataSci Club",
+    "videos.introAfter":
+      " хакатон алдында ең қажетті дағдыларды меңгеруге көмектесу үшін дайындады. Үздік жоба жасау және жарысқа дайындалу үшін ең пайдалы кеңестер мен стратегияларды үйреніңіз.",
     "videos.video1Title": "Хакатонда қалай жеңіске жетуге болады?",
     "videos.video1Desc":
       "Бірінші видео хакатонның толық процесін түсіндіреді: шағын әрі тиімді команда құрудан бастап, жеңісті 3 минуттық питчке (жобаны таныстыруға) дейін. Сіз техникалық күрделілікке емес, жұмыс істеп тұрған демо-нұсқаға назар аударуды және қазылар алқасының сұрақтарына сенімді жауап беруді үйренесіз.",
@@ -870,7 +880,9 @@ export const ui = {
     "videos.outro2": "DON'T JUST WISH. BUILD IT.",
     "videos.outro3":
       "Бұл — шабытты нәтижеге, ал кодты шындыққа айналдыратын сәт. Сіздер жасаған керемет жобаларды көруге асықпыз. Өз идеяңызға сеніңіз, командаңызға арқа сүйеңіз және алға ұмтылыңыз!",
-    "videos.outro4": "Сәттілік — WISH-те кездескенше!",
+    "videos.outro4Before": "Сәттілік — ",
+    "videos.outro4Wish": "WISH",
+    "videos.outro4After": "те кездескенше!",
     "videos.linksTitle": "Пайдалы сілтемелер",
     "videos.link1Title": "GitHub Student Developer Pack",
     "videos.link1Desc":

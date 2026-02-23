@@ -30,7 +30,16 @@ const TeamVideos = () => {
 
           {/* Intro Text */}
           <div className="w-full max-w-2xl px-2 text-justify font-['Marcellus'] text-base text-white md:text-lg lg:text-xl">
-            {t("videos.intro")}
+            {t("videos.introBefore")}
+            <a
+              href="https://www.datasci.website/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-purple-500 underline hover:text-purple-300"
+            >
+              {t("videos.datasciClubName")}
+            </a>
+            {t("videos.introAfter")}
           </div>
 
           {/* Video Descriptions and Embeds */}
@@ -150,7 +159,11 @@ const TeamVideos = () => {
             </span>{" "}
             {t("videos.outro3")}
             <br />
-            {t("videos.outro4")}
+            {t("videos.outro4Before")}
+            <span className="font-bold text-purple-500">
+              {t("videos.outro4Wish")}
+            </span>
+            {t("videos.outro4After")}
           </div>
 
           {/* Footer / Links Section */}
