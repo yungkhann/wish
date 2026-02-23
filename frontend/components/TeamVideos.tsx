@@ -18,7 +18,7 @@ const TeamVideos = () => {
   return (
     <>
       <div className="mx-auto mt-20 flex flex-col items-center bg-black py-20">
-        <div className="inline-flex h-auto w-full max-w-4xl flex-col items-center justify-start gap-10 rounded-tl-3xl rounded-tr-md rounded-br-3xl rounded-bl-md bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-2 pt-8 pb-10 shadow-[0px_0px_40px_0px_rgba(119,22,208,0.40)] sm:max-w-3xl sm:px-4 md:max-w-4xl md:px-8 lg:max-w-5xl lg:px-16 xl:max-w-6xl">
+        <div className="inline-flex h-auto w-full max-w-4xl flex-col items-center justify-start gap-10 rounded-tl-3xl rounded-tr-md rounded-br-3xl rounded-bl-md bg-linear-to-r from-black/20 via-black/20 to-black/20 px-2 pt-8 pb-10 shadow-[0px_0px_40px_0px_rgba(119,22,208,0.40)] sm:max-w-3xl sm:px-4 md:max-w-4xl md:px-8 lg:max-w-5xl lg:px-16 xl:max-w-6xl">
           <h1 className="mt-2 text-center font-['Marcellus'] text-base font-normal tracking-widest text-purple-600 uppercase sm:text-lg md:text-xl lg:text-2xl">
             Team Videos
           </h1>
@@ -43,7 +43,7 @@ const TeamVideos = () => {
                 process, from forming a small, effective team to delivering a
                 winning 3-minute pitch. You will learn how to focus on a working
                 demo rather than technical complexity and how to confidently
-                handle the judges' Q&A session.
+                handle the judges&apos; Q&A session.
               </div>
               <div className="flex w-full flex-col items-center justify-center gap-2.5 p-2.5">
                 <iframe
@@ -64,10 +64,11 @@ const TeamVideos = () => {
                   Working with AI Agents as an Architect
                 </span>
                 <br />
-                This video introduces "Vibe Coding," where you act as a system
-                architect by designing logic and creating clear technical tasks
-                for AI. You will learn how to efficiently fix bugs by finding
-                their root cause and guiding AI agents to the right solution.
+                This video introduces &quot;Vibe Coding,&quot; where you act as
+                a system architect by designing logic and creating clear
+                technical tasks for AI. You will learn how to efficiently fix
+                bugs by finding their root cause and guiding AI agents to the
+                right solution.
               </div>
               <div className="flex w-full flex-col items-center justify-center gap-2.5 p-2.5">
                 <iframe
@@ -142,7 +143,8 @@ const TeamVideos = () => {
                 Finally, we will show how to use GitHub to keep your project
                 safe and work effectively in a team. You will learn how to save
                 working versions of your code, use branches for experiments, and
-                resolve conflicts when merging your team's changes together.
+                resolve conflicts when merging your team&apos;s changes
+                together.
               </div>
               <div className="flex w-full flex-col items-center justify-center gap-2.5 p-2.5">
                 <iframe
@@ -159,20 +161,20 @@ const TeamVideos = () => {
 
           {/* Outro Text */}
           <div className="mt-10 w-full max-w-2xl px-2 text-justify font-['Marcellus'] text-base text-white md:text-lg lg:text-xl">
-            That’s it for our video series! We hope these lessons help you
+            That&apos;s it for our video series! We hope these lessons help you
             navigate the hackathon with confidence. Focus on building a
             presentable prototype, stay aligned with the task requirements, and
             use AI as your main superpower to speed up development.
             <br />
             <span className="font-bold text-purple-500">
-              DON'T JUST WISH. BUILD IT.
+              DON&apos;T JUST WISH. BUILD IT.
             </span>{" "}
             This is your moment to turn inspiration into impact and code into
-            reality. We can’t wait to see the incredible projects you’ll bring
-            to life. Believe in your vision, trust your team, and make it
-            happen.
+            reality. We can&apos;t wait to see the incredible projects
+            you&apos;ll bring to life. Believe in your vision, trust your team,
+            and make it happen.
             <br />
-            Good luck - we’ll see you at WISH!
+            Good luck - we&apos;ll see you at WISH!
           </div>
 
           {/* Footer / Links Section */}
@@ -248,8 +250,8 @@ const TeamVideos = () => {
                 >
                   FastAPI Documentation
                 </a>
-                {" - "}A fast and modern framework for building your project's
-                backend.
+                {" - "}A fast and modern framework for building your
+                project&apos;s backend.
               </p>
               <p>
                 <a
@@ -262,82 +264,6 @@ const TeamVideos = () => {
                 </a>
                 {" - "}Master branching and version control to collaborate
                 without losing your code.
-              </p>
-            </div>
-
-            <div className="w-full max-w-2xl pt-2 text-start font-['Marcellus'] text-sm font-normal text-white sm:text-base md:text-lg">
-              Quick Access:
-            </div>
-            <div className="w-full max-w-2xl space-y-2 text-start font-['Marcellus'] text-xs font-normal text-white sm:text-sm md:text-base">
-              <p>
-                <a
-                  href="https://education.github.com/pack"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-purple-500 underline hover:text-purple-300"
-                >
-                  GitHub Student Developer Pack
-                </a>
-              </p>
-              <p>
-                <a
-                  href="https://cursor.sh/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-purple-500 underline hover:text-purple-300"
-                >
-                  Cursor
-                </a>
-              </p>
-              <p>
-                <a
-                  href="https://claude.ai/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-purple-500 underline hover:text-purple-300"
-                >
-                  Claude
-                </a>
-              </p>
-              <p>
-                <a
-                  href="https://huggingface.co/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-purple-500 underline hover:text-purple-300"
-                >
-                  Hugging Face
-                </a>
-              </p>
-              <p>
-                <a
-                  href="https://docs.ultralytics.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-purple-500 underline hover:text-purple-300"
-                >
-                  YOLO by Ultralytics
-                </a>
-              </p>
-              <p>
-                <a
-                  href="https://fastapi.tiangolo.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-purple-500 underline hover:text-purple-300"
-                >
-                  FastAPI Documentation
-                </a>
-              </p>
-              <p>
-                <a
-                  href="https://docs.github.com/en/get-started"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-purple-500 underline hover:text-purple-300"
-                >
-                  Git & GitHub Guide
-                </a>
               </p>
             </div>
           </div>
