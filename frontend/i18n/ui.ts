@@ -54,18 +54,14 @@ export const ui = {
 
     // ── Benefits ──
     "benefits.title": "Benefits",
-    "benefits.card1": "Preparation tips video lessons after registration",
-    "benefits.card2": "Hands-on experience in Data Science, ML & AI",
-    "benefits.card3": "1 200 000 ₸ Prize Fund and Exclusive Merchandise",
-    "benefits.card4": "Welcome Package for the first 50 participants",
-    "benefits.card5": "Career opportunities as ML Engineers",
-    "benefits.card6": "Coffee Breaks & Engaging Activities",
-    "benefits.card7": "New technical skills & real teamwork experience",
-    "benefits.card8": "Certificates of Participation for every participant",
+    "benefits.card1": "Hands-on experience in ML, AI, and data analytics",
+    "benefits.card2": "New technical skills and real-world teamwork experience",
+    "benefits.card3": "Cash prizes and merchandise",
+    "benefits.card4": "Coffee breaks, a photobooth, and engaging activities",
 
     // ── Timeline ──
     "timeline.title": "Timeline",
-    "timeline.date1": "February 23 - March 11",
+    "timeline.date1": "February 16 - March 11",
     "timeline.label1": "Registration Period",
     "timeline.date2": "March 11 - 13",
     "timeline.label2": "Confirmation Period",
@@ -73,7 +69,7 @@ export const ui = {
     "timeline.label3": "Women in STEM Hackathon",
 
     // ── Sponsors ──
-    "sponsors.title": "Sponsors",
+    "sponsors.title": "Our Sponsors",
     "sponsors.infoPartners": "Info Partners",
     "sponsors.sponsor": "Sponsor",
     "sponsors.partner": "Partner",
@@ -279,18 +275,14 @@ export const ui = {
 
     // ── Benefits ──
     "benefits.title": "Преимущества",
-"benefits.card1": "Видеоуроки по подготовке к хакатону после регистрации",
-    "benefits.card2": "Практический опыт в Data Science, ML и AI",
-    "benefits.card3": "Призовой фонд 1 200 000 ₸ и эксклюзивный мерч",
-    "benefits.card4": "Приветственный пакет для первых 50 участниц",
-    "benefits.card5": "Карьерные возможности в роли ML-инженеров",
-    "benefits.card6": "Кофе-брейки и увлекательные активности",
-    "benefits.card7": "Новые технические навыки и реальный опыт командной работы",
-    "benefits.card8": "Сертификаты об участии для каждой участницы",
+    "benefits.card1": "Практический опыт в ML, AI и анализе данных",
+    "benefits.card2": "Новые технические навыки и опыт командной работы",
+    "benefits.card3": "Денежные призы и мерч",
+    "benefits.card4": "Кофе-брейки, фотозона и увлекательные активности",
 
     // ── Timeline ──
     "timeline.title": "Этапы",
-    "timeline.date1": "23 февраля - 11 марта",
+    "timeline.date1": "16 февраля - 11 марта",
     "timeline.label1": "Период регистрации",
     "timeline.date2": "11 - 13 марта",
     "timeline.label2": "Период подтверждения",
@@ -298,7 +290,7 @@ export const ui = {
     "timeline.label3": "Women in STEM Hackathon",
 
     // ── Sponsors ──
-    "sponsors.title": "Спонсоры",
+    "sponsors.title": "Наши партнёры",
     "sponsors.infoPartners": "Инфо-партнёры",
     "sponsors.sponsor": "Спонсор",
     "sponsors.partner": "Партнёр",
@@ -506,14 +498,12 @@ export const ui = {
 
     // ── Benefits ──
     "benefits.title": "Артықшылықтар",
-    "benefits.card1": "Тіркелгеннен кейін хакатонға дайындық бойынша бейнесабақтар",
-    "benefits.card2": "Data Science, ML және AI саласындағы практикалық тәжірибе",
-    "benefits.card3": "1 200 000 ₸ жүлде қоры және эксклюзивті мерч",
-    "benefits.card4": "Алғашқы 50 қатысушыға арналған сәлемдесу пакеті",
-    "benefits.card5": "ML-инженер ретінде мансаптық мүмкіндіктер",
-    "benefits.card6": "Кофе-брейктер және қызықты белсенділіктер",
-    "benefits.card7": "Жаңа техникалық дағдылар мен командалық жұмыстың шынайы тәжірибесі",
-    "benefits.card8": "Әрбір қатысушыға арналған қатысу сертификаттар",
+    "benefits.card1":
+      "ML, AI және деректер аналитикасындағы практикалық тәжірибе",
+    "benefits.card2":
+      "Жаңа техникалық дағдылар және командалық жұмыс тәжірибесі",
+    "benefits.card3": "Ақшалай жүлделер және мерч",
+    "benefits.card4": "Кофе-брейктер, фотозона және қызықты белсенділіктер",
 
     // ── Timeline ──
     "timeline.title": "Кезеңдер",
@@ -525,7 +515,7 @@ export const ui = {
     "timeline.label3": "Women in STEM Hackathon",
 
     // ── Sponsors ──
-    "sponsors.title": "Спонсорлар",
+    "sponsors.title": "Біздің серіктестер",
     "sponsors.infoPartners": "Ақпараттық серіктестер",
     "sponsors.sponsor": "Демеуші",
     "sponsors.partner": "Серіктес",

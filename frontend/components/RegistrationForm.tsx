@@ -3,7 +3,10 @@ import butterflyBg from "../assets/butterfly-register.png";
 import type { Lang } from "../i18n/ui";
 import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 
-export default function RegistrationForm({ lang: langProp, redirectTo }: { lang?: Lang; redirectTo?: string } = {}) {
+export default function RegistrationForm({
+  lang: langProp,
+  redirectTo,
+}: { lang?: Lang; redirectTo?: string } = {}) {
   const lang = langProp ?? getLangFromCookieClient();
   const t = useTranslations(lang);
 
@@ -17,8 +20,6 @@ export default function RegistrationForm({ lang: langProp, redirectTo }: { lang?
   const [form, setForm] = useState({
     name: "",
     surname: "",
-    placeOfStudy: "",
-    city: "",
     educationLevel: "",
     phoneNumber: "",
     parentPhoneNumber: "",
@@ -148,24 +149,6 @@ export default function RegistrationForm({ lang: langProp, redirectTo }: { lang?
             onChange={(e) => update("surname", e.target.value)}
             required
             placeholder={t("reg.lastName")}
-            className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
-          />
-
-          <input
-            type="text"
-            value={form.placeOfStudy}
-            onChange={(e) => update("placeOfStudy", e.target.value)}
-            required
-            placeholder={t("reg.placeOfStudy")}
-            className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
-          />
-
-          <input
-            type="text"
-            value={form.city}
-            onChange={(e) => update("city", e.target.value)}
-            required
-            placeholder={t("reg.city")}
             className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
           />
 

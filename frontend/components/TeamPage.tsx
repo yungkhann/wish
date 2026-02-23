@@ -61,6 +61,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       const data = await res.json();
       setMembers(data.members);
       setTeamName(data.teamName);
+      setEditingName(data.teamName);
       setState("has-team");
     } catch {
       setState("no-team");
@@ -78,11 +79,6 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       }
     })();
   }, []);
-
-  // keep editingName in sync with teamName when teamName changes
-  useEffect(() => {
-    setEditingName(teamName);
-  }, [teamName]);
 
   const handleCreateTeam = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,10 +103,13 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       setActionLoading(false);
     }
   };
-  
+
   const handleCopyLink = async () => {
     setError(null);
     try {
+      // Safari requires the clipboard write to be initiated in the same
+      // tick as the user gesture. By passing a Promise-bearing ClipboardItem
+      // we claim clipboard access synchronously while the fetch resolves.
       const textPromise = fetch("/api/team/link").then(async (res) => {
         const data = await res.json();
         if (!res.ok) throw new Error(data.error ?? t("team.failedInviteLink"));
@@ -126,6 +125,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
           }),
         ]);
       } else {
+        // Fallback for browsers without ClipboardItem support
         const text = await textPromise;
         await navigator.clipboard.writeText(text);
       }
@@ -181,7 +181,6 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
     }
   };
 
- 
   const handleRenameTeam = async () => {
     setError(null);
     setActionLoading(true);
@@ -205,8 +204,6 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
     }
   };
 
- 
- 
   const handleLeaveTeam = async () => {
     setError(null);
     setActionLoading(true);
@@ -268,7 +265,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
         )}
 
         <div className="flex justify-center">
-          <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-linear-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
+          <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
             <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
               {t("team.createTeam")}
             </h2>
@@ -288,7 +285,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
                   required
                   maxLength={100}
                   placeholder={t("team.enterTeamName")}
-                  className="w-full rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-linear-to-r from-black/20 via-black/20 to-black/20 px-6 py-3 text-white shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] outline-none sm:rounded-tl-[60px] sm:rounded-br-[60px]"
+                  className="w-full rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-6 py-3 text-white shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] outline-none sm:rounded-tl-[60px] sm:rounded-br-[60px]"
                 />
               </div>
               <div className="flex justify-center">
@@ -325,7 +322,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
 
         <div className="grid gap-16 lg:grid-cols-2">
           {/* Instructions */}
-          <div className="rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-linear-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
+          <div className="rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
             <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
               {t("team.instructions")}
             </h2>
@@ -382,7 +379,6 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
               <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
                 {t("team.participants")}
               </h2>
-            
               <table className="w-full table-fixed border-collapse">
                 <tbody>
                   {(() => {
@@ -415,14 +411,6 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
                   })()}
                 </tbody>
               </table>
-              <div className="mt-4 flex justify-center">
-                <a
-                  href="/team/videos"
-                  className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-purple-500/40 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-4 font-['Cinzel'] text-lg tracking-[2px] text-purple-300 shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
-                >
-                  {t("team.teamVideos")}
-                </a>
-              </div>
             </div>
 
             {/* Pending Invites */}
@@ -463,7 +451,12 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
               {copyText}
             </button>
           )}
-          
+          <a
+            href="/team/videos"
+            className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-purple-500/40 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-4 font-['Cinzel'] text-lg tracking-[2px] text-purple-300 shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
+          >
+            {t("team.teamVideos")}
+          </a>
           {isOwner ? (
             <button
               onClick={handleDissolveTeam}
@@ -513,11 +506,11 @@ function MemberRow({
           {member.email}
         </div>
       </td>
-      <td className="h-[67px] w-[130px] border-b border-l border-white/30 px-6 text-center font-['Marcellus'] text-base text-white lowercase">
-        {member.role}
+      <td className="h-[67px] w-[130px] border-b border-l border-white/30 px-6 font-['Marcellus'] text-base text-white lowercase">
+        #{member.role}
       </td>
-      <td className="h-[67px] w-[130px] border-b border-l border-white/30 text-center">
-        <div className="flex items-center justify-center gap-2">
+      <td className="h-[67px] w-[130px] border-b border-l border-white/30 pl-6">
+        <div className="flex items-center gap-2">
           {member.role === "request" && isOwner && member.inviteId && (
             <>
               <button
@@ -542,7 +535,7 @@ function MemberRow({
               <button
                 onClick={() => onRemove(member.userId)}
                 disabled={disabled}
-                className="flex h-[45px] w-[45px] cursor-pointer items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Cinzel'] text-lg text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
+                className="flex h-[45px] w-[45px] items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Cinzel'] text-lg text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
               >
                 x
               </button>

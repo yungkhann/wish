@@ -14,8 +14,8 @@ const prefix = isHome ? "" : "/";
 const links = [
   { href: `${prefix}#about`, label: t("nav.about") },
   { href: `${prefix}#benefits`, label: t("nav.benefits") },
-  { href: `${prefix}#schedule`, label: t("nav.schedule") },
   { href: `${prefix}#sponsors`, label: t("nav.sponsors") },
+  { href: `${prefix}#schedule`, label: t("nav.schedule") },
   { href: `${prefix}#faq`, label: t("nav.faq") },
 ];
 ---
@@ -109,7 +109,7 @@ const links = [
 
     <script>
       import { setupMobileMenu } from "../utils/mobileMenu.ts";
-import { setupSmoothScroll } from "../utils/smoothScroll.ts";
+      import { setupSmoothScroll } from "../utils/smoothScroll.ts";
 
       setupSmoothScroll("#nav-links");
       setupSmoothScroll("#mobile-nav-links");
