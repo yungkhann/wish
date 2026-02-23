@@ -5,7 +5,7 @@ import { authClient } from "../lib/auth-client";
 
 type Step = "email" | "otp";
 
-export default function AuthForm({ lang: langProp }: { lang?: Lang }) {
+export default function AuthForm({ lang: langProp, redirectTo }: { lang?: Lang; redirectTo?: string } = {}) {
   const lang = langProp ?? getLangFromCookieClient();
   const t = useTranslations(lang);
 
@@ -46,24 +46,35 @@ export default function AuthForm({ lang: langProp }: { lang?: Lang }) {
     setError(null);
 
     try {
-      const { error: verifyError } = await authClient.signIn.emailOtp(
-        { email, otp },
-        {
-          onSuccess: async () => {
-            try {
-              const res = await fetch("/api/user/me");
-              const data = await res.json();
-              window.location.href = data.isRegistered ? "/" : "/registration";
-            } catch {
-              window.location.href = "/registration";
-            }
-          },
-        },
-      );
+      const { error: verifyError } = await authClient.signIn.emailOtp({
+        email,
+        otp,
+      });
 
       if (verifyError) {
         setError(verifyError.message ?? t("auth.invalidCode"));
         return;
+      }
+
+      try {
+        const res = await fetch("/api/user/me");
+        const data = await res.json();
+        if (data.isRegistered) {
+          const target = redirectTo ?? "/";
+          if (target === window.location.pathname + window.location.hash) {
+            window.location.reload();
+          } else {
+            window.location.href = target;
+          }
+        } else {
+          window.location.href = redirectTo
+            ? `/registration?redirect=${encodeURIComponent(redirectTo)}`
+            : "/registration";
+        }
+      } catch {
+        window.location.href = redirectTo
+          ? `/registration?redirect=${encodeURIComponent(redirectTo)}`
+          : "/registration";
       }
     } catch {
       setError(t("auth.unexpectedError"));
