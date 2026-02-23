@@ -3,7 +3,7 @@ import type { Lang } from "../i18n/ui";
 import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 import { authClient } from "../lib/auth-client";
 
-type Status = "loading" | "guest" | "registered";
+type Status = "loading" | "guest" | "incomplete" | "registered";
 
 let cachedStatus: Status | null = null;
 
@@ -32,7 +32,7 @@ export default function NavAuthButton({
       })
       .then((data) => {
         if (!data) return;
-        const s = data.isRegistered ? "registered" : "guest";
+        const s = data.isRegistered ? "registered" : "incomplete";
         cachedStatus = s;
         setStatus(s);
       })
@@ -52,6 +52,7 @@ export default function NavAuthButton({
 
   const label = status === "registered" ? t("nav.teamPage") : t("nav.register");
   const href = status === "registered" ? "/team" : "/registration";
+  const showLogout = status === "registered" || status === "incomplete";
 
   if (mobile) {
     return (
@@ -74,7 +75,7 @@ export default function NavAuthButton({
             {label}
           </span>
         </a>
-        {status === "registered" && (
+        {showLogout && (
           <button
             onClick={handleLogout}
             className="font-['Marcellus'] text-sm text-white/60 transition-colors duration-200 hover:text-red-400"
@@ -99,7 +100,7 @@ export default function NavAuthButton({
           </span>
         </div>
       </a>
-      {status === "registered" && (
+      {showLogout && (
         <button
           onClick={handleLogout}
           className="font-['Marcellus'] text-base text-white/60 transition-colors duration-200 hover:text-red-400"
