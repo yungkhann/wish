@@ -241,6 +241,53 @@ export const ui = {
     "page.team": "Team",
     "page.registration": "Registration",
     "page.invite": "Team Invite",
+
+    // ── Videos page ──
+    "videos.title": "VIDEO LESSONS",
+    "videos.intro":
+      "These videos were prepared by the NU DataSci Club to help you master the essentials before you start. Learn the best tips and strategies to build a great project and get ready for the hackathon.",
+    "videos.video1Title": "How to Win a Hackathon",
+    "videos.video1Desc":
+      "The first video explains how to navigate the full hackathon process, from forming a small, effective team to delivering a winning 3-minute pitch. You will learn how to focus on a working demo rather than technical complexity and how to confidently handle the judges' Q&A session.",
+    "videos.video2Title": "Working with AI Agents as an Architect",
+    "videos.video2Desc":
+      'This video introduces "Vibe Coding," where you act as a system architect by designing logic and creating clear technical tasks for AI. You will learn how to efficiently fix bugs by finding their root cause and guiding AI agents to the right solution.',
+    "videos.video3Title": "Effective Workflow & Toolset",
+    "videos.video3Desc":
+      "Now, you will understand how to work faster by using AI agents like Cursor or Claude for code generation and analysis. You will learn how to choose the right tech stack (React, FastAPI, PyTorch) and why it is better to focus on a working prototype rather than overcomplicating the project with unnecessary features.",
+    "videos.video4Title": "Pretrained Models for Rapid Prototyping",
+    "videos.video4Desc":
+      "Let's look at why using pretrained models is the best strategy for a hackathon to save time and get better results. You will learn about popular models for different tasks and see a real example of how to quickly fine-tune a model to create a high-quality demo.",
+    "videos.video5Title": "Version Control with Git",
+    "videos.video5Desc":
+      "Finally, we will show how to use GitHub to keep your project safe and work effectively in a team. You will learn how to save working versions of your code, use branches for experiments, and resolve conflicts when merging your team's changes together.",
+    "videos.outro1":
+      "That's it for our video series! We hope these lessons help you navigate the hackathon with confidence. Focus on building a presentable prototype, stay aligned with the task requirements, and use AI as your main superpower to speed up development.",
+    "videos.outro2": "DON'T JUST WISH. BUILD IT.",
+    "videos.outro3":
+      "This is your moment to turn inspiration into impact and code into reality. We can't wait to see the incredible projects you'll bring to life. Believe in your vision, trust your team, and make it happen.",
+    "videos.outro4": "Good luck - we'll see you at WISH!",
+    "videos.linksTitle": "Useful Links",
+    "videos.link1Title": "GitHub Student Developer Pack",
+    "videos.link1Desc":
+      "Get free access to GitHub Copilot Pro and other premium developer tools.",
+    "videos.link2Title": "Cursor & Claude",
+    "videos.link2Cursor": "Cursor",
+    "videos.link2Claude": "Claude",
+    "videos.link2Desc":
+      "The most effective AI code editors and agents for rapid development.",
+    "videos.link3Title": "Hugging Face",
+    "videos.link3Desc":
+      "The go-to platform for finding pretrained models (Text, Image, Audio) to jumpstart your prototype.",
+    "videos.link4Title": "YOLO by Ultralytics",
+    "videos.link4Desc":
+      "A powerful tool for quick object detection and computer vision tasks.",
+    "videos.link5Title": "FastAPI Documentation",
+    "videos.link5Desc":
+      "A fast and modern framework for building your project's backend.",
+    "videos.link6Title": "Git & GitHub Guide",
+    "videos.link6Desc":
+      "Master branching and version control to collaborate without losing your code.",
   },
 
   ru: {
@@ -477,6 +524,53 @@ export const ui = {
     "page.team": "Команда",
     "page.registration": "Регистрация",
     "page.invite": "Приглашение в команду",
+
+    // ── Videos page ──
+    "videos.title": "ВИДЕОУРОКИ",
+    "videos.intro":
+      "Эти видео были подготовлены NU DataSci Club, чтобы помочь вам освоить основы перед стартом. Узнайте лучшие советы и стратегии для создания отличного проекта и подготовки к хакатону.",
+    "videos.video1Title": "Как победить на хакатоне",
+    "videos.video1Desc":
+      "Первое видео объясняет, как пройти весь путь хакатона: от формирования небольшой эффективной команды до победного 3-минутного питча. Вы научитесь фокусироваться на рабочем демо, а не на технической сложности, и уверенно отвечать на вопросы жюри.",
+    "videos.video2Title": "Работа с AI-агентами: роль архитектора",
+    "videos.video2Desc":
+      'Это видео знакомит с концепцией «Vibe Coding», где вы выступаете в роли системного архитектора, проектируя логику и создавая четкие технические задания для ИИ. Вы научитесь эффективно исправлять баги, находя их первопричину и направляя AI-агентов к верному решению.',
+    "videos.video3Title": "Эффективный рабочий процесс и инструменты",
+    "videos.video3Desc":
+      "Теперь вы узнаете, как работать быстрее, используя AI-агентов, таких как Cursor или Claude, для генерации и анализа кода. Мы разберем выбор правильного технологического стека (React, FastAPI, PyTorch) и объясним, почему важно сфокусироваться на рабочем прототипе, а не усложнять проект лишними функциями.",
+    "videos.video4Title": "Предобученные модели для быстрого прототипирования",
+    "videos.video4Desc":
+      "Давайте разберём, почему использование готовых моделей — лучшая стратегия на хакатоне для экономии времени и получения высоких результатов. Вы узнаете о популярных моделях для разных задач и увидите реальный пример того, как быстро дообучить модель для создания качественного демо.",
+    "videos.video5Title": "Контроль версий с помощью Git",
+    "videos.video5Desc":
+      "В завершение мы покажем, как использовать GitHub, чтобы обезопасить свой проект и эффективно работать в команде. Вы научитесь сохранять рабочие версии кода, использовать ветки для экспериментов и разрешать конфликты при слиянии правок всей команды.",
+    "videos.outro1":
+      "На этом наши видеоуроки завершены! Мы надеемся, что эти знания помогут вам уверенно пройти через хакатон. Сосредоточьтесь на создании презентабельного прототипа, следуйте требованиям задачи и используйте ИИ как свою главную суперсилу.",
+    "videos.outro2": "DON'T JUST WISH. BUILD IT.",
+    "videos.outro3":
+      "Это ваш момент, чтобы превратить вдохновение в результат, а код — в реальность. Нам не терпится увидеть невероятные проекты, которые вы создадите. Верьте в свою идею, доверяйте команде и действуйте!",
+    "videos.outro4": "Удачи — увидимся на WISH!",
+    "videos.linksTitle": "Полезные ссылки",
+    "videos.link1Title": "GitHub Student Developer Pack",
+    "videos.link1Desc":
+      "Получите бесплатный доступ к GitHub Copilot Pro и другим премиальным инструментам для разработчиков.",
+    "videos.link2Title": "Cursor & Claude",
+    "videos.link2Cursor": "Cursor",
+    "videos.link2Claude": "Claude",
+    "videos.link2Desc":
+      "Самые эффективные AI-редакторы и агенты для быстрой разработки.",
+    "videos.link3Title": "Hugging Face",
+    "videos.link3Desc":
+      "Главная платформа для поиска предобученных моделей (текст, изображения, аудио) для быстрого запуска вашего прототипа.",
+    "videos.link4Title": "YOLO by Ultralytics",
+    "videos.link4Desc":
+      "Мощный инструмент для быстрого решения задач компьютерного зрения и распознавания объектов.",
+    "videos.link5Title": "FastAPI Documentation",
+    "videos.link5Desc":
+      "Быстрый и современный фреймворк для создания бэкенда вашего проекта.",
+    "videos.link6Title": "Git & GitHub Guide",
+    "videos.link6Desc":
+      "Руководство по работе с ветками и контролем версий для эффективной командной работы.",
   },
 
   kz: {
@@ -713,5 +807,52 @@ export const ui = {
     "page.team": "Команда",
     "page.registration": "Тіркелу",
     "page.invite": "Командаға шақыру",
+
+    // ── Videos page ──
+    "videos.title": "ВИДЕО САБАҚТАР",
+    "videos.intro":
+      "Бұл видеоларды NU DataSci Club хакатон алдында ең қажетті дағдыларды меңгеруге көмектесу үшін дайындады. Үздік жоба жасау және жарысқа дайындалу үшін ең пайдалы кеңестер мен стратегияларды үйреніңіз.",
+    "videos.video1Title": "Хакатонда қалай жеңіске жетуге болады?",
+    "videos.video1Desc":
+      "Бірінші видео хакатонның толық процесін түсіндіреді: шағын әрі тиімді команда құрудан бастап, жеңісті 3 минуттық питчке (жобаны таныстыруға) дейін. Сіз техникалық күрделілікке емес, жұмыс істеп тұрған демо-нұсқаға назар аударуды және қазылар алқасының сұрақтарына сенімді жауап беруді үйренесіз.",
+    "videos.video2Title": "AI-агенттермен архитектор ретінде жұмыс істеу",
+    "videos.video2Desc":
+      'Бұл видео сізді «Vibe Coding» тұжырымдамасымен таныстырады, мұнда сіз жүйелік архитектор ретінде логиканы жобалап, жасанды интеллект үшін нақты техникалық тапсырмалар жасайсыз. Сіз қателердің (багтардың) негізгі себебін тауып, AI-агенттерді дұрыс шешімге бағыттау арқылы оларды тиімді түзетуді үйренесіз.',
+    "videos.video3Title": "Тиімді жұмыс процесі және құралдар жиынтығы",
+    "videos.video3Desc":
+      "Енді сіз Cursor немесе Claude сияқты AI-агенттерін код жазу мен талдау үшін қолдану арқылы жұмысты қалай тездетуге болатынын түсінесіз. Біз дұрыс технологиялық стекті (React, FastAPI, PyTorch) таңдауды және жобаны артық функциялармен күрделендірмей, жұмыс істеп тұрған прототипке назар аударудың маңыздылығын талқылаймыз.",
+    "videos.video4Title": "Жылдам прототиптеуге арналған дайын модельдер",
+    "videos.video4Desc":
+      "Уақытты үнемдеу және жоғары нәтижеге жету үшін дайын (pretrained) модельдерді пайдалану неліктен ең тиімді стратегия екенін қарастырамыз. Түрлі тапсырмаларға арналған танымал модельдермен танысып, сапалы демо жасау үшін модельді тез арада қосымша оқытудың нақты мысалын көресіз.",
+    "videos.video5Title": "Git арқылы нұсқаларды бақылау",
+    "videos.video5Desc":
+      "Соңында біз жобаңызды қауіпсіз сақтау және командада тиімді жұмыс істеу үшін GitHub-ты қалай қолдану керектігін көрсетеміз. Сіз кодтың жұмыс істеп тұрған нұсқаларын сақтауды, эксперименттер үшін тармақтарды (branches) қолдануды және команданың өзгерістерін біріктіру кезіндегі қақтығыстарды шешуді үйренесіз.",
+    "videos.outro1":
+      "Біздің видеосабақтар осымен аяқталды! Бұл білім хакатонды сенімді түрде өткізуге көмектеседі деп үміттенеміз. Назарларыңызды сапалы прототип жасауға аударып, тапсырма талаптарын орындаңыз және жасанды интеллектіні басты көмекші ретінде пайдаланыңыз.",
+    "videos.outro2": "DON'T JUST WISH. BUILD IT.",
+    "videos.outro3":
+      "Бұл — шабытты нәтижеге, ал кодты шындыққа айналдыратын сәт. Сіздер жасаған керемет жобаларды көруге асықпыз. Өз идеяңызға сеніңіз, командаңызға арқа сүйеңіз және алға ұмтылыңыз!",
+    "videos.outro4": "Сәттілік — WISH-те кездескенше!",
+    "videos.linksTitle": "Пайдалы сілтемелер",
+    "videos.link1Title": "GitHub Student Developer Pack",
+    "videos.link1Desc":
+      "GitHub Copilot Pro және басқа да премиум құралдарға тегін қолжетімділік алыңыз.",
+    "videos.link2Title": "Cursor & Claude",
+    "videos.link2Cursor": "Cursor",
+    "videos.link2Claude": "Claude",
+    "videos.link2Desc":
+      "Жылдам әзірлеуге арналған ең тиімді AI-редакторлар мен агенттер.",
+    "videos.link3Title": "Hugging Face",
+    "videos.link3Desc":
+      "Прототипіңізді жылдам іске қосу үшін дайын модельдерді (мәтін, кескін, аудио) іздеуге арналған негізгі платформа.",
+    "videos.link4Title": "YOLO by Ultralytics",
+    "videos.link4Desc":
+      "Компьютерлік көру және нысандарды тану тапсырмаларын жылдам шешуге арналған қуатты құрал.",
+    "videos.link5Title": "FastAPI Documentation",
+    "videos.link5Desc":
+      "Жобаңыздың бэкендін жасауға арналған жылдам әрі заманауи фреймворк.",
+    "videos.link6Title": "Git & GitHub Guide",
+    "videos.link6Desc":
+      "Командалық жұмыс үшін тармақтармен жұмыс істеу және нұсқаларды бақылау бойынша нұсқаулық.",
   },
 } as const;
