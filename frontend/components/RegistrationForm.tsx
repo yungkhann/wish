@@ -1,9 +1,29 @@
+import {
+  CircleChevronDown,
+  Gauge,
+  GraduationCap,
+  IdCard,
+  MapPin,
+  Phone,
+  User,
+} from "lucide-react";
 import { useState } from "react";
 import butterflyBg from "../assets/butterfly-register.png";
 import type { Lang } from "../i18n/ui";
 import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 
-export default function RegistrationForm({ lang: langProp, redirectTo }: { lang?: Lang; redirectTo?: string } = {}) {
+const wrapperClasses =
+  "flex h-16 w-full cursor-text items-center gap-4 rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-linear-to-r from-black/70 via-black/70 to-black/70 px-6 shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow focus-within:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:gap-6 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:px-8";
+
+const inputClasses =
+  "flex-1 min-w-0 bg-transparent font-['Poppins'] text-xl text-white outline-none placeholder:text-white/70 lg:text-2xl";
+
+const iconClasses = "h-5 w-5 shrink-0 text-violet-400 lg:h-6 lg:w-6";
+
+export default function RegistrationForm({
+  lang: langProp,
+  redirectTo,
+}: { lang?: Lang; redirectTo?: string } = {}) {
   const lang = langProp ?? getLangFromCookieClient();
   const t = useTranslations(lang);
 
@@ -28,6 +48,7 @@ export default function RegistrationForm({ lang: langProp, redirectTo }: { lang?
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const update = (field: string, value: string | boolean | File | null) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -84,7 +105,8 @@ export default function RegistrationForm({ lang: langProp, redirectTo }: { lang?
       const data = await res.json();
 
       if (!res.ok) {
-        const msg = data.details?.[0]?.message ?? data.error ?? t("reg.failed");
+        const msg =
+          data.details?.[0]?.message ?? data.error ?? t("reg.failed");
         setError(msg);
         return;
       }
@@ -110,22 +132,22 @@ export default function RegistrationForm({ lang: langProp, redirectTo }: { lang?
   };
 
   return (
-    <div className="relative mx-auto flex min-h-screen w-full items-center justify-center overflow-hidden bg-black py-8 lg:min-h-[1800px]">
-      <img
-        className="absolute top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 object-cover opacity-70 lg:left-[70%] lg:h-[1472px] lg:w-[1472px] lg:-translate-x-1/2 lg:opacity-100"
-        src={butterflyBg.src}
-        alt="Butterfly Background"
-      />
+    <div className="relative mx-auto flex min-h-screen w-full flex-col bg-black px-4 py-24 lg:py-32">
+      {/* Butterfly background clipped to container */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <img
+          className="absolute top-1/2 left-1/2 h-200 w-200 -translate-x-1/2 -translate-y-1/2 object-cover opacity-70 lg:left-[70%] lg:h-368 lg:w-368 lg:-translate-x-1/2 lg:opacity-100"
+          src={butterflyBg.src}
+          alt="Butterfly Background"
+        />
+      </div>
 
       {/* Main Form Container */}
-      <div className="absolute inset-x-4 top-1/2 z-0 mx-auto max-w-[1304px] -translate-y-1/2 rounded-tl-lg rounded-tr-[60px] rounded-br-lg rounded-bl-[60px] bg-gradient-to-r from-black/20 via-black/20 to-black/20 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] lg:inset-x-auto lg:top-1/2 lg:left-1/2 lg:min-h-[1543px] lg:w-[1304px] lg:-translate-x-1/2" />
-
-      {/* Form Fields */}
-      <div className="relative z-10 mx-auto flex w-full max-w-[805px] items-center justify-center px-4 pt-24 pb-8 lg:absolute lg:top-1/2 lg:left-1/2 lg:w-[1304px] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:px-24 lg:py-16">
+      <div className="relative z-10 mx-auto my-auto w-full max-w-326 rounded-tl-lg rounded-tr-[60px] rounded-br-lg rounded-bl-[60px] bg-linear-to-r from-black/20 via-black/20 to-black/20 px-4 py-12 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] lg:px-24 lg:py-16">
         <form
           id="registration-form"
           onSubmit={handleSubmit}
-          className="flex w-full max-w-[584px] flex-col items-center gap-6 lg:gap-8"
+          className="mx-auto flex w-full max-w-146 flex-col items-center gap-6 lg:gap-8"
         >
           {error && (
             <div className="w-full rounded border border-red-800 bg-red-900/70 p-3 text-center text-sm text-red-200">
@@ -133,99 +155,146 @@ export default function RegistrationForm({ lang: langProp, redirectTo }: { lang?
             </div>
           )}
 
-          <input
-            type="text"
-            value={form.name}
-            onChange={(e) => update("name", e.target.value)}
-            required
-            placeholder={t("reg.firstName")}
-            className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
-          />
+          <label className={wrapperClasses}>
+            <User className={iconClasses} aria-hidden="true" />
+            <input
+              type="text"
+              value={form.name}
+              onChange={(e) => update("name", e.target.value)}
+              required
+              spellCheck={false}
+              placeholder={t("reg.firstName")}
+              className={inputClasses}
+            />
+          </label>
 
-          <input
-            type="text"
-            value={form.surname}
-            onChange={(e) => update("surname", e.target.value)}
-            required
-            placeholder={t("reg.lastName")}
-            className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
-          />
+          <label className={wrapperClasses}>
+            <User className={iconClasses} aria-hidden="true" />
+            <input
+              type="text"
+              value={form.surname}
+              onChange={(e) => update("surname", e.target.value)}
+              required
+              spellCheck={false}
+              placeholder={t("reg.lastName")}
+              className={inputClasses}
+            />
+          </label>
 
-          <input
-            type="text"
-            value={form.placeOfStudy}
-            onChange={(e) => update("placeOfStudy", e.target.value)}
-            required
-            placeholder={t("reg.placeOfStudy")}
-            className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
-          />
+          <label className={wrapperClasses}>
+            <GraduationCap className={iconClasses} aria-hidden="true" />
+            <input
+              type="text"
+              value={form.placeOfStudy}
+              onChange={(e) => update("placeOfStudy", e.target.value)}
+              required
+              spellCheck={false}
+              placeholder={t("reg.placeOfStudy")}
+              className={inputClasses}
+            />
+          </label>
 
-          <input
-            type="text"
-            value={form.city}
-            onChange={(e) => update("city", e.target.value)}
-            required
-            placeholder={t("reg.city")}
-            className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
-          />
+          <label className={wrapperClasses}>
+            <MapPin className={iconClasses} aria-hidden="true" />
+            <input
+              type="text"
+              value={form.city}
+              onChange={(e) => update("city", e.target.value)}
+              required
+              spellCheck={false}
+              placeholder={t("reg.city")}
+              className={inputClasses}
+            />
+          </label>
 
-          <select
-            value={form.educationLevel}
-            onChange={(e) => update("educationLevel", e.target.value)}
-            required
-            className="h-16 w-full appearance-none rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
+          <div
+            className={`${wrapperClasses} relative cursor-pointer`}
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            <option value="" disabled className="text-white/70">
-              {t("reg.educationLevel")}
-            </option>
-            {EDUCATION_LEVELS.map((lvl) => (
-              <option key={lvl.value} value={lvl.value} className="bg-black">
-                {lvl.label}
-              </option>
-            ))}
-          </select>
+            <Gauge className={iconClasses} aria-hidden="true" />
+            <div
+              className="min-w-0 flex-1 truncate bg-transparent font-['Poppins'] text-xl lg:text-2xl"
+              style={{
+                color: form.educationLevel
+                  ? "white"
+                  : "rgba(255, 255, 255, 0.7)",
+              }}
+            >
+              {form.educationLevel
+                ? EDUCATION_LEVELS.find((l) => l.value === form.educationLevel)
+                    ?.label
+                : t("reg.educationLevel")}
+            </div>
+            <CircleChevronDown
+              className={`ml-auto h-6 w-6 shrink-0 text-violet-400 transition-transform lg:h-7 lg:w-7 ${isDropdownOpen ? "rotate-180" : ""}`}
+              aria-hidden="true"
+            />
 
-          <input
-            type="text"
-            inputMode="numeric"
-            pattern="[0-9]{12}"
-            maxLength={12}
-            value={form.iin}
-            onChange={(e) => update("iin", e.target.value)}
-            required
-            placeholder={t("reg.iin")}
-            className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
-          />
+            {isDropdownOpen && (
+              <div className="absolute top-full left-0 z-50 mt-2 w-full overflow-hidden rounded-xl border border-violet-500/30 bg-black/90 shadow-[0px_0px_30px_0px_rgba(119,22,208,0.40)] backdrop-blur-md">
+                <ul className="flex flex-col py-2">
+                  {EDUCATION_LEVELS.map((lvl) => (
+                    <li
+                      key={lvl.value}
+                      className="cursor-pointer px-6 py-3 font-['Poppins'] text-lg text-white/80 transition-colors hover:bg-violet-900/40 hover:text-white lg:px-8 lg:text-xl"
+                      onClick={() => {
+                        update("educationLevel", lvl.value);
+                        setIsDropdownOpen(false);
+                      }}
+                    >
+                      {lvl.label}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
 
-          <input
-            type="tel"
-            value={form.phoneNumber}
-            onChange={(e) => update("phoneNumber", e.target.value)}
-            required
-            placeholder={t("reg.phone")}
-            className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
-          />
+          <label className={wrapperClasses}>
+            <IdCard className={iconClasses} aria-hidden="true" />
+            <input
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]{12}"
+              maxLength={12}
+              value={form.iin}
+              onChange={(e) => update("iin", e.target.value)}
+              required
+              placeholder={t("reg.iin")}
+              className={inputClasses}
+            />
+          </label>
 
-          {/* Conditional Parent Phone for School Students */}
-          {form.educationLevel === "school" && (
+          <label className={wrapperClasses}>
+            <Phone className={iconClasses} aria-hidden="true" />
             <input
               type="tel"
-              value={form.parentPhoneNumber}
-              onChange={(e) => update("parentPhoneNumber", e.target.value)}
+              value={form.phoneNumber}
+              onChange={(e) => update("phoneNumber", e.target.value)}
               required
-              placeholder={t("reg.parentPhone")}
-              className="h-16 w-full rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/70 via-black/70 to-black/70 px-6 font-['Poppins'] text-xl text-white shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow outline-none placeholder:text-white/70 focus:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:text-2xl"
+              placeholder={t("reg.phone")}
+              className={inputClasses}
             />
-          )}
+          </label>
+          <label className={wrapperClasses}>
+              <Phone className={iconClasses} aria-hidden="true" />
+              <input
+                type="tel"
+                value={form.parentPhoneNumber}
+                onChange={(e) => update("parentPhoneNumber", e.target.value)}
+                placeholder={t("reg.parentPhoneOptional")}
+                className={inputClasses}
+              />
+          </label>
 
           {/* CV Dropbox */}
           <div className="mt-2 flex w-full flex-col items-center gap-3 lg:mt-4 lg:gap-4">
-            <div className="font-['Marcellus'] text-2xl font-normal text-white lg:text-4xl lg:leading-[54px]">
+            <div className="font-['Marcellus'] text-2xl font-normal text-white lg:text-4xl lg:leading-13.5">
               {t("reg.cvDropbox")}
             </div>
             <label
               htmlFor="cv-upload"
-              className="flex h-60 w-full cursor-pointer flex-col items-center justify-center rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-gradient-to-r from-black/80 via-black/80 to-black/80 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] transition-shadow hover:shadow-[0px_0px_60px_0px_rgba(119,22,208,1.00)] lg:h-72 lg:max-w-[566px] lg:rounded-tl-[60px] lg:rounded-br-[60px]"
+              className="flex h-60 w-full cursor-pointer flex-col items-center justify-center rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-linear-to-r from-black/80 via-black/80 to-black/80 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] transition-shadow hover:shadow-[0px_0px_60px_0px_rgba(119,22,208,1.00)] lg:h-72 lg:max-w-141.5 lg:rounded-tl-[60px] lg:rounded-br-[60px]"
             >
               <input
                 type="file"
@@ -234,13 +303,17 @@ export default function RegistrationForm({ lang: langProp, redirectTo }: { lang?
                 accept="application/pdf"
                 className="hidden"
               />
-              <div className="font-['Marcellus'] text-5xl font-normal text-violet-400 [text-shadow:_0px_0px_4px_rgb(119_22_208_/_1.00)] lg:text-6xl">
+              <div className="font-['Marcellus'] text-5xl font-normal text-violet-400 [text-shadow:0px_0px_4px_rgb(119_22_208/1.00)] lg:text-6xl">
                 +
               </div>
-              {form.cv && (
+              {form.cv ? (
                 <div className="mt-4 text-center text-sm text-white">
                   {form.cv.name}
                 </div>
+              ) : (
+                <p className="mt-3 font-['Poppins'] text-sm text-white/50 lg:text-base">
+                  {t("reg.cvHint")}
+                </p>
               )}
             </label>
           </div>
@@ -252,13 +325,22 @@ export default function RegistrationForm({ lang: langProp, redirectTo }: { lang?
               id="age-confirm"
               checked={form.ageConfirmed}
               onChange={(e) => update("ageConfirmed", e.target.checked)}
-              className="h-8 w-8 flex-shrink-0 cursor-pointer rounded-tl-[8px] rounded-tr-sm rounded-br-[8px] rounded-bl-sm bg-zinc-300 accent-violet-600 lg:h-10 lg:w-10 lg:rounded-tl-[10px] lg:rounded-br-[10px]"
+              className="h-8 w-8 shrink-0 cursor-pointer rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-zinc-300 accent-violet-600 lg:h-10 lg:w-10 lg:rounded-tl-[10px] lg:rounded-br-[10px]"
             />
             <label
               htmlFor="age-confirm"
               className="font-['Marcellus'] text-sm leading-6 font-normal text-white lg:text-xl lg:leading-7"
             >
-              {t("reg.ageConfirm")}
+              {t("reg.ageConfirmPre")}{" "}
+              <a
+                href="https://docs.google.com/document/d/1g4uJt2xtxm_ucZ7WqDpeTI6fsTValmFCVQW_FBxLCQU/edit?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-violet-400 underline underline-offset-2 hover:text-violet-300"
+              >
+                {t("reg.codeOfConduct")}
+              </a>
+              .
             </label>
           </div>
 
@@ -266,7 +348,7 @@ export default function RegistrationForm({ lang: langProp, redirectTo }: { lang?
             <button
               type="submit"
               disabled={loading}
-              className="form-submit-inner flex h-20 w-full items-center justify-center font-['Cinzel'] text-4xl font-normal text-white lowercase transition-colors [text-shadow:_0px_0px_5px_rgb(255_255_255_/_1.00)] hover:bg-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 lg:h-28 lg:text-6xl"
+              className="form-submit-inner flex h-20 w-full items-center justify-center font-['Cinzel'] text-4xl font-normal text-white lowercase transition-colors [text-shadow:0px_0px_5px_rgb(255_255_255/1.00)] hover:bg-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 lg:h-28 lg:text-6xl"
             >
               {loading ? "..." : t("reg.register")}
             </button>

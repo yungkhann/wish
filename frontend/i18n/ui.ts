@@ -22,7 +22,8 @@ export const ui = {
 
     // ── Welcome ──
     "welcome.line1": "Make your biggest ",
-    "welcome.line2": "come true",
+    "welcome.highlight": "WISH",
+    "welcome.line2": " come true",
     "welcome.register": "Register",
 
     // ── Countdown ──
@@ -77,10 +78,14 @@ export const ui = {
     "sponsors.infoPartners": "Info Partners",
     "sponsors.sponsor": "Sponsor",
     "sponsors.partner": "Partner",
-    "sponsors.choco.description": "Kazakhstan's leading IT company and SuperApp. The Choco ecosystem integrates projects like Chocolife.me, Chocofood, Smart Restaurant, Ryadom, and Idoctor, providing essential digital services for everyday life. For this hackathon, Choco provides two real-world business cases, which will serve as the primary challenges for the participants.",
-    "sponsors.freedom.description": "A lifestyle service ecosystem within the Freedom holding. It integrates leading leisure and ticketing projects such as Ticketon, Sxodim, Kino.kz, Aviata, and Chocotravel, making your travel and entertainment experiences more accessible.",
-    "sponsors.issai.description": "The Institute of Smart Systems and Artificial Intelligence (ISSAI) at Nazarbayev University is a driver of AI innovation in Kazakhstan. It facilitates collaboration with sponsors.",
-    "sponsors.nuDatasciClub.description": "A student club at Nazarbayev University dedicated to promoting Data Science. As a content partner for WISH, the club provided the essential video lessons to help participants prepare for the hackathon.",
+    "sponsors.choco.description":
+      "Kazakhstan's leading IT company and SuperApp. The Choco ecosystem integrates projects like Chocolife.me, Chocofood, Smart Restaurant, Ryadom, and Idoctor, providing essential digital services for everyday life. For this hackathon, Choco provides two real-world business cases, which will serve as the primary challenges for the participants.",
+    "sponsors.freedom.description":
+      "A lifestyle service ecosystem within the Freedom holding. It integrates leading leisure and ticketing projects such as Ticketon, Sxodim, Kino.kz, Aviata, and Chocotravel, making your travel and entertainment experiences more accessible.",
+    "sponsors.issai.description":
+      "The Institute of Smart Systems and Artificial Intelligence (ISSAI) at Nazarbayev University is a driver of AI innovation in Kazakhstan. It facilitates collaboration with sponsors.",
+    "sponsors.nuDatasciClub.description":
+      "A student club at Nazarbayev University dedicated to promoting Data Science. As a content partner for WISH, the club provided the essential video lessons to help participants prepare for the hackathon.",
 
     // ── Schedule / Agenda ──
     "schedule.title": "Schedule",
@@ -110,38 +115,44 @@ export const ui = {
     "faq.title": "FAQs",
     "faq.q1": "What is WISH?",
     "faq.a1":
-      "WISH is a 24-hour team hackathon in data analytics, machine learning, and artificial intelligence. Each team should consist of 2 to 4 members.",
+      "Women in STEM Hackathon (WISH) is a 24-hour offline hackathon for girls, where participants team up to solve practical challenges from sponsors in Data Science, ML, and AI. It is an intensive event designed for those who dream of building a career in the world of high-tech and innovation.",
     "faq.q2": "Who can participate?",
-    "faq.a2": "Female high school and university students aged 16 and above.",
+    "faq.a2":
+      "We welcome high school, college, and university students aged 16 and above. Participation is in teams of 2 to 4 people.",
     "faq.q3": "What if I don't have a team?",
     "faq.a3":
-      "You can find team members in our Women in STEM Hackathon Telegram chat.",
+      'Don\'t worry! You can find teammates in our dedicated <a href="https://t.me/wish_nuacmw" target="_blank" rel="noopener noreferrer">WISH Telegram chat</a>, where other participants are also looking for partners.',
     "faq.q4": "Do I need to be a professional?",
-    "faq.a4": "No, it's a beginner-friendly competition.",
+    "faq.a4":
+      "No, everyone interested in Data Science and AI is welcome! To help you prepare, all registered participants will receive access to exclusive video lessons covering essential tools and methods used at hackathons.",
     "faq.q5": "Can I participate online?",
-    "faq.a5": "No, WISH 2026 is fully offline.",
+    "faq.a5":
+      "No, WISH will be held offline at Nazarbayev University, Astana, Kazakhstan.",
     "faq.q6": "How can I participate?",
     "faq.a6":
-      "Assemble a team, register, and come to Nazarbayev University on March 14, 2026. Please note that the registration is filled out by each participant individually.",
+      "Form a team of 2-4 people and register through our website. Registration is open from February 23 to March 11, 2026. Please note that every team member must register individually through the website.",
     "faq.q7": "Will participants receive certificates or prizes?",
     "faq.a7":
-      "Yes, every participant will receive a certificate of participation, winners will receive a cash prize and merch. Also, there is a welcome package and a coffee break.",
+      "Yes! The total prize fund is 1 200 000 ₸. Winners will also receive exclusive merchandise, and the first 50 participants will get a special Welcome Package. Every participant will receive a certificate of participation. Moreover, the best-performing participants will have the chance to receive job offers or internship opportunities from our partners.",
     "faq.q8": "I didn't find an answer to my question. What should I do?",
     "faq.a8":
-      "Join our Telegram chat and ask your questions. Or you can contact us via email: acm_w@nu.edu.kz",
+      'Join our <a href="https://t.me/wish_nuacmw" target="_blank" rel="noopener noreferrer">Telegram chat</a> and ask your questions there, or contact us via email: <a href="https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm" target="_blank" rel="noopener noreferrer">acm_w@nu.edu.kz</a>.',
     "faq.instagram": "Instagram",
     "faq.telegram": "Telegram",
     "faq.youtube": "Youtube",
     "faq.email": "Email",
-    "faq.copyright": "© 2026 NU ACM-W SC All rights reserved.",
+    "faq.copyright": "© 2026 NU ACM-W SC. All rights reserved.",
     "faq.q9": "Who are the organisers of WISH?",
-    "faq.a9": "The organizer is the <strong>NU ACM-W Student Chapter</strong> - the first and only branch of ACM-Women in Kazakhstan and Central Asia. Our mission is to support women in STEM fields, especially in IT, through initiatives that foster social, professional, and technical growth.",
+    "faq.a9":
+      "The organizer is the NU ACM-W Student Chapter - the first and only branch of ACM-Women in Kazakhstan and Central Asia. Our mission is to support women in STEM fields, especially in IT, through initiatives that foster social, professional, and technical growth.",
     "faq.q10": "Are there any other events for girls?",
-    "faq.a10": "Yes! NU ACM-W SC annually organizes events for girls such as <strong>Women's Hack Day</strong> (product design, mathematics, programming), <strong>CodeW</strong> (competitive programming), and <strong>Code Girl Summer</strong> (web development camp). You can find more details on our <a href='https://t.me/nu_acm_w' target='_blank'>Telegram</a> and <a href='https://www.instagram.com/nuacm_wsc/' target='_blank'>Instagram</a> pages.",
+    "faq.a10":
+      'Yes! NU ACM-W SC annually organizes events for girls such as Women\'s Hack Day - 3-round team competition for girls (product design, mathematics, programming), CodeW - an individual competitive programming contest, and Code Girl Summer - a two-week web development camp. You can find more details and information on our <a href="https://t.me/nu_acm_w" target="_blank" rel="noopener noreferrer">Telegram</a> and <a href="https://www.instagram.com/nuacm_wsc/" target="_blank" rel="noopener noreferrer">Instagram</a> pages.',
 
     // ── Footer ──
-    "footer.description": "NU ACM-W Student Chapter is the first student chapter of the international ACM-Women organization in Kazakhstan and Central Asia, based at Nazarbayev University. Since 2017, we have been providing social and professional support to women in STEM by organizing various events.",
-    "footer.copyright": "© 2026 Women in STEM Hackathon. All rights reserved.",
+    "footer.description":
+      "NU ACM-W Student Chapter is the first student chapter of the international ACM-Women organization in Kazakhstan and Central Asia, based at Nazarbayev University. Since 2017, we have been providing social and professional support to women in STEM by organizing various events.",
+    "footer.copyright": "© 2026 NU ACM-W SC. All rights reserved.",
 
     // ── Auth ──
     "auth.signIn": "SIGN IN",
@@ -155,6 +166,8 @@ export const ui = {
     "auth.otpPlaceholder": "------",
     "auth.verifying": "VERIFYING...",
     "auth.verify": "VERIFY",
+    "auth.codeResent": "Code resent to",
+    "auth.sendAgain": "Send again",
     "auth.differentEmail": "Use a different email",
     "auth.failedSend": "Failed to send code.",
     "auth.invalidCode": "Invalid code.",
@@ -173,9 +186,14 @@ export const ui = {
     "reg.iin": "IIN:",
     "reg.phone": "phone number:",
     "reg.parentPhone": "parent's phone number:",
-    "reg.cvDropbox": "CV Dropbox",
+    "reg.parentPhoneOptional": "parent's phone number (optional):",
+    "reg.cvDropbox": "CV Dropbox (optional)",
+    "reg.cvHint": "PDF only · max 2 MB",
     "reg.ageConfirm":
       "I confirm that I am above 16 years old & agree with the code of conduct",
+    "reg.ageConfirmPre":
+      "I confirm that I am above 16 years old & agree with the",
+    "reg.codeOfConduct": "code of conduct",
     "reg.register": "Register",
     "reg.pdfOnly": "Only PDF files are allowed",
     "reg.cvSizeLimit": "CV file must be under 2 MB",
@@ -241,6 +259,57 @@ export const ui = {
     "page.team": "Team",
     "page.registration": "Registration",
     "page.invite": "Team Invite",
+
+    // ── Videos page ──
+    "videos.title": "VIDEO LESSONS",
+    "videos.introBefore": "These videos were prepared by the ",
+    "videos.datasciClubName": "NU DataSci Club",
+    "videos.introAfter":
+      " to help you master the essentials before you start. Learn the best tips and strategies to build a great project and get ready for the hackathon.",
+    "videos.video1Title": "How to Win a Hackathon",
+    "videos.video1Desc":
+      "The first video explains how to navigate the full hackathon process, from forming a small, effective team to delivering a winning 3-minute pitch. You will learn how to focus on a working demo rather than technical complexity and how to confidently handle the judges' Q&A session.",
+    "videos.video2Title": "Working with AI Agents as an Architect",
+    "videos.video2Desc":
+      'This video introduces "Vibe Coding," where you act as a system architect by designing logic and creating clear technical tasks for AI. You will learn how to efficiently fix bugs by finding their root cause and guiding AI agents to the right solution.',
+    "videos.video3Title": "Effective Workflow & Toolset",
+    "videos.video3Desc":
+      "Now, you will understand how to work faster by using AI agents like Cursor or Claude for code generation and analysis. You will learn how to choose the right tech stack (React, FastAPI, PyTorch) and why it is better to focus on a working prototype rather than overcomplicating the project with unnecessary features.",
+    "videos.video4Title": "Pretrained Models for Rapid Prototyping",
+    "videos.video4Desc":
+      "Let's look at why using pretrained models is the best strategy for a hackathon to save time and get better results. You will learn about popular models for different tasks and see a real example of how to quickly fine-tune a model to create a high-quality demo.",
+    "videos.video5Title": "Version Control with Git",
+    "videos.video5Desc":
+      "Finally, we will show how to use GitHub to keep your project safe and work effectively in a team. You will learn how to save working versions of your code, use branches for experiments, and resolve conflicts when merging your team's changes together.",
+    "videos.outro1":
+      "That's it for our video series! We hope these lessons help you navigate the hackathon with confidence. Focus on building a presentable prototype, stay aligned with the task requirements, and use AI as your main superpower to speed up development.",
+    "videos.outro2": "DON'T JUST WISH. BUILD IT.",
+    "videos.outro3":
+      "This is your moment to turn inspiration into impact and code into reality. We can't wait to see the incredible projects you'll bring to life. Believe in your vision, trust your team, and make it happen.",
+    "videos.outro4Before": "Good luck - we'll see you at ",
+    "videos.outro4Wish": "WISH!",
+    "videos.outro4After": "",
+    "videos.linksTitle": "Useful Links",
+    "videos.link1Title": "GitHub Student Developer Pack",
+    "videos.link1Desc":
+      "Get free access to GitHub Copilot Pro and other premium developer tools.",
+    "videos.link2Title": "Cursor & Claude",
+    "videos.link2Cursor": "Cursor",
+    "videos.link2Claude": "Claude",
+    "videos.link2Desc":
+      "The most effective AI code editors and agents for rapid development.",
+    "videos.link3Title": "Hugging Face",
+    "videos.link3Desc":
+      "The go-to platform for finding pretrained models (Text, Image, Audio) to jumpstart your prototype.",
+    "videos.link4Title": "YOLO by Ultralytics",
+    "videos.link4Desc":
+      "A powerful tool for quick object detection and computer vision tasks.",
+    "videos.link5Title": "FastAPI Documentation",
+    "videos.link5Desc":
+      "A fast and modern framework for building your project's backend.",
+    "videos.link6Title": "Git & GitHub Guide",
+    "videos.link6Desc":
+      "Master branching and version control to collaborate without losing your code.",
   },
 
   ru: {
@@ -255,8 +324,9 @@ export const ui = {
     "nav.logOut": "Выйти",
 
     // ── Welcome ──
-    "welcome.line1": "Исполни свою самую большую",
-    "welcome.line2": "мечту",
+    "welcome.line1": "Исполни свою самую заветную ",
+    "welcome.highlight": "мечту",
+    "welcome.line2": "",
     "welcome.register": "Регистрация",
 
     // ── Countdown ──
@@ -288,13 +358,14 @@ export const ui = {
 
     // ── Benefits ──
     "benefits.title": "Преимущества",
-"benefits.card1": "Видеоуроки по подготовке к хакатону после регистрации",
+    "benefits.card1": "Видеоуроки по подготовке к хакатону после регистрации",
     "benefits.card2": "Практический опыт в Data Science, ML и AI",
     "benefits.card3": "Призовой фонд 1 200 000 ₸ и эксклюзивный мерч",
     "benefits.card4": "Приветственный пакет для первых 50 участниц",
     "benefits.card5": "Карьерные возможности в роли ML-инженеров",
     "benefits.card6": "Кофе-брейки и увлекательные активности",
-    "benefits.card7": "Новые технические навыки и реальный опыт командной работы",
+    "benefits.card7":
+      "Новые технические навыки и реальный опыт командной работы",
     "benefits.card8": "Сертификаты об участии для каждой участницы",
 
     // ── Timeline ──
@@ -311,10 +382,14 @@ export const ui = {
     "sponsors.infoPartners": "Инфо-партнёры",
     "sponsors.sponsor": "Спонсор",
     "sponsors.partner": "Партнёр",
-    "sponsors.choco.description": "Ведущая IT-компания Казахстана и SuperApp. Экосистема Choco интегрирует проекты Chocolife.me, Chocofood, Smart Restaurant, Ryadom и Idoctor, предоставляя важные цифровые услуги для повседневной жизни. Для этого хакатона Choco предоставляет два реальных бизнес-кейса, которые будут основными задачами для участников.",
-    "sponsors.freedom.description": "Экосистема услуг образа жизни в рамках холдинга Freedom. Она объединяет ведущие проекты досуга и продажи билетов, такие как Ticketon, Sxodim, Kino.kz, Aviata и Chocotravel, делая ваши путешествия и развлечения более доступными.",
-    "sponsors.issai.description": "Институт интеллектуальных систем и искусственного интеллекта (ISSAI) при Назарбаев Университете является движущей силой инноваций в сфере ИИ в Казахстане. Он способствует сотрудничеству со спонсорами.",
-    "sponsors.nuDatasciClub.description": "Студенческий клуб Назарбаев Университета, посвящённый развитию Data Science. Как партнёр контента для WISH, клуб предоставил важные видеоуроки для подготовки участников к хакатону.",
+    "sponsors.choco.description":
+      "Ведущая IT-компания Казахстана и SuperApp. Экосистема Choco интегрирует проекты Chocolife.me, Chocofood, Smart Restaurant, Ryadom и Idoctor, предоставляя важные цифровые услуги для повседневной жизни. Для этого хакатона Choco предоставляет два реальных бизнес-кейса, которые будут основными задачами для участников.",
+    "sponsors.freedom.description":
+      "Экосистема услуг образа жизни в рамках холдинга Freedom. Она объединяет ведущие проекты досуга и продажи билетов, такие как Ticketon, Sxodim, Kino.kz, Aviata и Chocotravel, делая ваши путешествия и развлечения более доступными.",
+    "sponsors.issai.description":
+      "Институт интеллектуальных систем и искусственного интеллекта (ISSAI) при Назарбаев Университете является движущей силой инноваций в сфере ИИ в Казахстане. Он способствует сотрудничеству со спонсорами.",
+    "sponsors.nuDatasciClub.description":
+      "Студенческий клуб Назарбаев Университета, посвящённый развитию Data Science. Как партнёр контента для WISH, клуб предоставил важные видеоуроки для подготовки участников к хакатону.",
 
     // ── Schedule / Agenda ──
     "schedule.title": "Расписание",
@@ -344,38 +419,44 @@ export const ui = {
     "faq.title": "Вопросы",
     "faq.q1": "Что такое WISH?",
     "faq.a1":
-      "WISH — это 24-часовой командный хакатон в области аналитики данных, машинного обучения и искусственного интеллекта. Каждая команда состоит из 2–4 участниц.",
+      "Women in STEM Hackathon (WISH) — это 24-часовой оффлайн-хакатон для девушек, где участницы объединяются в команды для решения практических задач от спонсоров в области Data Science, ML и AI. Это интенсивное мероприятие для тех, кто мечтает построить карьеру в мире высоких технологий и инноваций.",
     "faq.q2": "Кто может участвовать?",
-    "faq.a2": "Школьницы и студентки от 16 лет и старше.",
+    "faq.a2":
+      "Мы приглашаем школьниц, студенток колледжей и университетов от 16 лет и старше. Участие командное — от 2 до 4 человек.",
     "faq.q3": "Что делать, если у меня нет команды?",
     "faq.a3":
-      "Вы можете найти участниц в нашем Telegram-чате Women in STEM Hackathon.",
+      'Не переживайте! Вы можете найти напарниц в нашем специальном <a href="https://t.me/wish_nuacmw" target="_blank" rel="noopener noreferrer">Telegram-чате WISH</a>, где другие участницы тоже ищут партнёров.',
     "faq.q4": "Нужно ли быть профессионалом?",
-    "faq.a4": "Нет, соревнование подходит для начинающих.",
+    "faq.a4":
+      "Нет, мы приветствуем всех, кто интересуется Data Science и AI! Для подготовки все зарегистрированные участницы получат доступ к эксклюзивным видеоурокам, охватывающим основные инструменты и методы, используемые на хакатонах.",
     "faq.q5": "Можно ли участвовать онлайн?",
-    "faq.a5": "Нет, WISH 2026 проходит полностью оффлайн.",
+    "faq.a5":
+      "Нет, WISH пройдёт оффлайн в Назарбаев Университете, Астана, Казахстан.",
     "faq.q6": "Как я могу участвовать?",
     "faq.a6":
-      "Соберите команду, зарегистрируйтесь и приходите в Назарбаев Университет 14 марта 2026 года. Обратите внимание, что регистрация заполняется каждой участницей индивидуально.",
+      "Соберите команду из 2–4 человек и зарегистрируйтесь через наш сайт. Регистрация открыта с 23 февраля по 11 марта 2026 года. Обратите внимание, что каждая участница должна зарегистрироваться индивидуально через сайт.",
     "faq.q7": "Получат ли участницы сертификаты или призы?",
     "faq.a7":
-      "Да, каждая участница получит сертификат участия, победительницы получат денежный приз и мерч. Также будет welcome-пакет и кофе-брейк.",
+      "Да! Общий призовой фонд составляет 1 200 000 ₸. Победительницы также получат эксклюзивный мерч, а первые 50 участниц — специальный Welcome Package. Каждая участница получит сертификат участия. Кроме того, лучшие участницы получат шанс на предложение о работе или стажировке от наших партнёров.",
     "faq.q8": "Я не нашла ответ на свой вопрос. Что делать?",
     "faq.a8":
-      "Присоединяйтесь к нашему Telegram-чату и задавайте вопросы. Или свяжитесь с нами по email: acm_w@nu.edu.kz",
+      'Присоединяйтесь к нашему <a href="https://t.me/wish_nuacmw" target="_blank" rel="noopener noreferrer">Telegram-чату</a> и задавайте вопросы, или свяжитесь с нами по email: <a href="https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm" target="_blank" rel="noopener noreferrer">acm_w@nu.edu.kz</a>.',
     "faq.instagram": "Instagram",
     "faq.telegram": "Telegram",
     "faq.youtube": "Youtube",
     "faq.email": "Email",
-    "faq.copyright": "© 2026 NU ACM-W SC Все права защищены.",
+    "faq.copyright": "© 2026 NU ACM-W SC. Все права защищены.",
     "faq.q9": "Кто является организаторами WISH?",
-    "faq.a9": "Организатором является <strong>NU ACM-W Student Chapter</strong> — первый и единственный филиал ACM-Women в Казахстане и Центральной Азии. Наша миссия — поддержка женщин в STEM-сферах, особенно в IT, через инициативы, способствующие социальному, профессиональному и техническому росту.",
+    "faq.a9":
+      "Организатором является NU ACM-W Student Chapter — первый и единственный филиал ACM-Women в Казахстане и Центральной Азии. Наша миссия — поддержка женщин в STEM-сферах, особенно в IT, через инициативы, способствующие социальному, профессиональному и техническому росту.",
     "faq.q10": "Проводятся ли другие мероприятия для девушек?",
-    "faq.a10": "Да! NU ACM-W SC ежегодно проводит такие мероприятия, как <strong>Women's Hack Day</strong> (дизайн продукта, математика, программирование), <strong>CodeW</strong> (спортивное программирование) и <strong>Code Girl Summer</strong> (лагерь по веб-разработке). Подробности можно найти в нашем <a href='https://t.me/nu_acm_w' target='_blank'>Telegram</a> и <a href='https://www.instagram.com/nuacm_wsc/' target='_blank'>Instagram</a>.",
+    "faq.a10":
+      'Да! NU ACM-W SC ежегодно проводит мероприятия для девушек: Women\'s Hack Day — командное соревнование из 3 раундов (дизайн продукта, математика, программирование), CodeW — индивидуальное соревнование по спортивному программированию и Code Girl Summer — двухнедельный лагерь по веб-разработке. Подробности можно найти в нашем <a href="https://t.me/nu_acm_w" target="_blank" rel="noopener noreferrer">Telegram</a> и <a href="https://www.instagram.com/nuacm_wsc/" target="_blank" rel="noopener noreferrer">Instagram</a>.',
 
     // ── Footer ──
-    "footer.description": "NU ACM-W Student Chapter - первое в Казахстане и Центральной Азии студенческое подразделение международной организации ACM-Women, базирующееся в Назарбаев Университете. С 2017 года мы оказываем социальную и профессиональную поддержку девушкам в STEM сферах, организуя различные мероприятия.",
-    "footer.copyright": "© 2026 Women in STEM Hackathon. Все права защищены.",
+    "footer.description":
+      "NU ACM-W Student Chapter - первое в Казахстане и Центральной Азии студенческое подразделение международной организации ACM-Women, базирующееся в Назарбаев Университете. С 2017 года мы оказываем социальную и профессиональную поддержку девушкам в STEM сферах, организуя различные мероприятия.",
+    "footer.copyright": "© 2026 NU ACM-W SC. Все права защищены.",
 
     // ── Auth ──
     "auth.signIn": "ВХОД",
@@ -389,6 +470,8 @@ export const ui = {
     "auth.otpPlaceholder": "------",
     "auth.verifying": "ПРОВЕРКА...",
     "auth.verify": "ПОДТВЕРДИТЬ",
+    "auth.codeResent": "Код повторно отправлен на",
+    "auth.sendAgain": "Отправить ещё раз",
     "auth.differentEmail": "Использовать другой email",
     "auth.failedSend": "Не удалось отправить код.",
     "auth.invalidCode": "Неверный код.",
@@ -407,9 +490,13 @@ export const ui = {
     "reg.iin": "ИИН:",
     "reg.phone": "номер телефона:",
     "reg.parentPhone": "номер телефона родителя:",
-    "reg.cvDropbox": "Загрузить CV",
+    "reg.parentPhoneOptional": "номер телефона родителя (необязательно):",
+    "reg.cvDropbox": "Загрузить CV (необязательно)",
+    "reg.cvHint": "Только PDF · макс 2 МБ",
     "reg.ageConfirm":
       "Я подтверждаю, что мне больше 16 лет и я согласна с правилами поведения",
+    "reg.ageConfirmPre": "Я подтверждаю, что мне больше 16 лет и я согласна с",
+    "reg.codeOfConduct": "правилами поведения",
     "reg.register": "Регистрация",
     "reg.pdfOnly": "Допускаются только PDF-файлы",
     "reg.cvSizeLimit": "Размер CV не должен превышать 2 МБ",
@@ -477,6 +564,57 @@ export const ui = {
     "page.team": "Команда",
     "page.registration": "Регистрация",
     "page.invite": "Приглашение в команду",
+
+    // ── Videos page ──
+    "videos.title": "ВИДЕОУРОКИ",
+    "videos.introBefore": "Эти видео были подготовлены ",
+    "videos.datasciClubName": "NU DataSci Club",
+    "videos.introAfter":
+      ", чтобы помочь вам освоить основы перед стартом. Узнайте лучшие советы и стратегии для создания отличного проекта и подготовки к хакатону.",
+    "videos.video1Title": "Как победить на хакатоне",
+    "videos.video1Desc":
+      "Первое видео объясняет, как пройти весь путь хакатона: от формирования небольшой эффективной команды до победного 3-минутного питча. Вы научитесь фокусироваться на рабочем демо, а не на технической сложности, и уверенно отвечать на вопросы жюри.",
+    "videos.video2Title": "Работа с AI-агентами: роль архитектора",
+    "videos.video2Desc":
+      "Это видео знакомит с концепцией «Vibe Coding», где вы выступаете в роли системного архитектора, проектируя логику и создавая четкие технические задания для ИИ. Вы научитесь эффективно исправлять баги, находя их первопричину и направляя AI-агентов к верному решению.",
+    "videos.video3Title": "Эффективный рабочий процесс и инструменты",
+    "videos.video3Desc":
+      "Теперь вы узнаете, как работать быстрее, используя AI-агентов, таких как Cursor или Claude, для генерации и анализа кода. Мы разберем выбор правильного технологического стека (React, FastAPI, PyTorch) и объясним, почему важно сфокусироваться на рабочем прототипе, а не усложнять проект лишними функциями.",
+    "videos.video4Title": "Предобученные модели для быстрого прототипирования",
+    "videos.video4Desc":
+      "Давайте разберём, почему использование готовых моделей — лучшая стратегия на хакатоне для экономии времени и получения высоких результатов. Вы узнаете о популярных моделях для разных задач и увидите реальный пример того, как быстро дообучить модель для создания качественного демо.",
+    "videos.video5Title": "Контроль версий с помощью Git",
+    "videos.video5Desc":
+      "В завершение мы покажем, как использовать GitHub, чтобы обезопасить свой проект и эффективно работать в команде. Вы научитесь сохранять рабочие версии кода, использовать ветки для экспериментов и разрешать конфликты при слиянии правок всей команды.",
+    "videos.outro1":
+      "На этом наши видеоуроки завершены! Мы надеемся, что эти знания помогут вам уверенно пройти через хакатон. Сосредоточьтесь на создании презентабельного прототипа, следуйте требованиям задачи и используйте ИИ как свою главную суперсилу.",
+    "videos.outro2": "DON'T JUST WISH. BUILD IT.",
+    "videos.outro3":
+      "Это ваш момент, чтобы превратить вдохновение в результат, а код — в реальность. Нам не терпится увидеть невероятные проекты, которые вы создадите. Верьте в свою идею, доверяйте команде и действуйте!",
+    "videos.outro4Before": "Удачи — увидимся на ",
+    "videos.outro4Wish": "WISH!",
+    "videos.outro4After": "",
+    "videos.linksTitle": "Полезные ссылки",
+    "videos.link1Title": "GitHub Student Developer Pack",
+    "videos.link1Desc":
+      "Получите бесплатный доступ к GitHub Copilot Pro и другим премиальным инструментам для разработчиков.",
+    "videos.link2Title": "Cursor & Claude",
+    "videos.link2Cursor": "Cursor",
+    "videos.link2Claude": "Claude",
+    "videos.link2Desc":
+      "Самые эффективные AI-редакторы и агенты для быстрой разработки.",
+    "videos.link3Title": "Hugging Face",
+    "videos.link3Desc":
+      "Главная платформа для поиска предобученных моделей (текст, изображения, аудио) для быстрого запуска вашего прототипа.",
+    "videos.link4Title": "YOLO by Ultralytics",
+    "videos.link4Desc":
+      "Мощный инструмент для быстрого решения задач компьютерного зрения и распознавания объектов.",
+    "videos.link5Title": "FastAPI Documentation",
+    "videos.link5Desc":
+      "Быстрый и современный фреймворк для создания бэкенда вашего проекта.",
+    "videos.link6Title": "Git & GitHub Guide",
+    "videos.link6Desc":
+      "Руководство по работе с ветками и контролем версий для эффективной командной работы.",
   },
 
   kz: {
@@ -491,8 +629,9 @@ export const ui = {
     "nav.logOut": "Шығу",
 
     // ── Welcome ──
-    "welcome.line1": "Өзіңнің ең үлкен",
-    "welcome.line2": "арманыңды орында",
+    "welcome.line1": "Ең үлкен ",
+    "welcome.highlight": "арманың",
+    "welcome.line2": " шындыққа айналсын",
     "welcome.register": "Тіркелу",
 
     // ── Countdown ──
@@ -524,13 +663,16 @@ export const ui = {
 
     // ── Benefits ──
     "benefits.title": "Артықшылықтар",
-    "benefits.card1": "Тіркелгеннен кейін хакатонға дайындық бойынша бейнесабақтар",
-    "benefits.card2": "Data Science, ML және AI саласындағы практикалық тәжірибе",
+    "benefits.card1":
+      "Тіркелгеннен кейін хакатонға дайындық бойынша бейнесабақтар",
+    "benefits.card2":
+      "Data Science, ML және AI саласындағы практикалық тәжірибе",
     "benefits.card3": "1 200 000 ₸ жүлде қоры және эксклюзивті мерч",
     "benefits.card4": "Алғашқы 50 қатысушыға арналған сәлемдесу пакеті",
     "benefits.card5": "ML-инженер ретінде мансаптық мүмкіндіктер",
     "benefits.card6": "Кофе-брейктер және қызықты белсенділіктер",
-    "benefits.card7": "Жаңа техникалық дағдылар мен командалық жұмыстың шынайы тәжірибесі",
+    "benefits.card7":
+      "Жаңа техникалық дағдылар мен командалық жұмыстың шынайы тәжірибесі",
     "benefits.card8": "Әрбір қатысушыға арналған қатысу сертификаттар",
 
     // ── Timeline ──
@@ -547,10 +689,14 @@ export const ui = {
     "sponsors.infoPartners": "Ақпараттық серіктестер",
     "sponsors.sponsor": "Демеуші",
     "sponsors.partner": "Серіктес",
-    "sponsors.choco.description": "Қазақстанның ең ірі IT компаниясы және SuperApp. Choco экосистемасы Chocolife.me, Chocofood, Smart Restaurant, Ryadom және Idoctor сияқты жобаларды біріктіреді, күнделік өмір үшін қажетті цифрлық қызметтерді ұсынады. Осы хакатон үшін Choco екі нақты бизнес-кейс ұсынады, олар қатысушылар үшін негізгі сынақ болады.",
-    "sponsors.freedom.description": "Freedom холдингінің өмір салты қызметтерінің экосистемасы. Ол Ticketon, Sxodim, Kino.kz, Aviata және Chocotravel сияқты іс-әрекет пен билет сатау жобаларын біріктіреді, ваша саяхаттар мен ойын-күлік тәжірибелерін барынша қолжетімді ете түседі.",
-    "sponsors.issai.description": "Назарбаев Университетіндегі Ақылды жүйелер және жасанды интеллект институты (ISSAI) Қазақстандағы AI инновациясының қозғалтқышы. Ол спонсорлармен ынамдастықты дамыту үшін ғана ғана назар аудартады.",
-    "sponsors.nuDatasciClub.description": "Назарбаев Университетінің Data Science дамытуына арналған студенттік клубы. WISH үшін контент серіктесі ретінде клуб хакатонға дайындалуға арналған маңызды бейнесабақтарды ұсынды.",
+    "sponsors.choco.description":
+      "Қазақстанның ең ірі IT компаниясы және SuperApp. Choco экосистемасы Chocolife.me, Chocofood, Smart Restaurant, Ryadom және Idoctor сияқты жобаларды біріктіреді, күнделік өмір үшін қажетті цифрлық қызметтерді ұсынады. Осы хакатон үшін Choco екі нақты бизнес-кейс ұсынады, олар қатысушылар үшін негізгі сынақ болады.",
+    "sponsors.freedom.description":
+      "Freedom холдингінің өмір салты қызметтерінің экосистемасы. Ол Ticketon, Sxodim, Kino.kz, Aviata және Chocotravel сияқты іс-әрекет пен билет сатау жобаларын біріктіреді, ваша саяхаттар мен ойын-күлік тәжірибелерін барынша қолжетімді ете түседі.",
+    "sponsors.issai.description":
+      "Назарбаев Университетіндегі Ақылды жүйелер және жасанды интеллект институты (ISSAI) Қазақстандағы AI инновациясының қозғалтқышы. Ол спонсорлармен ынамдастықты дамыту үшін ғана ғана назар аудартады.",
+    "sponsors.nuDatasciClub.description":
+      "Назарбаев Университетінің Data Science дамытуына арналған студенттік клубы. WISH үшін контент серіктесі ретінде клуб хакатонға дайындалуға арналған маңызды бейнесабақтарды ұсынды.",
 
     // ── Schedule / Agenda ──
     "schedule.title": "Кесте",
@@ -580,38 +726,44 @@ export const ui = {
     "faq.title": "Сұрақтар",
     "faq.q1": "WISH дегеніміз не?",
     "faq.a1":
-      "WISH — деректер аналитикасы, машиналық оқыту және жасанды интеллект саласындағы 24 сағаттық командалық хакатон. Әр команда 2–4 қатысушыдан тұрады.",
+      "Women in STEM Hackathon (WISH) — қыздарға арналған 24 сағаттық оффлайн хакатон, мұнда қатысушылар Data Science, ML және AI салаларында демеушілердің практикалық тапсырмаларын шешу үшін команда құрады. Бұл жоғары технология мен инновация әлемінде мансап құруды армандайтындарға арналған қарқынды іс-шара.",
     "faq.q2": "Кім қатыса алады?",
-    "faq.a2": "16 жастан асқан мектеп оқушылары мен студент қыздар.",
+    "faq.a2":
+      "Біз 16 жастан асқан мектеп оқушыларын, колледж және университет студенттерін шақырамыз. Қатысу командалық — 2-ден 4 адамға дейін.",
     "faq.q3": "Командам болмаса не істеймін?",
     "faq.a3":
-      "Біздің Women in STEM Hackathon Telegram чатында командалас таба аласыз.",
+      'Алаңдамаңыз! Біздің арнайы <a href="https://t.me/wish_nuacmw" target="_blank" rel="noopener noreferrer">WISH Telegram чатында</a> серіктес іздеп жүрген басқа қатысушыларды таба аласыз.',
     "faq.q4": "Кәсіби маман болу керек пе?",
-    "faq.a4": "Жоқ, бұл жаңадан бастаушыларға да ыңғайлы жарыс.",
+    "faq.a4":
+      "Жоқ, Data Science және AI-ға қызығушылық танытатын барлығын қарсы аламыз! Дайындыққа көмектесу үшін барлық тіркелген қатысушылар хакатондарда қолданылатын негізгі құралдар мен әдістерді қамтитын эксклюзивті бейнесабақтарға қол жеткізе алады.",
     "faq.q5": "Онлайн қатысуға болады ма?",
-    "faq.a5": "Жоқ, WISH 2026 толығымен оффлайн өтеді.",
+    "faq.a5":
+      "Жоқ, WISH Назарбаев Университетінде, Астана, Қазақстанда оффлайн өтеді.",
     "faq.q6": "Қалай қатысуға болады?",
     "faq.a6":
-      "Команда құрыңыз, тіркеліңіз және 2026 жылы 14 наурызда Назарбаев Университетіне келіңіз. Тіркелуді әр қатысушы жеке толтырады.",
+      "2–4 адамнан тұратын команда құрыңыз және біздің сайт арқылы тіркеліңіз. Тіркелу 2026 жылдың 23 ақпанынан 11 наурызға дейін ашық. Әр команда мүшесі сайт арқылы жеке тіркелуі керек екенін ескеріңіз.",
     "faq.q7": "Қатысушылар сертификат немесе жүлде алады ма?",
     "faq.a7":
-      "Иә, әр қатысушы қатысу сертификатын алады, жеңімпаздар ақшалай жүлде мен мерч алады. Сонымен қатар, welcome-пакет пен кофе-брейк болады.",
+      "Иә! Жалпы жүлде қоры 1 200 000 ₸ құрайды. Жеңімпаздар сонымен қатар эксклюзивті мерч алады, ал алғашқы 50 қатысушы арнайы Welcome Package алады. Әр қатысушы қатысу сертификатын алады. Сонымен қатар, ең жақсы нәтиже көрсеткен қатысушылар серіктестерімізден жұмыс немесе тағылымдама ұсыныстарын алу мүмкіндігіне ие болады.",
     "faq.q8": "Сұрағыма жауап таппадым. Не істеуім керек?",
     "faq.a8":
-      "Біздің Telegram чатқа қосылыңыз және сұрағыңызды қойыңыз. Немесе бізге email арқылы хабарласыңыз: acm_w@nu.edu.kz",
+      'Біздің <a href="https://t.me/wish_nuacmw" target="_blank" rel="noopener noreferrer">Telegram чатқа</a> қосылыңыз және сұрақтарыңызды қойыңыз, немесе бізге email арқылы хабарласыңыз: <a href="https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm" target="_blank" rel="noopener noreferrer">acm_w@nu.edu.kz</a>.',
     "faq.instagram": "Instagram",
     "faq.telegram": "Telegram",
     "faq.youtube": "Youtube",
     "faq.email": "Email",
-    "faq.copyright": "© 2026 NU ACM-W SC Барлық құқықтар қорғалған.",
+    "faq.copyright": "© 2026 NU ACM-W SC. Барлық құқықтар қорғалған.",
     "faq.q9": "WISH ұйымдастырушылары кім?",
-    "faq.a9": "Ұйымдастырушы — <strong>NU ACM-W Student Chapter</strong>, Қазақстан мен Орталық Азиядағы ACM-Women-нің алғашқы және жалғыз бөлімшесі. Біздің миссиямыз — әлеуметтік, кәсіби және техникалық өсуге ықпал ететін бастамалар арқылы STEM салаларындағы, әсіресе IT-дегі әйелдерді қолдау.",
+    "faq.a9":
+      "Ұйымдастырушы — NU ACM-W Student Chapter, Қазақстан мен Орталық Азиядағы ACM-Women-нің алғашқы және жалғыз бөлімшесі. Біздің миссиямыз — әлеуметтік, кәсіби және техникалық өсуге ықпал ететін бастамалар арқылы STEM салаларындағы, әсіресе IT-дегі әйелдерді қолдау.",
     "faq.q10": "Қыздарға арналған басқа да іс-шаралар бар ма?",
-    "faq.a10": "Иә! NU ACM-W SC жыл сайын қыздарға арналған <strong>Women's Hack Day</strong> (өнім дизайны, математика, бағдарламалау), <strong>CodeW</strong> (спорттық бағдарламалау) және <strong>Code Girl Summer</strong> (веб-әзірлеу лагері) сияқты іс-шараларды ұйымдастырады. Толығырақ ақпаратты біздің <a href='https://t.me/nu_acm_w' target='_blank'>Telegram</a> және <a href='https://www.instagram.com/nuacm_wsc/' target='_blank'>Instagram</a> парақшаларымыздан таба аласыз.",
+    "faq.a10":
+      'Иә! NU ACM-W SC жыл сайын қыздарға арналған іс-шараларды ұйымдастырады: Women\'s Hack Day — 3 раундтық командалық жарыс (өнім дизайны, математика, бағдарламалау), CodeW — жеке спорттық бағдарламалау жарысы және Code Girl Summer — екі апталық веб-әзірлеу лагері. Толығырақ ақпаратты біздің <a href="https://t.me/nu_acm_w" target="_blank" rel="noopener noreferrer">Telegram</a> және <a href="https://www.instagram.com/nuacm_wsc/" target="_blank" rel="noopener noreferrer">Instagram</a> парақшаларымыздан таба аласыз.',
 
     // ── Footer ──
-    "footer.description": "NU ACM-W Student Chapter - Назарбаев Университетінде орналасқан халықаралық ACM-Women ұйымының Қазақстан мен Орталық Азиядағы алғашқы студенттік бөлімшесі. 2017 жылдан бастап біз түрлі іс-шаралар ұйымдастыру арқылы STEM саласындағы қыздарға әлеуметтік және кәсіби қолдау көрсетіп келеміз.",
-    "footer.copyright": "© 2026 Women in STEM Hackathon. Барлық құқықтар қорғалған.",
+    "footer.description":
+      "NU ACM-W Student Chapter - Назарбаев Университетінде орналасқан халықаралық ACM-Women ұйымының Қазақстан мен Орталық Азиядағы алғашқы студенттік бөлімшесі. 2017 жылдан бастап біз түрлі іс-шаралар ұйымдастыру арқылы STEM саласындағы қыздарға әлеуметтік және кәсіби қолдау көрсетіп келеміз.",
+    "footer.copyright": "© 2026 NU ACM-W SC. Барлық құқықтар қорғалған.",
 
     // ── Auth ──
     "auth.signIn": "КІРУ",
@@ -625,6 +777,8 @@ export const ui = {
     "auth.otpPlaceholder": "------",
     "auth.verifying": "ТЕКСЕРІЛУДЕ...",
     "auth.verify": "РАСТАУ",
+    "auth.codeResent": "Код қайта жіберілді:",
+    "auth.sendAgain": "Қайта жіберу",
     "auth.differentEmail": "Басқа email пайдалану",
     "auth.failedSend": "Кодты жіберу мүмкін болмады.",
     "auth.invalidCode": "Қате код.",
@@ -643,9 +797,14 @@ export const ui = {
     "reg.iin": "ЖСН:",
     "reg.phone": "телефон нөмірі:",
     "reg.parentPhone": "ата-ананың телефон нөмірі:",
-    "reg.cvDropbox": "CV жүктеу",
+    "reg.parentPhoneOptional": "ата-ананың телефон нөмірі (міндетті емес):",
+    "reg.cvDropbox": "CV жүктеу (міндетті емес)",
+    "reg.cvHint": "Тек PDF · макс 2 МБ",
     "reg.ageConfirm":
       "Менің жасым 16-дан асқанын және мінез-құлық кодексімен келісетінімді растаймын",
+    "reg.ageConfirmPre":
+      "Менің жасым 16-дан асқанын және мен келісемін",
+    "reg.codeOfConduct": "мінез-құлық кодексімен",
     "reg.register": "Тіркелу",
     "reg.pdfOnly": "Тек PDF файлдар рұқсат етіледі",
     "reg.cvSizeLimit": "CV файлы 2 МБ-тан аспауы керек",
@@ -713,5 +872,56 @@ export const ui = {
     "page.team": "Команда",
     "page.registration": "Тіркелу",
     "page.invite": "Командаға шақыру",
+
+    // ── Videos page ──
+    "videos.title": "ВИДЕО САБАҚТАР",
+    "videos.introBefore": "Бұл видеоларды ",
+    "videos.datasciClubName": "NU DataSci Club",
+    "videos.introAfter":
+      " хакатон алдында ең қажетті дағдыларды меңгеруге көмектесу үшін дайындады. Үздік жоба жасау және жарысқа дайындалу үшін ең пайдалы кеңестер мен стратегияларды үйреніңіз.",
+    "videos.video1Title": "Хакатонда қалай жеңіске жетуге болады?",
+    "videos.video1Desc":
+      "Бірінші видео хакатонның толық процесін түсіндіреді: шағын әрі тиімді команда құрудан бастап, жеңісті 3 минуттық питчке (жобаны таныстыруға) дейін. Сіз техникалық күрделілікке емес, жұмыс істеп тұрған демо-нұсқаға назар аударуды және қазылар алқасының сұрақтарына сенімді жауап беруді үйренесіз.",
+    "videos.video2Title": "AI-агенттермен архитектор ретінде жұмыс істеу",
+    "videos.video2Desc":
+      "Бұл видео сізді «Vibe Coding» тұжырымдамасымен таныстырады, мұнда сіз жүйелік архитектор ретінде логиканы жобалап, жасанды интеллект үшін нақты техникалық тапсырмалар жасайсыз. Сіз қателердің (багтардың) негізгі себебін тауып, AI-агенттерді дұрыс шешімге бағыттау арқылы оларды тиімді түзетуді үйренесіз.",
+    "videos.video3Title": "Тиімді жұмыс процесі және құралдар жиынтығы",
+    "videos.video3Desc":
+      "Енді сіз Cursor немесе Claude сияқты AI-агенттерін код жазу мен талдау үшін қолдану арқылы жұмысты қалай тездетуге болатынын түсінесіз. Біз дұрыс технологиялық стекті (React, FastAPI, PyTorch) таңдауды және жобаны артық функциялармен күрделендірмей, жұмыс істеп тұрған прототипке назар аударудың маңыздылығын талқылаймыз.",
+    "videos.video4Title": "Жылдам прототиптеуге арналған дайын модельдер",
+    "videos.video4Desc":
+      "Уақытты үнемдеу және жоғары нәтижеге жету үшін дайын (pretrained) модельдерді пайдалану неліктен ең тиімді стратегия екенін қарастырамыз. Түрлі тапсырмаларға арналған танымал модельдермен танысып, сапалы демо жасау үшін модельді тез арада қосымша оқытудың нақты мысалын көресіз.",
+    "videos.video5Title": "Git арқылы нұсқаларды бақылау",
+    "videos.video5Desc":
+      "Соңында біз жобаңызды қауіпсіз сақтау және командада тиімді жұмыс істеу үшін GitHub-ты қалай қолдану керектігін көрсетеміз. Сіз кодтың жұмыс істеп тұрған нұсқаларын сақтауды, эксперименттер үшін тармақтарды (branches) қолдануды және команданың өзгерістерін біріктіру кезіндегі қақтығыстарды шешуді үйренесіз.",
+    "videos.outro1":
+      "Біздің видеосабақтар осымен аяқталды! Бұл білім хакатонды сенімді түрде өткізуге көмектеседі деп үміттенеміз. Назарларыңызды сапалы прототип жасауға аударып, тапсырма талаптарын орындаңыз және жасанды интеллектіні басты көмекші ретінде пайдаланыңыз.",
+    "videos.outro2": "DON'T JUST WISH. BUILD IT.",
+    "videos.outro3":
+      "Бұл — шабытты нәтижеге, ал кодты шындыққа айналдыратын сәт. Сіздер жасаған керемет жобаларды көруге асықпыз. Өз идеяңызға сеніңіз, командаңызға арқа сүйеңіз және алға ұмтылыңыз!",
+    "videos.outro4Before": "Сәттілік — ",
+    "videos.outro4Wish": "WISH",
+    "videos.outro4After": "те кездескенше!",
+    "videos.linksTitle": "Пайдалы сілтемелер",
+    "videos.link1Title": "GitHub Student Developer Pack",
+    "videos.link1Desc":
+      "GitHub Copilot Pro және басқа да премиум құралдарға тегін қолжетімділік алыңыз.",
+    "videos.link2Title": "Cursor & Claude",
+    "videos.link2Cursor": "Cursor",
+    "videos.link2Claude": "Claude",
+    "videos.link2Desc":
+      "Жылдам әзірлеуге арналған ең тиімді AI-редакторлар мен агенттер.",
+    "videos.link3Title": "Hugging Face",
+    "videos.link3Desc":
+      "Прототипіңізді жылдам іске қосу үшін дайын модельдерді (мәтін, кескін, аудио) іздеуге арналған негізгі платформа.",
+    "videos.link4Title": "YOLO by Ultralytics",
+    "videos.link4Desc":
+      "Компьютерлік көру және нысандарды тану тапсырмаларын жылдам шешуге арналған қуатты құрал.",
+    "videos.link5Title": "FastAPI Documentation",
+    "videos.link5Desc":
+      "Жобаңыздың бэкендін жасауға арналған жылдам әрі заманауи фреймворк.",
+    "videos.link6Title": "Git & GitHub Guide",
+    "videos.link6Desc":
+      "Командалық жұмыс үшін тармақтармен жұмыс істеу және нұсқаларды бақылау бойынша нұсқаулық.",
   },
 } as const;

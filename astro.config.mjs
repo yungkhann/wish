@@ -12,9 +12,12 @@ export default defineConfig({
   site: "https://wish.nuacmw.kz",
   srcDir: "frontend",
   output: "server",
-  adapter: cloudflare(),
+  image: {
+    service: { entrypoint: "./frontend/image-service.ts" },
+  },
+  adapter: cloudflare({ imageService: "custom" }),
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), sitemap()],
     server: {
       proxy: {
         "/api": {

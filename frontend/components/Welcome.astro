@@ -38,40 +38,19 @@ const t = useTranslations(lang);
       <h1
         class="welcome-title text-center font-['Cinzel_Decorative'] leading-[1.4] font-normal tracking-tight text-white"
       >
-        {
-          lang === "en" && (
-            <>
-              {t("welcome.line1")}
-              <Image
-                src={wishLogo}
-                alt="WISH"
-                class="wish-logo-inline inline-block align-middle drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]"
-              />
-              {t("welcome.line2")}
-            </>
-          )
-        }
-        {
-          lang === "ru" && (
-            <>
-              Исполни свою самую заветную{" "}
-              <span class="text-[#E394FF] drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]">
-                мечту
-              </span>
-            </>
-          )
-        }
-        {
-          lang === "kz" && (
-            <>
-              Ең үлкен{" "}
-              <span class="text-[#E394FF] drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]">
-                арманың
-              </span>{" "}
-              шындыққа айналсын
-            </>
-          )
-        }
+        {t("welcome.line1")}
+        {lang === "en" ? (
+          <Image
+            src={wishLogo}
+            alt={t("welcome.highlight")}
+            class="wish-logo-inline inline-block align-middle drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]"
+          />
+        ) : (
+          <span class="text-[#E394FF] drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]">
+            {t("welcome.highlight")}
+          </span>
+        )}
+        {t("welcome.line2")}
       </h1>
 
       <Countdown lang={lang} client:only="react" />

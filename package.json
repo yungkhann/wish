@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "concurrently \"bun:dev:*\"",
     "dev:frontend": "bun run --bun astro dev",
-    "dev:backend": "wrangler dev --config wrangler.dev.jsonc",
-    "build": "bun run --bun astro build",
+    "dev:backend": "wrangler dev",
+    "build": "bun run --bun astro build && echo _worker.js > dist/.assetsignore",
     "lint:frontend": "eslint 'frontend/**/*.{js,ts,tsx,astro}'",
     "lint:backend": "eslint 'backend/**/*.{js,ts,tsx,astro}'",
     "lint": "concurrently \"bun:lint:*\"",
