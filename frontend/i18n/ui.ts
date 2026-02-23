@@ -140,7 +140,7 @@ export const ui = {
     "faq.telegram": "Telegram",
     "faq.youtube": "Youtube",
     "faq.email": "Email",
-    "faq.copyright": "© 2026 NU ACM-W SC All rights reserved.",
+    "faq.copyright": "© 2026 NU ACM-W SC. All rights reserved.",
     "faq.q9": "Who are the organisers of WISH?",
     "faq.a9":
       "The organizer is the NU ACM-W Student Chapter - the first and only branch of ACM-Women in Kazakhstan and Central Asia. Our mission is to support women in STEM fields, especially in IT, through initiatives that foster social, professional, and technical growth.",
@@ -151,7 +151,7 @@ export const ui = {
     // ── Footer ──
     "footer.description":
       "NU ACM-W Student Chapter is the first student chapter of the international ACM-Women organization in Kazakhstan and Central Asia, based at Nazarbayev University. Since 2017, we have been providing social and professional support to women in STEM by organizing various events.",
-    "footer.copyright": "© 2026 ACM-W SC. All rights reserved.",
+    "footer.copyright": "© 2026 NU ACM-W SC. All rights reserved.",
 
     // ── Auth ──
     "auth.signIn": "SIGN IN",
@@ -185,9 +185,14 @@ export const ui = {
     "reg.iin": "IIN:",
     "reg.phone": "phone number:",
     "reg.parentPhone": "parent's phone number:",
-    "reg.cvDropbox": "CV Dropbox",
+    "reg.parentPhoneOptional": "parent's phone number (optional):",
+    "reg.cvDropbox": "CV Dropbox (optional)",
+    "reg.cvHint": "PDF only · max 2 MB",
     "reg.ageConfirm":
       "I confirm that I am above 16 years old & agree with the code of conduct",
+    "reg.ageConfirmPre":
+      "I confirm that I am above 16 years old & agree with the",
+    "reg.codeOfConduct": "code of conduct",
     "reg.register": "Register",
     "reg.pdfOnly": "Only PDF files are allowed",
     "reg.cvSizeLimit": "CV file must be under 2 MB",
@@ -387,7 +392,7 @@ export const ui = {
     "faq.telegram": "Telegram",
     "faq.youtube": "Youtube",
     "faq.email": "Email",
-    "faq.copyright": "© 2026 NU ACM-W SC Все права защищены.",
+    "faq.copyright": "© 2026 NU ACM-W SC. Все права защищены.",
     "faq.q9": "Кто является организаторами WISH?",
     "faq.a9":
       "Организатором является NU ACM-W Student Chapter — первый и единственный филиал ACM-Women в Казахстане и Центральной Азии. Наша миссия — поддержка женщин в STEM-сферах, особенно в IT, через инициативы, способствующие социальному, профессиональному и техническому росту.",
@@ -398,7 +403,7 @@ export const ui = {
     // ── Footer ──
     "footer.description":
       "NU ACM-W Student Chapter - первое в Казахстане и Центральной Азии студенческое подразделение международной организации ACM-Women, базирующееся в Назарбаев Университете. С 2017 года мы оказываем социальную и профессиональную поддержку девушкам в STEM сферах, организуя различные мероприятия.",
-    "footer.copyright": "© 2026 Women in STEM Hackathon. Все права защищены.",
+    "footer.copyright": "© 2026 NU ACM-W SC. Все права защищены.",
 
     // ── Auth ──
     "auth.signIn": "ВХОД",
@@ -432,9 +437,13 @@ export const ui = {
     "reg.iin": "ИИН:",
     "reg.phone": "номер телефона:",
     "reg.parentPhone": "номер телефона родителя:",
-    "reg.cvDropbox": "Загрузить CV",
+    "reg.parentPhoneOptional": "номер телефона родителя (необязательно):",
+    "reg.cvDropbox": "Загрузить CV (необязательно)",
+    "reg.cvHint": "Только PDF · макс 2 МБ",
     "reg.ageConfirm":
       "Я подтверждаю, что мне больше 16 лет и я согласна с правилами поведения",
+    "reg.ageConfirmPre": "Я подтверждаю, что мне больше 16 лет и я согласна с",
+    "reg.codeOfConduct": "правилами поведения",
     "reg.register": "Регистрация",
     "reg.pdfOnly": "Допускаются только PDF-файлы",
     "reg.cvSizeLimit": "Размер CV не должен превышать 2 МБ",
@@ -638,7 +647,7 @@ export const ui = {
     "faq.telegram": "Telegram",
     "faq.youtube": "Youtube",
     "faq.email": "Email",
-    "faq.copyright": "© 2026 NU ACM-W SC Барлық құқықтар қорғалған.",
+    "faq.copyright": "© 2026 NU ACM-W SC. Барлық құқықтар қорғалған.",
     "faq.q9": "WISH ұйымдастырушылары кім?",
     "faq.a9":
       "Ұйымдастырушы — NU ACM-W Student Chapter, Қазақстан мен Орталық Азиядағы ACM-Women-нің алғашқы және жалғыз бөлімшесі. Біздің миссиямыз — әлеуметтік, кәсіби және техникалық өсуге ықпал ететін бастамалар арқылы STEM салаларындағы, әсіресе IT-дегі әйелдерді қолдау.",
@@ -649,8 +658,7 @@ export const ui = {
     // ── Footer ──
     "footer.description":
       "NU ACM-W Student Chapter - Назарбаев Университетінде орналасқан халықаралық ACM-Women ұйымының Қазақстан мен Орталық Азиядағы алғашқы студенттік бөлімшесі. 2017 жылдан бастап біз түрлі іс-шаралар ұйымдастыру арқылы STEM саласындағы қыздарға әлеуметтік және кәсіби қолдау көрсетіп келеміз.",
-    "footer.copyright":
-      "© 2026 Women in STEM Hackathon. Барлық құқықтар қорғалған.",
+    "footer.copyright": "© 2026 NU ACM-W SC. Барлық құқықтар қорғалған.",
 
     // ── Auth ──
     "auth.signIn": "КІРУ",
@@ -684,9 +692,14 @@ export const ui = {
     "reg.iin": "ЖСН:",
     "reg.phone": "телефон нөмірі:",
     "reg.parentPhone": "ата-ананың телефон нөмірі:",
-    "reg.cvDropbox": "CV жүктеу",
+    "reg.parentPhoneOptional": "ата-ананың телефон нөмірі (міндетті емес):",
+    "reg.cvDropbox": "CV жүктеу (міндетті емес)",
+    "reg.cvHint": "Тек PDF · макс 2 МБ",
     "reg.ageConfirm":
       "Менің жасым 16-дан асқанын және мінез-құлық кодексімен келісетінімді растаймын",
+    "reg.ageConfirmPre":
+      "Менің жасым 16-дан асқанын және мен келісемін",
+    "reg.codeOfConduct": "мінез-құлық кодексімен",
     "reg.register": "Тіркелу",
     "reg.pdfOnly": "Тек PDF файлдар рұқсат етіледі",
     "reg.cvSizeLimit": "CV файлы 2 МБ-тан аспауы керек",
