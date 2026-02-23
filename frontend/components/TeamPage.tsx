@@ -25,7 +25,6 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
   const [state, setState] = useState<State>("loading");
   const [user, setUser] = useState<UserData | null>(null);
   const [teamName, setTeamName] = useState("");
-  const [editingName, setEditingName] = useState("");
   const [newTeamName, setNewTeamName] = useState("");
   const [members, setMembers] = useState<Member[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -79,11 +78,6 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
     })();
   }, []);
 
-  // keep editingName in sync with teamName when teamName changes
-  useEffect(() => {
-    setEditingName(teamName);
-  }, [teamName]);
-
   const handleCreateTeam = async (e: React.FormEvent) => {
     e.preventDefault();
     setActionLoading(true);
@@ -107,7 +101,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       setActionLoading(false);
     }
   };
-  
+
   const handleCopyLink = async () => {
     setError(null);
     try {
@@ -181,32 +175,6 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
     }
   };
 
- 
-  const handleRenameTeam = async () => {
-    setError(null);
-    setActionLoading(true);
-    try {
-      const res = await fetch("/api/team", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ teamName: editingName }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? t("team.failedRename"));
-        return;
-      }
-      setTeamName(editingName);
-      setError(t("team.renamedSuccess"));
-    } catch {
-      setError(t("auth.unexpectedError"));
-    } finally {
-      setActionLoading(false);
-    }
-  };
-
- 
- 
   const handleLeaveTeam = async () => {
     setError(null);
     setActionLoading(true);
@@ -341,55 +309,23 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
           {/* Team Section */}
           <div className="space-y-6">
             {/* Team Name */}
-            {isOwner ? (
-              <>
-                <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
-                  {teamName}
-                </h2>
-                <div className="flex items-center gap-3">
-                  <label className="shrink-0 font-['Marcellus'] text-base text-white">
-                    {t("team.enterTeamNameLabel")}
-                  </label>
-                  <input
-                    type="text"
-                    value={editingName}
-                    onChange={(e) => setEditingName(e.target.value)}
-                    className="flex-1 rounded-tl-[45px] rounded-tr-[6px] rounded-br-[45px] rounded-bl-[6px] bg-[linear-gradient(90deg,rgba(0,0,0,0.20)_13%,rgba(0,0,0,0.20)_50%,rgba(0,0,0,0.20)_93%)] px-6 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0px_0px_45px_rgba(119,22,208,0.60)] outline-none"
-                  />
-                </div>
-                <div className="flex justify-center">
-                  <button
-                    onClick={handleRenameTeam}
-                    disabled={
-                      actionLoading ||
-                      !editingName.trim() ||
-                      editingName === teamName
-                    }
-                    className="rounded-tl-[30px] rounded-tr-[4px] rounded-br-[30px] rounded-bl-[4px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_3px_#7716D0,0_0_7.5px_#7716D0,0_0_30px_rgba(119,22,208,0.60),0_0_45px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_2px_rgba(255,255,255,1)] hover:scale-105 disabled:opacity-40 disabled:hover:scale-100"
-                  >
-                    {t("team.save")}
-                  </button>
-                </div>
-              </>
-            ) : (
-              <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
-                {teamName}
-              </h2>
-            )}
+            <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
+              {t("team.teamName")}: {teamName}
+            </h2>
 
             {/* Participants */}
             <div>
-              <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
-                {t("team.participants")}
-              </h2>
-            
               <table className="w-full table-fixed border-collapse">
                 <tbody>
                   {(() => {
-                    const confirmedMembers = [...owners, ...regularMembers];
+                    const allMembers = [
+                      ...owners,
+                      ...regularMembers,
+                      ...requests,
+                    ];
                     const rows = Array.from(
                       { length: 4 },
-                      (_, i) => confirmedMembers[i] ?? null,
+                      (_, i) => allMembers[i] ?? null,
                     );
                     return rows.map((m, i) =>
                       m ? (
@@ -402,7 +338,6 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
                           onAccept={(id) => handleInviteAction(id, "accepted")}
                           onReject={(id) => handleInviteAction(id, "rejected")}
                           disabled={actionLoading}
-                          t={t}
                         />
                       ) : (
                         <tr key={`empty-${i}`}>
@@ -424,32 +359,6 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
                 </a>
               </div>
             </div>
-
-            {/* Pending Invites */}
-            {isOwner && requests.length > 0 && (
-              <div>
-                <h2 className="mb-4 text-center font-['Cinzel'] text-xl tracking-[3px] text-zinc-400">
-                  {t("team.pendingTitle")}
-                </h2>
-                <table className="w-full table-fixed border-collapse">
-                  <tbody>
-                    {requests.map((m) => (
-                      <MemberRow
-                        key={m.inviteId ?? m.userId}
-                        member={m}
-                        isOwner={!!isOwner}
-                        currentUserId={user?.id ?? ""}
-                        onRemove={handleRemoveMember}
-                        onAccept={(id) => handleInviteAction(id, "accepted")}
-                        onReject={(id) => handleInviteAction(id, "rejected")}
-                        disabled={actionLoading}
-                        t={t}
-                      />
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
           </div>
         </div>
 
@@ -463,7 +372,6 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
               {copyText}
             </button>
           )}
-          
           {isOwner ? (
             <button
               onClick={handleDissolveTeam}
@@ -495,7 +403,6 @@ function MemberRow({
   onAccept,
   onReject,
   disabled,
-  t,
 }: {
   member: Member;
   isOwner: boolean;
@@ -504,7 +411,6 @@ function MemberRow({
   onAccept: (inviteId: string) => void;
   onReject: (inviteId: string) => void;
   disabled: boolean;
-  t: ReturnType<typeof useTranslations>;
 }) {
   return (
     <tr>
@@ -523,16 +429,16 @@ function MemberRow({
               <button
                 onClick={() => onAccept(member.inviteId!)}
                 disabled={disabled}
-                className="flex h-[45px] w-[45px] items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-green-500/40 bg-black/20 font-['Marcellus'] text-sm text-green-500 shadow-[0_0_4.5px_3.375px_rgba(0,255,0,0.20),inset_0_0_4.5px_4.5px_rgba(0,255,0,0.25)] transition-opacity disabled:opacity-50"
+                className="flex h-[45px] w-[45px] items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-green-500/40 bg-black/20 font-['Marcellus'] text-xl text-green-500 shadow-[0_0_4.5px_3.375px_rgba(0,255,0,0.20),inset_0_0_4.5px_4.5px_rgba(0,255,0,0.25)] transition-opacity disabled:opacity-50"
               >
-                {t("team.accept")}
+                ✓
               </button>
               <button
                 onClick={() => onReject(member.inviteId!)}
                 disabled={disabled}
-                className="flex h-[45px] w-[45px] items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Marcellus'] text-sm text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
+                className="flex h-[45px] w-[45px] cursor-pointer items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Cinzel'] text-lg text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
               >
-                {t("team.reject")}
+                x
               </button>
             </>
           )}
