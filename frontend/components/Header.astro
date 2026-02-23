@@ -46,9 +46,11 @@ const links = [
             </a>
           ))
         }
+      </div>
 
-        <NavAuthButton lang={lang} client:load />
+      <div class="hidden items-center gap-4 lg:flex xl:gap-6">
         <LanguageSwitcher client:load />
+        <NavAuthButton lang={lang} client:load />
       </div>
 
       <button
