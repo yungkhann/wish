@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Lang } from "../i18n/ui";
 import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
+import { navigateTo } from "../utils/navigate";
 import AuthForm from "./AuthForm";
 
 type State = "loading" | "unauthenticated" | "no-team" | "has-team";
@@ -43,7 +44,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
     }
     const data = await res.json();
     if (!data.isRegistered) {
-      window.location.href = "/registration";
+      navigateTo("/registration");
       return null;
     }
     setUser(data);

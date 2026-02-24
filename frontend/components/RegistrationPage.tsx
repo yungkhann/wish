@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Lang } from "../i18n/ui";
 import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
+import { navigateTo } from "../utils/navigate";
 import AuthForm from "./AuthForm";
 import RegistrationForm from "./RegistrationForm";
 
@@ -29,7 +30,7 @@ export default function RegistrationPage({ lang: langProp }: { lang?: Lang }) {
         if (!data) return;
         if (data.isRegistered) {
           setState("registered");
-          window.location.href = "/team";
+          navigateTo("/team");
         } else {
           setState("needs-registration");
         }

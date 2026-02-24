@@ -34,6 +34,32 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <script is:inline>
       document.documentElement.classList.add("js");
     </script>
+    <script is:inline>
+      (function () {
+        var isTg =
+          typeof window.TelegramWebview !== "undefined" ||
+          typeof window.TelegramWebviewProxy !== "undefined";
+        if (!isTg) return;
+
+        document.addEventListener("click", function (e) {
+          var el = e.target;
+          while (el && el.tagName !== "A") el = el.parentElement;
+          if (!el) return;
+
+          var href = el.getAttribute("href");
+          if (!href || href.charAt(0) === "#" || /^https?:\/\/|^\/\//.test(href))
+            return;
+
+          e.preventDefault();
+          var f = document.createElement("form");
+          f.method = "GET";
+          f.action = href;
+          f.style.display = "none";
+          document.body.appendChild(f);
+          f.submit();
+        });
+      })();
+    </script>
   </head>
   <body class="flex min-h-screen flex-col">
     <main class="flex-grow">

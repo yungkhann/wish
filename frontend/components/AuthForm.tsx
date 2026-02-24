@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Lang } from "../i18n/ui";
 import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 import { authClient } from "../lib/auth-client";
+import { navigateTo } from "../utils/navigate";
 
 type Step = "email" | "otp";
 
@@ -76,17 +77,21 @@ export default function AuthForm({
           if (target === window.location.pathname + window.location.hash) {
             window.location.reload();
           } else {
-            window.location.href = target;
+            navigateTo(target);
           }
         } else {
-          window.location.href = redirectTo
-            ? `/registration?redirect=${encodeURIComponent(redirectTo)}`
-            : "/registration";
+          navigateTo(
+            redirectTo
+              ? `/registration?redirect=${encodeURIComponent(redirectTo)}`
+              : "/registration",
+          );
         }
       } catch {
-        window.location.href = redirectTo
-          ? `/registration?redirect=${encodeURIComponent(redirectTo)}`
-          : "/registration";
+        navigateTo(
+          redirectTo
+            ? `/registration?redirect=${encodeURIComponent(redirectTo)}`
+            : "/registration",
+        );
       }
     } catch {
       setError(t("auth.unexpectedError"));

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Lang } from "../i18n/ui";
 import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 import { authClient } from "../lib/auth-client";
+import { navigateTo } from "../utils/navigate";
 
 type Status = "loading" | "guest" | "incomplete" | "registered";
 
@@ -45,7 +46,7 @@ export default function NavAuthButton({
   const handleLogout = async () => {
     await authClient.signOut();
     cachedStatus = null;
-    window.location.href = "/";
+    navigateTo("/");
   };
 
   if (status === "loading" && mobile) return null;

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Lang } from "../i18n/ui";
 import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
+import { navigateTo } from "../utils/navigate";
 import AuthForm from "./AuthForm";
 
 type State = "loading" | "unauthenticated" | "success" | "error";
@@ -36,7 +37,7 @@ export default function InvitePage({ lang: langProp }: { lang?: Lang }) {
       }
       const meData = await meRes.json();
       if (!meData.isRegistered) {
-        window.location.href = "/registration";
+        navigateTo("/registration");
         return;
       }
 

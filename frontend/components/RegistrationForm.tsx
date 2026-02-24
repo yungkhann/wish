@@ -11,6 +11,7 @@ import { useState } from "react";
 import butterflyBg from "../assets/butterfly-register.png";
 import type { Lang } from "../i18n/ui";
 import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
+import { navigateTo } from "../utils/navigate";
 
 const wrapperClasses =
   "flex h-16 w-full cursor-text items-center gap-4 rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-linear-to-r from-black/70 via-black/70 to-black/70 px-6 shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow focus-within:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:gap-6 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:px-8";
@@ -121,7 +122,7 @@ export default function RegistrationForm({
         }
       }
 
-      window.location.href = redirectTo ?? "/team";
+      navigateTo(redirectTo ?? "/team");
     } catch {
       setError(t("auth.unexpectedError"));
     } finally {

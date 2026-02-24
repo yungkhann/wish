@@ -1,3 +1,5 @@
+import { navigateTo } from "./navigate";
+
 export function setupSmoothScroll(selector: string) {
   const container = document.querySelector(selector);
   if (!container) return;
@@ -30,7 +32,7 @@ export function setupSmoothScroll(selector: string) {
     }
 
     e.preventDefault();
-    window.location.href = "/" + hash;
+    navigateTo("/" + hash);
   };
 
   container.addEventListener("click", handleScroll);
