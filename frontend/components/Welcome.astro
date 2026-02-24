@@ -38,7 +38,7 @@ const t = useTranslations(lang);
       <h1
         class="welcome-title text-center font-['Cinzel_Decorative'] leading-[1.4] font-normal tracking-tight text-white"
       >
-        {t("welcome.line1")}
+        <span class="max-md:block max-md:text-center">{t("welcome.line1")}</span>
         {
           lang === "en" ? (
             <Image
@@ -47,12 +47,12 @@ const t = useTranslations(lang);
               class="wish-logo-inline inline-block align-middle drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]"
             />
           ) : (
-            <span class="text-[#E394FF] drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]">
+            <span class="max-md:block text-[#E394FF] drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]">
               {t("welcome.highlight")}
             </span>
           )
         }
-        {t("welcome.line2")}
+        <span class="max-md:block max-md:text-center">{t("welcome.line2")}</span>
       </h1>
 
       <Countdown lang={lang} client:only="react" />
@@ -117,12 +117,35 @@ const t = useTranslations(lang);
   }
 
   @media (max-width: 767px) {
-    .welcome-content {
-      opacity: 1 !important;
-      transform: none !important;
+    .wings-sticky {
+      align-items: flex-start;
     }
+
+    /* Wings sit just below the fixed navbar (~80 px) on mobile */
     .wing {
+      top: 80px;
       z-index: 0;
+    }
+
+    /* JS controls opacity/transform here (same as desktop).
+       padding = navbar (80px) + wings height (35vh) + gap (~50px) */
+    .welcome-content {
+      width: 100%;
+      padding-top: calc(35vh + 130px);
+      gap: 2rem;
+    }
+
+    /* More breathing room between the three title lines */
+    .welcome-title {
+      line-height: 1.9;
+    }
+
+    /* WISH logo displayed as its own centred block on mobile */
+    .wish-logo-inline {
+      display: block !important;
+      height: 3.5rem !important;
+      width: auto;
+      margin: 0.4rem auto;
     }
   }
 
@@ -183,8 +206,10 @@ const t = useTranslations(lang);
       const w = window.innerWidth;
       isMobileCache = w < 768;
       const tablet = w >= 768 && w <= 1024;
-      finalLx = isMobileCache ? "-30%" : tablet ? "-20%" : "15%";
-      finalRx = isMobileCache ? "30%" : tablet ? "20%" : "-15%";
+      // Mobile: wings meet at screen centre, sit at top (top:0 in CSS so finalY "0" keeps them there)
+      finalLx = isMobileCache ? "calc(50vw - 100%)" : tablet ? "-20%" : "15%";
+      finalRx = isMobileCache ? "calc(100% - 50vw)" : tablet ? "20%" : "-15%";
+      finalY = isMobileCache ? "0" : "-40%";
       slideOffsetCache = w * 0.6;
     }
 
@@ -208,10 +233,13 @@ const t = useTranslations(lang);
         const extraR = lerp(slideOffsetCache, 0, p);
         wingL.style.transform = `translate(calc(${finalLx} + ${extraL}px), ${finalY})`;
         wingR.style.transform = `translate(calc(${finalRx} + ${extraR}px), ${finalY})`;
-        wingL.style.opacity = String(p * 0.4);
-        wingR.style.opacity = String(p * 0.4);
-        content.style.opacity = "";
-        content.style.transform = "";
+        wingL.style.opacity = String(p);
+        wingR.style.opacity = String(p);
+        // Content fades in during the latter half of the scroll — same timing as desktop
+        const contentP = clamp((rawProgress - 0.4) / 0.5, 0, 1);
+        const contentEased = easeInOutCubic(contentP);
+        content.style.opacity = String(contentEased);
+        content.style.transform = `translateY(${lerp(24, 0, contentEased)}px)`;
       } else {
         const dxL = lerp(startDxL, 0, p);
         const dxR = lerp(startDxR, 0, p);
@@ -229,7 +257,7 @@ const t = useTranslations(lang);
     function setWingHeight() {
       const tablet = window.innerWidth >= 768 && window.innerWidth <= 1024;
       const h = isMobileCache
-        ? "45vh"
+        ? "35vh"
         : tablet
           ? "55vh"
           : "clamp(200px, 60vh, 700px)";
