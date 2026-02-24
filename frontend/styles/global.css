@@ -34,7 +34,7 @@ main {
 /* ru and kz: use same font for all text (including English) so mixed content renders consistently */
 html[data-locale="ru"] *,
 html[data-locale="kz"] * {
-  font-family: "Marcellus", sans-serif !important;
+  font-family: "Times New Roman", Times, serif !important;
 }
 html[data-locale="ru"] .digital-display,
 html[data-locale="kz"] .digital-display {
