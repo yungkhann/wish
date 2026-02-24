@@ -38,7 +38,8 @@ const t = useTranslations(lang);
       <h1
         class="welcome-title text-center font-['Cinzel_Decorative'] leading-[1.4] font-normal tracking-tight text-white"
       >
-        <span class="max-md:block max-md:text-center">{t("welcome.line1")}</span>
+        <span class="max-md:block max-md:text-center">{t("welcome.line1")}</span
+        >
         {
           lang === "en" ? (
             <Image
@@ -47,12 +48,13 @@ const t = useTranslations(lang);
               class="wish-logo-inline inline-block align-middle drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]"
             />
           ) : (
-            <span class="max-md:block text-[#E394FF] drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]">
+            <span class="text-[#E394FF] drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)] max-md:block">
               {t("welcome.highlight")}
             </span>
           )
         }
-        <span class="max-md:block max-md:text-center">{t("welcome.line2")}</span>
+        <span class="max-md:block max-md:text-center">{t("welcome.line2")}</span
+        >
       </h1>
 
       <Countdown lang={lang} client:only="react" />
@@ -126,17 +128,17 @@ const t = useTranslations(lang);
       align-items: flex-start;
     }
 
-    /* Wings sit just below the fixed navbar (~80 px) on mobile */
+    /* Wings sit just below the fixed navbar with a small extra gap on mobile */
     .wing {
-      top: 80px;
+      top: 120px;
       z-index: 0;
     }
 
     /* JS controls opacity/transform here (same as desktop).
-       padding = navbar (80px) + wings height (35vh) + gap (~50px) */
+       padding = wing top offset (120px) + wings height (35vh) + gap (~50px) */
     .welcome-content {
       width: 100%;
-      padding-top: calc(35vh + 130px);
+      padding-top: calc(35vh + 170px);
       gap: 2rem;
     }
 
@@ -376,7 +378,10 @@ const t = useTranslations(lang);
       } else {
         // ── Desktop: scroll-driven animation ──
         requestAnimationFrame(function () {
-          scrollableHeight = Math.max(0, scene.offsetHeight - window.innerHeight);
+          scrollableHeight = Math.max(
+            0,
+            scene.offsetHeight - window.innerHeight,
+          );
           const p = clamp(window.scrollY / Math.max(1, scrollableHeight), 0, 1);
           applyProgress(p);
         });
