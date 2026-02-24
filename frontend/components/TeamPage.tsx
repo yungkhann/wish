@@ -237,7 +237,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
 
         <div className="flex justify-center">
           <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-linear-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
-            <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
+            <h2 className="text-center font-['Marcellus'] text-2xl tracking-[3px]">
               {t("team.createTeam")}
             </h2>
             <p className="text-center text-sm text-zinc-400">
@@ -263,7 +263,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
                 <button
                   type="submit"
                   disabled={actionLoading}
-                  className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-8 py-3 font-['Cinzel'] text-base tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105 disabled:opacity-50"
+                  className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-8 py-3 font-['Marcellus'] text-base tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105 disabled:opacity-50"
                 >
                   {actionLoading ? t("team.creating") : t("team.createTeamBtn")}
                 </button>
@@ -294,7 +294,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
         <div className="grid gap-16 lg:grid-cols-2">
           {/* Instructions */}
           <div className="rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-linear-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
-            <h2 className="mb-6 text-center font-['Cinzel'] text-2xl tracking-[3px]">
+            <h2 className="mb-6 text-center font-['Marcellus'] text-2xl tracking-[3px]">
               {t("team.instructions")}
             </h2>
             <ul className="space-y-6 font-['Marcellus'] text-[22px] text-zinc-300">
@@ -309,7 +309,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
           {/* Team Section */}
           <div className="space-y-6">
             {/* Team Name */}
-            <h2 className="text-center font-['Cinzel'] text-2xl tracking-[3px]">
+            <h2 className="text-center font-['Marcellus'] text-2xl tracking-[3px]">
               {t("team.teamName")}: {teamName}
             </h2>
 
@@ -353,7 +353,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
               <div className="mt-4 flex justify-center">
                 <a
                   href="/team/videos"
-                  className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-purple-500/40 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-4 font-['Cinzel'] text-lg tracking-[2px] text-purple-300 shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
+                  className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-purple-500/40 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-10 py-4 font-['Marcellus'] text-lg tracking-[2px] text-purple-300 shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
                 >
                   {t("team.teamVideos")}
                 </a>
@@ -367,7 +367,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
           {isOwner && (
             <button
               onClick={handleCopyLink}
-              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
+              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Marcellus'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
             >
               {copyText}
             </button>
@@ -376,7 +376,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
             <button
               onClick={handleDissolveTeam}
               disabled={actionLoading}
-              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
+              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Marcellus'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
             >
               {t("team.dissolve")}
             </button>
@@ -384,7 +384,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
             <button
               onClick={handleLeaveTeam}
               disabled={actionLoading}
-              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Cinzel'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
+              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Marcellus'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
             >
               {t("team.leave")}
             </button>
@@ -436,7 +436,7 @@ function MemberRow({
               <button
                 onClick={() => onReject(member.inviteId!)}
                 disabled={disabled}
-                className="flex h-[45px] w-[45px] cursor-pointer items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Cinzel'] text-lg text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
+                className="flex h-[45px] w-[45px] cursor-pointer items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Marcellus'] text-lg text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
               >
                 x
               </button>
@@ -448,7 +448,7 @@ function MemberRow({
               <button
                 onClick={() => onRemove(member.userId)}
                 disabled={disabled}
-                className="flex h-[45px] w-[45px] cursor-pointer items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Cinzel'] text-lg text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
+                className="flex h-[45px] w-[45px] cursor-pointer items-center justify-center rounded-tl-[11px] rounded-tr-[2px] rounded-br-[11px] rounded-bl-[2px] border border-red-500/40 bg-black/20 font-['Marcellus'] text-lg text-red-500 shadow-[0_0_4.5px_3.375px_rgba(255,0,0,0.20),inset_0_0_4.5px_4.5px_rgba(255,0,0,0.25)] transition-opacity disabled:opacity-50"
               >
                 x
               </button>

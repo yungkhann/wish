@@ -39,17 +39,19 @@ const t = useTranslations(lang);
         class="welcome-title text-center font-['Cinzel_Decorative'] leading-[1.4] font-normal tracking-tight text-white"
       >
         {t("welcome.line1")}
-        {lang === "en" ? (
-          <Image
-            src={wishLogo}
-            alt={t("welcome.highlight")}
-            class="wish-logo-inline inline-block align-middle drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]"
-          />
-        ) : (
-          <span class="text-[#E394FF] drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]">
-            {t("welcome.highlight")}
-          </span>
-        )}
+        {
+          lang === "en" ? (
+            <Image
+              src={wishLogo}
+              alt={t("welcome.highlight")}
+              class="wish-logo-inline inline-block align-middle drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]"
+            />
+          ) : (
+            <span class="text-[#E394FF] drop-shadow-[0px_0px_10px_rgba(119,22,208,0.9)]">
+              {t("welcome.highlight")}
+            </span>
+          )
+        }
         {t("welcome.line2")}
       </h1>
 
@@ -57,19 +59,11 @@ const t = useTranslations(lang);
 
       <a
         href="/registration"
-        class="register-btn group relative overflow-hidden rounded-[7.5px_60px_7.5px_60px] p-[1.5px]"
+        class="register-btn flex items-center justify-center rounded-[6px_45px_6px_45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-8 font-['Marcellus'] text-lg tracking-[1px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform duration-300 [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
       >
-        <div
-          class="absolute inset-0 rounded-[7.5px_60px_7.5px_60px] bg-linear-to-tr from-white/80 to-transparent opacity-50"
-        >
-        </div>
-        <div
-          class="register-btn-inner relative flex items-center justify-center rounded-[7.5px_60px_7.5px_60px] bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.5)_0%,#9A44E9_100%)] transition-transform duration-300 group-hover:scale-105"
-        >
-          <span class="register-btn-text font-['Cinzel'] text-white">
-            {t("welcome.register")}
-          </span>
-        </div>
+        <span class="register-btn-text font-['Marcellus'] text-white">
+          {t("welcome.register")}
+        </span>
       </a>
     </div>
   </div>
@@ -149,10 +143,9 @@ const t = useTranslations(lang);
     margin: 0 0.1em;
   }
 
-  .register-btn-inner {
-    width: clamp(120px, 15vw, 300px);
+  .register-btn {
+    min-width: clamp(120px, 15vw, 300px);
     height: clamp(36px, 4vw, 80px);
-    box-shadow: 0px 0px 20px 0px rgba(119, 22, 208, 0.4);
   }
 
   .register-btn-text {
@@ -313,6 +306,11 @@ const t = useTranslations(lang);
 
     whenLoaded(() => {
       init();
+      requestAnimationFrame(function () {
+        scrollableHeight = Math.max(0, scene.offsetHeight - window.innerHeight);
+        const p = clamp(window.scrollY / Math.max(1, scrollableHeight), 0, 1);
+        applyProgress(p);
+      });
       window.addEventListener("scroll", onScroll, { passive: true });
       window.addEventListener(
         "resize",

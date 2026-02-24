@@ -16,7 +16,7 @@ const wrapperClasses =
   "flex h-16 w-full cursor-text items-center gap-4 rounded-tl-[50px] rounded-tr-lg rounded-br-[50px] rounded-bl-lg bg-linear-to-r from-black/70 via-black/70 to-black/70 px-6 shadow-[0px_0px_62px_0px_rgba(119,22,208,0.60)] transition-shadow focus-within:shadow-[0px_0px_62px_0px_rgba(119,22,208,1.00)] lg:h-20 lg:gap-6 lg:rounded-tl-[62px] lg:rounded-br-[62px] lg:px-8";
 
 const inputClasses =
-  "flex-1 min-w-0 bg-transparent font-['Poppins'] text-xl text-white outline-none placeholder:text-white/70 lg:text-2xl";
+  "flex-1 min-w-0 bg-transparent font-['Marcellus'] text-xl text-white outline-none placeholder:text-white/70 lg:text-2xl";
 
 const iconClasses = "h-5 w-5 shrink-0 text-violet-400 lg:h-6 lg:w-6";
 
@@ -105,8 +105,7 @@ export default function RegistrationForm({
       const data = await res.json();
 
       if (!res.ok) {
-        const msg =
-          data.details?.[0]?.message ?? data.error ?? t("reg.failed");
+        const msg = data.details?.[0]?.message ?? data.error ?? t("reg.failed");
         setError(msg);
         return;
       }
@@ -213,7 +212,7 @@ export default function RegistrationForm({
           >
             <Gauge className={iconClasses} aria-hidden="true" />
             <div
-              className="min-w-0 flex-1 truncate bg-transparent font-['Poppins'] text-xl lg:text-2xl"
+              className="min-w-0 flex-1 truncate bg-transparent font-['Marcellus'] text-xl lg:text-2xl"
               style={{
                 color: form.educationLevel
                   ? "white"
@@ -236,7 +235,7 @@ export default function RegistrationForm({
                   {EDUCATION_LEVELS.map((lvl) => (
                     <li
                       key={lvl.value}
-                      className="cursor-pointer px-6 py-3 font-['Poppins'] text-lg text-white/80 transition-colors hover:bg-violet-900/40 hover:text-white lg:px-8 lg:text-xl"
+                      className="cursor-pointer px-6 py-3 font-['Marcellus'] text-lg text-white/80 transition-colors hover:bg-violet-900/40 hover:text-white lg:px-8 lg:text-xl"
                       onClick={() => {
                         update("educationLevel", lvl.value);
                         setIsDropdownOpen(false);
@@ -277,14 +276,14 @@ export default function RegistrationForm({
             />
           </label>
           <label className={wrapperClasses}>
-              <Phone className={iconClasses} aria-hidden="true" />
-              <input
-                type="tel"
-                value={form.parentPhoneNumber}
-                onChange={(e) => update("parentPhoneNumber", e.target.value)}
-                placeholder={t("reg.parentPhoneOptional")}
-                className={inputClasses}
-              />
+            <Phone className={iconClasses} aria-hidden="true" />
+            <input
+              type="tel"
+              value={form.parentPhoneNumber}
+              onChange={(e) => update("parentPhoneNumber", e.target.value)}
+              placeholder={t("reg.parentPhoneOptional")}
+              className={inputClasses}
+            />
           </label>
 
           {/* CV Dropbox */}
@@ -311,7 +310,7 @@ export default function RegistrationForm({
                   {form.cv.name}
                 </div>
               ) : (
-                <p className="mt-3 font-['Poppins'] text-sm text-white/50 lg:text-base">
+                <p className="mt-3 font-['Marcellus'] text-sm text-white/50 lg:text-base">
                   {t("reg.cvHint")}
                 </p>
               )}
@@ -348,7 +347,7 @@ export default function RegistrationForm({
             <button
               type="submit"
               disabled={loading}
-              className="form-submit-inner flex h-20 w-full items-center justify-center font-['Cinzel'] text-4xl font-normal text-white lowercase transition-colors [text-shadow:0px_0px_5px_rgb(255_255_255/1.00)] hover:bg-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 lg:h-28 lg:text-6xl"
+              className="form-submit-inner flex h-20 w-full items-center justify-center font-['Marcellus'] text-4xl font-normal text-white lowercase transition-colors [text-shadow:0px_0px_5px_rgb(255_255_255/1.00)] hover:bg-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 lg:h-28 lg:text-6xl"
             >
               {loading ? "..." : t("reg.register")}
             </button>

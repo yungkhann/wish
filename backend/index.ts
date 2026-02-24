@@ -10,8 +10,9 @@ import { teamRegistrationRouter } from "./routes/team";
 
 export type Bindings = {
   wishDB: D1Database;
-  CLIENT_URL: string;
+  BETTER_AUTH_URL: string;
   BETTER_AUTH_SECRET: string;
+  CLIENT_URL: string;
   GAS_URL: string;
   GAS_SECRET: string;
 };

@@ -8,67 +8,131 @@ const t = useTranslations(lang);
 const year = new Date().getFullYear();
 ---
 
-<footer class="relative border-t border-white/5 bg-black/40 backdrop-blur-md pt-16 pb-12 px-4">
-  <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between gap-12 md:gap-8">
-    
-    <div class="flex flex-col gap-6 max-w-md">
+<footer
+  class="relative border-t border-white/5 bg-black/40 px-4 pt-16 pb-12 backdrop-blur-md"
+>
+  <div
+    class="mx-auto flex max-w-5xl flex-col justify-between gap-12 md:flex-row md:gap-8"
+  >
+    <div class="flex max-w-md flex-col gap-6">
       <Image
         src={acmwLogo}
         alt="ACMW Logo"
-        class="h-10 w-auto object-contain self-start"
+        class="h-10 w-auto self-start object-contain"
       />
-      <p class="text-sm sm:text-base text-default-400 leading-relaxed font-sans">
-        {t("footer.description")}
-      </p>
+      <p
+        class="text-default-400 font-['Marcellus'] text-sm leading-relaxed sm:text-base"
+        set:html={t("footer.description")}
+      />
     </div>
 
     <div class="flex flex-col gap-6 md:items-end">
       <div class="flex items-center gap-4">
         <a
-          class="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#B743FF]/50 hover:text-[#B743FF] text-default-400 transition-all"
+          class="text-default-400 rounded-full border border-white/10 bg-white/5 p-3 transition-all hover:border-[#B743FF]/50 hover:bg-white/10 hover:text-[#B743FF]"
           aria-label="Telegram"
           href="https://t.me/nu_acm_w"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-5 w-5"
+            ><path
+              d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"
+            ></path><path d="m21.854 2.147-10.94 10.939"></path></svg
+          >
         </a>
 
         <a
-          class="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#B743FF]/50 hover:text-[#B743FF] text-default-400 transition-all"
+          class="text-default-400 rounded-full border border-white/10 bg-white/5 p-3 transition-all hover:border-[#B743FF]/50 hover:bg-white/10 hover:text-[#B743FF]"
           aria-label="Instagram"
           href="https://www.instagram.com/nuacm_wsc/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-5 w-5"
+            ><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path
+              d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line
+              x1="17.5"
+              x2="17.51"
+              y1="6.5"
+              y2="6.5"></line></svg
+          >
         </a>
 
         <a
-          class="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#B743FF]/50 hover:text-[#B743FF] text-default-400 transition-all"
+          class="text-default-400 rounded-full border border-white/10 bg-white/5 p-3 transition-all hover:border-[#B743FF]/50 hover:bg-white/10 hover:text-[#B743FF]"
           aria-label="TikTok"
           href="https://www.tiktok.com/@nuacmsc"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 7.917v4.034a9.948 9.948 0 0 1-5 -1.951v4.5a6.5 6.5 0 1 1-8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" /></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-5 w-5"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M21 7.917v4.034a9.948 9.948 0 0 1-5 -1.951v4.5a6.5 6.5 0 1 1-8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z"
+            ></path></svg
+          >
         </a>
 
         <a
-          class="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#B743FF]/50 hover:text-[#B743FF] text-default-400 transition-all"
+          class="text-default-400 rounded-full border border-white/10 bg-white/5 p-3 transition-all hover:border-[#B743FF]/50 hover:bg-white/10 hover:text-[#B743FF]"
           aria-label="Email"
           href="https://mail.google.com/mail/u/0/?fs=1&to=acm_w@nu.edu.kz&su&body&tf=cm"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-5 w-5"
+            ><rect width="20" height="16" x="2" y="4" rx="2"></rect><path
+              d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
+          >
         </a>
       </div>
     </div>
   </div>
 
-  <div class="max-w-5xl mx-auto mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
-    <p class="font-['Marcellus'] text-purple-200/60 text-center sm:text-left">
+  <div
+    class="mx-auto mt-16 flex max-w-5xl flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 text-xs sm:flex-row"
+  >
+    <p class="text-center font-['Marcellus'] text-purple-200/60 sm:text-left">
       {t("footer.copyright")}
     </p>
   </div>

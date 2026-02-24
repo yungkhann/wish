@@ -6,15 +6,15 @@ const t = useTranslations(lang);
 
 const faqs = [
   { question: t("faq.q1"), answer: t("faq.a1") },
-  { question: t("faq.q5"), answer: t("faq.a5") },
-  { question: t("faq.q9"), answer: t("faq.a9") },
-  { question: t("faq.q6"), answer: t("faq.a6") },
   { question: t("faq.q2"), answer: t("faq.a2") },
-  { question: t("faq.q7"), answer: t("faq.a7") },
   { question: t("faq.q3"), answer: t("faq.a3") },
-  { question: t("faq.q10"), answer: t("faq.a10") },
   { question: t("faq.q4"), answer: t("faq.a4") },
+  { question: t("faq.q5"), answer: t("faq.a5") },
+  { question: t("faq.q6"), answer: t("faq.a6") },
+  { question: t("faq.q7"), answer: t("faq.a7") },
   { question: t("faq.q8"), answer: t("faq.a8") },
+  { question: t("faq.q9"), answer: t("faq.a9") },
+  { question: t("faq.q10"), answer: t("faq.a10") },
 ];
 ---
 
@@ -23,10 +23,7 @@ const faqs = [
 
   <div class="grid">
     {
-      [
-        faqs.filter((_, i) => i % 2 === 0),
-        faqs.filter((_, i) => i % 2 !== 0),
-      ].map((col) => (
+      [faqs.slice(0, 5), faqs.slice(5, 10)].map((col) => (
         <div class="col">
           {col.map((faq) => (
             <details>
@@ -45,7 +42,7 @@ const faqs = [
 </section>
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Marcellus&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Marcellus&display=swap");
 
   section {
     color: #fff;
@@ -65,7 +62,7 @@ const faqs = [
   }
 
   h2 {
-    font-family: "Cinzel", serif;
+    font-family: "Marcellus", serif;
     font-weight: 650;
     font-size: clamp(2.5rem, 5vw, 4rem);
     text-align: center;
@@ -166,7 +163,7 @@ const faqs = [
   }
 
   .links a {
-    font-family: "Cinzel", serif;
+    font-family: "Marcellus", serif;
     font-size: 1.1rem;
     color: #ad54ff;
     text-decoration: none;
@@ -177,7 +174,7 @@ const faqs = [
   }
 
   .copy {
-    font-family: "Cinzel", serif;
+    font-family: "Marcellus", serif;
     margin-top: 1.5rem;
     font-size: 1.5rem;
     color: #6c6c6c;

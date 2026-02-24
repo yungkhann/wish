@@ -1,6 +1,6 @@
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import img1 from "../assets/gallery/gallery-img1.jpg";
@@ -22,12 +22,15 @@ const Gallery = ({ lang: langProp }: { lang?: Lang }) => {
 
   return (
     <div className="flex w-full flex-col items-center px-4 py-16 md:px-12">
-      <h2 className="mb-10 text-center font-['Cinzel_Decorative'] text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
+      <h2 className="mb-10 text-center font-['Marcellus'] text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
         {t("gallery.title")}
       </h2>
       <Swiper
-        pagination={{ dynamicBullets: true }}
-        modules={[Pagination]}
+        loop={true}
+        loopAdditionalSlides={3}
+        pagination={{ clickable: true }}
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        modules={[Pagination, Autoplay]}
         spaceBetween={30}
         className="gallery-swiper w-full"
         breakpoints={{
@@ -50,9 +53,20 @@ const Gallery = ({ lang: langProp }: { lang?: Lang }) => {
         ))}
       </Swiper>
       <style>{`
+        .gallery-swiper .swiper-pagination {
+          position: relative;
+          margin-top: 1rem;
+          padding-bottom: 0.5rem;
+        }
         .gallery-swiper .swiper-pagination-bullet {
+          width: 4px;
+          height: 4px;
           background: #7204BB !important;
-
+          opacity: 0.5;
+        }
+        .gallery-swiper .swiper-pagination-bullet-active {
+          opacity: 1;
+          transform: scale(1.25);
         }
       `}</style>
     </div>

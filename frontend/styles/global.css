@@ -1,21 +1,40 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cinzel:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Marcellus&display=swap");
 @import "tailwindcss";
 
-/* html {
+html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
+}
+
+/* html {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 } */
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Marcellus", sans-serif;
   background-color: black;
   color: white;
+  max-width: 100%;
+  /* clip horizontal overflow without creating scroll container (keeps Welcome wings working) */
+  overflow-x: clip;
+}
+
+/* Constrain main width so flex child does not extend past viewport; no overflow hidden. */
+main {
+  min-width: 0;
+  max-width: 100%;
 }
 
 /* ru and kz: use same font for all text (including English) so mixed content renders consistently */
 html[data-locale="ru"] *,
 html[data-locale="kz"] * {
-  font-family: "Times New Roman", Times, serif !important;
+  font-family: "Marcellus", sans-serif !important;
 }
 html[data-locale="ru"] .digital-display,
 html[data-locale="kz"] .digital-display {

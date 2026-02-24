@@ -61,7 +61,7 @@ export function Countdown({ lang: langProp }: { lang?: Lang }) {
         {value.toString().padStart(2, "0")}
       </span>
       <span
-        className="font-['Cinzel_Decorative'] leading-[1.2] font-bold text-white"
+        className="font-['Marcellus'] leading-[1.2] font-bold text-white"
         style={{
           fontSize: "clamp(0.75rem, 1.5vw, 1.5rem)",
           textShadow: purpleGlow,

@@ -74,7 +74,7 @@ export default function InvitePage({ lang: langProp }: { lang?: Lang }) {
         {state === "success" ? (
           <>
             <div className="text-4xl">&#10003;</div>
-            <h2 className="font-['Cinzel'] text-2xl tracking-[3px]">
+            <h2 className="font-['Marcellus'] text-2xl tracking-[3px]">
               {t("invite.joinedTitle")}
             </h2>
             <p className="text-sm text-zinc-400">{t("invite.joinedMessage")}</p>
@@ -82,7 +82,7 @@ export default function InvitePage({ lang: langProp }: { lang?: Lang }) {
         ) : (
           <>
             <div className="text-4xl">&#10007;</div>
-            <h2 className="font-['Cinzel'] text-2xl tracking-[3px]">
+            <h2 className="font-['Marcellus'] text-2xl tracking-[3px]">
               {t("invite.errorTitle")}
             </h2>
             <p className="text-sm text-red-300">{message}</p>
@@ -91,7 +91,7 @@ export default function InvitePage({ lang: langProp }: { lang?: Lang }) {
 
         <a
           href="/team"
-          className="mt-4 inline-block rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Cinzel'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
+          className="mt-4 inline-block rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Marcellus'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
         >
           {t("invite.teamPage")}
         </a>

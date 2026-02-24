@@ -91,14 +91,9 @@ export default function NavAuthButton({
     <div className="flex items-center gap-4">
       <a
         href={href}
-        className="group relative overflow-hidden rounded-[30px_3.75px_30px_3.75px] p-[1px]"
+        className="flex h-[42px] min-w-[140px] items-center justify-center rounded-[6px_45px_6px_45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-8 font-['Marcellus'] text-lg tracking-[1px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform duration-300 [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
       >
-        <div className="absolute inset-0 bg-gradient-to-tr from-white/80 to-transparent opacity-50" />
-        <div className="relative flex h-[42px] w-[140px] items-center justify-center rounded-[30px_3.75px_30px_3.75px] bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.5)_0%,#9A44E9_100%)] shadow-[0px_0px_20px_0px_rgba(119,22,208,0.4)] transition-transform duration-300 group-hover:scale-105">
-          <span className="font-['Cinzel'] text-lg text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]">
-            {label}
-          </span>
-        </div>
+        {label}
       </a>
       {showLogout && (
         <button
