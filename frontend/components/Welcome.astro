@@ -61,9 +61,15 @@ const t = useTranslations(lang);
 
       <a
         href="/registration"
+        id="welcome-cta"
+        data-register-label={t("welcome.register")}
+        data-team-label={t("nav.teamPage")}
         class="register-btn flex items-center justify-center rounded-[6px_45px_6px_45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-8 font-['Marcellus'] text-lg tracking-[1px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform duration-300 [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
       >
-        <span class="register-btn-text font-['Marcellus'] text-white">
+        <span
+          id="welcome-cta-text"
+          class="register-btn-text font-['Marcellus'] text-white"
+        >
           {t("welcome.register")}
         </span>
       </a>
@@ -190,8 +196,31 @@ const t = useTranslations(lang);
     const wingL = document.getElementById("wing-l") as HTMLImageElement;
     const wingR = document.getElementById("wing-r") as HTMLImageElement;
     const content = document.getElementById("welcome-content")!;
+    const ctaLink = document.getElementById(
+      "welcome-cta",
+    ) as HTMLAnchorElement | null;
+    const ctaText = document.getElementById(
+      "welcome-cta-text",
+    ) as HTMLSpanElement | null;
 
     if (!scene || !wingL || !wingR || !content) return;
+
+    if (ctaLink && ctaText) {
+      fetch("/api/user/me")
+        .then((res) => {
+          if (!res.ok) return null;
+          return res.json();
+        })
+        .then((data) => {
+          if (!data?.isRegistered) return;
+          ctaLink.href = "/team";
+          ctaText.textContent =
+            ctaLink.dataset.teamLabel ?? ctaText.textContent;
+        })
+        .catch(() => {
+          // Keep default register CTA for guests/errors.
+        });
+    }
 
     function easeInOutCubic(t: number): number {
       return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;

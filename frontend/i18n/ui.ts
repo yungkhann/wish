@@ -394,7 +394,7 @@ export const ui = {
     "benefits.card8": "Сертификаты об участии для каждой участницы",
 
     // ── Timeline ──
-    "timeline.title": "Этапы",
+    "timeline.title": "Расписание",
     "timeline.date1": "24 февраля - 11 марта",
     "timeline.label1": "Период Регистрации",
     "timeline.date2": "11 - 13 марта",
@@ -407,7 +407,8 @@ export const ui = {
     "sponsors.infoPartners": "Партнёры",
     "sponsors.sponsor": "Спонсор",
     "sponsors.partner": "Партнёр",
-    "sponsors.freedomAILabs.popoutTitle": "Генеральный спонсор - Freedom AI Labs",
+    "sponsors.freedomAILabs.popoutTitle":
+      "Генеральный спонсор - Freedom AI Labs",
     "sponsors.freedom.popoutTitle": "Официальный спонсор - Freedom Lifestyle",
     "sponsors.freedomAILabs.description":
       "Подразделение казахстанского холдинга Freedom Holding Corp., которое занимается разработкой и внедрением технологий искусственного интеллекта во внутренние и клиентские сервисы экосистемы.",
@@ -866,10 +867,8 @@ export const ui = {
     "team.instr1":
       "1. Команда құрыңыз немесе шақыру сілтемесі арқылы қосылыңыз.",
     "team.instr2": "2. Шақыру сілтемесін командаластарыңызбен бөлісіңіз.",
-    "team.instr3":
-      "3. Команда иесі мүшелерді командадан шығарада алады.",
-    "team.instr4":
-      "4. Команда құрамында 2-ден 4 қатысушыға дейін болуы керек.",
+    "team.instr3": "3. Команда иесі мүшелерді командадан шығарада алады.",
+    "team.instr4": "4. Команда құрамында 2-ден 4 қатысушыға дейін болуы керек.",
     "team.instr5": "5. Команданы тек иесі тарата алады.",
     "team.roleCaptain": "капитан",
     "team.roleMember": "қатысушы",
