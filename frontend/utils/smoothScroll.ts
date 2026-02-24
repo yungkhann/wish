@@ -18,7 +18,12 @@ export function setupSmoothScroll(selector: string) {
       const element = document.querySelector(hash);
       if (element) {
         e.preventDefault();
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
+        const offset = 60;
+        const top =
+          (element as HTMLElement).getBoundingClientRect().top +
+          window.scrollY -
+          offset;
+        window.scrollTo({ top, behavior: "smooth" });
         (element as HTMLElement).focus({ preventScroll: true });
       }
       return;
