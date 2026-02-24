@@ -8,13 +8,11 @@ import img2 from "../assets/gallery/gallery-img2.jpg";
 import img3 from "../assets/gallery/gallery-img3.png";
 import img4 from "../assets/gallery/gallery-img4.jpg";
 import img5 from "../assets/gallery/gallery-img5.jpg";
-import img6 from "../assets/gallery/gallery-img6.png";
-import img7 from "../assets/gallery/gallery-img7.png";
-import img8 from "../assets/gallery/gallery-img8.png";
+import img6 from "../assets/gallery/gallery-img8.png";
 import type { Lang } from "../i18n/ui";
 import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 
-const images = [img1, img2, img3, img4, img5, img6, img7, img8];
+const images = [img1, img2, img3, img4, img5, img6];
 
 const Gallery = ({ lang: langProp }: { lang?: Lang }) => {
   const lang = langProp ?? getLangFromCookieClient();
@@ -26,8 +24,6 @@ const Gallery = ({ lang: langProp }: { lang?: Lang }) => {
         {t("gallery.title")}
       </h2>
       <Swiper
-        loop={true}
-        loopAdditionalSlides={3}
         pagination={{ clickable: true }}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
         modules={[Pagination, Autoplay]}

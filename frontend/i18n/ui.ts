@@ -15,7 +15,7 @@ export const ui = {
     "nav.benefits": "Benefits",
     "nav.schedule": "Schedule",
     "nav.sponsors": "Partners",
-    "nav.faq": "FAQs",
+    "nav.faq": "FAQ",
     "nav.register": "Register",
     "nav.teamPage": "Team Page",
     "nav.logOut": "Log out",
@@ -61,7 +61,7 @@ export const ui = {
 
     // ── Prize Pool ──
     "prizePool.title": "Prize Fund",
-    "prizePool.amount": "₸ 1,200,000",
+    "prizePool.amount": "1 200 000 ₸",
 
     // ── Benefits ──
     "benefits.title": "Benefits",
@@ -75,17 +75,17 @@ export const ui = {
     "benefits.card8": "Certificates of Participation for every participant",
 
     // ── Timeline ──
-    "timeline.title": "Timeline",
+    "timeline.title": "Schedule",
     "timeline.date1": "February 24 - March 11",
     "timeline.label1": "Registration Period",
     "timeline.date2": "March 11 - 13",
-    "timeline.label2": "Confirmation Period",
+    "timeline.label2": "Participation confirmation Period",
     "timeline.date3": "March 14 - 15",
     "timeline.label3": "Women in STEM Hackathon",
 
     // ── Sponsors ──
     "sponsors.title": "Sponsors",
-    "sponsors.infoPartners": "Info Partners",
+    "sponsors.infoPartners": "Partners",
     "sponsors.sponsor": "Sponsor",
     "sponsors.partner": "Partner",
     "sponsors.freedomAILabs.description":
@@ -122,7 +122,7 @@ export const ui = {
     "pastYears.countries": "countries",
 
     // ── FAQ ──
-    "faq.title": "FAQs",
+    "faq.title": "FAQ",
     "faq.q1": "What is WISH?",
     "faq.a1":
       "Women in STEM Hackathon (WISH) is a 24-hour offline hackathon for girls, where participants team up to solve practical challenges from sponsors in Data Science, ML, and AI. It is an intensive event designed for those who dream of building a career in the world of high-tech and innovation.",
@@ -377,7 +377,7 @@ export const ui = {
 
     // ── Prize Pool ──
     "prizePool.title": "Призовой фонд",
-    "prizePool.amount": "₸ 1 200 000",
+    "prizePool.amount": "1 200 000 ₸",
 
     // ── Benefits ──
     "benefits.title": "Преимущества",
@@ -396,13 +396,13 @@ export const ui = {
     "timeline.date1": "24 февраля - 11 марта",
     "timeline.label1": "Период регистрации",
     "timeline.date2": "11 - 13 марта",
-    "timeline.label2": "Период подтверждения",
+    "timeline.label2": "Период подтверждения участия",
     "timeline.date3": "14 - 15 марта",
     "timeline.label3": "Women in STEM Hackathon",
 
     // ── Sponsors ──
     "sponsors.title": "Спонсоры",
-    "sponsors.infoPartners": "Инфо-партнёры",
+    "sponsors.infoPartners": "Партнёры",
     "sponsors.sponsor": "Спонсор",
     "sponsors.partner": "Партнёр",
     "sponsors.freedomAILabs.description":
@@ -690,7 +690,7 @@ export const ui = {
 
     // ── Prize Pool ──
     "prizePool.title": "Жүлде қоры",
-    "prizePool.amount": "₸ 1 200 000",
+    "prizePool.amount": "1 200 000 ₸",
 
     // ── Benefits ──
     "benefits.title": "Артықшылықтар",
@@ -711,13 +711,13 @@ export const ui = {
     "timeline.date1": "24 Ақпан - 11 наурыз",
     "timeline.label1": "Тіркелу кезеңі",
     "timeline.date2": "11 - 13 наурыз",
-    "timeline.label2": "Растау кезеңі",
+    "timeline.label2": "Қатысу растау кезеңі",
     "timeline.date3": "14 - 15 наурыз",
     "timeline.label3": "Women in STEM Hackathon",
 
     // ── Sponsors ──
-    "sponsors.title": "Спонсорлар",
-    "sponsors.infoPartners": "Ақпараттық серіктестер",
+    "sponsors.title": "Демеушілер",
+    "sponsors.infoPartners": "Серіктестер",
     "sponsors.sponsor": "Демеуші",
     "sponsors.partner": "Серіктес",
     "sponsors.freedomAILabs.description":
