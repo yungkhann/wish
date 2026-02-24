@@ -88,6 +88,8 @@ export const ui = {
     "sponsors.infoPartners": "Partners",
     "sponsors.sponsor": "Sponsor",
     "sponsors.partner": "Partner",
+    "sponsors.freedomAILabs.popoutTitle": "General Sponsor - Freedom AI Labs",
+    "sponsors.freedom.popoutTitle": "Official Sponsor - Freedom Lifestyle",
     "sponsors.freedomAILabs.description":
       "A division of the Kazakhstan-based Freedom Holding Corp. dedicated to the development and implementation of Artificial Intelligence technologies across the ecosystem's internal and client services.",
     "sponsors.freedom.description":
@@ -228,9 +230,9 @@ export const ui = {
     "team.instructions": "INSTRUCTIONS",
     "team.instr1": "1. Create a team or join one via an invite link.",
     "team.instr2": "2. Share your invite link with teammates.",
-    "team.instr3": "3. Teams must consist of 2 to 4 members.",
-    "team.instr4": "4. The team captain can kick members from the team.",
-    "team.instr5": "5. Only the captain can dissolve the team.",
+    "team.instr3": "3. The team owner can reject join requests.",
+    "team.instr4": "4. Teams must consist of 2 to 4 members.",
+    "team.instr5": "5. Only the owner can dissolve the team.",
     "team.roleCaptain": "captain",
     "team.roleMember": "member",
     "team.roleRequest": "request",
@@ -405,6 +407,8 @@ export const ui = {
     "sponsors.infoPartners": "Партнёры",
     "sponsors.sponsor": "Спонсор",
     "sponsors.partner": "Партнёр",
+    "sponsors.freedomAILabs.popoutTitle": "Генеральный спонсор - Freedom AI Labs",
+    "sponsors.freedom.popoutTitle": "Официальный спонсор - Freedom Lifestyle",
     "sponsors.freedomAILabs.description":
       "Подразделение казахстанского холдинга Freedom Holding Corp., которое занимается разработкой и внедрением технологий искусственного интеллекта во внутренние и клиентские сервисы экосистемы.",
     "sponsors.freedom.description":
@@ -544,9 +548,9 @@ export const ui = {
     "team.instructions": "ИНСТРУКЦИИ",
     "team.instr1": "1. Создайте команду или вступите по ссылке-приглашению.",
     "team.instr2": "2. Поделитесь ссылкой-приглашением с напарницами.",
-    "team.instr3": "3. В команде должно быть от 2 до 4 участниц.",
-    "team.instr4": "4. Капитан команды может выгнать участницу из команды.",
-    "team.instr5": "5. Только капитан может распустить команду.",
+    "team.instr3": "3. Владелец команды может отклонять запросы на вступление.",
+    "team.instr4": "4. В команде должно быть от 2 до 4 участниц.",
+    "team.instr5": "5. Только владелец может распустить команду.",
     "team.roleCaptain": "капитан",
     "team.roleMember": "участница",
     "team.roleRequest": "заявка",
@@ -707,7 +711,7 @@ export const ui = {
     "benefits.card8": "Әрбір қатысушыға арналған қатысу сертификаттар",
 
     // ── Timeline ──
-    "timeline.title": "Кезеңдер",
+    "timeline.title": "Кесте",
     "timeline.date1": "24 Ақпан - 11 наурыз",
     "timeline.label1": "Тіркелу Кезеңі",
     "timeline.date2": "11 - 13 наурыз",
@@ -720,6 +724,8 @@ export const ui = {
     "sponsors.infoPartners": "Серіктестер",
     "sponsors.sponsor": "Демеуші",
     "sponsors.partner": "Серіктес",
+    "sponsors.freedomAILabs.popoutTitle": "Бас демеуші - Freedom AI Labs",
+    "sponsors.freedom.popoutTitle": "Ресми демеуші - Freedom Lifestyle",
     "sponsors.freedomAILabs.description":
       "Экожүйенің ішкі және клиенттік сервистеріне жасанды интеллект технологияларын әзірлеумен және енгізумен айналысатын қазақстандық Freedom Holding Corp. холдингінің бөлімшесі.",
     "sponsors.freedom.description":
@@ -860,9 +866,11 @@ export const ui = {
     "team.instr1":
       "1. Команда құрыңыз немесе шақыру сілтемесі арқылы қосылыңыз.",
     "team.instr2": "2. Шақыру сілтемесін командаластарыңызбен бөлісіңіз.",
-    "team.instr3": "3. Команда құрамында 2-ден 4 қатысушыға дейін болуы керек.",
-    "team.instr4": "4. Команда капитаны мүшелерді командадан шығара алады.",
-    "team.instr5": "5. Команданы тек капитан тарата алады.",
+    "team.instr3":
+      "3. Команда иесі мүшелерді командадан шығарада алады.",
+    "team.instr4":
+      "4. Команда құрамында 2-ден 4 қатысушыға дейін болуы керек.",
+    "team.instr5": "5. Команданы тек иесі тарата алады.",
     "team.roleCaptain": "капитан",
     "team.roleMember": "қатысушы",
     "team.roleRequest": "өтінім",

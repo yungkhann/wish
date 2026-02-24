@@ -11,7 +11,7 @@ const resolveSrc = (img: any) => img?.src ?? img;
 const sponsorsData = [
   {
     name: "Freedom AI Labs",
-    popoutTitle: "General Sponsor - Freedom AI Labs",
+    popoutTitleKey: "sponsors.freedomAILabs.popoutTitle",
     logo: resolveSrc(freedomAILabsLogo),
     descriptionKey: "sponsors.freedomAILabs.description",
     imgClassName:
@@ -19,7 +19,7 @@ const sponsorsData = [
   },
   {
     name: "Freedom",
-    popoutTitle: "Official Sponsor - Freedom Lifestyle",
+    popoutTitleKey: "sponsors.freedom.popoutTitle",
     logo: resolveSrc(freedomLifestyleLogo),
     descriptionKey: "sponsors.freedom.description",
     imgClassName:
@@ -100,7 +100,7 @@ const Sponsors = ({ lang: langProp }: { lang?: Lang }) => {
                 }`}
               >
                 <p className="mb-2 font-semibold text-white">
-                  {sponsor.popoutTitle}
+                  {t(sponsor.popoutTitleKey as any)}
                 </p>
                 {t(sponsor.descriptionKey as any)}
               </div>
