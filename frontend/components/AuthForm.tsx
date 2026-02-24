@@ -121,7 +121,7 @@ export default function AuthForm({
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center text-white">
-      <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
+      <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-linear-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
         <h2 className="text-center font-['Marcellus'] text-2xl tracking-[3px]">
           {step === "email" ? t("auth.signIn") : t("auth.enterCode")}
         </h2>
@@ -159,7 +159,7 @@ export default function AuthForm({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-6 py-3 text-white shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] outline-none sm:rounded-tl-[60px] sm:rounded-br-[60px]"
+                className="w-full rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-linear-to-r from-black/20 via-black/20 to-black/20 px-6 py-3 text-white shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] outline-none sm:rounded-tl-[60px] sm:rounded-br-[60px]"
                 placeholder={t("auth.emailPlaceholder")}
               />
             </div>
@@ -189,7 +189,7 @@ export default function AuthForm({
                 onChange={(e) => setOtp(e.target.value)}
                 required
                 autoFocus
-                className="w-full rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 px-6 py-3 text-center text-2xl tracking-[0.5em] text-white shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] outline-none sm:rounded-tl-[60px] sm:rounded-br-[60px]"
+                className="w-full rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-linear-to-r from-black/20 via-black/20 to-black/20 px-6 py-3 text-center text-2xl tracking-[0.5em] text-white shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] outline-none sm:rounded-tl-[60px] sm:rounded-br-[60px]"
                 placeholder={t("auth.otpPlaceholder")}
               />
             </div>

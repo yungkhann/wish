@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Lang } from "../i18n/ui";
 import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 import AuthForm from "./AuthForm";
@@ -8,11 +8,14 @@ type State = "loading" | "unauthenticated" | "success" | "error";
 export default function InvitePage({ lang: langProp }: { lang?: Lang }) {
   const lang = langProp ?? getLangFromCookieClient();
   const t = useTranslations(lang);
+  const tRef = useRef(t);
+  tRef.current = t;
 
   const [state, setState] = useState<State>("loading");
   const [message, setMessage] = useState("");
 
   useEffect(() => {
+    const t = tRef.current;
     const uuid = window.location.hash.slice(1);
     if (!uuid) {
       setMessage(t("invite.invalidLink"));
@@ -70,7 +73,7 @@ export default function InvitePage({ lang: langProp }: { lang?: Lang }) {
 
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center px-4 text-white">
-      <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-gradient-to-r from-black/20 via-black/20 to-black/20 p-8 text-center shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
+      <div className="w-full max-w-md space-y-6 rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-linear-to-r from-black/20 via-black/20 to-black/20 p-8 text-center shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
         {state === "success" ? (
           <>
             <div className="text-4xl">&#10003;</div>

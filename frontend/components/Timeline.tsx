@@ -26,10 +26,10 @@ const Timeline = ({ lang: langProp }: { lang?: Lang }) => {
               alt={t("timeline.label1")}
               className="mb-6 h-72 w-full max-w-[400px] rounded-[20px] object-cover shadow-[8px_8px_80px_0px_rgba(154,68,233,1)]"
             />
-            <p className="mb-3 max-w-[320px] text-center font-['Marcellus'] text-xl font-normal text-purple-500/95 [text-shadow:_0px_0px_4px_rgb(119_22_208_/_1.00)] sm:text-2xl lg:text-2xl">
+            <p className="mb-3 max-w-[320px] text-center font-['Marcellus'] text-xl font-normal text-purple-500/95 [text-shadow:0px_0px_4px_rgb(119_22_208_1.00)] sm:text-2xl lg:text-2xl">
               {t("timeline.date1")}
             </p>
-            <p className="max-w-[320px] text-center font-['Marcellus'] text-xl font-normal text-white [text-shadow:_0px_0px_3px_rgb(255_255_255_/_1.00)] sm:text-2xl lg:text-2xl">
+            <p className="max-w-[320px] text-center font-['Marcellus'] text-xl font-normal text-white [text-shadow:0px_0px_3px_rgb(255_255_255_1.00)] sm:text-2xl lg:text-2xl">
               {t("timeline.label1")}
             </p>
           </div>
@@ -41,10 +41,10 @@ const Timeline = ({ lang: langProp }: { lang?: Lang }) => {
               alt={t("timeline.label2")}
               className="mb-6 h-72 w-full max-w-[400px] rounded-[20px] object-cover shadow-[0px_8px_120px_0px_rgba(154,68,233,0.7)]"
             />
-            <p className="mb-3 max-w-[320px] text-center font-['Marcellus'] text-xl font-normal text-purple-500 [text-shadow:_0px_0px_4px_rgb(119_22_208_/_1.00)] sm:text-2xl lg:text-2xl">
+            <p className="mb-3 max-w-[320px] text-center font-['Marcellus'] text-xl font-normal text-purple-500 [text-shadow:0px_0px_4px_rgb(119_22_208_1.00)] sm:text-2xl lg:text-2xl">
               {t("timeline.date2")}
             </p>
-            <p className="max-w-[320px] text-center font-['Marcellus'] text-xl font-normal text-white [text-shadow:_0px_0px_3px_rgb(255_255_255_/_1.00)] sm:text-2xl lg:text-2xl">
+            <p className="max-w-[320px] text-center font-['Marcellus'] text-xl font-normal text-white [text-shadow:0px_0px_3px_rgb(255_255_255_1.00)] sm:text-2xl lg:text-2xl">
               {t("timeline.label2")}
             </p>
           </div>
@@ -56,10 +56,10 @@ const Timeline = ({ lang: langProp }: { lang?: Lang }) => {
               alt={t("timeline.label3")}
               className="mb-6 h-72 w-full max-w-[400px] rounded-[20px] object-cover shadow-[0px_8px_120px_0px_rgba(154,68,233,0.7)]"
             />
-            <p className="mb-3 max-w-[320px] text-center font-['Marcellus'] text-xl font-normal text-purple-500 [text-shadow:_0px_0px_4px_rgb(119_22_208_/_1.00)] sm:text-2xl lg:text-2xl">
+            <p className="mb-3 max-w-[320px] text-center font-['Marcellus'] text-xl font-normal text-purple-500 [text-shadow:0px_0px_4px_rgb(119_22_208_1.00)] sm:text-2xl lg:text-2xl">
               {t("timeline.date3")}
             </p>
-            <p className="max-w-[320px] text-center font-['Marcellus'] text-xl font-normal text-white [text-shadow:_0px_0px_3px_rgb(255_255_255_/_1.00)] sm:text-2xl lg:text-2xl">
+            <p className="max-w-[320px] text-center font-['Marcellus'] text-xl font-normal text-white [text-shadow:0px_0px_3px_rgb(255_255_255_1.00)] sm:text-2xl lg:text-2xl">
               {t("timeline.label3")}
             </p>
           </div>
