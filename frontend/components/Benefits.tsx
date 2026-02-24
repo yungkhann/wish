@@ -23,21 +23,19 @@ const Benefits = ({ lang: langProp }: { lang?: Lang }) => {
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-6 sm:max-w-6xl sm:gap-8 md:grid-cols-2 lg:grid-cols-2">
           {([1, 2, 3, 4, 5, 6, 7, 8] as const).map((n) => {
             const isOdd = n % 2 === 1;
-            const isLastFour = n >= 5;
+            const useRoundedDown = n === 3 || n === 4 || n === 7 || n === 8;
             const base =
               "flex h-auto min-h-[100px] items-center justify-center rounded-2xl bg-linear-to-r from-black/20 via-black/20 to-black/20 px-4 py-5 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:h-36 sm:px-12 sm:py-0 lg:h-44";
-            const roundedUp =
-              isOdd
-                ? "md:rounded-tl-lg md:rounded-tr-[60px] md:rounded-br-lg md:rounded-bl-[60px]"
-                : "md:rounded-tl-[60px] md:rounded-tr-lg md:rounded-br-[60px] md:rounded-bl-lg";
-            const roundedDown =
-              isOdd
-                ? "md:rounded-tl-[60px] md:rounded-tr-lg md:rounded-br-[60px] md:rounded-bl-lg"
-                : "md:rounded-tl-lg md:rounded-tr-[60px] md:rounded-br-lg md:rounded-bl-[60px]";
+            const roundedUp = isOdd
+              ? "md:rounded-tl-lg md:rounded-tr-[60px] md:rounded-br-lg md:rounded-bl-[60px]"
+              : "md:rounded-tl-[60px] md:rounded-tr-lg md:rounded-br-[60px] md:rounded-bl-lg";
+            const roundedDown = isOdd
+              ? "md:rounded-tl-[60px] md:rounded-tr-lg md:rounded-br-[60px] md:rounded-bl-lg"
+              : "md:rounded-tl-lg md:rounded-tr-[60px] md:rounded-br-lg md:rounded-bl-[60px]";
             return (
               <div
                 key={n}
-                className={`${base} ${isLastFour ? roundedDown : roundedUp}`}
+                className={`${base} ${useRoundedDown ? roundedDown : roundedUp}`}
               >
                 <p className="text-center font-['Marcellus'] text-[15px] font-normal text-white [text-shadow:0px_4px_15px_rgb(255_255_255_1.00)] sm:text-[18px] lg:text-[20px]">
                   {t(`benefits.card${n}`)}
