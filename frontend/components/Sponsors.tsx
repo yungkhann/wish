@@ -14,12 +14,16 @@ const sponsorsData = [
     popoutTitle: "General Sponsor - Freedom AI Labs",
     logo: resolveSrc(freedomAILabsLogo),
     descriptionKey: "sponsors.freedomAILabs.description",
+    imgClassName:
+      "h-36 w-auto max-w-[280px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-40 sm:max-w-[320px] md:h-48 md:max-w-[360px] lg:h-56 lg:max-w-[420px] xl:h-64 xl:max-w-[480px]",
   },
   {
     name: "Freedom",
     popoutTitle: "Official Sponsor - Freedom Lifestyle",
     logo: resolveSrc(freedomLifestyleLogo),
     descriptionKey: "sponsors.freedom.description",
+    imgClassName:
+      "h-20 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-24 sm:max-w-[200px] md:h-28 md:max-w-[220px] lg:h-32 lg:max-w-[260px] xl:h-36 xl:max-w-[300px]",
   },
 ];
 
@@ -29,12 +33,16 @@ const partnersData = [
     popoutTitle: "ISSAI",
     logo: resolveSrc(issaiLogo),
     descriptionKey: "sponsors.issai.description",
+    imgClassName:
+      "h-16 w-auto max-w-[160px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-20 sm:max-w-[180px] md:h-24 md:max-w-[200px] lg:h-28 lg:max-w-[220px] xl:h-32 xl:max-w-[260px]",
   },
   {
     name: "NU DataSci Club",
     popoutTitle: "NU DataSci Club",
     logo: resolveSrc(datasciLogo),
     descriptionKey: "sponsors.nuDatasciClub.description",
+    imgClassName:
+      "h-28 w-auto max-w-[240px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-32 sm:max-w-[260px] md:h-36 md:max-w-[280px] lg:h-40 lg:max-w-[320px] xl:h-44 xl:max-w-[360px]",
   },
 ];
 
@@ -71,7 +79,7 @@ const Sponsors = ({ lang: langProp }: { lang?: Lang }) => {
         {t("sponsors.title")}
       </h2>
       <div className="flex flex-row flex-wrap items-center justify-center gap-12">
-        {sponsorsData.map((sponsor, i) => {
+        {sponsorsData.map((sponsor) => {
           const isActive = activeKey === sponsor.name;
           return (
             <div
@@ -82,11 +90,7 @@ const Sponsors = ({ lang: langProp }: { lang?: Lang }) => {
               <img
                 src={sponsor.logo}
                 alt={`${sponsor.name} Logo`}
-                className={
-                  i === 0
-                    ? "h-34 w-auto max-w-[300px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-32 sm:max-w-[300px] md:h-40 md:max-w-[280px] lg:h-48 lg:max-w-[340px] xl:h-56 xl:max-w-[400px]"
-                    : "h-28 w-auto max-w-[220px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-32 sm:max-w-[220px] md:h-36 md:max-w-[220px] lg:h-40 lg:max-w-[280px] xl:h-44 xl:max-w-[300px]"
-                }
+                className={sponsor.imgClassName}
               />
               <div
                 className={`absolute top-full left-1/2 z-20 mt-3 w-64 -translate-x-1/2 rounded-xl border border-white/20 bg-zinc-900/95 p-4 text-sm text-zinc-100 shadow-xl transition-all duration-200 md:group-hover:translate-y-1 md:group-hover:opacity-100 ${
@@ -119,7 +123,7 @@ const Sponsors = ({ lang: langProp }: { lang?: Lang }) => {
               <img
                 src={partner.logo}
                 alt={`${partner.name} Logo`}
-                className="h-56 w-auto max-w-[400px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-56 sm:max-w-[400px] md:h-56 md:max-w-[400px] lg:h-56 lg:max-w-[400px] xl:h-56 xl:max-w-[400px]"
+                className={partner.imgClassName}
               />
               <div
                 className={`absolute top-full left-1/2 z-20 mt-3 w-64 -translate-x-1/2 rounded-xl border border-white/20 bg-zinc-900/95 p-4 text-sm text-zinc-100 shadow-xl transition-all duration-200 md:group-hover:translate-y-1 md:group-hover:opacity-100 ${

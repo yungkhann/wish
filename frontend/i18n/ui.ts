@@ -79,7 +79,7 @@ export const ui = {
     "timeline.date1": "February 24 - March 11",
     "timeline.label1": "Registration Period",
     "timeline.date2": "March 11 - 13",
-    "timeline.label2": "Participation confirmation Period",
+    "timeline.label2": "Participation Confirmation Period",
     "timeline.date3": "March 14 - 15",
     "timeline.label3": "Women in STEM Hackathon",
 
@@ -394,9 +394,9 @@ export const ui = {
     // ── Timeline ──
     "timeline.title": "Этапы",
     "timeline.date1": "24 февраля - 11 марта",
-    "timeline.label1": "Период регистрации",
+    "timeline.label1": "Период Регистрации",
     "timeline.date2": "11 - 13 марта",
-    "timeline.label2": "Период подтверждения участия",
+    "timeline.label2": "Период Подтверждения Участия",
     "timeline.date3": "14 - 15 марта",
     "timeline.label3": "Women in STEM Hackathon",
 
@@ -648,7 +648,7 @@ export const ui = {
     "nav.schedule": "Кесте",
     "nav.sponsors": "Серіктестер",
     "nav.faq": "Сұрақтар",
-    "nav.register": "Тіркеу",
+    "nav.register": "Тіркелу",
     "nav.teamPage": "Команда",
     "nav.logOut": "Шығу",
 
@@ -709,9 +709,9 @@ export const ui = {
     // ── Timeline ──
     "timeline.title": "Кезеңдер",
     "timeline.date1": "24 Ақпан - 11 наурыз",
-    "timeline.label1": "Тіркелу кезеңі",
+    "timeline.label1": "Тіркелу Кезеңі",
     "timeline.date2": "11 - 13 наурыз",
-    "timeline.label2": "Қатысу растау кезеңі",
+    "timeline.label2": "Қатысу Растау Кезеңі",
     "timeline.date3": "14 - 15 наурыз",
     "timeline.label3": "Women in STEM Hackathon",
 

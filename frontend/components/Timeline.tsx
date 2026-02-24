@@ -9,7 +9,10 @@ const Timeline = ({ lang: langProp }: { lang?: Lang }) => {
   const t = useTranslations(lang);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black py-20">
+    <div
+      id="schedule"
+      className="relative min-h-screen overflow-hidden bg-black py-20"
+    >
       {/* Content Container */}
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Title */}
