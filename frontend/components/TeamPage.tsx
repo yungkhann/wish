@@ -338,6 +338,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
                           onAccept={(id) => handleInviteAction(id, "accepted")}
                           onReject={(id) => handleInviteAction(id, "rejected")}
                           disabled={actionLoading}
+                          t={t}
                         />
                       ) : (
                         <tr key={`empty-${i}`}>
@@ -403,6 +404,7 @@ function MemberRow({
   onAccept,
   onReject,
   disabled,
+  t,
 }: {
   member: Member;
   isOwner: boolean;
@@ -411,6 +413,7 @@ function MemberRow({
   onAccept: (inviteId: string) => void;
   onReject: (inviteId: string) => void;
   disabled: boolean;
+  t: (key: any) => string;
 }) {
   return (
     <tr>
@@ -420,7 +423,11 @@ function MemberRow({
         </div>
       </td>
       <td className="h-[67px] w-[130px] border-b border-l border-white/30 px-6 text-center font-['Marcellus'] text-base text-white lowercase">
-        {member.role}
+        {member.role === "owner"
+          ? t("team.roleCaptain")
+          : member.role === "member"
+            ? t("team.roleMember")
+            : t("team.roleRequest")}
       </td>
       <td className="h-[67px] w-[130px] border-b border-l border-white/30 text-center">
         <div className="flex items-center justify-center gap-2">

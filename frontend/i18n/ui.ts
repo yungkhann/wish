@@ -42,11 +42,21 @@ export const ui = {
     "about.who": "Who?",
     "about.whoLine": "Female students, 16+",
     "about.p1_highlight": "Women in STEM Hackathon",
-    "about.p1_text1":
-      " is a 24-hour offline hackathon for girls, where participants team up in groups of ",
+    "about.p1_text1": " is a 24-hour offline hackathon for ",
+    "about.p1_highlight_girls": "girls",
+    "about.p1_text1b": ", where participants team up in groups of ",
     "about.p1_highlight2": "2 to 4",
     "about.p1_text2":
-      " to solve practical challenges from sponsors in the fields of Data Science, ML, and AI. We welcome high school, college, and university students aged 16 and over. Additionally, all registered participants will receive access to exclusive video lessons covering the essential tools and methods commonly used at hackathons.",
+      " to solve practical challenges from sponsors in the fields of ",
+    "about.p1_highlight_ds": "Data Science, ML, and AI",
+    "about.p1_text3":
+      ". We welcome high school, college, and university students ",
+    "about.p1_highlight_age": "aged 16 and over",
+    "about.p1_text4":
+      ". Additionally, all registered participants will receive access to ",
+    "about.p1_highlight_video": "exclusive video lessons",
+    "about.p1_text5":
+      " covering the essential tools and methods commonly used at hackathons.",
     "about.p1_highlight3": "",
 
     // ── Prize Pool ──
@@ -66,7 +76,7 @@ export const ui = {
 
     // ── Timeline ──
     "timeline.title": "Timeline",
-    "timeline.date1": "February 23 - March 11",
+    "timeline.date1": "February 24 - March 11",
     "timeline.label1": "Registration Period",
     "timeline.date2": "March 11 - 13",
     "timeline.label2": "Confirmation Period",
@@ -130,7 +140,7 @@ export const ui = {
       "No, WISH will be held offline at Nazarbayev University, Astana, Kazakhstan.",
     "faq.q6": "How can I participate?",
     "faq.a6":
-      "Form a team of 2-4 people and register through our website. Registration is open from February 23 to March 11, 2026. Please note that every team member must register individually through the website.",
+      "Form a team of 2-4 people and register through our website. Registration is open from February 24 to March 11, 2026. Please note that every team member must register individually through the website.",
     "faq.q7": "Will participants receive certificates or prizes?",
     "faq.a7":
       "Yes! The total prize fund is 1 200 000 ₸. Winners will also receive exclusive merchandise, and the first 50 participants will get a special Welcome Package. Every participant will receive a certificate of participation. Moreover, the best-performing participants will have the chance to receive job offers or internship opportunities from our partners.",
@@ -218,9 +228,12 @@ export const ui = {
     "team.instructions": "INSTRUCTIONS",
     "team.instr1": "1. Create a team or join one via an invite link.",
     "team.instr2": "2. Share your invite link with teammates.",
-    "team.instr3": "3. The team owner can accept or reject join requests.",
-    "team.instr4": "4. Maximum team size is 4 members.",
-    "team.instr5": "5. Only the owner can dissolve the team.",
+    "team.instr3": "3. Teams must consist of 2 to 4 members.",
+    "team.instr4": "4. The team captain can kick members from the team.",
+    "team.instr5": "5. Only the captain can dissolve the team.",
+    "team.roleCaptain": "captain",
+    "team.roleMember": "member",
+    "team.roleRequest": "request",
     "team.enterTeamNameLabel": "Enter Team Name:",
     "team.save": "SAVE",
     "team.participants": "PARTICIPANTS",
@@ -345,12 +358,22 @@ export const ui = {
     "about.who": "Кто?",
     "about.whoLine": "Студентки и ученицы, 16+",
     "about.p1_highlight": "Women in STEM Hackathon",
-    "about.p1_text1":
-      " - это 24-часовой хакатон для девушек и женщин, где участницы формируют команды из ",
-    "about.p1_highlight2": "2-4 человек",
+    "about.p1_text1": " - это 24-часовой офлайн-хакатон для ",
+    "about.p1_highlight_girls": "девушек",
+    "about.p1_text1b": ". Участницы объединяются в команды от ",
+    "about.p1_highlight2": "2 до 4 человек",
     "about.p1_text2":
-      " и совместно работают над реальными задачами от спонсоров в области аналитики данных, машинного обучения и искусственного интеллекта. Участие открыто для школьниц, студенток колледжей и университетов ",
-    "about.p1_highlight3": "от 16 лет и старше.",
+      " для решения практических кейсов от спонсоров в области ",
+    "about.p1_highlight_ds": "Data Science, ML и AI",
+    "about.p1_text3":
+      ". Мы приглашаем к участию учениц старших классов, студенток колледжей и университетов в возрасте ",
+    "about.p1_highlight_age": "от 16 лет и старше",
+    "about.p1_text4":
+      ". Кроме того, все зарегистрированные участницы получат доступ к ",
+    "about.p1_highlight_video": "эксклюзивным видеоурокам",
+    "about.p1_text5":
+      " по основным инструментам и методам, которые чаще всего применяются на хакатонах.",
+    "about.p1_highlight3": "",
 
     // ── Prize Pool ──
     "prizePool.title": "Призовой фонд",
@@ -370,7 +393,7 @@ export const ui = {
 
     // ── Timeline ──
     "timeline.title": "Этапы",
-    "timeline.date1": "23 февраля - 11 марта",
+    "timeline.date1": "24 февраля - 11 марта",
     "timeline.label1": "Период регистрации",
     "timeline.date2": "11 - 13 марта",
     "timeline.label2": "Период подтверждения",
@@ -434,7 +457,7 @@ export const ui = {
       "Нет, WISH пройдет офлайн в Назарбаев Университете, г. Астана, Казахстан.",
     "faq.q6": "Как принять участие?",
     "faq.a6":
-      "Соберите команду из 2-4 человек и зарегистрируйтесь на нашем сайте. Регистрация открыта с 23 февраля по 11 марта 2026 года. Пожалуйста, обратите внимание: каждая участница команды должна зарегистрироваться на сайте индивидуально.",
+      "Соберите команду из 2-4 человек и зарегистрируйтесь на нашем сайте. Регистрация открыта с 24 февраля по 11 марта 2026 года. Пожалуйста, обратите внимание: каждая участница команды должна зарегистрироваться на сайте индивидуально.",
     "faq.q7": "Получат ли участницы сертификаты или призы?",
     "faq.a7":
       "Да! Общий призовой фонд составляет 1 200 000 ₸. Победительницы получат денежные призы и эксклюзивный мерч, а первые 50 участниц - приветственный пакет. Каждая девушка получит сертификат об участии. К тому же, лучшие участницы могут получить шанс на оффер или стажировку от наших партнеров.",
@@ -519,13 +542,14 @@ export const ui = {
     "team.creating": "Создание...",
     "team.createTeamBtn": "СОЗДАТЬ КОМАНДУ",
     "team.instructions": "ИНСТРУКЦИИ",
-    "team.instr1":
-      "1. Создайте команду или присоединитесь по ссылке-приглашению.",
-    "team.instr2":
-      "2. Поделитесь ссылкой-приглашением с товарищами по команде.",
-    "team.instr3": "3. Владелец команды может принимать или отклонять заявки.",
-    "team.instr4": "4. Максимальный размер команды - 4 участника.",
-    "team.instr5": "5. Только владелец может расформировать команду.",
+    "team.instr1": "1. Создайте команду или вступите по ссылке-приглашению.",
+    "team.instr2": "2. Поделитесь ссылкой-приглашением с напарницами.",
+    "team.instr3": "3. В команде должно быть от 2 до 4 участниц.",
+    "team.instr4": "4. Капитан команды может выгнать участницу из команды.",
+    "team.instr5": "5. Только капитан может распустить команду.",
+    "team.roleCaptain": "капитан",
+    "team.roleMember": "участница",
+    "team.roleRequest": "заявка",
     "team.enterTeamNameLabel": "Введите название:",
     "team.save": "СОХРАНИТЬ",
     "team.participants": "УЧАСТНИКИ",
@@ -650,12 +674,19 @@ export const ui = {
     "about.who": "Кім?",
     "about.whoLine": "16 жастан асқан студенттер мен оқушы қыздар",
     "about.p1_highlight": "Women in STEM Hackathon",
-    "about.p1_text1":
-      " - қыздар мен әйелдерге арналған 24 сағаттық хакатон, мұнда қатысушылар ",
-    "about.p1_highlight2": "2-4 адамнан",
-    "about.p1_text2":
-      " тұратын команда құрып, демеушілер ұсынған деректер аналитикасы, машиналық оқыту және жасанды интеллект саласындағы нақты тапсырмалармен жұмыс істейді. Қатысу мектеп оқушылары, колледж және жоғары оқу орны студенттеріне ",
-    "about.p1_highlight3": "16 жастан бастап ашық.",
+    "about.p1_text1": " - бұл ",
+    "about.p1_highlight_girls": "қыздарға арналған",
+    "about.p1_text1b": " 24 сағаттық офлайн хакатон. Қатысушылар ",
+    "about.p1_highlight2": "2-ден 4 адамға дейінгі",
+    "about.p1_text2": " топтарға бірігіп, демеушілер ұсынған ",
+    "about.p1_highlight_ds": "Data Science, ML және AI",
+    "about.p1_text3": " салаларындағы нақты кейстерді шешеді. Біз ",
+    "about.p1_highlight_age": "16 жастан асқан",
+    "about.p1_text4":
+      " мектеп оқушыларын, колледж және университет студенттерін шақырамыз. Сонымен қатар, барлық тіркелген қатысушылар хакатондарда жиі қолданылатын негізгі құралдар мен әдістер туралы ",
+    "about.p1_highlight_video": "эксклюзивті бейнесабақтарға",
+    "about.p1_text5": " қол жеткізе алады.",
+    "about.p1_highlight3": "",
 
     // ── Prize Pool ──
     "prizePool.title": "Жүлде қоры",
@@ -677,7 +708,7 @@ export const ui = {
 
     // ── Timeline ──
     "timeline.title": "Кезеңдер",
-    "timeline.date1": "23 Ақпан - 11 наурыз",
+    "timeline.date1": "24 Ақпан - 11 наурыз",
     "timeline.label1": "Тіркелу кезеңі",
     "timeline.date2": "11 - 13 наурыз",
     "timeline.label2": "Растау кезеңі",
@@ -741,7 +772,7 @@ export const ui = {
       "Жоқ, WISH офлайн форматта Астана қаласында, Назарбаев Университетінде өтеді.",
     "faq.q6": "Қалай қатысамын?",
     "faq.a6":
-      "2-4 адамнан тұратын команда құрып, біздің сайт арқылы тіркеліңіз. Тіркелу 2026 жылдың 23 ақпаны мен 11 наурызы аралығында ашық. Ескерту: команданың әрбір мүшесі сайтта жеке тіркелуі тиіс.",
+      "2-4 адамнан тұратын команда құрып, біздің сайт арқылы тіркеліңіз. Тіркелу 2026 жылдың 24 ақпаны мен 11 наурызы аралығында ашық. Ескерту: команданың әрбір мүшесі сайтта жеке тіркелуі тиіс.",
     "faq.q7": "Қатысушылар сертификаттар немесе сыйлықтар ала ма?",
     "faq.a7":
       "Иә! Жалпы жүлде қоры 1 200 000 ₸ құрайды. Жеңімпаздар ақшалай сыйлықтар мен эксклюзивті мерчқа ие болады, ал алғашқы 50 қатысушыға арнайы Welcome Package беріледі. Әрбір қатысушыға сертификат табысталады. Бұған қоса, үздік қатысушылар серіктестерімізден жұмысқа шақырту немесе тағылымдамадан өту мүмкіндігін ала алады.",
@@ -829,10 +860,12 @@ export const ui = {
     "team.instr1":
       "1. Команда құрыңыз немесе шақыру сілтемесі арқылы қосылыңыз.",
     "team.instr2": "2. Шақыру сілтемесін командаластарыңызбен бөлісіңіз.",
-    "team.instr3":
-      "3. Команда иесі өтінімдерді қабылдай немесе қабылдамай алады.",
-    "team.instr4": "4. Команданың максималды мөлшері - 4 адам.",
-    "team.instr5": "5. Тек команда иесі команданы тарата алады.",
+    "team.instr3": "3. Команда құрамында 2-ден 4 қатысушыға дейін болуы керек.",
+    "team.instr4": "4. Команда капитаны мүшелерді командадан шығара алады.",
+    "team.instr5": "5. Команданы тек капитан тарата алады.",
+    "team.roleCaptain": "капитан",
+    "team.roleMember": "қатысушы",
+    "team.roleRequest": "өтінім",
     "team.enterTeamNameLabel": "Атауды енгізіңіз:",
     "team.save": "САҚТАУ",
     "team.participants": "ҚАТЫСУШЫЛАР",

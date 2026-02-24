@@ -21,15 +21,15 @@ const sponsorsData = [
     logo: resolveSrc(freedomLifestyleLogo),
     descriptionKey: "sponsors.freedom.description",
   },
+];
+
+const partnersData = [
   {
     name: "Issai",
     popoutTitle: "ISSAI",
     logo: resolveSrc(issaiLogo),
     descriptionKey: "sponsors.issai.description",
   },
-];
-
-const partnersData = [
   {
     name: "NU DataSci Club",
     popoutTitle: "NU DataSci Club",
