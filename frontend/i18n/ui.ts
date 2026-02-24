@@ -196,7 +196,7 @@ export const ui = {
     "reg.iin": "IIN:",
     "reg.phone": "phone number:",
     "reg.parentPhone": "parent's phone number:",
-    "reg.parentPhoneOptional": "parent's phone number (if you are under 18):",
+    "reg.parentPhoneOptional": "parent's phone (if under 18):",
     "reg.cvDropbox": "CV Dropbox (optional)",
     "reg.cvHint": "PDF only · max 2 MB",
     "reg.ageConfirm":
@@ -513,7 +513,7 @@ export const ui = {
     "reg.iin": "ИИН:",
     "reg.phone": "номер телефона:",
     "reg.parentPhone": "номер телефона родителя:",
-    "reg.parentPhoneOptional": "номер телефона родителя (если вам нет 18):",
+    "reg.parentPhoneOptional": "тел. родителя (если нет 18):",
     "reg.cvDropbox": "Загрузить CV (необязательно)",
     "reg.cvHint": "Только PDF · макс 2 МБ",
     "reg.ageConfirm":
@@ -828,8 +828,7 @@ export const ui = {
     "reg.iin": "ЖСН:",
     "reg.phone": "телефон нөмірі:",
     "reg.parentPhone": "ата-ананың телефон нөмірі:",
-    "reg.parentPhoneOptional":
-      "ата-ананың телефон нөмірі (18-ге толмаған болсаңыз):",
+    "reg.parentPhoneOptional": "ата-ана тел. (18-ге толмаса):",
     "reg.cvDropbox": "CV жүктеу (міндетті емес)",
     "reg.cvHint": "Тек PDF · макс 2 МБ",
     "reg.ageConfirm":
