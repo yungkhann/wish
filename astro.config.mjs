@@ -17,7 +17,7 @@ export default defineConfig({
   },
   adapter: cloudflare({ imageService: "custom" }),
   vite: {
-    plugins: [tailwindcss(), sitemap()],
+    plugins: [tailwindcss()],
     server: {
       proxy: {
         "/api": {
@@ -26,5 +26,5 @@ export default defineConfig({
       },
     },
   },
-  integrations: [react()],
+  integrations: [react(), sitemap()],
 });
