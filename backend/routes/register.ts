@@ -18,9 +18,13 @@ const registrationSchema = z.object({
   isMinor: z.boolean().default(false),
   parentPhoneNumber: z
     .string()
-    .regex(/^\+?[0-9]{10,15}$/, "Invalid parent phone number format")
+    .trim()
     .optional()
-    .nullable(),
+    .nullable()
+    .transform((val) => (val === "" ? null : val))
+    .refine((val) => val == null || /^\+?[0-9]{10,15}$/.test(val), {
+      message: "Invalid parent phone number format",
+    }),
 });
 
 export const userRegistrationRouter = new Hono<AppEnv>();

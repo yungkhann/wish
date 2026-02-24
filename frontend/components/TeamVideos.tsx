@@ -168,10 +168,10 @@ const TeamVideos = () => {
 
           {/* Footer / Links Section */}
           <div className="mt-8 flex w-full flex-col items-center gap-6">
-            <div className="w-full max-w-2xl text-start font-['Marcellus'] text-sm font-normal text-white sm:text-base md:text-lg">
+            <div className="w-full max-w-2xl px-2 text-start font-['Marcellus'] text-sm font-normal text-white sm:text-base md:text-lg">
               {t("videos.linksTitle")}:
             </div>
-            <div className="w-full max-w-2xl space-y-2 text-start font-['Marcellus'] text-xs font-normal text-white sm:text-sm md:text-base">
+            <div className="w-full max-w-2xl space-y-2 px-2 text-start font-['Marcellus'] text-xs font-normal text-white sm:text-sm md:text-base">
               <p>
                 <a
                   href="https://education.github.com/pack"

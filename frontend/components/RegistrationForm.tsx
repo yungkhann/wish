@@ -97,8 +97,7 @@ export default function RegistrationForm({
           educationLevel: form.educationLevel,
           iin: form.iin,
           isMinor: form.educationLevel === "school",
-          parentPhoneNumber:
-            form.educationLevel === "school" ? form.parentPhoneNumber : null,
+          parentPhoneNumber: form.parentPhoneNumber ? form.parentPhoneNumber : null,
         }),
       });
 
