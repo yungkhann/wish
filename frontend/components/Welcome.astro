@@ -117,6 +117,11 @@ const t = useTranslations(lang);
   }
 
   @media (max-width: 767px) {
+    /* No extra scroll space needed — animation is time-based on mobile */
+    .wings-scene {
+      height: 100dvh;
+    }
+
     .wings-sticky {
       align-items: flex-start;
     }
@@ -334,38 +339,74 @@ const t = useTranslations(lang);
 
     whenLoaded(() => {
       init();
-      requestAnimationFrame(function () {
-        scrollableHeight = Math.max(0, scene.offsetHeight - window.innerHeight);
-        const p = clamp(window.scrollY / Math.max(1, scrollableHeight), 0, 1);
-        applyProgress(p);
-      });
-      window.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener(
-        "resize",
-        () => {
-          if (rafId) return;
-          rafId = requestAnimationFrame(() => {
-            rafId = 0;
-            updateBreakpointCache();
-            scrollableHeight = scene.offsetHeight - window.innerHeight;
-            setWingHeight();
 
-            // Reset base positions before measuring offsets so they are accurate across breakpoints
-            wingL.style.transform = `translate(${finalLx}, ${finalY})`;
-            wingR.style.transform = `translate(${finalRx}, ${finalY})`;
-            void wingL.offsetWidth; // force reflow
+      if (isMobileCache) {
+        // ── Mobile: time-based entrance animation on page load ──
+        let mobileAnimDone = false;
+        const DURATION = 2500; // ms
+        const startTime = performance.now();
 
-            measureCenterOffsets(); // skips on mobile
-            const p = clamp(
-              window.scrollY / Math.max(1, scrollableHeight),
-              0,
-              1,
-            );
-            applyProgress(p);
-          });
-        },
-        { passive: true },
-      );
+        function mobileAnimate(now: number) {
+          const rawProgress = Math.min((now - startTime) / DURATION, 1);
+          applyProgress(rawProgress);
+          if (rawProgress < 1) {
+            requestAnimationFrame(mobileAnimate);
+          } else {
+            mobileAnimDone = true;
+          }
+        }
+        requestAnimationFrame(mobileAnimate);
+
+        window.addEventListener(
+          "resize",
+          () => {
+            if (rafId) return;
+            rafId = requestAnimationFrame(() => {
+              rafId = 0;
+              updateBreakpointCache();
+              setWingHeight();
+              wingL.style.transform = `translate(${finalLx}, ${finalY})`;
+              wingR.style.transform = `translate(${finalRx}, ${finalY})`;
+              void wingL.offsetWidth;
+              if (mobileAnimDone) applyProgress(1);
+            });
+          },
+          { passive: true },
+        );
+      } else {
+        // ── Desktop: scroll-driven animation ──
+        requestAnimationFrame(function () {
+          scrollableHeight = Math.max(0, scene.offsetHeight - window.innerHeight);
+          const p = clamp(window.scrollY / Math.max(1, scrollableHeight), 0, 1);
+          applyProgress(p);
+        });
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener(
+          "resize",
+          () => {
+            if (rafId) return;
+            rafId = requestAnimationFrame(() => {
+              rafId = 0;
+              updateBreakpointCache();
+              scrollableHeight = scene.offsetHeight - window.innerHeight;
+              setWingHeight();
+
+              wingL.style.transform = `translate(${finalLx}, ${finalY})`;
+              wingR.style.transform = `translate(${finalRx}, ${finalY})`;
+              void wingL.offsetWidth; // force reflow
+
+              measureCenterOffsets();
+              const p = clamp(
+                window.scrollY / Math.max(1, scrollableHeight),
+                0,
+                1,
+              );
+              applyProgress(p);
+            });
+          },
+          { passive: true },
+        );
+      }
     });
   })();
 </script>
