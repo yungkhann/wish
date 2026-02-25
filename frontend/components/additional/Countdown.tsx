@@ -20,7 +20,7 @@ export function Countdown({ lang: langProp }: { lang?: Lang }) {
   });
 
   useEffect(() => {
-    const targetDate = new Date("2026-03-14T09:00:00");
+    const targetDate = new Date("2026-03-11T23:59:59");
 
     const calculateTimeLeft = () => {
       const difference = +targetDate - +new Date();
