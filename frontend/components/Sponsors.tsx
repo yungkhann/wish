@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import datasciLogo from "../assets/datasci.png";
-import freedomAILabsLogo from "../assets/freedom_ai_labs.svg";
+import freedomAILabsLogo from "../assets/freedom-ai-labs-white.svg";
 import freedomLifestyleLogo from "../assets/freedom_lifestyle.svg";
 import issaiLogo from "../assets/issaiWhite.svg";
 import type { Lang } from "../i18n/ui";
@@ -15,7 +15,7 @@ const sponsorsData = [
     logo: resolveSrc(freedomAILabsLogo),
     descriptionKey: "sponsors.freedomAILabs.description",
     imgClassName:
-      "h-36 w-auto max-w-[280px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-40 sm:max-w-[320px] md:h-48 md:max-w-[360px] lg:h-56 lg:max-w-[420px] xl:h-64 xl:max-w-[480px]",
+      "h-20 w-auto max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-40 sm:max-w-[200px] md:h-28 md:max-w-[220px] lg:h-32 lg:max-w-[260px] xl:h-36 xl:max-w-[300px]",
   },
   {
     name: "Freedom",
