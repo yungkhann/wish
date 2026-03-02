@@ -10,6 +10,8 @@ export async function createUser(
   data: {
     name: string;
     surname: string;
+    placeOfStudy: string;
+    city: string;
     phoneNumber: string;
     educationLevel: string;
     iin: string;
@@ -25,6 +27,8 @@ export async function createUser(
       .set({
         name: data.name,
         surname: data.surname,
+        placeOfStudy: data.placeOfStudy,
+        city: data.city,
         phoneNumber: data.phoneNumber,
         educationLevel: data.educationLevel,
         iin: data.iin,

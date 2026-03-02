@@ -10,6 +10,8 @@ import {
 const registrationSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
   surname: z.string().min(1, "Surname is required").max(100),
+  placeOfStudy: z.string().min(1, "Place of study is required").max(200),
+  city: z.string().min(1, "City is required").max(100),
   phoneNumber: z
     .string()
     .regex(/^\+?[0-9]{10,15}$/, "Invalid phone number format"),
@@ -25,6 +27,9 @@ const registrationSchema = z.object({
     .refine((val) => val == null || /^\+?[0-9]{10,15}$/.test(val), {
       message: "Invalid parent phone number format",
     }),
+  ageConfirmed: z.literal(true, {
+    message: "Age confirmation is required",
+  }),
 });
 
 export const userRegistrationRouter = new Hono<AppEnv>();
@@ -45,6 +50,8 @@ userRegistrationRouter.get("/me", async (c) => {
     email: profile.email,
     name: profile.name,
     surname: profile.surname,
+    placeOfStudy: profile.placeOfStudy,
+    city: profile.city,
     phoneNumber: profile.phoneNumber,
     educationLevel: profile.educationLevel,
     iin: profile.iin,

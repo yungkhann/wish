@@ -15,6 +15,13 @@
       "when": 1771616341920,
       "tag": "0001_loose_wolfpack",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1772459312781,
+      "tag": "0002_silly_joshua_kane",
+      "breakpoints": true
     }
   ]
 }

@@ -94,11 +94,14 @@ export default function RegistrationForm({
         body: JSON.stringify({
           name: form.name,
           surname: form.surname,
+          placeOfStudy: form.placeOfStudy,
+          city: form.city,
           phoneNumber: form.phoneNumber,
           educationLevel: form.educationLevel,
           iin: form.iin,
           isMinor: form.educationLevel === "school",
           parentPhoneNumber: form.parentPhoneNumber ? form.parentPhoneNumber : null,
+          ageConfirmed: form.ageConfirmed,
         }),
       });
 

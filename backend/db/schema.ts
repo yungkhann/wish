@@ -5,6 +5,8 @@ export const user = sqliteTable("user", {
   id: text("id").primaryKey(),
   name: text("name"),
   surname: text("surname"),
+  placeOfStudy: text("placeOfStudy"),
+  city: text("city"),
   phoneNumber: text("phoneNumber"),
   parentPhoneNumber: text("parentPhoneNumber"),
   educationLevel: text("educationLevel"),
