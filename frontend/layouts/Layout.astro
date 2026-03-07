@@ -5,7 +5,7 @@ import { getLangFromCookie } from "../i18n/utils";
 const lang = getLangFromCookie(Astro.cookies);
 const {
   title,
-  description = "WISH — Women in Science & Hackathon by ACM-W NU. A hackathon empowering girls in tech, data science, and AI.",
+  description = "Women in STEM Hackathon organised by NU ACM-W SC. A hackathon focuses on empowering girls in Data Science, AI & ML.",
 } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -47,7 +47,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           if (!el) return;
 
           var href = el.getAttribute("href");
-          if (!href || href.charAt(0) === "#" || /^https?:\/\/|^\/\//.test(href))
+          if (
+            !href ||
+            href.charAt(0) === "#" ||
+            /^https?:\/\/|^\/\//.test(href)
+          )
             return;
 
           e.preventDefault();
