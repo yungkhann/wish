@@ -1,3 +1,4 @@
+import { REGISTRATION_CLOSED_ERROR } from "../../shared/config";
 import { defaultLang, ui, type Lang } from "./ui";
 
 export function getLangFromCookie(cookies: {
@@ -24,6 +25,17 @@ export function useTranslations(lang: Lang) {
   return function t(key: keyof (typeof ui)[typeof defaultLang]): string {
     return ui[lang]?.[key] ?? ui[defaultLang][key] ?? key;
   };
+}
+
+/** Translate API error message. Maps known error codes to i18n keys. */
+export function translateApiError(
+  error: string | undefined,
+  t: (key: keyof (typeof ui)[typeof defaultLang]) => string,
+  fallback: string,
+): string {
+  if (!error) return fallback;
+  if (error === REGISTRATION_CLOSED_ERROR) return t("api.error.registrationClosed");
+  return error;
 }
 
 export type { Lang };

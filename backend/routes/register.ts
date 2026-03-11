@@ -6,6 +6,7 @@ import {
   getUserByUserId,
   updateUserCvFileId,
 } from "../services/user.service";
+import { REGISTRATION_CLOSED, REGISTRATION_CLOSED_ERROR } from "../../shared/config";
 
 const registrationSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
@@ -35,6 +36,10 @@ const registrationSchema = z.object({
 export const userRegistrationRouter = new Hono<AppEnv>();
 
 userRegistrationRouter.get("/me", async (c) => {
+  if (REGISTRATION_CLOSED) {
+    return c.json({ error: REGISTRATION_CLOSED_ERROR }, 403);
+  }
+
   const session = c.var.session;
 
   const profile = await getUserByUserId(c.env.wishDB, session.user.id);
@@ -63,6 +68,10 @@ userRegistrationRouter.get("/me", async (c) => {
 });
 
 userRegistrationRouter.post("/", async (c) => {
+  if (REGISTRATION_CLOSED) {
+    return c.json({ error: REGISTRATION_CLOSED_ERROR }, 403);
+  }
+
   const session = c.var.session;
 
   const body = await c.req.json();
@@ -83,6 +92,10 @@ userRegistrationRouter.post("/", async (c) => {
 const MAX_CV_SIZE = 2 * 1024 * 1024;
 
 userRegistrationRouter.post("/cv", async (c) => {
+  if (REGISTRATION_CLOSED) {
+    return c.json({ error: REGISTRATION_CLOSED_ERROR }, 403);
+  }
+
   const session = c.var.session;
   const formData = await c.req.formData();
   const file = formData.get("cv");

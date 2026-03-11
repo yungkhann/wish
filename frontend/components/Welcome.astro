@@ -4,10 +4,13 @@ import lWing from "../assets/L_Wing.svg";
 import rWing from "../assets/R_Wing.svg";
 import wishLogo from "../assets/WISHLOGO.svg";
 import { Countdown } from "./additional/Countdown";
+import { REGISTRATION_CLOSED } from "../../shared/config";
 import { getLangFromCookie, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromCookie(Astro.cookies);
 const t = useTranslations(lang);
+const ctaHref = REGISTRATION_CLOSED ? "/team/videos" : "/registration";
+const ctaLabel = REGISTRATION_CLOSED ? t("closed.videos") : t("welcome.register");
 ---
 
 <div id="wings-scene" class="wings-scene">
@@ -60,17 +63,19 @@ const t = useTranslations(lang);
       <Countdown lang={lang} client:only="react" />
 
       <a
-        href="/registration"
+        href={ctaHref}
         id="welcome-cta"
         data-register-label={t("welcome.register")}
         data-team-label={t("nav.teamPage")}
+        data-videos-label={t("closed.videos")}
+        data-registration-closed={REGISTRATION_CLOSED}
         class="register-btn flex items-center justify-center rounded-[6px_45px_6px_45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-8 font-['Marcellus'] text-lg tracking-[1px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform duration-300 [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
       >
         <span
           id="welcome-cta-text"
           class="register-btn-text font-['Marcellus'] text-white"
         >
-          {t("welcome.register")}
+          {ctaLabel}
         </span>
       </a>
     </div>
@@ -205,7 +210,7 @@ const t = useTranslations(lang);
 
     if (!scene || !wingL || !wingR || !content) return;
 
-    if (ctaLink && ctaText) {
+    if (ctaLink && ctaText && ctaLink.dataset.registrationClosed !== "true") {
       fetch("/api/user/me")
         .then((res) => {
           if (!res.ok) return null;

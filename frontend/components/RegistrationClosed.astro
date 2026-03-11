@@ -1,0 +1,39 @@
+---
+import Footer from "./Footer.astro";
+import Header from "./Header.astro";
+import { getLangFromCookie, useTranslations } from "../i18n/utils";
+import Layout from "../layouts/Layout.astro";
+
+const lang = getLangFromCookie(Astro.cookies);
+const t = useTranslations(lang);
+---
+
+<Layout title={t("closed.title")}>
+  <Header />
+  <div class="flex min-h-[60vh] flex-col items-center justify-center px-4 pt-28">
+    <h1
+      class="mb-4 text-center font-['Marcellus'] text-2xl font-bold text-white sm:text-3xl"
+      style="text-shadow: 0 0 10px rgba(119,22,208,0.8);"
+    >
+      {t("closed.title")}
+    </h1>
+    <p class="mb-10 max-w-md text-center font-['Marcellus'] text-white/80">
+      {t("closed.message")}
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <a
+        href="/"
+        class="flex items-center justify-center rounded-[6px_45px_6px_45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-8 py-3 font-['Marcellus'] text-lg text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0] transition-transform duration-300 hover:scale-105"
+      >
+        {t("closed.home")}
+      </a>
+      <a
+        href="/team/videos"
+        class="flex items-center justify-center rounded-[6px_45px_6px_45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-8 py-3 font-['Marcellus'] text-lg text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0] transition-transform duration-300 hover:scale-105"
+      >
+        {t("closed.videos")}
+      </a>
+    </div>
+  </div>
+  <Footer />
+</Layout>

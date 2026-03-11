@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Lang } from "../i18n/ui";
-import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
+import { getLangFromCookieClient, translateApiError, useTranslations } from "../i18n/utils";
 import { navigateTo } from "../utils/navigate";
 import AuthForm from "./AuthForm";
 
@@ -91,7 +91,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error ?? t("team.failedCreate"));
+        setError(translateApiError(data.error, t, t("team.failedCreate")));
         return;
       }
       setNewTeamName("");
@@ -108,7 +108,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
     try {
       const textPromise = fetch("/api/team/link").then(async (res) => {
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error ?? t("team.failedInviteLink"));
+        if (!res.ok) throw new Error(translateApiError(data.error, t, t("team.failedInviteLink")));
         return data.link as string;
       });
 
@@ -128,8 +128,8 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       setCopyText(t("team.copied"));
       setTimeout(() => setCopyText(t("team.copyInvite")), 2000);
     } catch (e) {
-      const msg = e instanceof Error ? e.message : t("team.failedCopy");
-      setError(msg);
+      const msg = e instanceof Error ? e.message : undefined;
+      setError(translateApiError(msg, t, t("team.failedCopy")));
     }
   };
 
@@ -145,7 +145,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       });
       if (!res.ok) {
         const data = await res.json();
-        setError(data.error ?? t("team.actionFailed"));
+        setError(translateApiError(data.error, t, t("team.actionFailed")));
         return;
       }
       await fetchTeamData();
@@ -165,7 +165,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       });
       if (!res.ok) {
         const data = await res.json();
-        setError(data.error ?? t("team.failedRemove"));
+        setError(translateApiError(data.error, t, t("team.failedRemove")));
         return;
       }
       await fetchTeamData();
@@ -183,7 +183,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       const res = await fetch("/api/team/leave", { method: "POST" });
       if (!res.ok) {
         const data = await res.json();
-        setError(data.error ?? t("team.failedLeave"));
+        setError(translateApiError(data.error, t, t("team.failedLeave")));
         return;
       }
       window.location.reload();
@@ -201,7 +201,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       const res = await fetch("/api/team", { method: "DELETE" });
       if (!res.ok) {
         const data = await res.json();
-        setError(data.error ?? t("team.failedDissolve"));
+        setError(translateApiError(data.error, t, t("team.failedDissolve")));
         return;
       }
       window.location.reload();

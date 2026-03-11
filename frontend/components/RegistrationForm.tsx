@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 import butterflyBg from "../assets/butterfly-register.png";
 import type { Lang } from "../i18n/ui";
-import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
+import { getLangFromCookieClient, translateApiError, useTranslations } from "../i18n/utils";
 import { navigateTo } from "../utils/navigate";
 
 const wrapperClasses =
@@ -108,7 +108,7 @@ export default function RegistrationForm({
       const data = await res.json();
 
       if (!res.ok) {
-        const msg = data.details?.[0]?.message ?? data.error ?? t("reg.failed");
+        const msg = data.details?.[0]?.message ?? translateApiError(data.error, t, t("reg.failed"));
         setError(msg);
         return;
       }
@@ -120,7 +120,7 @@ export default function RegistrationForm({
 
         if (!cvRes.ok) {
           const cvData = await cvRes.json();
-          setError(cvData.error ?? t("reg.cvFailed"));
+          setError(translateApiError(cvData.error, t, t("reg.cvFailed")));
           return;
         }
       }

@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { z } from "zod";
+import { REGISTRATION_CLOSED, REGISTRATION_CLOSED_ERROR } from "../../shared/config";
 import type { AppEnv } from "../middleware/auth";
 import {
   createInvitation,
@@ -16,6 +17,10 @@ const inviteStatusSchema = z.object({
 export const userInvitationRouter = new Hono<AppEnv>();
 
 userInvitationRouter.get("/:uuid", async (c) => {
+  if (REGISTRATION_CLOSED) {
+    return c.json({ error: REGISTRATION_CLOSED_ERROR }, 403);
+  }
+
   const session = c.var.session;
 
   const invitationCode = c.req.param("uuid");
@@ -26,6 +31,10 @@ userInvitationRouter.get("/:uuid", async (c) => {
 });
 
 userInvitationRouter.get("/all/invites", async (c) => {
+  if (REGISTRATION_CLOSED) {
+    return c.json({ error: REGISTRATION_CLOSED_ERROR }, 403);
+  }
+
   const session = c.var.session;
 
   const invites = await getAllInvitesWithUsers(c.env.wishDB, session.user.id);
@@ -34,6 +43,10 @@ userInvitationRouter.get("/all/invites", async (c) => {
 });
 
 userInvitationRouter.post("/:uuid/status/:inviteStatus", async (c) => {
+  if (REGISTRATION_CLOSED) {
+    return c.json({ error: REGISTRATION_CLOSED_ERROR }, 403);
+  }
+
   const session = c.var.session;
 
   const invitationId = c.req.param("uuid");

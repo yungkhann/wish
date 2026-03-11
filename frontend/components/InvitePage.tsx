@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { Lang } from "../i18n/ui";
-import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
+import { getLangFromCookieClient, translateApiError, useTranslations } from "../i18n/utils";
 import { navigateTo } from "../utils/navigate";
 import AuthForm from "./AuthForm";
 
@@ -45,7 +45,7 @@ export default function InvitePage({ lang: langProp }: { lang?: Lang }) {
       const res = await fetch(`/api/invite/${uuid}`);
       const data = await res.json();
       if (!res.ok) {
-        setMessage(data.error ?? t("invite.failedProcess"));
+        setMessage(translateApiError(data.error, t, t("invite.failedProcess")));
         setState("error");
         return;
       }

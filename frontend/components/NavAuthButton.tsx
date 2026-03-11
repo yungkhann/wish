@@ -11,16 +11,18 @@ let cachedStatus: Status | null = null;
 export default function NavAuthButton({
   mobile,
   lang: langProp,
+  registrationClosed = false,
 }: {
   mobile?: boolean;
   lang?: Lang;
+  registrationClosed?: boolean;
 }) {
   const [status, setStatus] = useState<Status>(cachedStatus ?? "loading");
   const lang = langProp ?? getLangFromCookieClient();
   const t = useTranslations(lang);
 
   useEffect(() => {
-    if (cachedStatus) return;
+    if (registrationClosed || cachedStatus) return;
 
     fetch("/api/user/me")
       .then((res) => {
@@ -49,11 +51,15 @@ export default function NavAuthButton({
     navigateTo("/");
   };
 
-  if (status === "loading" && mobile) return null;
+  if (status === "loading" && mobile && !registrationClosed) return null;
 
-  const label = status === "registered" ? t("nav.teamPage") : t("nav.register");
-  const href = status === "registered" ? "/team" : "/registration";
-  const showLogout = status === "registered" || status === "incomplete";
+  const label = registrationClosed
+    ? t("nav.videos")
+    : status === "registered"
+      ? t("nav.teamPage")
+      : t("nav.register");
+  const href = registrationClosed ? "/team/videos" : status === "registered" ? "/team" : "/registration";
+  const showLogout = !registrationClosed && (status === "registered" || status === "incomplete");
 
   if (mobile) {
     return (

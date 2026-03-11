@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { z } from "zod";
+import { REGISTRATION_CLOSED, REGISTRATION_CLOSED_ERROR } from "../../shared/config";
 import type { AppEnv } from "../middleware/auth";
 import {
   createTeam,
@@ -22,6 +23,10 @@ const renameTeamSchema = z.object({
 export const teamRegistrationRouter = new Hono<AppEnv>();
 
 teamRegistrationRouter.post("/", async (c) => {
+  if (REGISTRATION_CLOSED) {
+    return c.json({ error: REGISTRATION_CLOSED_ERROR }, 403);
+  }
+
   const session = c.var.session;
 
   const body = await c.req.json();
@@ -40,6 +45,10 @@ teamRegistrationRouter.post("/", async (c) => {
 });
 
 teamRegistrationRouter.get("/link", async (c) => {
+  if (REGISTRATION_CLOSED) {
+    return c.json({ error: REGISTRATION_CLOSED_ERROR }, 403);
+  }
+
   const session = c.var.session;
 
   const invitationCode = await getInvitationCode(c.env.wishDB, session.user.id);
@@ -48,6 +57,10 @@ teamRegistrationRouter.get("/link", async (c) => {
 });
 
 teamRegistrationRouter.get("/members", async (c) => {
+  if (REGISTRATION_CLOSED) {
+    return c.json({ error: REGISTRATION_CLOSED_ERROR }, 403);
+  }
+
   const session = c.var.session;
 
   const members = await getTeamMembersAndRequests(
@@ -59,6 +72,10 @@ teamRegistrationRouter.get("/members", async (c) => {
 });
 
 teamRegistrationRouter.delete("/members/:userId", async (c) => {
+  if (REGISTRATION_CLOSED) {
+    return c.json({ error: REGISTRATION_CLOSED_ERROR }, 403);
+  }
+
   const session = c.var.session;
   const targetUserId = c.req.param("userId");
 
@@ -68,6 +85,10 @@ teamRegistrationRouter.delete("/members/:userId", async (c) => {
 });
 
 teamRegistrationRouter.post("/leave", async (c) => {
+  if (REGISTRATION_CLOSED) {
+    return c.json({ error: REGISTRATION_CLOSED_ERROR }, 403);
+  }
+
   const session = c.var.session;
 
   await leaveTeam(c.env.wishDB, session.user.id);
@@ -76,6 +97,10 @@ teamRegistrationRouter.post("/leave", async (c) => {
 });
 
 teamRegistrationRouter.patch("/name", async (c) => {
+  if (REGISTRATION_CLOSED) {
+    return c.json({ error: REGISTRATION_CLOSED_ERROR }, 403);
+  }
+
   const session = c.var.session;
 
   const body = await c.req.json();
@@ -94,6 +119,10 @@ teamRegistrationRouter.patch("/name", async (c) => {
 });
 
 teamRegistrationRouter.delete("/", async (c) => {
+  if (REGISTRATION_CLOSED) {
+    return c.json({ error: REGISTRATION_CLOSED_ERROR }, 403);
+  }
+
   const session = c.var.session;
 
   await deleteTeam(c.env.wishDB, session.user.id);

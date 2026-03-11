@@ -18,7 +18,18 @@ export const ui = {
     "nav.faq": "FAQ",
     "nav.register": "Register",
     "nav.teamPage": "Team Page",
+    "nav.videos": "Video Lessons",
     "nav.logOut": "Log out",
+
+    // ── Registration closed ──
+    "closed.title": "Registration is closed",
+    "closed.message":
+      "Registration for WISH 2026 has ended. You can still explore our preparation video lessons or return to the homepage.",
+    "closed.home": "Home",
+    "closed.videos": "Video Lessons",
+
+    // ── API errors ──
+    "api.error.registrationClosed": "Registration is closed",
 
     // ── Welcome ──
     "welcome.line1": "Make your biggest ",
@@ -340,7 +351,18 @@ export const ui = {
     "nav.faq": "Вопросы",
     "nav.register": "Регистрация",
     "nav.teamPage": "Команда",
+    "nav.videos": "Видеоуроки",
     "nav.logOut": "Выйти",
+
+    // ── Registration closed ──
+    "closed.title": "Регистрация закрыта",
+    "closed.message":
+      "Регистрация на WISH 2026 завершена. Вы можете посмотреть наши видеоуроки по подготовке или вернуться на главную.",
+    "closed.home": "Главная",
+    "closed.videos": "Видеоуроки",
+
+    // ── API errors ──
+    "api.error.registrationClosed": "Регистрация закрыта",
 
     // ── Welcome ──
     "welcome.line1": "Исполни свою самую заветную ",
@@ -663,7 +685,18 @@ export const ui = {
     "nav.faq": "Сұрақтар",
     "nav.register": "Тіркелу",
     "nav.teamPage": "Команда",
+    "nav.videos": "Бейнесабақтар",
     "nav.logOut": "Шығу",
+
+    // ── Registration closed ──
+    "closed.title": "Тіркелу жабық",
+    "closed.message":
+      "WISH 2026 тіркелуі аяқталды. Біздің дайындық бейнесабақтарын көре аласыз немесе басты бетке орала аласыз.",
+    "closed.home": "Басты бет",
+    "closed.videos": "Бейнесабақтар",
+
+    // ── API errors ──
+    "api.error.registrationClosed": "Тіркелу жабық",
 
     // ── Welcome ──
     "welcome.line1": "Ең үлкен ",
