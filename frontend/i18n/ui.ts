@@ -85,7 +85,8 @@ export const ui = {
 
     // ── Sponsors ──
     "sponsors.title": "Sponsors",
-    "sponsors.infoPartners": "Partners",
+    "sponsors.partners": "Partners",
+    "sponsors.infoPartners": "Info Partners",
     "sponsors.sponsor": "Sponsor",
     "sponsors.partner": "Partner",
     "sponsors.freedomAILabs.popoutTitle": "General Sponsor - Freedom AI Labs",
@@ -98,6 +99,9 @@ export const ui = {
       "The Institute of Smart Systems and Artificial Intelligence (ISSAI) at Nazarbayev University is a driver of AI innovation in Kazakhstan. It facilitates collaboration with sponsors.",
     "sponsors.nuDatasciClub.description":
       "A student club at Nazarbayev University dedicated to promoting Data Science. As a content partner for WISH, the club provided the essential video lessons to help participants prepare for the hackathon.",
+    "sponsors.yc.description": "",
+    "sponsors.digitalBoard.description": "",
+    "sponsors.starMedia.description": "",
 
     // ── Schedule / Agenda ──
     "schedule.title": "Schedule",
@@ -404,7 +408,8 @@ export const ui = {
 
     // ── Sponsors ──
     "sponsors.title": "Спонсоры",
-    "sponsors.infoPartners": "Партнёры",
+    "sponsors.partners": "Партнёры",
+    "sponsors.infoPartners": "Информационные партнёры",
     "sponsors.sponsor": "Спонсор",
     "sponsors.partner": "Партнёр",
     "sponsors.freedomAILabs.popoutTitle":
@@ -418,6 +423,9 @@ export const ui = {
       "Институт умных систем и искусственного интеллекта (ISSAI) при Назарбаев Университете является драйвером инноваций в сфере ИИ в Казахстане. Он помогает в сотрудничестве со спонсорами.",
     "sponsors.nuDatasciClub.description":
       "Студенческий клуб Назарбаев Университета, нацеленный на популяризацию Data Science. Клуб выступил контент-партнером WISH, подготовив серию обучающих видеоуроков для участников хакатона.",
+    "sponsors.yc.description": "",
+    "sponsors.digitalBoard.description": "",
+    "sponsors.starMedia.description": "",
 
     // ── Schedule / Agenda ──
     "schedule.title": "Расписание",
@@ -722,7 +730,8 @@ export const ui = {
 
     // ── Sponsors ──
     "sponsors.title": "Демеушілер",
-    "sponsors.infoPartners": "Серіктестер",
+    "sponsors.partners": "Серіктестер",
+    "sponsors.infoPartners": "Ақпараттық серіктестер",
     "sponsors.sponsor": "Демеуші",
     "sponsors.partner": "Серіктес",
     "sponsors.freedomAILabs.popoutTitle": "Бас демеуші - Freedom AI Labs",
@@ -735,6 +744,9 @@ export const ui = {
       "Назарбаев Университеті жанындағы Ақылды жүйелер және жасанды интеллект институты (ISSAI) - Қазақстандағы ЖИ саласындағы инновациялар драйвері. Ол демеушілермен ынтымақтастық орнатуға көмектеседі.",
     "sponsors.nuDatasciClub.description":
       "Назарбаев Университетінің Data Science саласын насихаттауды мақсат ететін студенттік клубы. Клуб WISH жобасының контент-серіктесі болып табылады және қатысушылар үшін арнайы оқу видеосабақтарын дайындады.",
+    "sponsors.yc.description": "",
+    "sponsors.digitalBoard.description": "",
+    "sponsors.starMedia.description": "",
 
     // ── Schedule / Agenda ──
     "schedule.title": "Кесте",

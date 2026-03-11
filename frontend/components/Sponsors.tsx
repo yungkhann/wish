@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import datasciLogo from "../assets/datasci.png";
+import digitalBoardLogo from "../assets/digitalBoardLogo.svg";
 import freedomAILabsLogo from "../assets/freedom-ai-labs-white.svg";
 import freedomLifestyleLogo from "../assets/freedom_lifestyle.svg";
 import issaiLogo from "../assets/issaiWhite.svg";
+import starMediaLogo from "../assets/starMediaLogo.svg";
+import ycLogo from "../assets/YCLogo.svg";
 import type { Lang } from "../i18n/ui";
 import { getLangFromCookieClient, useTranslations } from "../i18n/utils";
 
@@ -43,6 +46,33 @@ const partnersData = [
     descriptionKey: "sponsors.nuDatasciClub.description",
     imgClassName:
       "h-28 w-auto max-w-[240px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-32 sm:max-w-[260px] md:h-36 md:max-w-[280px] lg:h-40 lg:max-w-[320px] xl:h-44 xl:max-w-[360px]",
+  },
+  {
+    name: "Yandex Cloud",
+    popoutTitle: "Yandex Cloud",
+    logo: resolveSrc(ycLogo),
+    descriptionKey: "sponsors.yc.description",
+    imgClassName:
+      "h-16 w-auto max-w-[160px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-20 sm:max-w-[180px] md:h-24 md:max-w-[200px] lg:h-28 lg:max-w-[220px] xl:h-32 xl:max-w-[260px]",
+  },
+];
+
+const infoPartnersData = [
+  {
+    name: "Digital Boards",
+    popoutTitle: "Digital Boards",
+    logo: resolveSrc(digitalBoardLogo),
+    descriptionKey: "sponsors.digitalBoard.description",
+    imgClassName:
+      "h-12 w-auto max-w-[140px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-16 sm:max-w-[160px] md:h-20 md:max-w-[180px] lg:h-24 lg:max-w-[200px] xl:h-28 xl:max-w-[220px]",
+  },
+  {
+    name: "Star Media",
+    popoutTitle: "Star Media",
+    logo: resolveSrc(starMediaLogo),
+    descriptionKey: "sponsors.starMedia.description",
+    imgClassName:
+      "h-32 w-auto max-w-[280px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-36 sm:max-w-[300px] md:h-40 md:max-w-[320px] lg:h-44 lg:max-w-[360px] xl:h-48 xl:max-w-[400px]",
   },
 ];
 
@@ -109,10 +139,43 @@ const Sponsors = ({ lang: langProp }: { lang?: Lang }) => {
         })}
       </div>
       <h2 className="mt-16 mb-10 text-center font-['Marcellus'] text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
-        {t("sponsors.infoPartners")}
+        {t("sponsors.partners")}
       </h2>
       <div className="flex flex-row flex-wrap items-center justify-center gap-12">
         {partnersData.map((partner) => {
+          const isActive = activeKey === partner.name;
+          return (
+            <div
+              key={partner.name}
+              className="group relative cursor-pointer"
+              onClick={() => handleCardClick(partner.name)}
+            >
+              <img
+                src={partner.logo}
+                alt={`${partner.name} Logo`}
+                className={partner.imgClassName}
+              />
+              <div
+                className={`absolute top-full left-1/2 z-20 mt-3 w-64 -translate-x-1/2 rounded-xl border border-white/20 bg-zinc-900/95 p-4 text-sm text-zinc-100 shadow-xl transition-all duration-200 md:group-hover:translate-y-1 md:group-hover:opacity-100 ${
+                  isActive
+                    ? "pointer-events-auto block translate-y-1 opacity-100"
+                    : "pointer-events-none hidden md:block md:opacity-0"
+                }`}
+              >
+                <p className="mb-2 font-semibold text-white">
+                  {partner.popoutTitle}
+                </p>
+                {t(partner.descriptionKey as any)}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <h2 className="mt-16 mb-10 text-center font-['Marcellus'] text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
+        {t("sponsors.infoPartners")}
+      </h2>
+      <div className="flex flex-row flex-wrap items-center justify-center gap-12">
+        {infoPartnersData.map((partner) => {
           const isActive = activeKey === partner.name;
           return (
             <div
