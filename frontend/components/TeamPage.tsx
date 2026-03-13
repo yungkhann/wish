@@ -20,7 +20,13 @@ type UserData = {
   isRegistered: boolean;
 };
 
-export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
+export default function TeamPage({
+  lang: langProp,
+  registrationClosed = false,
+}: {
+  lang?: Lang;
+  registrationClosed?: boolean;
+}) {
   const lang = langProp ?? getLangFromCookieClient();
   const t = useTranslations(lang);
   const [state, setState] = useState<State>("loading");
@@ -43,7 +49,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
       return null;
     }
     const data = await res.json();
-    if (!data.isRegistered) {
+    if (!data.isRegistered && !registrationClosed) {
       navigateTo("/registration");
       return null;
     }
@@ -228,6 +234,19 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
   }
 
   if (state === "no-team") {
+    if (registrationClosed) {
+      return (
+        <div className="mx-auto max-w-5xl px-4 py-8 text-white">
+          <div className="flex justify-center">
+            <div className="w-full max-w-md rounded-tl-[40px] rounded-tr-lg rounded-br-[40px] rounded-bl-lg bg-linear-to-r from-black/20 via-black/20 to-black/20 p-8 shadow-[0px_0px_60px_0px_rgba(119,22,208,0.60)] sm:rounded-tl-[60px] sm:rounded-br-[60px]">
+              <p className="text-center font-['Marcellus'] text-lg text-zinc-300">
+                {t("team.noTeamYet")}
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="mx-auto max-w-5xl px-4 py-8 text-white">
         {error && (
@@ -339,6 +358,7 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
                           onAccept={(id) => handleInviteAction(id, "accepted")}
                           onReject={(id) => handleInviteAction(id, "rejected")}
                           disabled={actionLoading}
+                          readOnly={registrationClosed}
                           t={t}
                         />
                       ) : (
@@ -365,33 +385,35 @@ export default function TeamPage({ lang: langProp }: { lang?: Lang }) {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          {isOwner && (
-            <button
-              onClick={handleCopyLink}
-              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Marcellus'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
-            >
-              {copyText}
-            </button>
-          )}
-          {isOwner ? (
-            <button
-              onClick={handleDissolveTeam}
-              disabled={actionLoading}
-              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Marcellus'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
-            >
-              {t("team.dissolve")}
-            </button>
-          ) : (
-            <button
-              onClick={handleLeaveTeam}
-              disabled={actionLoading}
-              className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Marcellus'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
-            >
-              {t("team.leave")}
-            </button>
-          )}
-        </div>
+        {!registrationClosed && (
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {isOwner && (
+              <button
+                onClick={handleCopyLink}
+                className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border border-white/20 bg-[linear-gradient(135deg,rgba(0,0,0,0.50),#9A44E9)] px-12 py-4 font-['Marcellus'] text-lg tracking-[2px] text-white shadow-[0_0_4.5px_#7716D0,0_0_11.25px_#7716D0,0_0_45px_rgba(119,22,208,0.60),0_0_67.5px_rgba(119,22,208,1)] transition-transform [text-shadow:0_0_3px_rgba(255,255,255,1)] hover:scale-105"
+              >
+                {copyText}
+              </button>
+            )}
+            {isOwner ? (
+              <button
+                onClick={handleDissolveTeam}
+                disabled={actionLoading}
+                className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Marcellus'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
+              >
+                {t("team.dissolve")}
+              </button>
+            ) : (
+              <button
+                onClick={handleLeaveTeam}
+                disabled={actionLoading}
+                className="rounded-tl-[6px] rounded-tr-[45px] rounded-br-[6px] rounded-bl-[45px] border-2 border-red-500 bg-transparent px-8 py-4 font-['Marcellus'] text-lg tracking-[2px] text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-50"
+              >
+                {t("team.leave")}
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -405,6 +427,7 @@ function MemberRow({
   onAccept,
   onReject,
   disabled,
+  readOnly,
   t,
 }: {
   member: Member;
@@ -414,6 +437,7 @@ function MemberRow({
   onAccept: (inviteId: string) => void;
   onReject: (inviteId: string) => void;
   disabled: boolean;
+  readOnly?: boolean;
   t: (key: any) => string;
 }) {
   return (
@@ -432,7 +456,7 @@ function MemberRow({
       </td>
       <td className="h-[67px] w-[130px] border-b border-l border-white/30 text-center">
         <div className="flex items-center justify-center gap-2">
-          {member.role === "request" && isOwner && member.inviteId && (
+          {member.role === "request" && isOwner && member.inviteId && !readOnly && (
             <>
               <button
                 onClick={() => onAccept(member.inviteId!)}
@@ -452,7 +476,8 @@ function MemberRow({
           )}
           {member.role === "member" &&
             isOwner &&
-            member.userId !== currentUserId && (
+            member.userId !== currentUserId &&
+            !readOnly && (
               <button
                 onClick={() => onRemove(member.userId)}
                 disabled={disabled}

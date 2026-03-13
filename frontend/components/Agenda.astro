@@ -14,9 +14,10 @@ const day1 = [
 
 const day2 = [
   { time: "12:00", title: t("schedule.d2_t1") },
-  { time: "12:30", title: t("schedule.d2_t2") },
+  { time: "13:00", title: t("schedule.d2_t2") },
   { time: "13:30", title: t("schedule.d2_t3") },
-  { time: "18:30", title: t("schedule.d2_t4") },
+  { time: "14:00", title: t("schedule.d2_t4") },
+  { time: "17:00", title: t("schedule.d2_t5"), highlight: true },
 ];
 ---
 
@@ -111,8 +112,18 @@ const day2 = [
               </div>
 
               <div class="relative z-10 flex size-6 items-center justify-center">
-                <div class="size-3 rounded-full bg-[#A855F7] shadow-[0_0_15px_#A855F7]" />
-                <div class="absolute size-8 animate-pulse rounded-full bg-[#A855F7]/20 blur-md" />
+                <div
+                  class:list={[
+                    "rounded-full bg-[#A855F7] shadow-[0_0_15px_#A855F7]",
+                    event.highlight ? "size-4 shadow-[0_0_25px_#A855F7]" : "size-3",
+                  ]}
+                />
+                <div
+                  class:list={[
+                    "absolute rounded-full bg-[#A855F7]/20 blur-md",
+                    event.highlight ? "size-10 animate-pulse" : "size-8",
+                  ]}
+                />
               </div>
 
               <div

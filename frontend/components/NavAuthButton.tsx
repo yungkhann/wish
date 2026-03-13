@@ -22,7 +22,7 @@ export default function NavAuthButton({
   const t = useTranslations(lang);
 
   useEffect(() => {
-    if (registrationClosed || cachedStatus) return;
+    if (cachedStatus) return;
 
     fetch("/api/user/me")
       .then((res) => {
@@ -51,15 +51,19 @@ export default function NavAuthButton({
     navigateTo("/");
   };
 
-  if (status === "loading" && mobile && !registrationClosed) return null;
+  if (status === "loading" && mobile) return null;
 
   const label = registrationClosed
-    ? t("nav.videos")
+    ? t("nav.teamPage")
     : status === "registered"
       ? t("nav.teamPage")
       : t("nav.register");
-  const href = registrationClosed ? "/team/videos" : status === "registered" ? "/team" : "/registration";
-  const showLogout = !registrationClosed && (status === "registered" || status === "incomplete");
+  const href = registrationClosed
+    ? "/team"
+    : status === "registered"
+      ? "/team"
+      : "/registration";
+  const showLogout = status === "registered" || status === "incomplete";
 
   if (mobile) {
     return (

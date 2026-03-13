@@ -18,6 +18,7 @@ const links = [
   { href: `${prefix}#schedule`, label: t("nav.schedule") },
   { href: `${prefix}#sponsors`, label: t("nav.sponsors") },
   { href: `${prefix}#faq`, label: t("nav.faq") },
+  ...(REGISTRATION_CLOSED ? [{ href: "/team/videos", label: t("nav.videos") }] : []),
 ];
 ---
 

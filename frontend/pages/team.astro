@@ -1,6 +1,5 @@
 ---
 import Header from "../components/Header.astro";
-import RegistrationClosed from "../components/RegistrationClosed.astro";
 import TeamPage from "../components/TeamPage";
 import { REGISTRATION_CLOSED } from "../../shared/config";
 import { getLangFromCookie, useTranslations } from "../i18n/utils";
@@ -10,13 +9,9 @@ const lang = getLangFromCookie(Astro.cookies);
 const t = useTranslations(lang);
 ---
 
-{REGISTRATION_CLOSED ? (
-  <RegistrationClosed />
-) : (
-  <Layout title={t("page.team")}>
-    <Header />
-    <div class="pt-28">
-      <TeamPage lang={lang} client:load />
-    </div>
-  </Layout>
-)}
+<Layout title={t("page.team")}>
+  <Header />
+  <div class="pt-28">
+    <TeamPage lang={lang} registrationClosed={REGISTRATION_CLOSED} client:load />
+  </div>
+</Layout>

@@ -111,6 +111,7 @@ export const ui = {
     "sponsors.nuDatasciClub.description":
       "A student club at Nazarbayev University dedicated to promoting Data Science. As a content partner for WISH, the club provided the essential video lessons to help participants prepare for the hackathon.",
     "sponsors.yc.description": "",
+    "sponsors.coco.description": "",
     "sponsors.digitalBoard.description": "",
     "sponsors.starMedia.description": "",
 
@@ -125,8 +126,9 @@ export const ui = {
     "schedule.d1_t5": "Coffee Break",
     "schedule.d2_t1": "Case Submission Deadline",
     "schedule.d2_t2": "Pizza Break",
-    "schedule.d2_t3": "Pitching Session",
-    "schedule.d2_t4": "Closing Ceremony",
+    "schedule.d2_t3": "Presentation Deadline",
+    "schedule.d2_t4": "Pitching + Activities",
+    "schedule.d2_t5": "Closing Ceremony",
     "schedule.disclaimer": "There may be minor changes to the schedule",
 
     // ── Gallery ──
@@ -446,6 +448,7 @@ export const ui = {
     "sponsors.nuDatasciClub.description":
       "Студенческий клуб Назарбаев Университета, нацеленный на популяризацию Data Science. Клуб выступил контент-партнером WISH, подготовив серию обучающих видеоуроков для участников хакатона.",
     "sponsors.yc.description": "",
+    "sponsors.coco.description": "",
     "sponsors.digitalBoard.description": "",
     "sponsors.starMedia.description": "",
 
@@ -460,8 +463,9 @@ export const ui = {
     "schedule.d1_t5": "Кофе-брейк",
     "schedule.d2_t1": "Дедлайн сдачи кейсов",
     "schedule.d2_t2": "Пицца-брейк",
-    "schedule.d2_t3": "Питчинг-сессия",
-    "schedule.d2_t4": "Церемония закрытия",
+    "schedule.d2_t3": "Дедлайн презентаций",
+    "schedule.d2_t4": "Питчинг + активности",
+    "schedule.d2_t5": "Церемония закрытия",
     "schedule.disclaimer": "Возможны небольшие изменения в расписании",
 
     // ── Gallery ──
@@ -778,6 +782,7 @@ export const ui = {
     "sponsors.nuDatasciClub.description":
       "Назарбаев Университетінің Data Science саласын насихаттауды мақсат ететін студенттік клубы. Клуб WISH жобасының контент-серіктесі болып табылады және қатысушылар үшін арнайы оқу видеосабақтарын дайындады.",
     "sponsors.yc.description": "",
+    "sponsors.coco.description": "",
     "sponsors.digitalBoard.description": "",
     "sponsors.starMedia.description": "",
 
@@ -792,8 +797,9 @@ export const ui = {
     "schedule.d1_t5": "Кофе-брейк",
     "schedule.d2_t1": "Кейс тапсыру мерзімі",
     "schedule.d2_t2": "Пицца-брейк",
-    "schedule.d2_t3": "Питчинг сессиясы",
-    "schedule.d2_t4": "Жабылу салтанаты",
+    "schedule.d2_t3": "Презентация мерзімі",
+    "schedule.d2_t4": "Питчинг + белсенділіктер",
+    "schedule.d2_t5": "Жабылу салтанаты",
     "schedule.disclaimer": "Кестеге шағын өзгерістер болуы мүмкін",
 
     // ── Gallery ──

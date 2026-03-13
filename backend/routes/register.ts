@@ -36,10 +36,6 @@ const registrationSchema = z.object({
 export const userRegistrationRouter = new Hono<AppEnv>();
 
 userRegistrationRouter.get("/me", async (c) => {
-  if (REGISTRATION_CLOSED) {
-    return c.json({ error: REGISTRATION_CLOSED_ERROR }, 403);
-  }
-
   const session = c.var.session;
 
   const profile = await getUserByUserId(c.env.wishDB, session.user.id);

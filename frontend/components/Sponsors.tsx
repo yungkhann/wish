@@ -4,6 +4,7 @@ import digitalBoardLogo from "../assets/digitalBoardLogo.svg";
 import freedomAILabsLogo from "../assets/freedom-ai-labs-white.svg";
 import freedomLifestyleLogo from "../assets/freedom_lifestyle.svg";
 import issaiLogo from "../assets/issaiWhite.svg";
+import cocoLogo from "../assets/cocoLogo.svg";
 import starMediaLogo from "../assets/starMediaLogo.svg";
 import ycLogo from "../assets/YCLogo.svg";
 import type { Lang } from "../i18n/ui";
@@ -54,6 +55,14 @@ const partnersData = [
     descriptionKey: "sponsors.yc.description",
     imgClassName:
       "h-16 w-auto max-w-[160px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-20 sm:max-w-[180px] md:h-24 md:max-w-[200px] lg:h-28 lg:max-w-[220px] xl:h-32 xl:max-w-[260px]",
+  },
+  {
+    name: "Coco",
+    popoutTitle: "Coco",
+    logo: resolveSrc(cocoLogo),
+    descriptionKey: "sponsors.coco.description",
+    imgClassName:
+      "h-12 w-auto max-w-[120px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-14 sm:max-w-[140px] md:h-16 md:max-w-[160px] lg:h-20 lg:max-w-[180px] xl:h-24 xl:max-w-[200px]",
   },
 ];
 
