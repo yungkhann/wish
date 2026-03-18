@@ -105,7 +105,7 @@ export const ui = {
     "sponsors.freedomAILabs.description":
       "A division of the Kazakhstan-based Freedom Holding Corp. dedicated to the development and implementation of Artificial Intelligence technologies across the ecosystem's internal and client services.",
     "sponsors.freedom.description":
-      "A lifestyle service ecosystem within the Freedom holding. It integrates leading leisure and ticketing projects such as Ticketon, Sxodim, Kino.kz, Aviata, and Chocotravel, making your travel and entertainment experiences more accessible.",
+      "A lifestyle service ecosystem within the Freedom holding. It integrates leading leisure and ticketing projects such as Ticketon, Freedom Travel, and Arbuz.kz, making user experiences and travels more accessible.",
     "sponsors.issai.description":
       "The Institute of Smart Systems and Artificial Intelligence (ISSAI) at Nazarbayev University is a driver of AI innovation in Kazakhstan. It facilitates collaboration with sponsors.",
     "sponsors.nuDatasciClub.description":
@@ -442,7 +442,7 @@ export const ui = {
     "sponsors.freedomAILabs.description":
       "Подразделение казахстанского холдинга Freedom Holding Corp., которое занимается разработкой и внедрением технологий искусственного интеллекта во внутренние и клиентские сервисы экосистемы.",
     "sponsors.freedom.description":
-      "Экосистема лайфстайл-сервисов, входящая в холдинг Freedom Holding Corp. Объединяет ведущие проекты в сфере досуга и билетов: Ticketon, Sxodim, Kino.kz, Aviata и Chocotravel, делая ваши впечатления и путешествия доступнее.",
+      "Экосистема лайфстайл-сервисов, входящая в холдинг Freedom Holding Corp. Объединяет ведущие проекты в сфере досуга и билетов: Ticketon, Freedom Travel и Arbuz.kz, делая впечатления и путешествия пользователей более доступными.",
     "sponsors.issai.description":
       "Институт умных систем и искусственного интеллекта (ISSAI) при Назарбаев Университете является драйвером инноваций в сфере ИИ в Казахстане. Он помогает в сотрудничестве со спонсорами.",
     "sponsors.nuDatasciClub.description":
@@ -776,7 +776,7 @@ export const ui = {
     "sponsors.freedomAILabs.description":
       "Экожүйенің ішкі және клиенттік сервистеріне жасанды интеллект технологияларын әзірлеумен және енгізумен айналысатын қазақстандық Freedom Holding Corp. холдингінің бөлімшесі.",
     "sponsors.freedom.description":
-      "Freedom холдингіне кіретін лайфстайл-сервистер экожүйесі. Ticketon, Sxodim, Kino.kz, Aviata және Chocotravel сияқты демалыс пен билеттер саласындағы жетекші жобаларды біріктіріп, саяхат пен жаңа әсерлерді қолжетімді етеді.",
+      "Freedom холдингіне кіретін лайфстайл-сервистер экожүйесі. Ticketon, Freedom Travel және Arbuz.kz сияқты демалыс пен билеттер саласындағы жетекші жобаларды біріктіріп, пайдаланушылардың әсерлерін және саяхаттарын қолжетімді етеді.",
     "sponsors.issai.description":
       "Назарбаев Университеті жанындағы Ақылды жүйелер және жасанды интеллект институты (ISSAI) - Қазақстандағы ЖИ саласындағы инновациялар драйвері. Ол демеушілермен ынтымақтастық орнатуға көмектеседі.",
     "sponsors.nuDatasciClub.description":
